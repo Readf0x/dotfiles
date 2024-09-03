@@ -16,8 +16,8 @@
       kio-extras
       kio-fuse
       kservice
-      kwallet
-      kwallet-pam
+      #kwallet
+      #kwallet-pam
       plasma-workspace
       qtsvg
       qtwayland

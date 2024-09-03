@@ -9,7 +9,7 @@
 
   nixpkgs.config = {
     allowUnfree = true;
-    #rocmSupport = true;
+    rocmSupport = true;
   };
 
   networking = {
@@ -75,7 +75,7 @@
     rtkit.enable = true;
     polkit.enable = true;
     pam.services = {
-      kwallet.kwallet.enable = true;
+      #kwallet.kwallet.enable = true;
       gnome-keyring.enableGnomeKeyring = true;
       hyprlock = {};
     };
