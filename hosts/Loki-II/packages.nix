@@ -11,7 +11,6 @@
       shared-mime-info
       xdg-desktop-portal-gtk
     ] ++ (with libsForQt5; [
-      kdf
       kio-admin
       kio-extras
       kio-fuse
