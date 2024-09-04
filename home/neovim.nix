@@ -13,9 +13,6 @@
     };
 
     keymaps = [
-      {
-        key = "<leader>e";
-      }
     ];
 
     colorscheme = "tender";
