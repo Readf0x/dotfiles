@@ -27,7 +27,10 @@
       };
       antidote = {
         enable = true;
-        plugins = [];
+        plugins = [
+          # Integral Prompt release
+          # "readf0x/integral-prompt"
+        ];
       };
       shellAliases = {
         cat = "bat";
@@ -47,7 +50,8 @@
       };
       initExtraFirst = ''
         [ $KITTY_WINDOW_ID -gt 1 ] || ! [[ $KITTY_SHELL_INTEGRATION = no-rc ]] || [ $SHLVL -gt 1 ] || pokeget buizel --hide-name
-        source $HOME/Projects/Prompt/init.zsh
+        # Integral prompt development
+        source $HOME/Projects/prompt/init.zsh
       '';
       initExtra = ''
         bindkey -v

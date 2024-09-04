@@ -13,6 +13,9 @@
     };
 
     keymaps = [
+      {
+        key = "<leader>e";
+      }
     ];
 
     colorscheme = "tender";
@@ -31,6 +34,9 @@
         };
       };
       nvim-colorizer = {
+        enable = true;
+      };
+      neo-tree = {
         enable = true;
       };
     };
