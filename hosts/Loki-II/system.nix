@@ -76,7 +76,7 @@
     polkit.enable = true;
     pam.services = {
       #kwallet.kwallet.enable = true;
-      gnome-keyring.enableGnomeKeyring = true;
+      sddm.enableGnomeKeyring = true;
       hyprlock = {};
     };
   };

@@ -68,7 +68,7 @@
     dolphin
     dolphin-plugins
     kdegraphics-thumbnailers
-    kwalletmanager
+    #kwalletmanager
     breeze-icons
     qt5ct
     qtstyleplugin-kvantum
