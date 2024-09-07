@@ -470,4 +470,24 @@
       ];
     };
   };
+  services.hypridle = {
+    enable = true;
+    settings = {
+      general = {
+        lock_cmd = "pidof hyprlock || hyprlock";
+        unlock_cmd = "pkill -USR1 hyprlock";
+        before_sleep_cmd = "loginctl lock-session";
+      };
+      listener = [
+        {
+          timeout = 1800;
+          on-timeout = "loginctl lock-session";
+        }
+        {
+          timeout = 2700;
+          on-timeout = "systemctl suspend";
+        }
+      ];
+    };
+  };
 }
