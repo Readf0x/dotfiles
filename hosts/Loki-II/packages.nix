@@ -10,14 +10,6 @@
       samba
       shared-mime-info
       xdg-desktop-portal-gtk
-
-      # Fonts
-      cantarell-fonts
-      fira-code-nerdfont
-      maple-mono
-      maple-mono-NF
-      noto-fonts
-      ubuntu_font_family
     ] ++ (with libsForQt5; [
       kio-admin
       kio-extras
@@ -30,6 +22,15 @@
       qtwayland
     ]);
   };
+
+  fonts.packages = with pkgs; [
+    cantarell-fonts
+    fira-code-nerdfont
+    maple-mono
+    maple-mono-NF
+    noto-fonts
+    ubuntu_font_family
+  ];
 
   programs = {
     hyprland.enable = true;
