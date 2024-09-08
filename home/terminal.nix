@@ -97,6 +97,12 @@
         enable_audio_bell no
         visual_bell_duration 0.1
         visual_bell_color #3a2828
+
+        disable_ligatures never
+        font_features MapleMono-Regular +cv03 +cv04 +ss01 +ss02 +ss03 +ss04 +ss05
+        font_features MapleMono-Bold +cv03 +cv04 +ss01 +ss02 +ss03 +ss04 +ss05
+        font_features MapleMono-Italic +cv03 +cv04 +ss01 +ss02 +ss03 +ss04 +ss05
+        font_features MapleMono-BoldItalic +cv03 +cv04 +ss01 +ss02 +ss03 +ss04 +ss05
       '';
     };
     fastfetch = {
