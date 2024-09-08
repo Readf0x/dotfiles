@@ -470,9 +470,7 @@
       ];
     };
   };
-  home.packages = [
-    pkgs.hypridle
-  ]
+  home.packages = [ pkgs.hypridle ];
   services.hypridle = {
     enable = true;
     settings = {
