@@ -87,10 +87,6 @@
     };
     kitty = {
       enable = true;
-      font = {
-        name = "Maple Mono";
-        size = 11;
-      };
       theme = "Chalk";
       shellIntegration.enableZshIntegration = true;
       extraConfig = ''
@@ -99,10 +95,9 @@
         visual_bell_color #3a2828
 
         disable_ligatures never
-        font_features MapleMono-Regular +cv03 +cv04 +ss01 +ss02 +ss03 +ss04 +ss05
-        font_features MapleMono-Bold +cv03 +cv04 +ss01 +ss02 +ss03 +ss04 +ss05
-        font_features MapleMono-Italic +cv03 +cv04 +ss01 +ss02 +ss03 +ss04 +ss05
-        font_features MapleMono-BoldItalic +cv03 +cv04 +ss01 +ss02 +ss03 +ss04 +ss05
+        font_family family="Maple Mono" features="+cv03 +cv04 +ss01 +ss02 +ss03 +ss04 +ss05"
+        font_size 11
+        symbol_map U+2320-U+2321,U+239B-U+23B3 NotoSansMath-Regular
       '';
     };
     fastfetch = {
