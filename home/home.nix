@@ -56,12 +56,6 @@
     wl-clipboard
     xclip
 
-    ### Fonts:
-    cantarell-fonts
-    fira-code-nerdfont
-    noto-fonts
-    ubuntu_font_family
-
     colloid-kde
   ] ++ (with libsForQt5; [
     ark

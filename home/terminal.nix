@@ -88,7 +88,7 @@
     kitty = {
       enable = true;
       font = {
-        name = "Fira Code Nerd Font";
+        name = "Maple Mono";
         size = 11;
       };
       theme = "Chalk";
@@ -96,7 +96,7 @@
       extraConfig = ''
         enable_audio_bell no
         visual_bell_duration 0.1
-        visual_bell_color #221111
+        visual_bell_color #3a2828
       '';
     };
     fastfetch = {
