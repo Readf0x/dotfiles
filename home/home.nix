@@ -56,6 +56,7 @@
     swww
     wl-clipboard
     xclip
+    yt-dlp
 
     colloid-kde
   ] ++ (with libsForQt5; [
