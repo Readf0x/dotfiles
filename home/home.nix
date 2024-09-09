@@ -38,6 +38,7 @@
     libreoffice-qt6-fresh
     mpv
     neovide
+    picard
     prismlauncher
     rofi
     seahorse
