@@ -48,6 +48,7 @@
 
     ### User Facing CLI tools:
     btop
+    ffmpeg
     grimblast
     hyprpicker
     playerctl
