@@ -1,4 +1,4 @@
-{ config, pkgs, lib, modulesPath, ... }:
+{ config, pkgs, lib, modulesPath, self, ... }:
 
 {
   imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
@@ -10,8 +10,9 @@
     kernelModules = [ "kvm-amd" ];
     kernelPackages = pkgs.linuxPackages_zen;
     plymouth = {
+      themePackages = [ self.packages.plymouthTheme ];
       enable = true;
-      # theme = "infinite_seal";
+      theme = "infinite_seal";
     };
   };
   hardware = {
