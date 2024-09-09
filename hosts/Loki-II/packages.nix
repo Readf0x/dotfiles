@@ -7,6 +7,7 @@
       libsecret
       lxqt.lxqt-policykit
       neovim
+      ollama
       samba
       shared-mime-info
       xdg-desktop-portal-gtk
