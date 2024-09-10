@@ -53,7 +53,7 @@
       vim.opt.splitbelow = true
 
       if vim.g.neovide then
-        vim.o.guifont = "FiraCode Nerd Font:h11"
+        vim.o.guifont = "Maple Mono:h11"
         vim.g.neovide_cursor_vfx_mode = "ripple"
         vim.g.neovide_padding_top = 1
         vim.g.neovide_padding_right = 1
