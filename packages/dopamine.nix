@@ -10,7 +10,7 @@ pkgs.appimageTools.wrapType2 rec {
 
   extraInstallCommands =
     let
-      contents = appimageTools.extract { inherit pname version src; };
+      contents = pkgs.appimageTools.extract { inherit pname version src; };
     in
     ''
       install -Dm644 ${contents}/dopamine.desktop $out/share/applications/dopamine.desktop
