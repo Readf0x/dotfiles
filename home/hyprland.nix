@@ -140,7 +140,7 @@
         "$mod, N, exec, swaync-client -t"
         "$mod $s, N, exec, swaync-client -C"
         "$mod, Escape, exec, hyprlock"
-        
+
         # Media controls
         ", XF86AudioPlay, exec, $music play-pause"
         "$mod, F10, exec, $music play-pause"
