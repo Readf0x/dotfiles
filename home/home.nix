@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, self, ... }:
 
 {
   nixpkgs = {
@@ -28,9 +28,9 @@
   # environment.
   home.packages = [
     # Custom packages
+    self.packages.dopamine
   ] ++ (with pkgs; [
     ### Desktop Applications:
-    dopamine
     eog
     evolutionWithPlugins
     gimp

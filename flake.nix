@@ -22,7 +22,10 @@
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
     in {
-      packages.plymouthTheme = (import ./packages/plymouth.nix { inherit pkgs; });
+      packages = {
+        plymouthTheme = (import ./packages/plymouth.nix { inherit pkgs; });
+        dopamine = (import ./packages/dopamine.nix { inherit pkgs; });
+      }
       homeConfigurations."readf0x" = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
         extraSpecialArgs = { inherit self inputs; };
