@@ -3,7 +3,7 @@ pkgs.appimageTools.wrapType2 rec {
   pname = "dopamine";
   version = "3.0.0-preview.33";
 
-  src = pgks.fetchurl {
+  src = pkgs.fetchurl {
     url = "https://github.com/digimezzo/dopamine/releases/download/v${version}/Dopamine-${version}.AppImage";
     hash = "sha256-W8XkXnsP0AqYV0wznKe1dbPm2VuhoZWl03G7hib/uxE=";
   };
