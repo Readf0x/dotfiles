@@ -3,16 +3,20 @@
 {
   home.packages = with pkgs; [
     bat
+    ffmpeg
     fzf
     git
     gradle
     jq
     lazygit
+    microfetch
     nodejs_22
+    pokeget-rs
     python3
     ripgrep
     unzip
     wget
+    yt-dlp
     zip
   ];
   programs = {

@@ -48,16 +48,13 @@
 
     ### User Facing CLI tools:
     btop
-    ffmpeg
     grimblast
     hyprpicker
     playerctl
-    pokeget-rs
     radeontop
     swww
     wl-clipboard
     xclip
-    yt-dlp
 
     colloid-kde
   ] ++ (with libsForQt5; [
