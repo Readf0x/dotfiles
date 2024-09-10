@@ -1,4 +1,4 @@
-{ pgks, ... }:
+{ pkgs, ... }:
 pkgs.appimageTools.wrapType2 rec {
   pname = "dopamine";
   version = "3.0.0-preview.33";
