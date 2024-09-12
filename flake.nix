@@ -23,7 +23,6 @@
       pkgs = nixpkgs.legacyPackages.${system};
     in {
       packages = {
-        plymouthTheme = (import ./packages/plymouth.nix { inherit pkgs; });
         dopamine = (import ./packages/dopamine.nix { inherit pkgs; });
       };
       homeConfigurations."readf0x" = home-manager.lib.homeManagerConfiguration {
