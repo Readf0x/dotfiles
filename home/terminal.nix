@@ -52,7 +52,7 @@
         MANPAGER = "sh -c 'col -bx | bat -l man -p'";
       };
       initExtraFirst = ''
-        [ $KITTY_WINDOW_ID -gt 1 ] || ! [[ $KITTY_SHELL_INTEGRATION = no-rc ]] || [[ $SHLVL -gt 1 ]] || pokeget buizel --hide-name
+        [[ $KITTY_WINDOW_ID -gt 1 ]] || ! [[ $KITTY_SHELL_INTEGRATION = no-rc ]] || [[ $SHLVL -gt 1 ]] || pokeget buizel --hide-name
       '';
       initExtra = ''
         bindkey -v
