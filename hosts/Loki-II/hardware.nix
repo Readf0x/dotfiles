@@ -10,9 +10,9 @@
     kernelModules = [ "kvm-amd" ];
     kernelPackages = pkgs.linuxPackages_zen;
     plymouth = {
-      themePackages = [(pkgs.adi1090x-plymouth-themes.override
+      themePackages = [(pkgs.adi1090x-plymouth-themes.override {
         selected_themes = [ "infinite_seal" ];
-      )];
+      })];
       enable = true;
       theme = "infinite_seal";
     };
