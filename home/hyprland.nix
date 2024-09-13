@@ -228,6 +228,8 @@
         "swww-daemon; sleep 2; wallpaper.sh"
         "waybar"
         "swaync"
+	"/run/wrappers/bin/gnome-keyring-daemon --start --foreground --components=secrets"
+	"balooctl enable"
       ];
 
       #  _      ___         __             ___       __      
