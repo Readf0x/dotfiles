@@ -24,10 +24,41 @@
       bufferline = {
         enable = true;
       };
-      codeium-vim = {
+      #codeium-vim = {
+      #  enable = true;
+      #  keymaps = {
+      #    accept = "<C-a>";
+      #  };
+      #};
+      cmp = {
         enable = true;
-        keymaps = {
-          accept = "<C-a>";
+        settings = {
+          sources = [
+            { name = "nvim_lsp"; }
+            { name = "buffer"; }
+            { name = "path"; }
+          ];
+        };
+      };
+      nvim-snippets = {
+        enable = true;
+        settings.friendly_snippets = true;
+      };
+      friendly-snippets.enable = true;
+      mini = {
+        enable = true;
+        modules = {
+          pairs = {
+            modes = {
+              insert = true;
+              command = true;
+              terminal = false;
+            };
+            skip_next = ''[=[[%w%%%'%[%"%.%`%$]]=]'';
+            skip_ts = ''{ "string" }'';
+            skip_unbalanced = true;
+            markdown = true;
+          };
         };
       };
       nvim-colorizer = {
@@ -36,10 +67,50 @@
       neo-tree = {
         enable = true;
       };
+      treesitter = {
+        enable = true;
+        folding = true;
+        grammarPackages = with pkgs.vimPlugins.nvim-treesitter.builtGrammars; [
+          bash
+          css
+          diff
+          html
+          hyprlang
+          javascript
+          jsdoc
+          json
+          jsonc
+          lua
+          luadoc
+          luap
+          markdown
+          markdown_inline
+          nix
+          query
+          regex
+          scss
+          toml
+          typescript
+          vim
+          xml
+          yaml
+        ];
+      };
     };
     extraPlugins = with pkgs.vimPlugins; [
       tender-vim
       flatten-nvim
+    ];
+
+    autoCmd = [
+      {
+        event = [
+          "BufNewFile"
+          "BufRead"
+        ];
+        pattern = "**/hypr/**/*.conf";
+        command = "set commentstring='# %s'";
+      }
     ];
 
     extraConfigLua = ''

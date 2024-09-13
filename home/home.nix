@@ -40,7 +40,6 @@
     neovide
     picard
     prismlauncher
-    rofi
     seahorse
     swaynotificationcenter
     vesktop
@@ -128,6 +127,10 @@
     };
     zathura = {
       enable = true;
+    };
+    rofi = {
+      enable = true;
+      theme = "${pkgs.rofi}/share/rofi/themes/Adapta-Nokto.rasi";
     };
 
     waybar.enable = true;

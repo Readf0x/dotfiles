@@ -6,7 +6,6 @@
     ffmpeg
     fzf
     git
-    gradle
     hyperfine
     jq
     lazygit
