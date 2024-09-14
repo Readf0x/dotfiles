@@ -35,6 +35,7 @@
     evolutionWithPlugins
     gimp
     grimblast
+    kdenlive
     libreoffice-qt6-fresh
     mpv
     neovide
