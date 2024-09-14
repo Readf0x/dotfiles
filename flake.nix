@@ -1,8 +1,6 @@
 {
   description = "readf0x's dotfiles";
 
-  # REMEMBER TO UPDATE YOUR LOCKFILE WHEN THE COMPILE ISSUE IS SOLVED
-
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
