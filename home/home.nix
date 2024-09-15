@@ -28,9 +28,10 @@
   # environment.
   home.packages = [
     # Custom packages
-    self.packages.dopamine
+    # self.packages.dopamine
   ] ++ (with pkgs; [
     ### Desktop Applications:
+    dopamine
     eog
     evolutionWithPlugins
     gimp
