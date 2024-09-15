@@ -106,7 +106,7 @@
         visual_bell_color #3a2828
 
         disable_ligatures never
-        font_family family="Maple Mono" features="+cv03 +cv04 +ss01 +ss02 +ss03 +ss04 +ss05"
+        font_family family="Maple Mono NF" features="+zero +cv03 +ss03"
         font_size 11
         symbol_map U+2320-U+2321,U+239B-U+23B3 NotoSansMath-Regular
       '';

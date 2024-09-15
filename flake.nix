@@ -21,7 +21,7 @@
       pkgs = nixpkgs.legacyPackages.${system};
     in {
       packages = {
-        dopamine = (import ./packages/dopamine.nix { inherit pkgs; });
+        maple-font = (import ./packages/maple-font.nix { inherit pkgs; });
       };
       homeConfigurations."readf0x" = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;

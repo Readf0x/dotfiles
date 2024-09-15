@@ -35,6 +35,7 @@
     eog
     evolutionWithPlugins
     gimp
+    gnome-font-viewer
     grimblast
     kdenlive
     libreoffice-qt6-fresh

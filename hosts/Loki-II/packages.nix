@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, self, ... }:
 {
   environment = {
     etc."/xdg/menus/applications.menu".source = "${pkgs.kdePackages.plasma-workspace}/etc/xdg/menus/plasma-applications.menu";
@@ -24,14 +24,14 @@
     ]);
   };
 
-  fonts.packages = with pkgs; [
+  fonts.packages = (
+    builtins.attrValues self.packages.maple-font
+  ) ++ (with pkgs; [
     cantarell-fonts
     fira-code-nerdfont
-    maple-mono
-    maple-mono-NF
     noto-fonts
     ubuntu_font_family
-  ];
+  ]);
 
   programs = {
     hyprland.enable = true;
