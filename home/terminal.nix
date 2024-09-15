@@ -48,12 +48,15 @@
         neofetch = "fastfetch";
         open = "xdg-open";
         zshr = "exec zsh";
+        diff = "diff --color";
       };
       localVariables = {
         MANPAGER = "sh -c 'col -bx | bat -l man -p'";
+        GOPATH = "~/.config/go";
       };
       initExtraFirst = ''
         [[ $KITTY_WINDOW_ID -gt 1 ]] || ! [[ $KITTY_SHELL_INTEGRATION = no-rc ]] || [[ $SHLVL -gt 1 ]] || pokeget buizel --hide-name
+        export DIRENV_LOG_FORMAT=
       '';
       initExtra = ''
         bindkey -v
@@ -85,6 +88,11 @@
       options = [
         "--cmd cd"
       ];
+    };
+    direnv = {
+      enable = true;
+      enableZshIntegration = true;
+      nix-direnv.enable = true;
     };
     thefuck = {
       enable = true;
