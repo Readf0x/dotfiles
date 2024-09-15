@@ -93,6 +93,9 @@
           ai = {
             enable = true;
           };
+          surround = {
+            enable = true;
+          };
         };
       };
       nvim-colorizer = {

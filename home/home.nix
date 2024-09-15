@@ -40,6 +40,7 @@
     libreoffice-qt6-fresh
     mpv
     neovide
+    pavucontrol
     picard
     prismlauncher
     seahorse

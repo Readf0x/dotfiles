@@ -23,17 +23,13 @@
     zsh = {
       enable = true;
       autocd = true;
-      autosuggestion.enable = true;
-      historySubstringSearch = {
-        enable = true;
-        searchDownKey = "^[[B";
-        searchUpKey = "^[[A";
-      };
       antidote = {
         enable = true;
         plugins = [
           "readf0x/integral-prompt"
-          "zdharma-continuum/fast-syntax-highlighting"
+          "zdharma-continuum/fast-syntax-highlighting kind:defer"
+          "zsh-users/zsh-autosuggestions kind:defer"
+          "zsh-users/zsh-history-substring-search kind:defer"
         ];
       };
       shellAliases = {
@@ -65,6 +61,8 @@
         bindkey -M viins '^[[1;5C' forward-word
         bindkey '^[[H' beginning-of-line
         bindkey '^[[F' end-of-line
+        bindkey '^[[A' history-substring-search-up
+        bindkey '^[[B' history-substring-search-down
         autoload -U select-word-style
         select-word-style bash
         autoload -Uz +X compinit && compinit
