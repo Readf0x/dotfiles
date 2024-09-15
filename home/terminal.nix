@@ -33,6 +33,7 @@
         enable = true;
         plugins = [
           "readf0x/integral-prompt"
+          "zdharma-continuum/fast-syntax-highlighting"
         ];
       };
       shellAliases = {

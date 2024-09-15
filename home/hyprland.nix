@@ -408,7 +408,7 @@
           font_color = "rgb(ffffff)";
           fade_on_empty = false;
           fade_timeout = 1000;
-          placeholder_text = ''<span foreground="#939393" style="italic" font_size="11pt">Input Password...</span>'';
+          placeholder_text = ''<span foreground="##939393" style="italic" font_size="11pt">Input Password...</span>'';
           hide_input = false;
           rounding = 8;
           check_color = "rgb(ffd600)";

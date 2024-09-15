@@ -18,6 +18,7 @@
         action = "<cmd>Neotree toggle<CR>";
         key = "<Space>e";
         mode = "n";
+        options.desc = "Toggle NeoTree";
       }
     ];
 
@@ -95,6 +96,7 @@
       treesitter = {
         enable = true;
         folding = true;
+        nixvimInjections = true;
         grammarPackages = with pkgs.vimPlugins.nvim-treesitter.builtGrammars; [
           bash
           css
@@ -166,6 +168,7 @@
       vim.o.wrap = false
       vim.o.foldlevel = 99
       vim.o.relativenumber = true
+      vim.o.signcolumn = "yes"
 
       vim.g.mapleader = " "
 
