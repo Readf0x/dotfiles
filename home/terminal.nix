@@ -48,7 +48,7 @@
       };
       localVariables = {
         MANPAGER = "sh -c 'col -bx | bat -l man -p'";
-        GOPATH = "~/.config/go";
+        GOPATH = "$HOME/.config/go";
       };
       initExtraFirst = ''
         [[ $KITTY_WINDOW_ID -gt 1 ]] || ! [[ $KITTY_SHELL_INTEGRATION = no-rc ]] || [[ $SHLVL -gt 1 ]] || pokeget buizel --hide-name
