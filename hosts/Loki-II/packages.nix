@@ -10,17 +10,16 @@
       ollama
       samba
       shared-mime-info
-      xdg-desktop-portal-gtk
+      xdg-desktop-portal-hyprland
     ] ++ (with libsForQt5; [
       kio-admin
       kio-extras
       kio-fuse
       kservice
-      #kwallet
-      #kwallet-pam
       plasma-workspace
       qtsvg
       qtwayland
+      xdg-desktop-portal-kde
     ]);
   };
 
