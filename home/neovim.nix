@@ -14,35 +14,12 @@
     };
 
     keymaps = [
-      {
-        action = "<cmd>Neotree toggle<CR>";
-        key = "<Space>e";
-        mode = "n";
-        options.desc = "Toggle NeoTree";
-      }
-      {
-        action = "<End>";
-        key = ";";
-        options.desc = "End of line";
-      }
-      {
-        action = "<cmd>noh<CR>";
-        key = "<Space>u";
-        mode = "n";
-        options.desc = "Clear highlight";
-      }
-      {
-        action = "cc";
-        key = "C";
-        mode = "n";
-        options.desc = "Change line";
-      }
-      {
-        action = "<cmd>w<CR>";
-        key = "<Space>w";
-        mode = "n";
-        options.desc = "Save";
-      }
+      { action = "<cmd>Neotree toggle<CR>";       key = "<Space>e";  mode = "n";  options.desc = "Toggle NeoTree";  }
+      { action = "<End>";                         key = ";";                      options.desc = "End of line";     }
+      { action = "<cmd>noh<CR>";                  key = "<Space>u";  mode = "n";  options.desc = "Clear highlight"; }
+      { action = "cc";                            key = "C";         mode = "n";  options.desc = "Change line";     }
+      { action = "<cmd>w<CR>";                    key = "<Space>w";  mode = "n";  options.desc = "Save";            }
+      { action = "<cmd>Gitsigns reset_hunk<CR>";  key = "<C-g>r";    mode = "n";  options.desc = "Reset hunk";      }
     ];
 
     colorscheme = "tender";
@@ -63,11 +40,8 @@
       cmp = {
         enable = true;
         settings = {
-          sources = [
-            { name = "calc"; priority = 4; group_index = 1; }
-            { name = "codeium"; priority = 3; group_index = 1; }
-            { name = "nvim_lsp"; priority = 2; group_index = 1; }
-            { name = "zsh"; priority = 2; group_index = 1; entry_filter = ''
+          sources = let
+            zsh_filter = ''
               function()
                 if vim.bo.filetype == "zsh" then
                   return true
@@ -75,20 +49,26 @@
                   return false
                 end
               end
-            ''; }
-            { name = "fuzzy_path"; priority = 1; group_index = 1; }
-            { name = "nvim_lsp_document_symbol"; priority = 2; group_index = 2; }
-            { name = "treesitter"; priority = 2; group_index = 2; }
-            { name = "fuzzy_buffer"; priority = 1; group_index = 2; }
+            '';
+            doc_sym = "nvim_lsp_document_symbol";
+          in [
+            { name = "calc";          priority = 4;  group_index = 1; }
+            { name = "codeium";       priority = 3;  group_index = 1; }
+            { name = "nvim_lsp";      priority = 2;  group_index = 1; }
+            { name = "zsh";           priority = 2;  group_index = 1; entry_filter = zsh_filter; }
+            { name = "fuzzy_path";    priority = 1;  group_index = 1; }
+            { name = doc_sym;         priority = 2;  group_index = 2; }
+            { name = "treesitter";    priority = 2;  group_index = 2; }
+            { name = "fuzzy_buffer";  priority = 1;  group_index = 2; }
           ];
           mapping = {
             "<C-Space>" = "cmp.mapping.complete()";
-            "<C-d>" = "cmp.mapping.scroll_docs(-4)";
-            "<C-e>" = "cmp.mapping.close()";
-            "<C-f>" = "cmp.mapping.scroll_docs(4)";
-            "<CR>" = "cmp.mapping.confirm({ select = true })";
-            "<S-Tab>" = "cmp.mapping(cmp.mapping.select_prev_item(), {'i', 's'})";
-            "<Tab>" = "cmp.mapping(cmp.mapping.select_next_item(), {'i', 's'})";
+            "<C-d>"     = "cmp.mapping.scroll_docs(-4)";
+            "<C-e>"     = "cmp.mapping.close()";
+            "<C-f>"     = "cmp.mapping.scroll_docs(4)";
+            "<CR>"      = "cmp.mapping.confirm({ select = true })";
+            "<S-Tab>"   = "cmp.mapping(cmp.mapping.select_prev_item(), {'i', 's'})";
+            "<Tab>"     = "cmp.mapping(cmp.mapping.select_next_item(), {'i', 's'})";
           };
         };
       };
@@ -157,7 +137,17 @@
       };
       which-key = {
         enable = true;
-        settings.icons.mappings = false;
+        settings = {
+          icons.mappings = false;
+          spec = [
+            {
+              __unkeyed = "<C-g>";
+              group = "Git";
+              icon = " ";
+              mode = [ "n" "v" ];
+            }
+          ];
+        };
       };
       git-conflict = {
         enable = true;
