@@ -98,9 +98,11 @@
     };
     kitty = {
       enable = true;
-      theme = "Chalk";
+      #theme = "Tender";
       shellIntegration.enableZshIntegration = true;
       extraConfig = ''
+        include Tender.conf
+
         enable_audio_bell no
         visual_bell_duration 0.1
         visual_bell_color #3a2828
@@ -109,6 +111,8 @@
         font_family family="Maple Mono NF" features="+zero +cv03 +ss03"
         font_size 11
         symbol_map U+2320-U+2321,U+239B-U+23B3 NotoSansMath-Regular
+
+        window_padding_width 11
       '';
     };
     fastfetch = {

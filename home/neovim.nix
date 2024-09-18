@@ -20,6 +20,29 @@
         mode = "n";
         options.desc = "Toggle NeoTree";
       }
+      {
+        action = "<End>";
+        key = ";";
+        options.desc = "End of line";
+      }
+      {
+        action = "<cmd>noh<CR>";
+        key = "<Space>u";
+        mode = "n";
+        options.desc = "Clear highlight";
+      }
+      {
+        action = "cc";
+        key = "C";
+        mode = "n";
+        options.desc = "Change line";
+      }
+      {
+        action = "<cmd>w<CR>";
+        key = "<Space>w";
+        mode = "n";
+        options.desc = "Save";
+      }
     ];
 
     colorscheme = "tender";
@@ -28,9 +51,7 @@
       lualine = {
         enable = true;
       };
-      bufferline = {
-        enable = true;
-      };
+      # bufferline = { enable = true; };
       lsp = {
         enable = true;
         servers = {
@@ -137,6 +158,18 @@
       which-key = {
         enable = true;
         settings.icons.mappings = false;
+      };
+      git-conflict = {
+        enable = true;
+      };
+      gitsigns = {
+        enable = true;
+      };
+      gitlinker = {
+        enable = true;
+      };
+      gitmessenger = {
+        enable = true;
       };
     };
     extraPlugins = with pkgs.vimPlugins; [
