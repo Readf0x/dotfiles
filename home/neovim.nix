@@ -13,18 +13,67 @@
       };
     };
 
-    keymaps = [
-      { action = "<cmd>Neotree toggle<CR>";       key = "<Space>e";  mode = "n";  options.desc = "Toggle NeoTree";  }
-      { action = "<End>";                         key = ";";                      options.desc = "End of line";     }
-      { action = "<cmd>noh<CR>";                  key = "<Space>u";  mode = "n";  options.desc = "Clear highlight"; }
-      { action = "cc";                            key = "C";         mode = "n";  options.desc = "Change line";     }
-      { action = "<cmd>w<CR>";                    key = "<Space>w";  mode = "n";  options.desc = "Save";            }
-      { action = "<cmd>Gitsigns reset_hunk<CR>";  key = "<C-g>r";    mode = "n";  options.desc = "Reset hunk";      }
-    ];
+    keymaps = let 
+      toggle = str: { __raw = "function() ${str} = not ${str} end"; };
+      cmd = str: "<cmd>${str}<CR>";
+      gitlinker = {
+        line_normal = cmd "lua vim.fn.setreg('', require('gitlinker').get_buf_range_url('n'))";
+        line_visual = cmd "lua vim.fn.setreg('', require('gitlinker').get_buf_range_url('v'))";
+        homepage =    cmd "lua vim.fn.setreg('', require('gitlinker').get_repo_url())";
+      };
+      telescope_opts = [
+        { cmd = "buffers";     key = "b"; name = "Buffers";     }
+        { cmd = "find_files";  key = "f"; name = "Files";       }
+        { cmd = "live_grep";   key = "g"; name = "Search";      }
+        { cmd = "grep_string"; key = "s"; name = "Search word"; }
+      ];
+    in [
+      { action = "cc";                           key = "C";          mode = "n";         options.desc = "Change line";         }
+      { action = "<End>";                        key = "<CR>";                           options.desc = "End of line";         }
+      { action = "zl";                           key = "<C-l>";      mode = [ "n" "v" ]; options.desc = "Scroll right single"; }
+      { action = "zL";                           key = "<C-k>";      mode = [ "n" "v" ]; options.desc = "Scroll right";        }
+      { action = "zh";                           key = "<C-h>";      mode = [ "n" "v" ]; options.desc = "Scroll left single";  }
+      { action = "zH";                           key = "<C-j>";      mode = [ "n" "v" ]; options.desc = "Scroll left";         }
+      { action = cmd "Gitsigns reset_hunk";      key = "<C-g>r";     mode = [ "n" "v" ]; options.desc = "Reset hunk";          }
+      { action = cmd "Gitsigns stage_hunk";      key = "<C-g>s";     mode = [ "n" "v" ]; options.desc = "Stage hunk";          }
+      { action = cmd "Gitsigns stage_buffer";    key = "<C-g>S";     mode = "n";         options.desc = "Stage buffer";        }
+      { action = cmd "Gitsigns undo_stage_hunk"; key = "<C-g>u";     mode = "n";         options.desc = "Undo stage";          }
+      { action = cmd "Gitsigns reset_buffer";    key = "<C-g>R";     mode = "n";         options.desc = "Reset buffer";        }
+      { action = cmd "Gitsigns preview_hunk";    key = "<C-g>p";     mode = "n";         options.desc = "Preview hunk";        }
+      { action = cmd "Gitsigns blame_line";      key = "<C-g>b";     mode = "n";         options.desc = "Blame line";          }
+      { action = cmd "Gitsigns diffthis";        key = "<C-g>d";     mode = "n";         options.desc = "Diff";                }
+      { action = cmd "Gitsigns toggle_deleted";  key = "<C-g>D";     mode = "n";         options.desc = "Toggle deleted";      }
+      { action = gitlinker.line_normal;          key = "<C-g>l";     mode = "n";         options.desc = "Copy line url";       }
+      { action = gitlinker.line_visual;          key = "<C-g>l";     mode = "v";         options.desc = "Copy line url";       }
+      { action = gitlinker.homepage;             key = "<C-g>h";     mode = "n";         options.desc = "Copy homepage";       }
+      { action = cmd "Neotree toggle";           key = "<leader>e";  mode = "n";         options.desc = "Toggle NeoTree";      }
+      { action = cmd "noh";                      key = "<leader>u";  mode = "n";         options.desc = "Clear highlight";     }
+      { action = cmd "w";                        key = "<leader>w";  mode = "n";         options.desc = "Save";                }
+      { action = toggle "vim.o.relativenumber";  key = "<leader>n";  mode = "n";         options.desc = "Toggle relative";     }
+      { action = cmd "Telescope";                key = "<leader>tt"; mode = "n";         options.desc = "All";                 }
+    ] ++ map (x: {
+      action = cmd "Telescope ${x.cmd}"; key = "<leader>t${x.key}"; mode = "n"; options.desc = x.name;
+    }) telescope_opts;
 
     colorscheme = "tender";
 
     plugins = {
+      which-key = {
+        enable = true;
+        settings = {
+          icons.mappings = false;
+          spec = [
+            { __unkeyed = "<C-g>"; group = "Git"; mode = [ "n" "v" ]; }
+            {
+              __unkeyed = [
+                { __unkeyed = "<Space>"; group = "Leader"; }
+                { __unkeyed = "<Space>t"; group = "Telescope"; }
+              ];
+              mode = [ "n" "v" ];
+            }
+          ];
+        };
+      };
       lualine = {
         enable = true;
       };
@@ -52,14 +101,14 @@
             '';
             doc_sym = "nvim_lsp_document_symbol";
           in [
-            { name = "calc";          priority = 4;  group_index = 1; }
-            { name = "codeium";       priority = 3;  group_index = 1; }
-            { name = "nvim_lsp";      priority = 2;  group_index = 1; }
-            { name = "zsh";           priority = 2;  group_index = 1; entry_filter = zsh_filter; }
-            { name = "fuzzy_path";    priority = 1;  group_index = 1; }
-            { name = doc_sym;         priority = 2;  group_index = 2; }
-            { name = "treesitter";    priority = 2;  group_index = 2; }
-            { name = "fuzzy_buffer";  priority = 1;  group_index = 2; }
+            { name = "calc";         priority = 4; group_index = 1;                            }
+            { name = "codeium";      priority = 3; group_index = 1;                            }
+            { name = "nvim_lsp";     priority = 2; group_index = 1;                            }
+            { name = "zsh";          priority = 2; group_index = 1; entry_filter = zsh_filter; }
+            { name = "fuzzy_path";   priority = 1; group_index = 1;                            }
+            { name = doc_sym;        priority = 2; group_index = 2;                            }
+            { name = "treesitter";   priority = 2; group_index = 2;                            }
+            { name = "fuzzy_buffer"; priority = 1; group_index = 2;                            }
           ];
           mapping = {
             "<C-Space>" = "cmp.mapping.complete()";
@@ -135,20 +184,6 @@
           yaml
         ];
       };
-      which-key = {
-        enable = true;
-        settings = {
-          icons.mappings = false;
-          spec = [
-            {
-              __unkeyed = "<C-g>";
-              group = "Git";
-              icon = " ";
-              mode = [ "n" "v" ];
-            }
-          ];
-        };
-      };
       git-conflict = {
         enable = true;
       };
@@ -158,13 +193,14 @@
       gitlinker = {
         enable = true;
       };
-      gitmessenger = {
+      telescope = {
         enable = true;
       };
     };
     extraPlugins = with pkgs.vimPlugins; [
       tender-vim
       flatten-nvim
+      vim-easy-align
     ];
 
     autoCmd = [
@@ -190,37 +226,50 @@
             MiniPairs.map_buf(vim.fn.bufnr('%'), 'i', ';', {
               action = 'close', pair = '=;', register = { cr = false }
             })
+            MiniPairs.unmap_buf(vim.fn.bufnr('%'), 'i', "'", "\'\'")
+            MiniPairs.map_buf(vim.fn.bufnr('%'), 'i', "\'\'", {
+              action = 'closeopen', pair = "\'\'\'\'"
+            })
           end
         ''; };
       }
     ];
 
+    extraConfigLuaPre = ''
+      vim.g.mapleader = ' '
+    '';
     extraConfigLua = ''
-      vim.o.tabstop = 2
-      vim.o.shiftwidth = 2
-      vim.o.expandtab = true
-      vim.o.wrap = false
-      vim.o.foldlevel = 99
-      vim.o.relativenumber = true
-      vim.o.signcolumn = "yes"
-
-      vim.g.mapleader = " "
-
-      vim.opt.splitright = true
-      vim.opt.splitbelow = true
-
-      if vim.g.neovide then
-        vim.o.guifont = "Maple Mono:h11"
-        vim.g.neovide_cursor_vfx_mode = "ripple"
-        vim.g.neovide_padding_top = 1
-        vim.g.neovide_padding_right = 1
-        vim.g.neovide_padding_bottom = 1
-        vim.g.neovide_padding_left = 1
-      end
+      require("flatten").setup()
 
       vim.filetype.add({
         pattern = { [".*/hypr/.*%.conf"] = "hyprlang" },
       })
+    '';
+    extraConfigVim = ''
+      source ${pkgs.vimPlugins.vim-easy-align}/autoload/easy_align.vim
+      source ${pkgs.vimPlugins.vim-easy-align}/plugin/easy_align.vim
+
+      set tabstop=2
+      set shiftwidth=2
+      set expandtab
+      set nowrap
+      set foldlevel=99
+      set number relativenumber
+      set signcolumn=yes
+
+      hi NormalFloat guibg=#1D1D1D
+
+      set splitbelow
+      set splitright
+
+      if exists('g:neovide')
+        set guifont=Maple Mono:h11
+        let g:neovide_cursor_vfx_mode = "ripple"
+        let g:neovide_padding_top = 1
+        let g:neovide_padding_right = 1
+        let g:neovide_padding_bottom = 1
+        let g:neovide_padding_left = 1
+      endif
     '';
   };
 }
