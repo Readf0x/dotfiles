@@ -14,12 +14,17 @@
     };
 
     keymaps = let 
-      toggle = str: { __raw = "function() ${str} = not ${str} end"; };
       cmd = str: "<cmd>${str}<CR>";
+      lua = s: m: {
+        __raw = if m == "false" then
+          "function() ${s} end"
+        else "function() require('${m}').${s} end";
+      };
+      toggle = str: lua "${str} = not ${str}" "false";
       gitlinker = {
-        line_normal = cmd "lua vim.fn.setreg('', require('gitlinker').get_buf_range_url('n'))";
-        line_visual = cmd "lua vim.fn.setreg('', require('gitlinker').get_buf_range_url('v'))";
-        homepage =    cmd "lua vim.fn.setreg('', require('gitlinker').get_repo_url())";
+        line_normal = lua "vim.fn.setreg('', require('gitlinker').get_buf_range_url('n'))" "false";
+        line_visual = lua "vim.fn.setreg('', require('gitlinker').get_buf_range_url('v'))" "false";
+        homepage =    lua "vim.fn.setreg('', require('gitlinker').get_repo_url())" "false";
       };
       telescope_opts = [
         { cmd = "buffers";     key = "b"; name = "Buffers";     }
@@ -27,6 +32,7 @@
         { cmd = "live_grep";   key = "g"; name = "Search";      }
         { cmd = "grep_string"; key = "s"; name = "Search word"; }
       ];
+      luasnip = x: lua "if require('luasnip').choice_active() then require('luasnip').change_choice(${x}) end" "false";
     in [
       # Remaps
       { action = "cc";                           key = "C";          mode = "n";         options.desc = "Change line";         }
@@ -35,6 +41,8 @@
       { action = "zL";                           key = "<C-k>";      mode = [ "n" "v" ]; options.desc = "Scroll right";        }
       { action = "zh";                           key = "<C-h>";      mode = [ "n" "v" ]; options.desc = "Scroll left single";  }
       { action = "zH";                           key = "<C-j>";      mode = [ "n" "v" ]; options.desc = "Scroll left";         }
+      { action = luasnip "1";                    key = "<C-n>";      mode = [ "i" "s" ]; options.desc = "Next choice";         }
+      { action = luasnip "-1";                   key = "<C-m>";      mode = [ "i" "s" ]; options.desc = "Prev choice";         }
       # Git
       { action = cmd "Gitsigns reset_hunk";      key = "<C-g>r";     mode = [ "n" "v" ]; options.desc = "Reset hunk";          }
       { action = cmd "Gitsigns stage_hunk";      key = "<C-g>s";     mode = [ "n" "v" ]; options.desc = "Stage hunk";          }
@@ -81,7 +89,6 @@
       lualine = {
         enable = true;
       };
-      # bufferline = { enable = true; };
       lsp = {
         enable = true;
         servers = {
@@ -94,6 +101,7 @@
       cmp = {
         enable = true;
         settings = {
+          preselect = "cmp.PreselectMode.None";
           sources = let
             zsh_filter = ''
               function()
@@ -107,9 +115,9 @@
             doc_sym = "nvim_lsp_document_symbol";
           in [
             { name = "calc";         priority = 4; group_index = 1; }
+            { name = "luasnip";      priority = 4; group_index = 1; }
             { name = "codeium";      priority = 3; group_index = 1; }
             { name = "nvim_lsp";     priority = 2; group_index = 1; }
-            { name = "luasnip";      priority = 2; group_index = 1; }
             { name = "zsh";          priority = 2; group_index = 1; entry_filter = zsh_filter; }
             { name = "fuzzy_path";   priority = 1; group_index = 1; }
             { name = doc_sym;        priority = 2; group_index = 2; }
@@ -121,9 +129,42 @@
             "<C-d>"     = "cmp.mapping.scroll_docs(-4)";
             "<C-e>"     = "cmp.mapping.close()";
             "<C-f>"     = "cmp.mapping.scroll_docs(4)";
-            "<CR>"      = "cmp.mapping.confirm({ select = true })";
-            "<S-Tab>"   = "cmp.mapping(cmp.mapping.select_prev_item(), {'i', 's'})";
-            "<Tab>"     = "cmp.mapping(cmp.mapping.select_next_item(), {'i', 's'})";
+            "<CR>"      = ''
+              cmp.mapping(function(fallback)
+                if cmp.visible() then
+                  if require('luasnip').expandable() then
+                    require('luasnip').expand()
+                  else
+                    cmp.confirm({select = true})
+                  end
+                else
+                  fallback()
+                end
+              end)
+            '';
+            "<Tab>" = ''
+              cmp.mapping(function(fallback)
+                if cmp.visible() then
+                  cmp.select_next_item()
+                elseif require('luasnip').locally_jumpable(1) then
+                  require('luasnip').jump(1)
+                else
+                  fallback()
+                end
+              end, { "i", "s" })
+            '';
+            "<S-Tab>" = ''
+              cmp.mapping(function(fallback)
+                if cmp.visible() then
+                  cmp.select_prev_item()
+                elseif require('luasnip').locally_jumpable(-1) then
+                  require('luasnip').jump(-1)
+                else
+                  fallback()
+                end
+              end, { "i", "s" })
+            '';
+            "<Esc>" = "cmp.mapping(function(fallback) if cmp.visible() then cmp.abort() else fallback() end end)";
           };
         };
       };

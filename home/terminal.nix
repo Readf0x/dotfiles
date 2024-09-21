@@ -10,7 +10,7 @@
     jq
     lazygit
     microfetch
-    nodejs_22
+    nodejs-slim
     pokeget-rs
     python3
     ripgrep

@@ -46,5 +46,9 @@
       enable = true;
       enableSSHSupport = true;
     };
+    corectrl = {
+      enable = true;
+      gpuOverclock.enable = true;
+    };
   };
 }
