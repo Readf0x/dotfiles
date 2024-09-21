@@ -45,6 +45,7 @@
         open = "xdg-open";
         zshr = "exec zsh";
         diff = "diff --color";
+        ":q" = "exit";
       };
       localVariables = {
         MANPAGER = "sh -c 'col -bx | bat -l man -p'";
