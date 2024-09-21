@@ -258,6 +258,7 @@
       set signcolumn=yes
 
       hi NormalFloat guibg=#1D1D1D
+      hi Pmenu guifg=#EEEEEE guibg=#1D1D1D
 
       set splitbelow
       set splitright
