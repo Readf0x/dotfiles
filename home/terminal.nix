@@ -5,10 +5,8 @@
     bat
     ffmpeg
     fzf
-    git
     hyperfine
     jq
-    lazygit
     microfetch
     nodejs-slim
     pokeget-rs
@@ -34,6 +32,7 @@
       };
       shellAliases = {
         cat = "bat";
+        diff = "diff --color";
         grep = "rg";
         hyc = "hyprctl";
         icat = "kitten icat --align left";
@@ -43,8 +42,8 @@
         lt = "eza -T";
         neofetch = "fastfetch";
         open = "xdg-open";
+        v = "$VISUAL";
         zshr = "exec zsh";
-        diff = "diff --color";
         ":q" = "exit";
       };
       localVariables = {
@@ -118,6 +117,31 @@
     };
     fastfetch = {
       enable = true;
+    };
+    git = {
+      enable = true;
+      delta = {
+        enable = true;
+      };
+      userName = "readf0x";
+      userEmail = "davis.a.forsythe@gmail.com";
+      signing = {
+        key = "00FF693537C65B9895A6BEE52EE5F4672ED57EA4";
+        signByDefault = true;
+      };
+      extraConfig = {
+        commit.gpgsign = true;
+        credential.helper = "${pkgs.git.override { withLibsecret = true; }}/bin/git-credential-libsecret";
+        diff.algorithm = "patience";
+      };
+    };
+    lazygit = {
+      enable = true;
+      settings = {
+        gui = {
+          nerdFontsVersion = "3";
+        };
+      };
     };
   };
 }

@@ -31,11 +31,13 @@
     # self.packages.dopamine
   ] ++ (with pkgs; [
     ### Desktop Applications:
+    blender-hip
     dopamine
     eog
     evolutionWithPlugins
     gimp
     gnome-font-viewer
+    godot_4
     grimblast
     kdenlive
     libreoffice-qt6-fresh

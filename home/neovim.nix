@@ -2,7 +2,7 @@
 
 {
   home.packages = [ pkgs.fd ];
-  home.sessionVariables = { EDITOR = "nvim"; };
+  home.sessionVariables = { EDITOR = "nvim"; VISUAL = "nvim"; };
   programs.nixvim = {
     enable = true;
     clipboard = {
@@ -244,9 +244,16 @@
       };
       lazygit = {
         enable = true;
+        settings = {
+          floating_window_use_plenary = 1;
+        };
       };
       telescope = {
         enable = true;
+      };
+      fzf-lua = {
+        enable = true;
+        profile = "telescope";
       };
     };
     extraPlugins = with pkgs.vimPlugins; [
