@@ -46,6 +46,7 @@
         zshr = "exec zsh";
         ":q" = "exit";
       };
+      shellGlobalAliases = { "--help" = "--help | bat -plhelp"; };
       localVariables = {
         MANPAGER = "sh -c 'col -bx | bat -l man -p'";
         GOPATH = "$HOME/.config/go";
@@ -140,6 +141,11 @@
       settings = {
         gui = {
           nerdFontsVersion = "3";
+          showFileIcons = true;
+          # border = "hidden";
+        };
+        git.paging = {
+          pager = "delta --paging=never";
         };
       };
     };

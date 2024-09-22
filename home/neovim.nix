@@ -245,7 +245,7 @@
       lazygit = {
         enable = true;
         settings = {
-          floating_window_use_plenary = 1;
+          floating_window_border_chars = [ "" "" "" "" "" "" "" "" ];
         };
       };
       telescope = {
