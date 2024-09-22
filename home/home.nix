@@ -12,90 +12,90 @@
   ];
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
-  home.username = "readf0x";
-  home.homeDirectory = "/home/readf0x";
+  home = {
+    username = "readf0x";
+    homeDirectory = "/home/readf0x";
 
-  # This value determines the Home Manager release that your configuration is
-  # compatible with. This helps avoid breakage when a new Home Manager release
-  # introduces backwards incompatible changes.
-  #
-  # You should not change this value, even if you update Home Manager. If you do
-  # want to update the value, then make sure to first check the Home Manager
-  # release notes.
-  home.stateVersion = "24.05"; # Please read the comment before changing.
+    # This value determines the Home Manager release that your configuration is
+    # compatible with. This helps avoid breakage when a new Home Manager release
+    # introduces backwards incompatible changes.
+    #
+    # You should not change this value, even if you update Home Manager. If you do
+    # want to update the value, then make sure to first check the Home Manager
+    # release notes.
+    stateVersion = "24.05"; # Please read the comment before changing.
 
-  # The home.packages option allows you to install Nix packages into your
-  # environment.
-  home.packages = [
-    # Custom packages
-    # self.packages.dopamine
-  ] ++ (with pkgs; [
-    ### Desktop Applications:
-    blender-hip
-    dopamine
-    eog
-    evolutionWithPlugins
-    gimp
-    gnome-font-viewer
-    godot_4
-    grimblast
-    kdenlive
-    libreoffice-qt6-fresh
-    mpv
-    neovide
-    pavucontrol
-    picard
-    prismlauncher
-    seahorse
-    swaynotificationcenter
-    vesktop
-    youtube-music
+    # The home.packages option allows you to install Nix packages into your
+    # environment.
+    packages = [
+      # Custom packages
+      # self.packages.dopamine
+    ] ++ (with pkgs; [
+      ### Desktop Applications:
+      blender-hip
+      dopamine
+      eog
+      evolutionWithPlugins
+      gimp
+      gnome-font-viewer
+      godot_4
+      grimblast
+      kdenlive
+      libreoffice-qt6-fresh
+      mpv
+      neovide
+      pavucontrol
+      picard
+      prismlauncher
+      seahorse
+      swaynotificationcenter
+      vesktop
+      youtube-music
 
-    ### User Facing CLI tools:
-    btop
-    grimblast
-    hyprpicker
-    playerctl
-    radeontop
-    swww
-    wl-clipboard
-    xclip
+      ### User Facing CLI tools:
+      btop
+      grimblast
+      hyprpicker
+      playerctl
+      radeontop
+      swww
+      wl-clipboard
+      xclip
 
-    colloid-kde
-  ] ++ (with libsForQt5; [
-    ark
-    dolphin
-    dolphin-plugins
-    kdegraphics-thumbnailers
-    #kwalletmanager
-    breeze-icons
-    qt5ct
-    qtstyleplugin-kvantum
-    qtstyleplugins
-  ]) ++ (with kdePackages; [
-    qt6ct
-    qtstyleplugin-kvantum
-  ]));
+      colloid-kde
+    ] ++ (with libsForQt5; [
+      ark
+      dolphin
+      dolphin-plugins
+      kdegraphics-thumbnailers
+      #kwalletmanager
+      breeze-icons
+      qt5ct
+      qtstyleplugin-kvantum
+      qtstyleplugins
+    ]) ++ (with kdePackages; [
+      qt6ct
+      qtstyleplugin-kvantum
+    ]));
 
-  # Home Manager is pretty good at managing dotfiles. The primary way to manage
-  # plain files is through 'home.file'.
-  home.file = {
-    ".config/hypr/pfp.png".source = ./pfp.png;
+    # Home Manager is pretty good at managing dotfiles. The primary way to manage
+    # plain files is through 'home.file'.
+    file = {
+      ".config/hypr/pfp.png".source = ./pfp.png;
+    };
+
+    sessionVariables = {
+      PATH = "$PATH:$HOME/Scripts";
+    };
+
+    pointerCursor = {
+      gtk.enable = true;
+      name = "Bibata-Modern-Ice";
+      package = pkgs.bibata-cursors;
+      size = 24;
+    };
   };
 
-  home.sessionVariables = {
-    PATH = "$PATH:$HOME/Scripts";
-  };
-
-  # Let Home Manager install and manage itself.
-  programs.home-manager.enable = true;
-
-  home.pointerCursor = {
-    gtk.enable = true;
-    name = "Bibata-Modern-Ice";
-    package = pkgs.bibata-cursors;
-    size = 24;
-  };
   gtk = {
     enable = true;
     theme = {
@@ -140,6 +140,7 @@
       enable = true;
       theme = "${pkgs.rofi}/share/rofi/themes/Adapta-Nokto.rasi";
     };
+    home-manager.enable = true;
 
     waybar.enable = true;
   };
