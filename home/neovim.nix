@@ -164,7 +164,7 @@
                 end
               end, { "i", "s" })
             '';
-            "<Esc>" = "cmp.mapping(function(fallback) if cmp.visible() then cmp.abort() else fallback() end end)";
+            "<C-Esc>" = "cmp.mapping(function(fallback) if cmp.visible() then cmp.abort() else fallback() end end)";
           };
         };
       };
@@ -209,6 +209,7 @@
           bash
           css
           diff
+          go
           html
           hyprlang
           javascript
@@ -230,6 +231,7 @@
           xml
           yaml
         ];
+        settings.highlight.enable = true;
       };
       git-conflict = {
         enable = true;
@@ -312,6 +314,7 @@
 
       hi NormalFloat guibg=#1D1D1D
       hi Pmenu guifg=#EEEEEE guibg=#1D1D1D
+      hi Statement gui=italic cterm=italic
 
       set splitbelow
       set splitright
