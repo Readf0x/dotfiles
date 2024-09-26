@@ -16,7 +16,7 @@
         access = list: index: toString (builtins.elemAt list index);
         toRes = x: "${access x 0}x${access x 1}";
       in lib.forEach conf.monitors (i:
-        "${i.id}, ${toRes i.res}@${toString i.hz}, ${toRes i.pos}, ${toString i.rot}"
+        "${i.id}, ${toRes i.res}@${toString i.hz}, ${toRes i.pos}, ${toString i.scl}, transform, ${toString i.rot}"
       );
 
       # https://wiki.hyprland.org/Configuring/Environment-variables/

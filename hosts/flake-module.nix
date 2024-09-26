@@ -25,8 +25,8 @@ let
     "readf0x@Loki-II" = {
       system = "x86_64-linux";
       monitors = [
-        { id = "DP-2";     res = [ 1920 1080 ]; hz = 60; pos = [ 1920 0 ]; rot = 0; }
-        { id = "HDMI-A-1"; res = [ 1920 1080 ]; hz = 60; pos = [ 0    0 ]; rot = 0; }
+        { id = "DP-2";     res = [ 1920 1080 ]; scl = 1; hz = 60; pos = [ 1920 0 ]; rot = 0; }
+        { id = "HDMI-A-1"; res = [ 1920 1080 ]; scl = 1; hz = 60; pos = [ 0    0 ]; rot = 0; }
       ];
       stateVersion = "24.05";
       email = "davis.a.forsythe@gmail.com";
