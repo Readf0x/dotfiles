@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, user, conf, ... }:
 
 {
   home.packages = with pkgs; [
@@ -124,10 +124,10 @@
       delta = {
         enable = true;
       };
-      userName = "readf0x";
-      userEmail = "davis.a.forsythe@gmail.com";
+      userName = user;
+      userEmail = conf.email;
       signing = {
-        key = "00FF693537C65B9895A6BEE52EE5F4672ED57EA4";
+        key = conf.key;
         signByDefault = true;
       };
       extraConfig = {

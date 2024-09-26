@@ -1,9 +1,7 @@
-{ pkgs, lib, ... }:
+{ pkgs, user, conf, ... }:
 
 {
   imports = [
-    ./hardware.nix
-    ./drives.nix
     ./packages.nix
   ];
 
@@ -12,35 +10,18 @@
     rocmSupport = true;
   };
 
-  networking = {
-    hostName = "Loki-II";
-    useDHCP = lib.mkDefault true;
-    networkmanager.enable = true;
-  };
-
-  time.timeZone = "America/Chicago";
-  i18n.defaultLocale = "en_US.UTF-8";
-  i18n.extraLocaleSettings = {
-    LC_ADDRESS = "en_US.UTF-8";
-    LC_IDENTIFICATION = "en_US.UTF-8";
-    LC_MEASUREMENT = "en_US.UTF-8";
-    LC_MONETARY = "en_US.UTF-8";
-    LC_NAME = "en_US.UTF-8";
-    LC_NUMERIC = "en_US.UTF-8";
-    LC_PAPER = "en_US.UTF-8";
-    LC_TELEPHONE = "en_US.UTF-8";
-    LC_TIME = "en_US.UTF-8";
-  };
-  services.xserver.xkb = {
-    layout = "us";
-    variant = "";
-  };
-
-  users.users.readf0x = {
+  users.users.${user} = {
     isNormalUser = true;
-    description = "Davis Forsythe";
     extraGroups = [ "networkmanager" "wheel" ];
     shell = pkgs.zsh;
+  };
+
+  boot.plymouth = {
+    themePackages = [(pkgs.adi1090x-plymouth-themes.override {
+      selected_themes = [ "infinite_seal" ];
+    })];
+    enable = true;
+    theme = "infinite_seal";
   };
 
   xdg = {
@@ -80,7 +61,7 @@
     };
   };
 
-  system.stateVersion = "24.05";
+  system.stateVersion = conf.stateVersion;
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 }

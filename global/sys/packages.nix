@@ -1,13 +1,13 @@
-{ pkgs, self, ... }:
+{ pkgs, self, sys', lib, ... }:
 {
   environment = {
-    etc."/xdg/menus/applications.menu".source = "${pkgs.kdePackages.plasma-workspace}/etc/xdg/menus/plasma-applications.menu";
+    etc."/xdg/menus/applications.menu".source =
+    "${pkgs.kdePackages.plasma-workspace}/etc/xdg/menus/plasma-applications.menu";
     systemPackages = with pkgs; [
       libnotify
       libsecret
       lxqt.lxqt-policykit
       neovim
-      ollama
       samba
       shared-mime-info
       xdg-desktop-portal-hyprland
@@ -23,8 +23,11 @@
     ]);
   };
 
-  fonts.packages = (
-    builtins.attrValues self.packages.maple-font
+  #fonts.packages = (
+  #  builtins.attrValues self.packages.${sys'}.maple-font
+  #) ++ (with pkgs; [
+  fonts.packages = builtins.attrValues (
+    lib.filterAttrs (n: v: lib.hasPrefix "maple-font" n) self.packages.${sys'}
   ) ++ (with pkgs; [
     cantarell-fonts
     fira-code-nerdfont
@@ -45,10 +48,6 @@
     gnupg.agent = {
       enable = true;
       enableSSHSupport = true;
-    };
-    corectrl = {
-      enable = true;
-      gpuOverclock.enable = true;
     };
   };
 }

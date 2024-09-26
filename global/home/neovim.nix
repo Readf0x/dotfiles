@@ -62,6 +62,7 @@
       { action = cmd "noh";                      key = "<leader>u";  mode = "n";         options.desc = "Clear highlight";     }
       { action = cmd "w";                        key = "<leader>w";  mode = "n";         options.desc = "Save";                }
       { action = toggle "vim.o.relativenumber";  key = "<leader>n";  mode = "n";         options.desc = "Toggle relative";     }
+      { action = "<cmd>EasyAlign";               key = "<leader>a";  mode = "n";         options.desc = "Align";               }
       { action = cmd "Telescope";                key = "<leader>tt"; mode = "n";         options.desc = "All";                 }
     ] ++ map (x: {
       action = cmd "Telescope ${x.cmd}"; key = "<leader>t${x.key}"; mode = "n"; options.desc = x.name;
@@ -78,8 +79,8 @@
             { __unkeyed = "<C-g>"; group = "Git"; mode = [ "n" "v" ]; }
             {
               __unkeyed = [
-                { __unkeyed = "<Space>"; group = "Leader"; }
-                { __unkeyed = "<Space>t"; group = "Telescope"; }
+                { __unkeyed = "<leader>";  group = "Leader";    }
+                { __unkeyed = "<leader>t"; group = "Telescope"; }
               ];
               mode = [ "n" "v" ];
             }
@@ -250,15 +251,15 @@
       };
       telescope = {
         enable = true;
-      };
-      fzf-lua = {
-        enable = true;
-        profile = "telescope";
+        extensions = {
+          fzf-native.enable = true;
+        };
       };
     };
     extraPlugins = with pkgs.vimPlugins; [
-      tender-vim
       flatten-nvim
+      telescope-zoxide
+      tender-vim
       vim-easy-align
     ];
 
@@ -305,6 +306,7 @@
       })
     '';
     extraConfigLuaPost = ''
+      require('telescope').load_extension('zoxide')
       vim.keymap.del('n', '<leader>gy')
     '';
     extraConfigVim = ''

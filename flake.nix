@@ -9,30 +9,28 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    flake-parts.url = "github:hercules-ci/flake-parts";
+
     nixvim = {
       url = "github:nix-community/nixvim";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        home-manager.follows = "home-manager";
+        flake-parts.follows = "flake-parts";
+      };
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, nixvim, ... }@inputs:
-    let
-      system = "x86_64-linux";
-      pkgs = nixpkgs.legacyPackages.${system};
-    in {
-      packages = {
-        maple-font = (import ./packages/maple-font.nix { inherit pkgs; });
-      };
-      homeConfigurations."readf0x" = home-manager.lib.homeManagerConfiguration {
-        inherit pkgs;
-        extraSpecialArgs = { inherit self inputs; };
-        modules = [ nixvim.homeManagerModules.nixvim ./home/home.nix ];
-      };
-      # TODO: create configurations programmatically instead of hardcoding them
-      nixosConfigurations."Loki-II" = nixpkgs.lib.nixosSystem {
-        inherit system;
-        specialArgs = { inherit self inputs; };
-        modules = [ ./hosts/Loki-II/system.nix ];
+  outputs = { flake-parts, ... }@inputs:
+    flake-parts.lib.mkFlake { inherit inputs; } {
+      imports = [
+        ./hosts/flake-module.nix
+      ];
+      systems = [ "x86_64-linux" ];
+      perSystem = { pkgs, lib, ... }: {
+        packages = (
+          lib.mapAttrs' (name': value: { name = "maple-font-${name'}"; inherit value; }) (import ./packages/maple-font.nix { inherit pkgs; })
+        );
       };
     };
 }

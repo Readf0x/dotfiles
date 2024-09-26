@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, conf, user, lib, ... }:
 
 {
   wayland.windowManager.hyprland = {
@@ -12,10 +12,12 @@
       #     /___/                                           /___/     
 
       # https://wiki.hyprland.org/Configuring/Monitors/
-      monitor = [
-        "DP-2, preferred, 1920x0, auto"
-        "HDMI-A-1, preferred, 0x0, auto"
-      ];
+      monitor = let
+        access = list: index: toString (builtins.elemAt list index);
+        toRes = x: "${access x 0}x${access x 1}";
+      in lib.forEach conf.monitors (i:
+        "${i.id}, ${toRes i.res}@${toString i.hz}, ${toRes i.pos}, ${toString i.rot}"
+      );
 
       # https://wiki.hyprland.org/Configuring/Environment-variables/
       env = [
@@ -116,7 +118,7 @@
       "$c" = "CTRL";
       "$a" = "ALT";
       "$hyper" = "SHIFT CTRL SUPER ALT";
-      # "$music" = "playerctl --player=$(cat /home/readf0x/.config/ags/active.txt)";
+      # "$music" = "playerctl --player=$(cat /home/${user}/.config/ags/active.txt)";
       "$music" = "playerctl";
       # "$agsVolume" = ''ags -r "const volume = (await import('file:///tmp/ags/js/main.js')).VolumeWindow; volume.visible = true"'';
       # "$agsBrightness" = ''ags -r "const brightness = (await import('file:///tmp/ags/js/main.js')).BrightnessWindow; brightness.visible = true"'';
@@ -228,8 +230,9 @@
         "swww-daemon; sleep 2; wallpaper.sh"
         "waybar"
         "swaync"
-	"/run/wrappers/bin/gnome-keyring-daemon --start --foreground --components=secrets"
-	"balooctl enable"
+        "lxqt-policykit-agent"
+        "/run/wrappers/bin/gnome-keyring-daemon --start --foreground --components=secrets"
+        "balooctl enable"
       ];
 
       #  _      ___         __             ___       __      
@@ -240,47 +243,59 @@
       # https://wiki.hyprland.org/Configuring/Window-Rules
       workspace = [
         "special:dropdown, on-created-empty:kitty, gapsout:80"
-        "name:music, monitor:HDMI-A-1, on-created-empty:youtube-music"
-        "name:discord, monitor:HDMI-A-1, on-created-empty:vesktop"
-        "name:info, monitor:HDMI-A-1, on-created-empty:kitty btop"
-        "name:video, monitor:HDMI-A-1"
-        "name:mail, monitor:HDMI-A-1, on-created-empty:evolution"
+        "name:music, monitor:${(builtins.elemAt conf.monitors 1).id}, on-created-empty:youtube-music"
+        "name:discord, monitor:${(builtins.elemAt conf.monitors 1).id}, on-created-empty:vesktop"
+        "name:info, monitor:${(builtins.elemAt conf.monitors 1).id}, on-created-empty:kitty btop"
+        "name:video, monitor:${(builtins.elemAt conf.monitors 1).id}"
+        "name:mail, monitor:${(builtins.elemAt conf.monitors 1).id}, on-created-empty:evolution"
       ];
       windowrulev2 = [
+        # Disallow auto maximize
         "suppressevent maximize, class:(.*)"
+        # Disable blur on popups
         "noblur, class:^()$, title: ^()$"
+        # Pavucontrol
         "float, class:(pavucontrol)"
         "size 700 500, class:(pavucontrol)"
         "move 1208 51 class:(pavucontrol)"
         "monitor DP-2, class:(pavucontrol)"
-        "stayfocused, class:(pavucontrol)"
         "animation slide, class:(pavucontrol)"
         "opacity 1, class:(pavucontrol)"
+        # Smile
         "float, class:(smile)"
+        # Rofi
         "stayfocused, class:(Rofi)"
         "float, class:(Rofi)"
+        # Vivaldi
         "tile, title:( - Vivaldi)$"
         "float, title:^(Vivaldi Settings)"
+        # Dunst
         "opacity 0.75, class:(Dunst)"
+        # Waydroid
         "fullscreen, class:^([w|W]aydroid.*)"
+        # Picture in picture
         "float, title:^(Picture in picture)$"
         "keepaspectratio, title:^(Picture in picture)$"
         "pin, title:^(Picture in picture)$"
         "float, title:^(Picture-in-Picture)$"
         "keepaspectratio, title:^(Picture-in-Picture)$"
         "pin, title:^(Picture-in-Picture)$"
+        # Gamescope
         "rounding 0, class:(gamescope)"
         "fullscreen, class:(gamescope)"
         "float, class:(gamescope)"
+        # Steam
         "float, title:(Steam Settings)"
         "minsize 1 1, title:^()$,class:^(steam)$"
         "center, title:^(Steam)$, class:^()$"
         "center, class:^(steam)$"
         "monitor DP-2, class:(steam)"
+        # File dialogs
         "float, title:((Open|Save|Select) File|Select Background Image|Select Folder.*)"
         "size 900 600, title:((Open|Save)|Select File|Select Background Image|Select Folder.*)"
         "center, title:((Open|Save|Select) File|Select Background Image|Select Folder.*)"
         "center, title:( Image)$"
+        # LibreOffice
         "size 900 600, class:(soffice)"
         "center, class:(soffice)"
         "float, class:(xdg-desktop-portal-gtk)"
@@ -288,6 +303,7 @@
         "center, class:(xdg-desktop-portal-gtk)"
         "size 239 122, title:^(Go to Page)$"
         "center, class:^()$, title:^(LibreOffice)$"
+        # XWaylandVideoBridge
         "opacity 0.0 override 0.0 override, class:^(xwaylandvideobridge)$"
         "noanim, class:^(xwaylandvideobridge)$"
         "nofocus, class:^(xwaylandvideobridge)$"
@@ -297,9 +313,10 @@
         #"workspace name:music, class:^(Dopamine)$"
         "float, title:^(Layer Select)$"
         "float, class:^(file-.*)"
-        #"workspace name:discord, class:^(discord)$"
-        #"workspace name:discord, class:^(vesktop)$"
-        "monitor HDMI-A-1, class:^(org.telegram.desktop)$"
+        # Discord
+        "monitor ${(builtins.elemAt conf.monitors 1).id}, class:^(discord)$"
+        "monitor ${(builtins.elemAt conf.monitors 1).id}, class:^(veskt 1}, class:^(discoop)$"
+        "monitor ${(builtins.elemAt conf.monitors 1).id}, class:^(org.t 1}, class:^(discoelegram.desktop)$"
         "noanim, title:^(Media viewer)$, class:^(org.telegram.desktop)$"
         "float, title:^(Media viewer)$, class:^(org.telegram.desktop)$"
         "keepaspectratio, class:^(scrcpy)$"
@@ -428,7 +445,7 @@
       image = [
         {
           monitor = "DP-2";
-          path = "/home/$USER/.config/hypr/pfp.png";
+          path = "/home/${user}/.config/hypr/pfp.png";
           size = 256;
           rounding = -1;
           border_size = 2;
