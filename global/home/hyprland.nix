@@ -1,6 +1,12 @@
 { pkgs, conf, user, lib, ... }:
 
-{
+let
+  monitor = num: builtins.elemAt conf.monitors (
+    if num >= lib.length conf.monitors
+    then (lib.length conf.monitors - 1)
+    else num
+  );
+in {
   wayland.windowManager.hyprland = {
     enable = true;
     systemd.variables = ["--all"];
@@ -243,11 +249,11 @@
       # https://wiki.hyprland.org/Configuring/Window-Rules
       workspace = [
         "special:dropdown, on-created-empty:kitty, gapsout:80"
-        "name:music, monitor:${(builtins.elemAt conf.monitors 1).id}, on-created-empty:youtube-music"
-        "name:discord, monitor:${(builtins.elemAt conf.monitors 1).id}, on-created-empty:vesktop"
-        "name:info, monitor:${(builtins.elemAt conf.monitors 1).id}, on-created-empty:kitty btop"
-        "name:video, monitor:${(builtins.elemAt conf.monitors 1).id}"
-        "name:mail, monitor:${(builtins.elemAt conf.monitors 1).id}, on-created-empty:evolution"
+        "name:music, monitor:${(monitor 1).id}, on-created-empty:youtube-music"
+        "name:discord, monitor:${(monitor 1).id}, on-created-empty:vesktop"
+        "name:info, monitor:${(monitor 1).id}, on-created-empty:kitty btop"
+        "name:video, monitor:${(monitor 1).id}"
+        "name:mail, monitor:${(monitor 1).id}, on-created-empty:evolution"
       ];
       windowrulev2 = [
         # Disallow auto maximize
@@ -291,9 +297,9 @@
         "center, class:^(steam)$"
         "monitor DP-2, class:(steam)"
         # File dialogs
-        "float, title:((Open|Save|Select) File|Select Background Image|Select Folder.*)"
-        "size 900 600, title:((Open|Save)|Select File|Select Background Image|Select Folder.*)"
-        "center, title:((Open|Save|Select) File|Select Background Image|Select Folder.*)"
+        "float, title:((Open|Save|Select) (File|As|Background Image|Folder.*))"
+        "size 900 600, title:((Open|Save|Select) (File|As|Background Image|Folder.*))"
+        "center, title:((Open|Save|Select) (File|As|Background Image|Folder.*))"
         "center, title:( Image)$"
         # LibreOffice
         "size 900 600, class:(soffice)"
@@ -314,14 +320,18 @@
         "float, title:^(Layer Select)$"
         "float, class:^(file-.*)"
         # Discord
-        "monitor ${(builtins.elemAt conf.monitors 1).id}, class:^(discord)$"
-        "monitor ${(builtins.elemAt conf.monitors 1).id}, class:^(veskt 1}, class:^(discoop)$"
-        "monitor ${(builtins.elemAt conf.monitors 1).id}, class:^(org.t 1}, class:^(discoelegram.desktop)$"
+        "monitor ${(monitor 1).id}, class:^(discord)$"
+        "monitor ${(monitor 1).id}, class:^(veskt 1}, class:^(discoop)$"
+        "monitor ${(monitor 1).id}, class:^(org.t 1}, class:^(discoelegram.desktop)$"
+        # Telegram
         "noanim, title:^(Media viewer)$, class:^(org.telegram.desktop)$"
         "float, title:^(Media viewer)$, class:^(org.telegram.desktop)$"
+        # ScrCpy
         "keepaspectratio, class:^(scrcpy)$"
         "pseudo, class:^(scrcpy)$"
+        # KDE Connect
         "float, class:^(org.kde.kdeconnect.handler)$"
+        # Minecraft
         "fullscreen, class:^(Minecraft\\*? 1.\\d+.*)"
         "idleinhibit always, class:^(Minecraft\\*? 1.\\d+.*)"
         "immediate, class:^(Minecraft\\*? 1.\\d+.*)"
@@ -348,34 +358,51 @@
         "idleinhibit always, class:^(SteamPunk)$"
         "immediate, class:^(SteamPunk)$"
         "monitor DP-2, class:^(SteamPunk)$"
+        # Kitty
         "noborder, class:^(kitty)$, title:^(info)$"
         "float, title:^(cava)$"
         "size 1320 623, title:^(cava)$"
         "center, title:^(cava)$"
+        # Calculator
         "float, class:^(org.gnome.Calculator)$"
+        # Zenity
         "float, class:(zenity)"
+        # Ark
         "float, title:(File Already Exists — Ark)"
         "float, class:^(org.kde.ark)$, title:^(Extracting.* — Ark)"
+        # Thunar
         "float, class:(thunar), title:(File Operation Progress|Confirm to replace files)"
         "float, class:(org.kde.polkit-kde-authentication-agent-1)"
+        # Yad
         "float, class:(yad)"
+        # Vortex
         "tile, title:(Vortex)"
         "workspace special:hell silent, title:(Wine System Tray)"
         "center, class:^(vortex.exe)$, title:^(Open)$"
+        # Blender
         "float, title:(Blender Preferences)"
+        # Krita
         "noblur, class:(krita)"
+        # Screenpen
         "float, class:(python3), initialTitle:(screenpen)"
         "noanim, class:(python3), initialTitle:(screenpen)"
+        # FontForge
         "tile, class:(fontforge), title:^(?!fontforge)"
+        # Blockbench
         "float, class:^(blockbench)$, title:^()$"
         "size 900 600, class:(blockbench), title:^()$"
         "center, class:(blockbench), title:^()$"
+        # Zotero
         "float, class:^(Zotero)$, title:^(?!Zotero)"
         "center, class:^(Zotero)$, title:^(?!Zotero)"
+        # VLC
         "noblur, class:vlc"
+        # Dolphin
         "float, class:^(org.kde.dolphin)$, title:((Creating directory|Progress Dialog|Deleting|Copying|Moving) — Dolphin)"
         "idleinhibit, class:^(org.kde.dolphin)$, title:((Creating directory|Progress Dialog|Deleting|Copying|Moving) — Dolphin)"
+        # Excalidraw
         "tile, class:^(Chromium)$, title:^(Excalidraw)$"
+        # Evolution
         #"workspace name:mail, class:^(evolution)$"
         "noinitialfocus, class:^(evolution)$"
         "float, title:^(?!Mail|Inbox).*$, class:^(evolution)$"
@@ -386,11 +413,14 @@
         "size 500 400, class:^(evolution-alarm-notify)$"
         "center, class:^(evolution-alarm-notify)$"
         "pin, class:^(evolution-alarm-notify)$"
+        # LibreWolf
         "opacity 0.9999999, class:^(LibreWolf)$"
+        "float, title:(Close Firefox)"
+        # Fallout 4
         "fullscreen, class:(steam_app_377160), title:(Fallout4)"
+        # Godot
         "tile, class:(Godot_Engine), title:(Godot)"
         "tile, class:(\\w+), title:(Godot)"
-        "float, title:(Close Firefox)"
       ];
     };
   };
