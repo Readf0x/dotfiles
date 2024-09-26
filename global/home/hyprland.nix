@@ -300,6 +300,9 @@ in {
         "float, title:((Open|Save|Select) (File|As|Background Image|Folder.*))"
         "size 900 600, title:((Open|Save|Select) (File|As|Background Image|Folder.*))"
         "center, title:((Open|Save|Select) (File|As|Background Image|Folder.*))"
+        "float, class:(org.freedesktop.impl.portal.desktop.kde)"
+        "size 900 600, class:(org.freedesktop.impl.portal.desktop.kde)"
+        "center, class:(org.freedesktop.impl.portal.desktop.kde)"
         "center, title:( Image)$"
         # LibreOffice
         "size 900 600, class:(soffice)"
