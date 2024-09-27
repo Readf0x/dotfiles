@@ -140,6 +140,8 @@
       enable = true;
       theme = "${pkgs.rofi}/share/rofi/themes/Adapta-Nokto.rasi";
     };
+    ags.enable = true;
+
     home-manager.enable = true;
 
     waybar.enable = true;

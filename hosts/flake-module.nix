@@ -12,7 +12,10 @@ let
   in {
     homeConfigurations.${name} = inputs.home-manager.lib.homeManagerConfiguration {
       pkgs = inputs.nixpkgs.legacyPackages.${system};
-      modules = module "home" [ inputs.nixvim.homeManagerModules.nixvim ];
+      modules = module "home" [
+        inputs.nixvim.homeManagerModules.nixvim
+        inputs.ags.homeManagerModules.default
+      ];
       extraSpecialArgs = specialArgs;
     };
     nixosConfigurations.${host} = inputs.nixpkgs.lib.nixosSystem {

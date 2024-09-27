@@ -19,6 +19,11 @@
         flake-parts.follows = "flake-parts";
       };
     };
+
+    ags = {
+      url = "github:Aylur/ags";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = { flake-parts, ... }@inputs:

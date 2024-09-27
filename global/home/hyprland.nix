@@ -180,12 +180,12 @@ in {
         "$mod $s, up, movewindow, u"
         "$mod $s, down, movewindow, d"
 
-        "$mod, I, workspace, name:info"
-        "$mod, Y, workspace, name:music"
-        "$mod, S, workspace, name:video"
-        "$mod $s, S, movetoworkspace, name:video"
-        "$mod $s, D, workspace, name:discord"
-        "$mod $s, M, workspace, name:mail"
+        #"$mod, I, workspace, name:info"
+        #"$mod, Y, workspace, name:music"
+        #"$mod, S, workspace, name:video"
+        #"$mod $s, S, movetoworkspace, name:video"
+        #"$mod $s, D, workspace, name:discord"
+        #"$mod $s, M, workspace, name:mail"
 
         "$mod, tab, movecurrentworkspacetomonitor, +1"
         "$mod, mouse_down, workspace, e-1"
@@ -264,7 +264,7 @@ in {
         "float, class:(pavucontrol)"
         "size 700 500, class:(pavucontrol)"
         "move 1208 51 class:(pavucontrol)"
-        "monitor DP-2, class:(pavucontrol)"
+        "monitor ${(monitor 0).id}, class:(pavucontrol)"
         "animation slide, class:(pavucontrol)"
         "opacity 1, class:(pavucontrol)"
         # Smile
@@ -295,7 +295,7 @@ in {
         "minsize 1 1, title:^()$,class:^(steam)$"
         "center, title:^(Steam)$, class:^()$"
         "center, class:^(steam)$"
-        "monitor DP-2, class:(steam)"
+        "monitor ${(monitor 0).id}, class:(steam)"
         # File dialogs
         "float, title:((Open|Save|Select) (File|As|Background Image|Folder.*))"
         "size 900 600, title:((Open|Save|Select) (File|As|Background Image|Folder.*))"
@@ -324,11 +324,13 @@ in {
         "float, class:^(file-.*)"
         # Discord
         "monitor ${(monitor 1).id}, class:^(discord)$"
-        "monitor ${(monitor 1).id}, class:^(veskt 1}, class:^(discoop)$"
-        "monitor ${(monitor 1).id}, class:^(org.t 1}, class:^(discoelegram.desktop)$"
+        "noinitialfocus, class:^(discord)$"
+        "monitor ${(monitor 1).id}, class:^(vesktop)$"
+        "noinitialfocus, class:^(vesktop)$"
         # Telegram
         "noanim, title:^(Media viewer)$, class:^(org.telegram.desktop)$"
         "float, title:^(Media viewer)$, class:^(org.telegram.desktop)$"
+        "monitor ${(monitor 1).id}, class:^(org.telegram.desktop)$"
         # ScrCpy
         "keepaspectratio, class:^(scrcpy)$"
         "pseudo, class:^(scrcpy)$"
@@ -338,29 +340,29 @@ in {
         "fullscreen, class:^(Minecraft\\*? 1.\\d+.*)"
         "idleinhibit always, class:^(Minecraft\\*? 1.\\d+.*)"
         "immediate, class:^(Minecraft\\*? 1.\\d+.*)"
-        "monitor DP-2, class:^(Minecraft\\*? 1.\\d+.*)"
+        "monitor ${(monitor 0).id}, class:^(Minecraft\\*? 1.\\d+.*)"
         "fullscreen, class:^(Minecraft\\*? \\d\\d\\w\\d\\d\\w)"
         "idleinhibit always, class:^(Minecraft\\*? \\d\\d\\w\\d\\d\\w)"
         "immediate, class:^(Minecraft\\*? \\d\\d\\w\\d\\d\\w)"
-        "monitor DP-2, class:^(Minecraft\\*? \\d\\d\\w\\d\\d\\w)"
+        "monitor ${(monitor 0).id}, class:^(Minecraft\\*? \\d\\d\\w\\d\\d\\w)"
         "float, title:^(Minecraft\\*? 1.\\d+.*)"
         "fullscreen, title:^(Minecraft\\*? 1.\\d+.*)"
         "idleinhibit always, title:^(Minecraft\\*? 1.\\d+.*)"
         "immediate, title:^(Minecraft\\*? 1.\\d+.*)"
-        "monitor DP-2, title:^(Minecraft\\*? 1.\\d+.*)"
+        "monitor ${(monitor 0).id}, title:^(Minecraft\\*? 1.\\d+.*)"
         "float, title:^(Minecraft\\*? \\d\\d\\w\\d\\d\\w)"
         "fullscreen, title:^(Minecraft\\*? \\d\\d\\w\\d\\d\\w)"
         "idleinhibit always, title:^(Minecraft\\*? \\d\\d\\w\\d\\d\\w)"
         "immediate, title:^(Minecraft\\*? \\d\\d\\w\\d\\d\\w)"
-        "monitor DP-2, title:^(Minecraft\\*? \\d\\d\\w\\d\\d\\w)"
+        "monitor ${(monitor 0).id}, title:^(Minecraft\\*? \\d\\d\\w\\d\\d\\w)"
         "fullscreen, class:^(BigChadGuys Plus v[0-9.]+)$"
         "idleinhibit always, class:^(BigChadGuys Plus v[0-9.]+)$"
         "immediate, class:^(BigChadGuys Plus v[0-9.]+)$"
-        "monitor DP-2, class:^(BigChadGuys Plus v[0-9.]+)$"
+        "monitor ${(monitor 0).id}, class:^(BigChadGuys Plus v[0-9.]+)$"
         "fullscreen, class:^(SteamPunk)$"
         "idleinhibit always, class:^(SteamPunk)$"
         "immediate, class:^(SteamPunk)$"
-        "monitor DP-2, class:^(SteamPunk)$"
+        "monitor ${(monitor 0).id}, class:^(SteamPunk)$"
         # Kitty
         "noborder, class:^(kitty)$, title:^(info)$"
         "float, title:^(cava)$"
@@ -446,7 +448,7 @@ in {
       ];
       input-field = [
         {
-          monitor = "DP-2";
+          monitor = (monitor 0).id;
           size = "800, 30";
           outline_thickness = 2;
           dots_size = 0.33;
@@ -477,7 +479,7 @@ in {
       ];
       image = [
         {
-          monitor = "DP-2";
+          monitor = (monitor 0).id;
           path = "/home/${user}/.config/hypr/pfp.png";
           size = 256;
           rounding = -1;
@@ -490,7 +492,7 @@ in {
       ];
       label = [
         {
-          monitor = "DP-2";
+          monitor = (monitor 0).id;
           text = "$USER";
           color = "rgb(dddddd)";
           font_size = 12;
@@ -500,7 +502,7 @@ in {
           valign = "center";
         }
         {
-          monitor = "DP-2";
+          monitor = (monitor 0).id;
           text = "cmd[update:1000] date +%I:%M\\ %p";
           color = "rgb(dddddd)";
           font_size = 25;
@@ -510,7 +512,7 @@ in {
           valign = "top";
         }
         {
-          monitor = "DP-2";
+          monitor = (monitor 0).id;
           text = "cmd[update:60000] date +%D";
           color = "rgb(dddddd)";
           font_size = 12;
