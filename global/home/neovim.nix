@@ -1,6 +1,4 @@
-{ pkgs, ... }:
-
-{
+{ pkgs, ... }: {
   home.packages = [ pkgs.fd ];
   home.sessionVariables = { EDITOR = "nvim"; VISUAL = "nvim"; };
   programs.nixvim = {
@@ -81,20 +79,68 @@
               __unkeyed = [
                 { __unkeyed = "<leader>";  group = "Leader";    }
                 { __unkeyed = "<leader>t"; group = "Telescope"; }
+                { __unkeyed = "<leader>b"; group = "Per buffer"; }
               ];
               mode = [ "n" "v" ];
             }
           ];
         };
       };
-      lualine = {
-        enable = true;
-      };
+      lualine.enable = true;
       lsp = {
         enable = true;
         servers = {
-          nixd.enable = true;
+          bashls.enable = true;
+          cssls.enable = true;
+          eslint.enable = true;
           gopls.enable = true;
+          html.enable = true;
+          jsonls = {
+            enable = true;
+            settings.schemas = [
+              {
+                fileMatch = [ "package.json" ];
+                url = "https://json.schemastore.org/package.json";
+              }
+              {
+                fileMatch = [ "tsconfig*.json" ];
+                url = "https://json.schemastore.org/tsconfig.json";
+              }
+              {
+                fileMatch = [ 
+                  ".prettierrc"
+                  ".prettierrc.json"
+                  "prettier.config.json"
+                ];
+                url = "https://json.schemastore.org/prettierrc.json";
+              }
+              {
+                fileMatch = [ ".eslintrc" ".eslintrc.json" ];
+                url = "https://json.schemastore.org/eslintrc.json";
+              }
+              {
+                fileMatch = [ ".babelrc" ".babelrc.json" "babel.config.json" ];
+                url = "https://json.schemastore.org/babelrc.json";
+              }
+              {
+                fileMatch = [ "lerna.json" ];
+                url = "https://json.schemastore.org/lerna.json";
+              }
+              {
+                fileMatch = [ "now.json" "vercel.json" ];
+                url = "https://json.schemastore.org/now.json";
+              }
+              {
+                fileMatch = [
+                  ".stylelintrc"
+                  ".stylelintrc.json"
+                  "stylelint.config.json"
+                ];
+                url = "http://json.schemastore.org/stylelintrc.json";
+              }
+            ];
+          };
+          nixd.enable = true;
           ts-ls.enable = true;
         };
       };
@@ -117,7 +163,7 @@
           in [
             { name = "calc";         priority = 4; group_index = 1; }
             { name = "luasnip";      priority = 4; group_index = 1; }
-            { name = "codeium";      priority = 3; group_index = 1; }
+            # { name = "codeium";      priority = 3; group_index = 1; }
             { name = "nvim_lsp";     priority = 2; group_index = 1; }
             { name = "zsh";          priority = 2; group_index = 1; entry_filter = zsh_filter; }
             { name = "fuzzy_path";   priority = 1; group_index = 1; }
@@ -177,6 +223,8 @@
       mini = {
         enable = true;
         modules = {
+          ai.enable = true;
+          icons.enable = true;
           pairs = {
             modes = {
               insert = true;
@@ -188,20 +236,12 @@
             skip_unbalanced = true;
             markdown = true;
           };
-          ai = {
-            enable = true;
-          };
-          surround = {
-            enable = true;
-          };
+          surround.enable = true;
         };
+        mockDevIcons = true;
       };
-      nvim-colorizer = {
-        enable = true;
-      };
-      neo-tree = {
-        enable = true;
-      };
+      nvim-colorizer.enable = true;
+      neo-tree.enable = true;
       treesitter = {
         enable = true;
         folding = true;
@@ -232,17 +272,19 @@
           xml
           yaml
         ];
-        settings.highlight.enable = true;
+        settings = {
+          highlight.enable = true;
+          indent.enable = true;
+        };
       };
-      git-conflict = {
-        enable = true;
-      };
-      gitsigns = {
-        enable = true;
-      };
-      gitlinker = {
-        enable = true;
-      };
+      treesitter-context.enable = true;
+      treesitter-refactor.enable = true;
+      treesitter-textobjects.enable = true;
+      ts-autotag.enable = true;
+      ts-comments.enable = true;
+      git-conflict.enable = true;
+      gitsigns.enable = true;
+      gitlinker.enable = true;
       lazygit = {
         enable = true;
         settings = {
@@ -261,6 +303,7 @@
       telescope-zoxide
       tender-vim
       vim-easy-align
+      lsp_signature-nvim
     ];
 
     autoCmd = [
@@ -290,6 +333,11 @@
             MiniPairs.map_buf(vim.fn.bufnr('%'), 'i', "\'\'", {
               action = 'closeopen', pair = "\'\'\'\'"
             })
+
+            vim.keymap.set('i', '<C-e>', 'enable = true;', { buffer = vim.fn.bufnr('%') })
+            vim.keymap.set('i', '<M-C-E>', ' = {<cr>enable = true;<cr><Esc><<a};<Esc>O', { buffer = vim.fn.bufnr('%') })
+            vim.keymap.set('n', '<leader>be', 'aenable = true;<Esc>', { buffer = vim.fn.bufnr('%'), desc = "={enable = true;};" })
+            vim.keymap.set('n', '<leader>bE', 'a = {<cr>enable = true;<cr><Esc><<a};<Esc>k$', { buffer = vim.fn.bufnr('%'), desc = "enable = true;" })
           end
         ''; };
       }
@@ -300,6 +348,7 @@
     '';
     extraConfigLua = ''
       require("flatten").setup()
+      require("lsp_signature").setup()
 
       vim.filetype.add({
         pattern = { [".*/hypr/.*%.conf"] = "hyprlang" },
@@ -324,6 +373,7 @@
       hi NormalFloat guibg=#1D1D1D
       hi Pmenu guifg=#EEEEEE guibg=#1D1D1D
       hi Statement gui=italic cterm=italic
+      hi @property.jsonc guifg=#73CEF4 ctermfg=81
 
       set splitbelow
       set splitright

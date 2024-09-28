@@ -45,6 +45,7 @@
         v = "$VISUAL";
         zshr = "exec zsh";
         ":q" = "exit";
+        dev = "nix develop --command zsh";
       };
       shellGlobalAliases = { "--help" = "--help | bat -plhelp"; };
       localVariables = {
