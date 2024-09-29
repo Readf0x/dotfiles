@@ -1,5 +1,4 @@
-{ pkgs, ... }: with pkgs;
-let
+{ pkgs, ... }: with pkgs; let
   maple-font = { pname, sha256, desc }:
     stdenv.mkDerivation rec{
       inherit pname;

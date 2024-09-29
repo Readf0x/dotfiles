@@ -1,5 +1,4 @@
-{ pkgs, self, sys', lib, ... }:
-{
+{ pkgs, self, sys', lib, ... }: {
   environment = {
     etc."/xdg/menus/applications.menu".source =
     "${pkgs.kdePackages.plasma-workspace}/etc/xdg/menus/plasma-applications.menu";

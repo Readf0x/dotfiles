@@ -1,6 +1,4 @@
-{ pkgs, user, conf, ... }:
-
-{
+{ pkgs, user, conf, ... }: {
   home.packages = with pkgs; [
     bat
     ffmpeg

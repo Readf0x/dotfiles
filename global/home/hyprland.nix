@@ -1,6 +1,4 @@
-{ pkgs, conf, user, lib, ... }:
-
-let
+{ pkgs, conf, user, lib, ... }: let
   monitor = num: builtins.elemAt conf.monitors (
     if num >= lib.length conf.monitors
     then (lib.length conf.monitors - 1)

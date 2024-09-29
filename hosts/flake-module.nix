@@ -1,5 +1,4 @@
-{ self, inputs, lib, ... }: 
-let
+{ self, inputs, lib, ... }: let
   mkConf = name: { system, ... }@conf:
   let 
     userAndHost = lib.splitString "@" name;

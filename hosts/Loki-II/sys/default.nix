@@ -1,6 +1,4 @@
-{ lib, host, ... }:
-
-{
+{ lib, host, ... }: {
   imports = [
     ./drives.nix
     ./hardware.nix

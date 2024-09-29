@@ -1,6 +1,4 @@
-{ pkgs, user, conf, ... }:
-
-{
+{ pkgs, user, conf, ... }: {
   imports = [
     ./packages.nix
   ];
@@ -50,6 +48,7 @@
       };
     };
     gnome.gnome-keyring.enable = true;
+    logind.extraConfig = "HandlePowerKey=ignore";
   };
 
   security = {
