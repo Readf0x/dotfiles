@@ -9,6 +9,7 @@
     initrd.kernelModules = [ "amdgpu" ];
     kernelModules = [ "kvm-amd" ];
     kernelPackages = pkgs.linuxPackages_zen;
+    kernel.sysctl = { "vm.swappiness" = 80; };
     plymouth = {
       themePackages = [(pkgs.adi1090x-plymouth-themes.override {
         selected_themes = [ "infinite_seal" ];
