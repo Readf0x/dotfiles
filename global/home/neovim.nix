@@ -86,7 +86,19 @@
           ];
         };
       };
-      lualine.enable = true;
+      lualine = {
+        enable = true;
+        settings = {
+          options = {
+            component_separators = { left = "┃"; right = "┃"; };
+            section_separators =   { left = "▌"; right = "▐"; };
+            ignore_focus = [ "neo-tree" "nvim-tree" "mini-files" ];
+          };
+          sections = {
+            lualine_x = [ "encoding" "filetype" ];
+          };
+        };
+      };
       lsp = {
         enable = true;
         servers = {
@@ -350,6 +362,8 @@
       require("flatten").setup()
       require("lsp_signature").setup({
         fix_pos = true,
+        handler_opts = { border = "none" },
+        hint_prefix = "? "
       })
 
       vim.filetype.add({
