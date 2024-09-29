@@ -348,7 +348,9 @@
     '';
     extraConfigLua = ''
       require("flatten").setup()
-      require("lsp_signature").setup()
+      require("lsp_signature").setup({
+        fix_pos = true,
+      })
 
       vim.filetype.add({
         pattern = { [".*/hypr/.*%.conf"] = "hyprlang" },
