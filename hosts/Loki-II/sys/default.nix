@@ -1,4 +1,6 @@
 { lib, host, ... }: {
+  nixpgks.config.rocmSupport = true;
+
   imports = [
     ./drives.nix
     ./hardware.nix

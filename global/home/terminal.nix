@@ -92,10 +92,6 @@
       enableZshIntegration = true;
       nix-direnv.enable = true;
     };
-    thefuck = {
-      enable = true;
-      enableZshIntegration = true;
-    };
     kitty = {
       enable = true;
       #theme = "Tender";

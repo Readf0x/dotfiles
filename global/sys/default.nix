@@ -5,7 +5,6 @@
 
   nixpkgs.config = {
     allowUnfree = true;
-    rocmSupport = true;
   };
 
   users.users.${user} = {
