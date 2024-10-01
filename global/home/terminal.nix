@@ -1,4 +1,4 @@
-{ pkgs, user, conf, ... }: {
+{ pkgs, conf, ... }: {
   home.packages = with pkgs; [
     bat
     ffmpeg
@@ -119,7 +119,7 @@
       delta = {
         enable = true;
       };
-      userName = user;
+      userName = conf.user;
       userEmail = conf.email;
       signing = {
         key = conf.key;

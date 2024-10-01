@@ -1,9 +1,6 @@
-{ pkgs, conf, user, lib, ... }: let
-  monitor = num: builtins.elemAt conf.monitors (
-    if num >= lib.length conf.monitors
-    then (lib.length conf.monitors - 1)
-    else num
-  );
+{ pkgs, conf, lib', ... }: let
+  mLib = lib'.monitors;
+  monitor = mLib.getId;
 in {
   wayland.windowManager.hyprland = {
     enable = true;
@@ -16,11 +13,8 @@ in {
       #     /___/                                           /___/     
 
       # https://wiki.hyprland.org/Configuring/Monitors/
-      monitor = let
-        access = list: index: toString (builtins.elemAt list index);
-        toRes = x: "${access x 0}x${access x 1}";
-      in lib.forEach conf.monitors (i:
-        "${i.id}, ${toRes i.res}@${toString i.hz}, ${toRes i.pos}, ${toString i.scl}, transform, ${toString i.rot}"
+      monitor = mLib.map (i:
+        "${i.id}, ${mLib.toRes i.res}@${builtins.toString i.hz}, ${mLib.toRes i.pos}, ${builtins.toString i.scl}, transform, ${builtins.toString i.rot}"
       );
 
       # https://wiki.hyprland.org/Configuring/Environment-variables/
@@ -39,6 +33,10 @@ in {
       # https://wiki.hyprland.org/Configuring/Variables/#input
       input = {
         follow_mouse = 1;
+        #accel_profile = "custom 1 ${with builtins; concatStringsSep " " (genList (x: toString (x * x)) 5)}";
+        accel_profile = let
+          points = lib'.bezier.over100 [0 0] [10 5] [0 6] [10 10];
+        in "custom 1 ${with builtins; concatStringsSep " " (genList (x: toString (elemAt (lib'.bezier.findX x points) 1)) 10)}";
         touchpad = {
           scroll_factor = 0.25;
           natural_scroll = true;
@@ -478,7 +476,7 @@ in {
       image = [
         {
           monitor = (monitor 0).id;
-          path = "/home/${user}/.config/hypr/pfp.png";
+          path = "/home/${conf.user}/.config/hypr/pfp.png";
           size = 256;
           rounding = -1;
           border_size = 2;

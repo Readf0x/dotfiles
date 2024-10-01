@@ -1,4 +1,4 @@
-{ pkgs, user, conf, ... }: {
+{ pkgs, conf, ... }: {
   imports = [
     ./packages.nix
   ];
@@ -7,7 +7,7 @@
     allowUnfree = true;
   };
 
-  users.users.${user} = {
+  users.users.${conf.user} = {
     isNormalUser = true;
     extraGroups = [ "networkmanager" "wheel" ];
     shell = pkgs.zsh;

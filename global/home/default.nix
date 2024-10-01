@@ -1,4 +1,4 @@
-{ pkgs, user, conf, ... }: {
+{ pkgs, conf, ... }: {
   nixpkgs = {
     config.allowUnfree = true;
   };
@@ -11,8 +11,8 @@
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
   home = {
-    username = user;
-    homeDirectory = "/home/${user}";
+    username = conf.user;
+    homeDirectory = conf.homeDir;
 
     # This value determines the Home Manager release that your configuration is
     # compatible with. This helps avoid breakage when a new Home Manager release
@@ -80,6 +80,12 @@
     # plain files is through 'home.file'.
     file = {
       ".config/hypr/pfp.png".source = ./../img/pfp.png;
+      ".librewolf/${conf.librewolfProfile}/chrome".source = pkgs.fetchFromGitHub {
+        owner = "readf0x";
+        repo = "Firefox-Mod-Blur";
+        rev = "586b9c63466c100d7bcaf8ec4fb12384406cb3cd";
+        hash = "sha256-yH4Sqk7yq5WcQHmr4HHf7gBEtGJtk4JBEV0nnj/05vE=";
+      };
     };
 
     sessionVariables = {

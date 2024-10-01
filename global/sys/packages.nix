@@ -1,4 +1,4 @@
-{ pkgs, self, sys', lib, ... }: {
+{ pkgs, self, conf, lib, ... }: {
   environment = {
     etc."/xdg/menus/applications.menu".source =
     "${pkgs.kdePackages.plasma-workspace}/etc/xdg/menus/plasma-applications.menu";
@@ -22,11 +22,8 @@
     ]);
   };
 
-  #fonts.packages = (
-  #  builtins.attrValues self.packages.${sys'}.maple-font
-  #) ++ (with pkgs; [
   fonts.packages = builtins.attrValues (
-    lib.filterAttrs (n: v: lib.hasPrefix "maple-font" n) self.packages.${sys'}
+    lib.filterAttrs (n: v: lib.hasPrefix "maple-font" n) self.packages.${conf.system}
   ) ++ (with pkgs; [
     cantarell-fonts
     fira-code-nerdfont

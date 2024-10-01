@@ -1,5 +1,5 @@
-{ lib, host, ... }: {
-  nixpgks.config.rocmSupport = true;
+{ lib, conf, ... }: {
+  nixpkgs.config.rocmSupport = true;
 
   imports = [
     ./drives.nix
@@ -8,7 +8,7 @@
   ];
 
   networking = {
-    hostName = host;
+    hostName = conf.host;
     useDHCP = lib.mkDefault true;
     networkmanager.enable = true;
   };
@@ -26,8 +26,11 @@
     LC_TELEPHONE = "en_US.UTF-8";
     LC_TIME = "en_US.UTF-8";
   };
-  services.xserver.xkb = {
-    layout = "us";
-    variant = "";
+  services = {
+    xserver.xkb = {
+      layout = "us";
+      variant = "";
+    };
+    ratbagd.enable = true;
   };
 }
