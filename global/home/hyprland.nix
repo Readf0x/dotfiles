@@ -422,6 +422,8 @@ in {
         # Godot
         "tile, class:(Godot_Engine), title:(Godot)"
         "tile, class:(\\w+), title:(Godot)"
+        # Fallout New Vegas
+        "fullscreen, class:^(steam_app_22380)$"
       ];
     };
   };

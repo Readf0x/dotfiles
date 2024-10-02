@@ -25,56 +25,9 @@
 
     # The home.packages option allows you to install Nix packages into your
     # environment.
-    packages = [
-      # Custom packages
-      # self.packages.dopamine
-    ] ++ (with pkgs; [
-      ### Desktop Applications:
-      blender-hip
-      dopamine
-      eog
-      evolutionWithPlugins
-      gimp
-      gnome-font-viewer
-      godot_4
-      grimblast
-      kdenlive
-      libreoffice-qt6-fresh
-      mpv
-      neovide
-      pavucontrol
-      picard
-      prismlauncher
-      seahorse
-      swaynotificationcenter
-      vesktop
-      youtube-music
-
-      ### User Facing CLI tools:
-      btop
-      grimblast
-      hyprpicker
-      playerctl
-      radeontop
-      swww
-      wl-clipboard
-      xclip
-
+    packages = with pkgs; [
       colloid-kde
-    ] ++ (with libsForQt5; [
-      ark
-      dolphin
-      dolphin-plugins
-      kdegraphics-thumbnailers
-      #kwalletmanager
-      breeze-icons
-      qt5ct
-      qtstyleplugin-kvantum
-      qtstyleplugins
-    ]) ++ (with kdePackages; [
-      qt6ct
-      qtstyleplugin-kvantum
-    ]));
+    ];
 
     # Home Manager is pretty good at managing dotfiles. The primary way to manage
     # plain files is through 'home.file'.
