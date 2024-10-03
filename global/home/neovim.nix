@@ -31,37 +31,39 @@
         { cmd = "grep_string"; key = "s"; name = "Search word"; }
       ];
       luasnip = x: lua "if require('luasnip').choice_active() then require('luasnip').change_choice(${x}) end" "false";
+      f = "false";
     in [
       # Remaps
-      { action = "cc";                           key = "C";          mode = "n";         options.desc = "Change line";         }
-      { action = "<End>";                        key = "<CR>";                           options.desc = "End of line";         }
-      { action = "zl";                           key = "<C-l>";      mode = [ "n" "v" ]; options.desc = "Scroll right single"; }
-      { action = "zL";                           key = "<C-k>";      mode = [ "n" "v" ]; options.desc = "Scroll right";        }
-      { action = "zh";                           key = "<C-h>";      mode = [ "n" "v" ]; options.desc = "Scroll left single";  }
-      { action = "zH";                           key = "<C-j>";      mode = [ "n" "v" ]; options.desc = "Scroll left";         }
-      { action = luasnip "1";                    key = "<C-n>";      mode = [ "i" "s" ]; options.desc = "Next choice";         }
-      { action = luasnip "-1";                   key = "<C-m>";      mode = [ "i" "s" ]; options.desc = "Prev choice";         }
+      { action = "cc";                                key = "C";          mode = "n";         options.desc = "Change line";         }
+      { action = "<End>";                             key = "<CR>";                           options.desc = "End of line";         }
+      { action = "zl";                                key = "<C-l>";      mode = [ "n" "v" ]; options.desc = "Scroll right single"; }
+      { action = "zL";                                key = "<C-k>";      mode = [ "n" "v" ]; options.desc = "Scroll right";        }
+      { action = "zh";                                key = "<C-h>";      mode = [ "n" "v" ]; options.desc = "Scroll left single";  }
+      { action = "zH";                                key = "<C-j>";      mode = [ "n" "v" ]; options.desc = "Scroll left";         }
+      { action = luasnip "1";                         key = "<C-n>";      mode = [ "i" "s" ]; options.desc = "Next choice";         }
+      { action = luasnip "-1";                        key = "<C-m>";      mode = [ "i" "s" ]; options.desc = "Prev choice";         }
       # Git
-      { action = cmd "Gitsigns reset_hunk";      key = "<C-g>r";     mode = [ "n" "v" ]; options.desc = "Reset hunk";          }
-      { action = cmd "Gitsigns stage_hunk";      key = "<C-g>s";     mode = [ "n" "v" ]; options.desc = "Stage hunk";          }
-      { action = cmd "Gitsigns stage_buffer";    key = "<C-g>S";     mode = "n";         options.desc = "Stage buffer";        }
-      { action = cmd "Gitsigns undo_stage_hunk"; key = "<C-g>u";     mode = "n";         options.desc = "Undo stage";          }
-      { action = cmd "Gitsigns reset_buffer";    key = "<C-g>R";     mode = "n";         options.desc = "Reset buffer";        }
-      { action = cmd "Gitsigns preview_hunk";    key = "<C-g>p";     mode = "n";         options.desc = "Preview hunk";        }
-      { action = cmd "Gitsigns blame_line";      key = "<C-g>b";     mode = "n";         options.desc = "Blame line";          }
-      { action = cmd "Gitsigns diffthis";        key = "<C-g>d";     mode = "n";         options.desc = "Diff";                }
-      { action = cmd "Gitsigns toggle_deleted";  key = "<C-g>D";     mode = "n";         options.desc = "Toggle deleted";      }
-      { action = gitlinker.line_normal;          key = "<C-g>l";     mode = "n";         options.desc = "Copy line url";       }
-      { action = gitlinker.line_visual;          key = "<C-g>l";     mode = "v";         options.desc = "Copy line url";       }
-      { action = gitlinker.homepage;             key = "<C-g>h";     mode = "n";         options.desc = "Copy homepage";       }
-      { action = cmd "LazyGit";                  key = "<C-g>g";     mode = "n";         options.desc = "Open lazygit";        }
+      { action = cmd "Gitsigns reset_hunk";           key = "<C-g>r";     mode = [ "n" "v" ]; options.desc = "Reset hunk";          }
+      { action = cmd "Gitsigns stage_hunk";           key = "<C-g>s";     mode = [ "n" "v" ]; options.desc = "Stage hunk";          }
+      { action = cmd "Gitsigns stage_buffer";         key = "<C-g>S";     mode = "n";         options.desc = "Stage buffer";        }
+      { action = cmd "Gitsigns undo_stage_hunk";      key = "<C-g>u";     mode = "n";         options.desc = "Undo stage";          }
+      { action = cmd "Gitsigns reset_buffer";         key = "<C-g>R";     mode = "n";         options.desc = "Reset buffer";        }
+      { action = cmd "Gitsigns preview_hunk";         key = "<C-g>p";     mode = "n";         options.desc = "Preview hunk";        }
+      { action = cmd "Gitsigns blame_line";           key = "<C-g>b";     mode = "n";         options.desc = "Blame line";          }
+      { action = cmd "Gitsigns diffthis";             key = "<C-g>d";     mode = "n";         options.desc = "Diff";                }
+      { action = cmd "Gitsigns toggle_deleted";       key = "<C-g>D";     mode = "n";         options.desc = "Toggle deleted";      }
+      { action = gitlinker.line_normal;               key = "<C-g>l";     mode = "n";         options.desc = "Copy line url";       }
+      { action = gitlinker.line_visual;               key = "<C-g>l";     mode = "v";         options.desc = "Copy line url";       }
+      { action = gitlinker.homepage;                  key = "<C-g>h";     mode = "n";         options.desc = "Copy homepage";       }
+      { action = cmd "LazyGit";                       key = "<C-g>g";     mode = "n";         options.desc = "Open lazygit";        }
       # Leader
-      { action = cmd "Neotree toggle";           key = "<leader>e";  mode = "n";         options.desc = "Toggle NeoTree";      }
-      { action = cmd "noh";                      key = "<leader>u";  mode = "n";         options.desc = "Clear highlight";     }
-      { action = cmd "w";                        key = "<leader>w";  mode = "n";         options.desc = "Save";                }
-      { action = toggle "vim.o.relativenumber";  key = "<leader>n";  mode = "n";         options.desc = "Toggle relative";     }
-      { action = "<cmd>EasyAlign";               key = "<leader>a";  mode = "n";         options.desc = "Align";               }
-      { action = cmd "Telescope";                key = "<leader>tt"; mode = "n";         options.desc = "All";                 }
+      { action = cmd "Neotree toggle";                key = "<leader>e";  mode = "n";         options.desc = "Toggle NeoTree";      }
+      { action = cmd "noh";                           key = "<leader>u";  mode = "n";         options.desc = "Clear highlight";     }
+      { action = cmd "w";                             key = "<leader>w";  mode = "n";         options.desc = "Save";                }
+      { action = toggle "vim.o.relativenumber";       key = "<leader>n";  mode = "n";         options.desc = "Toggle relative";     }
+      { action = "<cmd>EasyAlign";                    key = "<leader>a";  mode = "n";         options.desc = "Align";               }
+      { action = cmd "Telescope";                     key = "<leader>tt"; mode = "n";         options.desc = "All";                 }
+      { action = lua "vim.diagnostic.open_float()" f; key = "<leader>d";  mode = "n";         options.desc = "Diagnostic";          }
     ] ++ map (x: {
       action = cmd "Telescope ${x.cmd}"; key = "<leader>t${x.key}"; mode = "n"; options.desc = x.name;
     }) telescope_opts;
@@ -290,8 +292,24 @@
         };
       };
       treesitter-context.enable = true;
-      treesitter-refactor.enable = true;
-      treesitter-textobjects.enable = true;
+      # treesitter-refactor = {
+      #   enable = true;
+      #   highlightCurrentScope.enable = true;
+      #   smartRename = {
+      #     enable = true;
+      #     keymaps.smartRename = "<leader>R";
+      #   };
+      # };
+      #treesitter-textobjects = {
+      #  enable = true;
+      #  lspInterop = {
+      #    enable = true;
+      #  };
+      #};
+      #refactoring = {
+      #  enable = true;
+      #  enableTelescope = true;
+      #};
       ts-autotag.enable = true;
       ts-comments.enable = true;
       git-conflict.enable = true;
