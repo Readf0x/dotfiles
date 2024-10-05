@@ -42,7 +42,7 @@
       sddm = {
         enable = true;
         wayland.enable = true;
-        theme = "${self.packages.${conf.system}.chili}";
+        theme = let name = "chili"; in "${self.packages.${conf.system}.${name}}/share/sddm/themes/${name}";
       };
     };
     gnome.gnome-keyring.enable = true;
