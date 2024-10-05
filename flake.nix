@@ -35,7 +35,9 @@
       perSystem = { pkgs, lib, ... }: {
         packages = (
           lib.mapAttrs' (name': value: { name = "maple-font-${name'}"; inherit value; }) (import ./packages/maple-font.nix { inherit pkgs; })
-        );
+        ) // {
+          chili = import ./packages/chili.nix { inherit pkgs; image = ./global/img/login.jpg; };
+        };
       };
     };
 }

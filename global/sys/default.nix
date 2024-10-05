@@ -1,4 +1,4 @@
-{ pkgs, conf, ... }: {
+{ pkgs, conf, self, ... }: {
   imports = [
     ./packages.nix
   ];
@@ -41,9 +41,8 @@
       defaultSession = "hyprland";
       sddm = {
         enable = true;
-        wayland = {
-          enable = true;
-        };
+        wayland.enable = true;
+        theme = "${self.packages.${conf.system}.chili}";
       };
     };
     gnome.gnome-keyring.enable = true;

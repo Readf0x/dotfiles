@@ -1,5 +1,4 @@
-{ pkgs, conf, ... }: {
-  nixpkgs = {
+{ pkgs, conf, ... }: { nixpkgs = {
     config.allowUnfree = true;
   };
 
@@ -70,10 +69,23 @@
     platformTheme.name = "qt5ct";
   };
 
-  xdg.userDirs = {
-    enable = true;
-    desktop = null;
-    publicShare = null;
+  xdg = {
+    userDirs = {
+      enable = true;
+      desktop = null;
+      publicShare = null;
+    };
+    desktopEntries = {
+      # obsidian = {
+      #   categories = [ "Office" ];
+      #   comment = "Knowledge Base";
+      #   exec = "obsidian --enable-features=UseOzonePlatform --ozone-platform=wayland %u";
+      #   icon = "obsidian";
+      #   mimeType = [ "x-scheme-handler/obsidian" ];
+      #   name = "Obsidian";
+      #   type = "Application";
+      # };
+    };
   };
 
   programs = {

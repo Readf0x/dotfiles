@@ -36,6 +36,7 @@
     libreoffice-qt6-fresh
     mpv
     neovide
+    obsidian
     pavucontrol
     picard
     prismlauncher
