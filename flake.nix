@@ -36,7 +36,7 @@
         packages = (
           lib.mapAttrs' (name': value: { name = "maple-font-${name'}"; inherit value; }) (import ./packages/maple-font.nix { inherit pkgs; })
         ) // {
-          chili = import ./packages/chili.nix { inherit pkgs; image = ./global/img/login.jpg; };
+          chili = import ./packages/chili.nix { inherit pkgs; image = ./global/img/login.jpg; hash = "sha256-3a1lYwBRrfIvLddG7228PDdNuKSeWCrs2v7zRVdNxiE="; };
         };
       };
     };

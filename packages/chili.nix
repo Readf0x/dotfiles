@@ -1,4 +1,4 @@
-{ pkgs, image, themeConfig ? {} }:
+{ pkgs, image, themeConfig ? {}, hash ? "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=" }:
 with pkgs; let
   customToString = x: if builtins.isBool x then lib.boolToString x else toString x;
   configLines = lib.mapAttrsToList (name: value: lib.nameValuePair name value) themeConfig;
@@ -11,9 +11,10 @@ with pkgs; let
       }/' theme.conf"
       )
       configLines);
-  backgroundExt = with builtins; elemAt (match "\.(.+)$" (toString image)) 0;
+  backgroundExt = with builtins; elemAt (match ".*\\.(.+)$" (toString image)) 0;
   background = fetchurl {
-    url = "file://${builtins.toString image}";
+    url = "file://${image}";
+    hash = hash;
   };
 in
 stdenv.mkDerivation {
@@ -40,7 +41,7 @@ stdenv.mkDerivation {
 
     mv * $out/share/sddm/themes/chili/
 
-    cp ${builtins.toString background} $out/assets/background.${backgroundExt}
+    cp ${builtins.toString background} $out/share/sddm/themes/chili/assets/background.${backgroundExt}
   '';
 
   postFixup = ''
