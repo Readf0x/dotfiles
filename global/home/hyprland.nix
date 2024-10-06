@@ -54,9 +54,9 @@ in {
 
       # https://wiki.hyprland.org/Configuring/Variables/#general
       general = {
-        gaps_in = 5;
-        gaps_out = 10;
-        border_size = 1;
+        gaps_in = 0;
+        gaps_out = 0;
+        border_size = 0;
         "col.active_border" = "rgb(dddddd)";
         "col.inactive_border" = "rgb(464646)";
 
@@ -67,16 +67,16 @@ in {
 
       # https://wiki.hyprland.org/Configuring/Variables/#decoration
       decoration = {
-        rounding = 8;
+        rounding = 0;
 
         blur = {
-          enabled = true;
+          enabled = false;
           size = 3;
           passes = 2;
           new_optimizations = "on";
         };
 
-        drop_shadow = true;
+        drop_shadow = false;
         shadow_range = 7;
         shadow_render_power = 3;
         "col.shadow" = "rgba(1111119b)";
@@ -95,10 +95,10 @@ in {
         bezier = "curve, 0.05, 0.9, 0.1, 1.05";
 
         animation = [
-          "windows, 1, 6, curve, slide"
-          "fade, 1, 4, default"
-          "workspaces, 1, 4, curve"
-          "specialWorkspace, 1, 4, curve, slidevert"
+          "windows, 0, 6, curve, slide"
+          "fade, 0, 4, default"
+          "workspaces, 0, 4, curve"
+          "specialWorkspace, 0, 4, curve, slidevert"
         ];
       };
 
