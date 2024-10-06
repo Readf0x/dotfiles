@@ -351,6 +351,27 @@
           "BufNewFile"
           "BufRead"
         ];
+        pattern = "*.md";
+        callback = { __raw = ''
+          function()
+            vim.o.wrap = true
+            vim.o.linebreak = true
+          end
+        '';};
+      }
+      {
+        event = [
+          "TextChanged"
+          "TextChangedI"
+        ];
+        pattern = "*.md";
+        callback = "silent write";
+      }
+      {
+        event = [
+          "BufNewFile"
+          "BufRead"
+        ];
         pattern = "*.nix";
         callback = { __raw = ''
           function()
