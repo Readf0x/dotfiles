@@ -424,6 +424,9 @@ in {
         "tile, class:(\\w+), title:(Godot)"
         # Fallout New Vegas
         "fullscreen, class:^(steam_app_22380)$"
+        # Gimp
+        "center, title:^(Export Image as), class:^(Gimp-2.10)$"
+        "center, title:^(Quit GIMP)$, class:^(Gimp-2.10)$"
       ];
     };
   };
