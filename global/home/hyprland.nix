@@ -140,6 +140,7 @@ in {
         "$mod, F5, exec, pkill waybar; waybar"
         "$mod, Escape, exec, hyprlock"
         "$mod, D, togglespecialworkspace, dropdown"
+        "$mod, K, togglespecialworkspace, KeepassXC"
         "$mod, R, exec, ~/Scripts/wallpaper.sh"
         "$mod, N, exec, swaync-client -t"
         "$mod $s, N, exec, swaync-client -C"
@@ -427,6 +428,8 @@ in {
         # Gimp
         "center, title:^(Export Image as), class:^(Gimp-2.10)$"
         "center, title:^(Quit GIMP)$, class:^(Gimp-2.10)$"
+        # KeepassXC
+        "workspace special:KeepassXC, class:$(org.keepassxc.KeePassXC)$"
       ];
     };
   };
