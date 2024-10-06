@@ -33,6 +33,7 @@
     godot_4
     grimblast
     kdenlive
+    keepassxc
     libreoffice-qt6-fresh
     mpv
     neovide
