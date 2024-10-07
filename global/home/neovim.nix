@@ -356,6 +356,7 @@
           function()
             vim.o.wrap = true
             vim.o.linebreak = true
+            vim.keymap.set('i', '<Esc>', '<Esc><cmd>sil w<CR>', { buffer = vim.fn.bufnr('%') })
           end
         '';};
       }
@@ -363,11 +364,18 @@
         event = [
           "TextChanged"
           "TextChangedI"
+          "ModeChanged"
         ];
         pattern = "*.md";
         callback = { __raw = ''
           function()
-            vim.cmd("silent write")
+            if started == nil then
+              started = os.time()
+            end
+            if os.time() > started then
+              vim.cmd("silent write")
+              started = os.time()
+            end
           end
         ''; };
       }
