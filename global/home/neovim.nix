@@ -365,7 +365,11 @@
           "TextChangedI"
         ];
         pattern = "*.md";
-        callback = "silent write";
+        callback = { __raw = ''
+          function()
+            vim.cmd("silent write")
+          end
+        ''; };
       }
       {
         event = [
