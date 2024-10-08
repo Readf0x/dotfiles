@@ -430,6 +430,8 @@ in {
         "center, title:^(Quit GIMP)$, class:^(Gimp-2.10)$"
         # KeepassXC
         "workspace special:KeepassXC, class:$(org.keepassxc.KeePassXC)$"
+        # Obsidian
+        "suppressevent activatefocus, class:^(obsidian)$"
       ];
     };
   };

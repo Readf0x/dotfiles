@@ -109,6 +109,9 @@
         symbol_map U+2320-U+2321,U+239B-U+23B3 NotoSansMath-Regular
 
         window_padding_width 11
+
+        map ctrl+minus change_font_size all -0.5
+        map ctrl+equal change_font_size all +0.5
       '';
     };
     fastfetch = {

@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{ pkgs, conf, ... }: {
   home.packages = [ pkgs.fd ];
   home.sessionVariables = { EDITOR = "nvim"; VISUAL = "nvim"; };
   programs.nixvim = {
@@ -329,6 +329,7 @@
       };
     };
     extraPlugins = with pkgs.vimPlugins; [
+      firenvim
       flatten-nvim
       lsp_signature-nvim
       telescope-zoxide
@@ -351,12 +352,21 @@
           "BufNewFile"
           "BufRead"
         ];
-        pattern = "*.md";
+        pattern = "${builtins.toString conf.homeDir}/Obsidian/**/*.md";
         callback = { __raw = ''
           function()
             vim.o.wrap = true
             vim.o.linebreak = true
             vim.keymap.set('i', '<Esc>', '<Esc><cmd>sil w<CR>', { buffer = vim.fn.bufnr('%') })
+          end
+        '';};
+      }
+      {
+        event = [ "BufEnter" ];
+        pattern = "${builtins.toString conf.homeDir}/Obsidian/**/*.md";
+        callback = { __raw = ''
+          function()
+            vim.cmd('sil !xdg-open "obsidian://open?path=' .. vim.fn.getcwd() .. '/' .. vim.fn.expand('%') .. '"')
           end
         '';};
       }
@@ -405,6 +415,14 @@
           end
         ''; };
       }
+      {
+        event = [
+          "BufNewFile"
+          "BufRead"
+        ];
+        pattern = "github.com_*.txt";
+        command = "set filetype=markdown";
+      }
     ];
 
     extraConfigLuaPre = ''
@@ -425,6 +443,9 @@
     extraConfigLuaPost = ''
       require('telescope').load_extension('zoxide')
       vim.keymap.del('n', '<leader>gy')
+      if vim.g.started_by_firenvim == true then
+        vim.cmd("colorscheme default")
+      end
     '';
     extraConfigVim = ''
       source ${pkgs.vimPlugins.vim-easy-align}/autoload/easy_align.vim
