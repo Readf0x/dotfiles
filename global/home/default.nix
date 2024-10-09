@@ -32,6 +32,8 @@
     # plain files is through 'home.file'.
     file = {
       ".config/hypr/pfp.png".source = ./../img/pfp.png;
+      ".config/hypr/wallpapers".source = ./../img/wallpapers;
+      "Scripts".source = ./../scripts;
       ".librewolf/${conf.librewolfProfile}/chrome".source = pkgs.fetchFromGitHub {
         owner = "readf0x";
         repo = "Firefox-Mod-Blur";
