@@ -1,8 +1,9 @@
-{ pkgs, conf, ... }: { nixpkgs = {
+{ pkgs, conf, lib, ... }: { nixpkgs = {
     config.allowUnfree = true;
   };
 
   imports = [
+    ./../shared/stylix.nix
     ./hyprland.nix
     ./neovim.nix
     ./terminal.nix
@@ -46,12 +47,12 @@
       PATH = "$PATH:$HOME/Scripts";
     };
 
-    pointerCursor = {
-      gtk.enable = true;
-      name = "Bibata-Modern-Ice";
-      package = pkgs.bibata-cursors;
-      size = 24;
-    };
+    #pointerCursor = {
+    #  gtk.enable = true;
+    #  name = "Bibata-Modern-Ice";
+    #  package = pkgs.bibata-cursors;
+    #  size = 24;
+    #};
   };
 
   gtk = {
@@ -64,7 +65,7 @@
       name = "Colloid-Dark";
       #package = pkgs.colloid-icon-theme;
     };
-    font.name = "Ubuntu";
+    # font.name = "Ubuntu";
   };
   qt = {
     enable = true;
@@ -101,20 +102,16 @@
         "widget.use-xdg-desktop-portal.mime-handler" = 1;
       };
     };
-    obs-studio = {
-      enable = true;
-    };
-    zathura = {
-      enable = true;
-    };
-    rofi = {
-      enable = true;
-      theme = "${pkgs.rofi}/share/rofi/themes/Adapta-Nokto.rasi";
-    };
     ags.enable = true;
 
     home-manager.enable = true;
+  };
 
-    waybar.enable = true;
+  stylix.targets = {
+    kde.enable = false;
+    hyprpaper.enable = lib.mkForce false;
+    hyprland.enable = false;
+    nixvim.enable = false;
+    #kitty.enable = false;
   };
 }

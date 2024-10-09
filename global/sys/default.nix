@@ -1,5 +1,6 @@
 { pkgs, conf, self, ... }: {
   imports = [
+    ./../shared/stylix.nix
     ./packages.nix
   ];
 
@@ -13,13 +14,13 @@
     shell = pkgs.zsh;
   };
 
-  boot.plymouth = {
-    themePackages = [(pkgs.adi1090x-plymouth-themes.override {
-      selected_themes = [ "infinite_seal" ];
-    })];
-    enable = true;
-    theme = "infinite_seal";
-  };
+  #boot.plymouth = {
+  #  themePackages = [(pkgs.adi1090x-plymouth-themes.override {
+  #    selected_themes = [ "infinite_seal" ];
+  #  })];
+  #  enable = true;
+  #  theme = "infinite_seal";
+  #};
 
   xdg = {
     menus.enable = true;

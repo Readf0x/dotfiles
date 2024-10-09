@@ -155,7 +155,7 @@
             ];
           };
           nixd.enable = true;
-          ts-ls.enable = true;
+          ts_ls.enable = true;
         };
       };
       codeium-nvim.enable = true;

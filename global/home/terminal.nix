@@ -97,7 +97,7 @@
       #theme = "Tender";
       shellIntegration.enableZshIntegration = true;
       extraConfig = ''
-        include Tender.conf
+        #include Tender.conf
 
         enable_audio_bell no
         visual_bell_duration 0.1

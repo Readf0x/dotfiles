@@ -41,10 +41,12 @@
     pavucontrol
     picard
     prismlauncher
+    rofi
     seahorse
     swaynotificationcenter
     vesktop
     youtube-music
+    zathura
 
     ### User Facing CLI tools:
     btop
@@ -75,7 +77,6 @@
     cantarell-fonts
     fira-code-nerdfont
     noto-fonts
-    ubuntu_font_family
   ]);
 
   programs = {
@@ -91,6 +92,10 @@
     gnupg.agent = {
       enable = true;
       enableSSHSupport = true;
+    };
+    obs-studio = {
+      enable = true;
+      enableVirtualCamera = true;
     };
   };
 }

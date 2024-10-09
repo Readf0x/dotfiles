@@ -18,13 +18,16 @@
       pkgs = inputs.nixpkgs.legacyPackages.${system};
       modules = module "home" [
         inputs.nixvim.homeManagerModules.nixvim
+        inputs.stylix.homeManagerModules.stylix
         inputs.ags.homeManagerModules.default
       ];
       extraSpecialArgs = specialArgs;
     };
     nixosConfigurations.${conf.host} = inputs.nixpkgs.lib.nixosSystem {
       inherit system specialArgs;
-      modules = module "sys" [];
+      modules = module "sys" [
+        inputs.stylix.nixosModules.stylix
+      ];
     };
   };
 
