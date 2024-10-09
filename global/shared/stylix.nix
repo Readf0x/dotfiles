@@ -1,4 +1,4 @@
-{ pkgs, self, conf, lib, ... }: {
+{ pkgs, self, conf, ... }: {
   stylix = {
     enable = true;
     image = ./../img/wallpapers/89875190_p0.jpg;
@@ -35,5 +35,7 @@
       nixvim.enable = false;
       gtk.enable = false;
     };
+
+    polarity = "dark";
   };
 }
