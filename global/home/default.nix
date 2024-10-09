@@ -41,6 +41,13 @@
         rev = "586b9c63466c100d7bcaf8ec4fb12384406cb3cd";
         hash = "sha256-yH4Sqk7yq5WcQHmr4HHf7gBEtGJtk4JBEV0nnj/05vE=";
       };
+      #".config/xdg-desktop-portal/portals.conf".text = ''
+      #  [preferred]
+      #  default=hyprland
+      #  org.freedesktop.impl.portal.AppChooser=kde
+      #  org.freedesktop.impl.portal.DynamicLauncher=kde
+      #  org.freedesktop.impl.portal.FileChooser=kde
+      #'';
     };
 
     sessionVariables = {
@@ -78,17 +85,6 @@
       desktop = null;
       publicShare = null;
     };
-    desktopEntries = {
-      # obsidian = {
-      #   categories = [ "Office" ];
-      #   comment = "Knowledge Base";
-      #   exec = "obsidian --enable-features=UseOzonePlatform --ozone-platform=wayland %u";
-      #   icon = "obsidian";
-      #   mimeType = [ "x-scheme-handler/obsidian" ];
-      #   name = "Obsidian";
-      #   type = "Application";
-      # };
-    };
   };
 
   programs = {
@@ -105,6 +101,8 @@
     ags.enable = true;
 
     home-manager.enable = true;
+
+    waybar.enable = true;
   };
 
   stylix.targets = {
@@ -112,6 +110,7 @@
     hyprpaper.enable = lib.mkForce false;
     hyprland.enable = false;
     nixvim.enable = false;
+    waybar.enable = false;
     #kitty.enable = false;
   };
 }

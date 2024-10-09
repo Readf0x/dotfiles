@@ -3,13 +3,13 @@
     etc."/xdg/menus/applications.menu".source =
     "${pkgs.kdePackages.plasma-workspace}/etc/xdg/menus/plasma-applications.menu";
     systemPackages = with pkgs; [
+      keepassxc
       libnotify
       libsecret
       lxqt.lxqt-policykit
       neovim
       samba
       shared-mime-info
-      xdg-desktop-portal-hyprland
     ] ++ (with libsForQt5; [
       kio-admin
       kio-extras
@@ -18,7 +18,6 @@
       plasma-workspace
       qtsvg
       qtwayland
-      xdg-desktop-portal-kde
     ]);
   };
 
@@ -33,7 +32,6 @@
     godot_4
     grimblast
     kdenlive
-    keepassxc
     libreoffice-qt6-fresh
     mpv
     neovide
@@ -80,7 +78,10 @@
   ]);
 
   programs = {
-    hyprland.enable = true;
+    hyprland = {
+      enable = true;
+      portalPackage = pkgs.xdg-desktop-portal-hyprland;
+    };
     zsh.enable = true;
     steam = {
       enable = true;

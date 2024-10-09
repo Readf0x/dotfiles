@@ -234,7 +234,8 @@ in {
         "waybar"
         "swaync"
         "lxqt-policykit-agent"
-        "/run/wrappers/bin/gnome-keyring-daemon --start --foreground --components=secrets"
+        #"/run/wrappers/bin/gnome-keyring-daemon --start --foreground --components=secrets"
+        "keepassxc"
         "balooctl enable"
       ];
 
@@ -246,6 +247,7 @@ in {
       # https://wiki.hyprland.org/Configuring/Window-Rules
       workspace = [
         "special:dropdown, on-created-empty:kitty, gapsout:80"
+        "special:KeepassXC, gapsout:80"
         "name:music, monitor:${(monitor 1).id}, on-created-empty:youtube-music"
         "name:discord, monitor:${(monitor 1).id}, on-created-empty:vesktop"
         "name:info, monitor:${(monitor 1).id}, on-created-empty:kitty btop"
@@ -429,7 +431,7 @@ in {
         "center, title:^(Export Image as), class:^(Gimp-2.10)$"
         "center, title:^(Quit GIMP)$, class:^(Gimp-2.10)$"
         # KeepassXC
-        "workspace special:KeepassXC, class:$(org.keepassxc.KeePassXC)$"
+        "workspace special:KeepassXC, class:^(org.keepassxc.KeePassXC)$"
         # Obsidian
         "suppressevent activatefocus, class:^(obsidian)$"
       ];

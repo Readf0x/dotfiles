@@ -25,6 +25,18 @@
   xdg = {
     menus.enable = true;
     mime.enable = true;
+    portal = {
+      enable = true;
+      config = {
+        common = {
+          default = [ "hyprland" "kde" ];
+        };
+      };
+      extraPortals = with pkgs; [
+        xdg-desktop-portal-hyprland
+        libsForQt5.xdg-desktop-portal-kde
+      ];
+    };
   };
 
   programs.ssh.askPassword = "";
@@ -46,7 +58,7 @@
         theme = let name = "chili"; in "${self.packages.${conf.system}.${name}}/share/sddm/themes/${name}";
       };
     };
-    gnome.gnome-keyring.enable = true;
+    #gnome.gnome-keyring.enable = true;
     logind.extraConfig = "HandlePowerKey=ignore";
   };
 
@@ -54,7 +66,7 @@
     rtkit.enable = true;
     polkit.enable = true;
     pam.services = {
-      sddm.enableGnomeKeyring = true;
+      #sddm.enableGnomeKeyring = true;
       hyprlock = {};
     };
   };
