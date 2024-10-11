@@ -41,6 +41,43 @@
         rev = "586b9c63466c100d7bcaf8ec4fb12384406cb3cd";
         hash = "sha256-yH4Sqk7yq5WcQHmr4HHf7gBEtGJtk4JBEV0nnj/05vE=";
       };
+      ".config/kdeglobals".text = ''
+        [General]
+        TerminalApplication=kitty
+
+        [KDE]
+        ShowDeleteCommand=false
+
+        [KFileDialog Settings]
+        Allow Expansion=false
+        Automatically select filename extension=true
+        Breadcrumb Navigation=true
+        Decoration position=0
+        LocationCombo Completionmode=5
+        PathCombo Completionmode=5
+        Show Bookmarks=false
+        Show Full Path=false
+        Show Inline Previews=true
+        Show Preview=false
+        Show Speedbar=true
+        Show hidden files=true
+        Sort by=Date
+        Sort directories first=true
+        Sort hidden files last=false
+        Sort reversed=true
+        Speedbar Width=189
+        View Style=Detail
+
+        [KShortcutsDialog Settings]
+        Dialog Size=692,480
+
+        [PreviewSettings]
+        EnableRemoteFolderThumbnail=false
+        MaximumRemoteSize=0
+
+        [Icons]
+        Theme=Colloid-Dark
+      '';
       #".config/xdg-desktop-portal/portals.conf".text = ''
       #  [preferred]
       #  default=hyprland

@@ -10,7 +10,7 @@
       neovim
       samba
       shared-mime-info
-    ] ++ (with libsForQt5; [
+    ] ++ (with kdePackages; [
       kio-admin
       kio-extras
       kio-fuse
@@ -18,11 +18,14 @@
       plasma-workspace
       qtsvg
       qtwayland
+    ]) ++ (with wineWowPackages; [
+      waylandFull
+      fonts
     ]);
   };
 
   users.users.${conf.user}.packages = with pkgs; [
-    ### Desktop Applications:
+    # Desktop Applications
     blender-hip
     dopamine
     eog
@@ -33,6 +36,7 @@
     grimblast
     kdenlive
     libreoffice-qt6-fresh
+    lutris
     mpv
     neovide
     obsidian
@@ -46,25 +50,26 @@
     youtube-music
     zathura
 
-    ### User Facing CLI tools:
+    # CLI tools
     btop
     grimblast
     hyprpicker
     playerctl
     radeontop
     swww
+    vulkan-tools
     wl-clipboard
     xclip
   ] ++ (with libsForQt5; [
-    ark
-    dolphin
-    dolphin-plugins
-    kdegraphics-thumbnailers
-    breeze-icons
     qt5ct
     qtstyleplugin-kvantum
     qtstyleplugins
   ]) ++ (with kdePackages; [
+    ark
+    breeze-icons
+    dolphin
+    dolphin-plugins
+    kdegraphics-thumbnailers
     qt6ct
     qtstyleplugin-kvantum
   ]);
