@@ -460,6 +460,7 @@
       set foldlevel=99
       set number relativenumber
       set signcolumn=yes
+      set scrolloff=10
 
       hi NormalFloat guibg=#1D1D1D
       hi Pmenu guifg=#EEEEEE guibg=#1D1D1D
