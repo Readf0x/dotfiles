@@ -10,7 +10,12 @@
       neovim
       samba
       shared-mime-info
-    ] ++ (with kdePackages; [
+    ] ++ (with libsForQt5.qt5; [
+      qtwayland
+      qtgraphicaleffects
+      qttools
+      qtsvg
+    ]) ++ (with kdePackages; [
       kio-admin
       kio-extras
       kio-fuse

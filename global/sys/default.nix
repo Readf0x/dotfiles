@@ -4,6 +4,12 @@
     ./packages.nix
   ];
 
+  networking = {
+    hostName = conf.host;
+    useDHCP = lib.mkDefault true;
+    networkmanager.enable = true;
+  };
+
   nixpkgs.config = {
     allowUnfree = true;
   };

@@ -1,4 +1,4 @@
-{ lib, conf, ... }: {
+{ ... }: {
   nixpkgs.config.rocmSupport = true;
 
   imports = [
@@ -6,12 +6,6 @@
     ./hardware.nix
     ./packages.nix
   ];
-
-  networking = {
-    hostName = conf.host;
-    useDHCP = lib.mkDefault true;
-    networkmanager.enable = true;
-  };
 
   time.timeZone = "America/Chicago";
   i18n.defaultLocale = "en_US.UTF-8";

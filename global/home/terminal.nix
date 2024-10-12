@@ -44,6 +44,7 @@
         zshr = "exec zsh";
         ":q" = "exit";
         dev = "nix develop --command zsh";
+        "power!" = "poweroff";
       };
       shellGlobalAliases = { "--help" = "--help | bat -plhelp"; };
       localVariables = {

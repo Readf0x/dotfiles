@@ -35,7 +35,7 @@ in {
         follow_mouse = 1;
         #accel_profile = "custom 1 ${with builtins; concatStringsSep " " (genList (x: toString (x * x)) 5)}";
         accel_profile = let
-          points = lib'.bezier.over100 [0 0] [10 5] [0 6] [10 10];
+          points = lib'.bezier.over100 [0 0] [12 6] [2 7] [10 10];
         in "custom 1 ${with builtins; concatStringsSep " " (genList (x: toString (elemAt (lib'.bezier.findX x points) 1)) 10)}";
         touchpad = {
           scroll_factor = 0.25;
