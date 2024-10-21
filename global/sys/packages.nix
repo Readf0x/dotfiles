@@ -3,6 +3,7 @@
     etc."/xdg/menus/applications.menu".source =
     "${pkgs.kdePackages.plasma-workspace}/etc/xdg/menus/plasma-applications.menu";
     systemPackages = with pkgs; [
+      git
       keepassxc
       libnotify
       libsecret
@@ -40,6 +41,7 @@
     godot_4
     grimblast
     kdenlive
+    kitty
     libreoffice-qt6-fresh
     lutris
     mpv
@@ -57,12 +59,16 @@
 
     # CLI tools
     btop
+    gamescope
     grimblast
     hyprpicker
     playerctl
+    protontricks
+    protonup-qt
     radeontop
     swww
     vulkan-tools
+    winetricks
     wl-clipboard
     xclip
   ] ++ (with libsForQt5; [
@@ -95,9 +101,10 @@
     zsh.enable = true;
     steam = {
       enable = true;
-      extraCompatPackages = with pkgs; [
-        proton-ge-bin
-      ];
+      # Impossible to use protontricks with this setup
+      #extraCompatPackages = with pkgs; [
+      #  proton-ge-bin
+      #];
     };
     mtr.enable = true;
     gnupg.agent = {

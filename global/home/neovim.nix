@@ -64,6 +64,7 @@
       { action = "<cmd>EasyAlign";                    key = "<leader>a";  mode = "n";         options.desc = "Align";               }
       { action = cmd "Telescope";                     key = "<leader>tt"; mode = "n";         options.desc = "All";                 }
       { action = lua "vim.diagnostic.open_float()" f; key = "<leader>d";  mode = "n";         options.desc = "Diagnostic";          }
+      { action = ":IncRename ";                   key = "<leader>r";  mode = "n";         options.desc = "Rename";              }
     ] ++ map (x: {
       action = cmd "Telescope ${x.cmd}"; key = "<leader>t${x.key}"; mode = "n"; options.desc = x.name;
     }) telescope_opts;
@@ -104,11 +105,13 @@
       lsp = {
         enable = true;
         servers = {
+          astro.enable = true;
           bashls.enable = true;
           cssls.enable = true;
           eslint.enable = true;
           gopls.enable = true;
           html.enable = true;
+          htmx.enable = true;
           jsonls = {
             enable = true;
             settings.schemas = [
@@ -311,6 +314,7 @@
       #  enable = true;
       #  enableTelescope = true;
       #};
+      inc-rename.enable = true;
       ts-autotag.enable = true;
       ts-comments.enable = true;
       git-conflict.enable = true;
@@ -411,8 +415,6 @@
 
             vim.keymap.set('i', '<C-e>', 'enable = true;', { buffer = vim.fn.bufnr('%') })
             vim.keymap.set('i', '<M-C-E>', ' = {<cr>enable = true;<cr><Esc><<a};<Esc>O', { buffer = vim.fn.bufnr('%') })
-            vim.keymap.set('n', '<leader>be', 'aenable = true;<Esc>', { buffer = vim.fn.bufnr('%'), desc = "={enable = true;};" })
-            vim.keymap.set('n', '<leader>bE', 'a = {<cr>enable = true;<cr><Esc><<a};<Esc>k$', { buffer = vim.fn.bufnr('%'), desc = "enable = true;" })
           end
         ''; };
       }
@@ -442,11 +444,33 @@
       })
     '';
     extraConfigLuaPost = ''
-      require('telescope').load_extension('zoxide')
-      vim.keymap.del('n', '<leader>gy')
+      require("telescope").load_extension("zoxide")
+      vim.keymap.del("n", "<leader>gy")
       if vim.g.started_by_firenvim == true then
         vim.cmd("colorscheme default")
       end
+      local ls = require("luasnip");
+      local t = ls.text_node;
+      local i = ls.insert_node;
+      ls.add_snippets("go", {
+        ls.snippet("en", {
+          t({"if err != nil {", "\t"}), i(1),
+          t({"", "}"})
+        })
+      })
+      ls.add_snippets("nix", {
+        ls.snippet("e", {
+          t("enable = true;")
+        }),
+        ls.snippet("ed", {
+          t(".enable = true;")
+        }),
+        ls.snippet("ea", {
+          t({" = {", "\tenable = true;"}),
+          t({"", "\t"}), i(1),
+          t({"", "};"})
+        }),
+      })
     '';
     extraConfigVim = ''
       source ${pkgs.vimPlugins.vim-easy-align}/autoload/easy_align.vim
@@ -467,6 +491,8 @@
       hi Pmenu guifg=#EEEEEE guibg=#1D1D1D
       hi Statement gui=italic cterm=italic
       hi @property.jsonc guifg=#73CEF4 ctermfg=81
+      hi @tag.html guifg=#EEEEEE
+      hi @punctuation.delimiter.jsdoc guifg=#EEEEEE
 
       set splitbelow
       set splitright

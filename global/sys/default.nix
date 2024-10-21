@@ -1,4 +1,4 @@
-{ pkgs, conf, self, ... }: {
+{ pkgs, conf, self, lib, ... }: {
   imports = [
     ./../shared/stylix.nix
     ./packages.nix
@@ -66,6 +66,23 @@
     };
     #gnome.gnome-keyring.enable = true;
     logind.extraConfig = "HandlePowerKey=ignore";
+    # i2pd = {
+    #   enable = true;
+    #   proto = {
+    #     socksProxy = {
+    #       enable = true;
+    #     };
+    #     sam = {
+    #       enable = true;
+    #     };
+    #     i2pControl = {
+    #       enable = true;
+    #     };
+    #     i2cp = {
+    #       enable = true;
+    #     };
+    #   };
+    # };
   };
 
   security = {

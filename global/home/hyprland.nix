@@ -76,7 +76,7 @@ in {
           new_optimizations = "on";
         };
 
-        drop_shadow = false;
+        drop_shadow = true;
         shadow_range = 7;
         shadow_render_power = 3;
         "col.shadow" = "rgba(1111119b)";
@@ -131,6 +131,7 @@ in {
         "$hyper, L, exec, xdg-open https://linkedin.com/"
 
         "$mod, Return, exec, kitty"
+        "$mod $s, Return, exec, kitty --config ${builtins.toString conf.homeDir}/.config/kitty/safe.conf"
         "$mod, E, exec, dolphin"
         "$mod, W, exec, librewolf"
         "$mod $s, C, exec, hyprpicker -an"
@@ -257,6 +258,14 @@ in {
       windowrulev2 = [
         # Disallow auto maximize
         "suppressevent maximize, class:(.*)"
+        # Floating borders
+        "bordersize 1, onworkspace:special:dropdown"
+        "bordersize 1, onworkspace:special:KeepassXC"
+        "bordersize 1, floating:1"
+        "rounding 8, onworkspace:special:dropdown"
+        "rounding 8, onworkspace:special:KeepassXC"
+        "rounding 8, floating:1"
+        "noshadow, floating:0"
         # Disable blur on popups
         "noblur, class:^()$, title: ^()$"
         # Pavucontrol
@@ -323,9 +332,13 @@ in {
         "float, class:^(file-.*)"
         # Discord
         "monitor ${(monitor 1).id}, class:^(discord)$"
+        "suppressevent activate activatefocus, class:^(discord)$"
         "noinitialfocus, class:^(discord)$"
+        "focusonactivate off, class:^(discord)$"
         "monitor ${(monitor 1).id}, class:^(vesktop)$"
+        "suppressevent activate activatefocus, class:^(vesktop)$"
         "noinitialfocus, class:^(vesktop)$"
+        "focusonactivate off, class:^(vesktop)$"
         # Telegram
         "noanim, title:^(Media viewer)$, class:^(org.telegram.desktop)$"
         "float, title:^(Media viewer)$, class:^(org.telegram.desktop)$"
@@ -434,6 +447,8 @@ in {
         "workspace special:KeepassXC, class:^(org.keepassxc.KeePassXC)$"
         # Obsidian
         "suppressevent activatefocus, class:^(obsidian)$"
+        # TCG
+        "stayfocused, class:^(card shop simulator.exe)$"
       ];
     };
   };
