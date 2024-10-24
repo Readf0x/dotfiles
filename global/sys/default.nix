@@ -12,6 +12,17 @@
 
   nixpkgs.config = {
     allowUnfree = true;
+    qt5 = {
+      enable = true;
+      platformTheme = "qt5ct";
+      style = {
+        name = "kvantum";
+      };
+    };
+  };
+  environment.variables = {
+    QT_QPA_PLATFORMTHEME = "qt5ct";
+    QT_STYLE_OVERRIDE = "kvantum";
   };
 
   users.users.${conf.user} = {

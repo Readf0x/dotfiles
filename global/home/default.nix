@@ -1,4 +1,6 @@
-{ pkgs, conf, lib, ... }: { nixpkgs = {
+{ pkgs, conf, lib, ... }: {
+
+  nixpkgs = {
     config.allowUnfree = true;
   };
 
@@ -114,6 +116,7 @@
   qt = {
     enable = true;
     platformTheme.name = "qt5ct";
+    style.name = "kvantum";
   };
 
   xdg = {

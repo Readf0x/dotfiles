@@ -11,17 +11,24 @@
       neovim
       samba
       shared-mime-info
-    ] ++ (with libsForQt5.qt5; [
-      qtwayland
+    ] ++ (with libsForQt5; [
+      qt5ct
+      qtstyleplugin-kvantum
+      qtstyleplugins
+    ] ++ (with qt5; [
       qtgraphicaleffects
-      qttools
       qtsvg
-    ]) ++ (with kdePackages; [
+      qttools
+      qtwayland
+    ])) ++ (with kdePackages; [
       kio-admin
       kio-extras
       kio-fuse
       kservice
       plasma-workspace
+      qt6ct
+      qt6gtk2
+      qtstyleplugin-kvantum
       qtsvg
       qtwayland
     ]) ++ (with wineWowPackages; [
@@ -71,18 +78,12 @@
     winetricks
     wl-clipboard
     xclip
-  ] ++ (with libsForQt5; [
-    qt5ct
-    qtstyleplugin-kvantum
-    qtstyleplugins
-  ]) ++ (with kdePackages; [
+  ] ++ (with kdePackages; [
     ark
     breeze-icons
     dolphin
     dolphin-plugins
     kdegraphics-thumbnailers
-    qt6ct
-    qtstyleplugin-kvantum
   ]);
 
   fonts.packages = builtins.attrValues (
