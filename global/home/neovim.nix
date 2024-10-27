@@ -64,7 +64,7 @@
       { action = "<cmd>EasyAlign";                    key = "<leader>a";  mode = "n";         options.desc = "Align";               }
       { action = cmd "Telescope";                     key = "<leader>tt"; mode = "n";         options.desc = "All";                 }
       { action = lua "vim.diagnostic.open_float()" f; key = "<leader>d";  mode = "n";         options.desc = "Diagnostic";          }
-      { action = ":IncRename ";                   key = "<leader>r";  mode = "n";         options.desc = "Rename";              }
+      { action = ":IncRename ";                       key = "<leader>r";  mode = "n";         options.desc = "Rename";              }
     ] ++ map (x: {
       action = cmd "Telescope ${x.cmd}"; key = "<leader>t${x.key}"; mode = "n"; options.desc = x.name;
     }) telescope_opts;
@@ -392,7 +392,7 @@
               started = os.time()
             end
           end
-        ''; };
+        '';};
       }
       {
         event = [
@@ -402,21 +402,16 @@
         pattern = "*.nix";
         callback = { __raw = ''
           function()
-            MiniPairs.map_buf(vim.fn.bufnr('%'), 'i', '=', {
-              action = 'open', pair = '=;', register = { cr = false }
-            })
-            MiniPairs.map_buf(vim.fn.bufnr('%'), 'i', ';', {
-              action = 'close', pair = '=;', register = { cr = false }
-            })
-            MiniPairs.unmap_buf(vim.fn.bufnr('%'), 'i', "'", "\'\'")
-            MiniPairs.map_buf(vim.fn.bufnr('%'), 'i', "\'\'", {
-              action = 'closeopen', pair = "\'\'\'\'"
-            })
+            MiniPairs.map_buf(vim.fn.bufnr('%'), 'i', '=', { action = 'open', pair = '=;', register = { cr = false } })
+            MiniPairs.map_buf(vim.fn.bufnr('%'), 'i', ';', { action = 'close', pair = '=;', register = { cr = false } })
 
-            vim.keymap.set('i', '<C-e>', 'enable = true;', { buffer = vim.fn.bufnr('%') })
-            vim.keymap.set('i', '<M-C-E>', ' = {<cr>enable = true;<cr><Esc><<a};<Esc>O', { buffer = vim.fn.bufnr('%') })
+            vim.keymap.set("i", "<C-e>", function() ls.snip_expand(ls.get_snippets().nix[1]) end, { buffer = vim.fn.bufnr("%") })
+            vim.keymap.set("i", "<M-C-E>", function() ls.snip_expand(ls.get_snippets().nix[3]) end, { buffer = vim.fn.bufnr("%") })
+            vim.keymap.set("n", "<leader>bh", "<cmd>sil !home-manager switch --flake .<CR>", { buffer = vim.fn.bufnr("%"), desc = "Build Home-Manager" })
+            vim.keymap.set("n", "<leader>bt", "<cmd>sil !sudo nixos-rebuild test --flake .<CR>", { buffer = vim.fn.bufnr("%"), desc = "System rebuild test" })
+            vim.keymap.set("n", "<leader>br", "<cmd>sil !sudo nixos-rebuild switch --flake .<CR>", { buffer = vim.fn.bufnr("%"), desc = "System rebuild switch" })
           end
-        ''; };
+        '';};
       }
       {
         event = [
@@ -469,6 +464,16 @@
           t({" = {", "\tenable = true;"}),
           t({"", "\t"}), i(1),
           t({"", "};"})
+        }),
+        ls.snippet("\'\'", {
+          t({"\'\'"}),
+          t({""}), i(0),
+          t({"", "\'\'"})
+        }),
+        ls.snippet("ml", {
+          t({"\'\'"}),
+          t({""}), i(0),
+          t({"", "\'\'"})
         }),
       })
     '';
