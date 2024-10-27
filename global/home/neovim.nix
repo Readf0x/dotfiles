@@ -405,8 +405,8 @@
             MiniPairs.map_buf(vim.fn.bufnr('%'), 'i', '=', { action = 'open', pair = '=;', register = { cr = false } })
             MiniPairs.map_buf(vim.fn.bufnr('%'), 'i', ';', { action = 'close', pair = '=;', register = { cr = false } })
 
-            vim.keymap.set("i", "<C-e>", function() ls.snip_expand(ls.get_snippets().nix[1]) end, { buffer = vim.fn.bufnr("%") })
-            vim.keymap.set("i", "<M-C-E>", function() ls.snip_expand(ls.get_snippets().nix[3]) end, { buffer = vim.fn.bufnr("%") })
+            vim.keymap.set("i", "<C-e>", function() require("luasnip").snip_expand(require("luasnip").get_snippets().nix[1]) end, { buffer = vim.fn.bufnr("%") })
+            vim.keymap.set("i", "<M-C-E>", function() require("luasnip").snip_expand(require("luasnip").get_snippets().nix[3]) end, { buffer = vim.fn.bufnr("%") })
             vim.keymap.set("n", "<leader>bh", "<cmd>!home-manager switch --flake .<CR>", { buffer = vim.fn.bufnr("%"), desc = "Build Home-Manager" })
             vim.keymap.set("n", "<leader>bt", "<cmd>!sudo nixos-rebuild test --flake .<CR>", { buffer = vim.fn.bufnr("%"), desc = "System rebuild test" })
             vim.keymap.set("n", "<leader>br", "<cmd>!sudo nixos-rebuild switch --flake .<CR>", { buffer = vim.fn.bufnr("%"), desc = "System rebuild switch" })
