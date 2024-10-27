@@ -47,6 +47,7 @@
     gnome-font-viewer
     godot_4
     grimblast
+    hexchat
     kdenlive
     kitty
     libreoffice-qt6-fresh

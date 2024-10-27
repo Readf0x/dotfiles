@@ -77,23 +77,20 @@
     };
     #gnome.gnome-keyring.enable = true;
     logind.extraConfig = "HandlePowerKey=ignore";
-    # i2pd = {
-    #   enable = true;
-    #   proto = {
-    #     socksProxy = {
-    #       enable = true;
-    #     };
-    #     sam = {
-    #       enable = true;
-    #     };
-    #     i2pControl = {
-    #       enable = true;
-    #     };
-    #     i2cp = {
-    #       enable = true;
-    #     };
-    #   };
-    # };
+    i2pd = {
+      enable = false;
+      proto = {
+        socksProxy = {
+          enable = true;
+        };
+        sam = {
+          enable = true;
+        };
+        i2cp = {
+          enable = true;
+        };
+      };
+    };
   };
 
   security = {
