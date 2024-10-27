@@ -417,6 +417,7 @@ in {
         # Dolphin
         "float, class:^(org.kde.dolphin)$, title:((Creating directory|Progress Dialog|Deleting|Copying|Moving) — Dolphin)"
         "idleinhibit, class:^(org.kde.dolphin)$, title:((Creating directory|Progress Dialog|Deleting|Copying|Moving) — Dolphin)"
+        "size 1100 733, class:^(org.kde.dolphin)$, title:^(Configure( Toolbars)? — Dolphin)$"
         # Excalidraw
         "tile, class:^(Chromium)$, title:^(Excalidraw)$"
         # Evolution
