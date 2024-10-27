@@ -450,6 +450,8 @@ in {
         "suppressevent activatefocus, class:^(obsidian)$"
         # TCG
         "stayfocused, class:^(card shop simulator.exe)$"
+        # Hexchat
+        "center, class:^(Hexchat)$, title:( - HexChat)$"
       ];
     };
   };

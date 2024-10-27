@@ -139,6 +139,40 @@
       };
     };
     ags.enable = true;
+    hexchat = {
+      enable = true;
+      channels = {
+        Lainchan = {
+          autojoin = [ "#questions" "#lainchan" ];
+          nickname = "Phaethon";
+          nickname2 = "Narcissus";
+          realName = "Phaethon";
+          userName = "phaethon";
+          servers = [ "irc.lainchan.org/6697" ];
+          options = {
+            useGlobalUserInformation = false;
+          };
+        };
+        Libera = {
+          servers = [
+            "irc.libera.chat"
+            "irc.eu.libera.chat"
+            "irc.us.libera.chat"
+            "irc.au.libera.chat"
+            "irc.ea.libera.chat"
+            "irc.ipv4.libera.chat"
+            "irc.ipv6.libera.chat"
+          ];
+        };
+      };
+      settings = {
+        irc_nick1 = conf.user;
+        irc_nick2 = "readfOx";
+        irc_username = conf.user;
+        irc_realname = conf.realName;
+      };
+      overwriteConfigFiles = true;
+    };
 
     home-manager.enable = true;
 
