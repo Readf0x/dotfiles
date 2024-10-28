@@ -47,6 +47,9 @@
         [General]
         TerminalApplication=kitty
 
+        [Icons]
+        Theme=Colloid-Dark
+
         [KDE]
         ShowDeleteCommand=false
 
@@ -62,7 +65,7 @@
         Show Inline Previews=true
         Show Preview=false
         Show Speedbar=true
-        Show hidden files=true
+        Show hidden files=false
         Sort by=Date
         Sort directories first=true
         Sort hidden files last=false
@@ -76,9 +79,6 @@
         [PreviewSettings]
         EnableRemoteFolderThumbnail=false
         MaximumRemoteSize=0
-
-        [Icons]
-        Theme=Colloid-Dark
       '';
       #".config/xdg-desktop-portal/portals.conf".text = ''
       #  [preferred]

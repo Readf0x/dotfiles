@@ -48,6 +48,7 @@
     godot_4
     grimblast
     hexchat
+    inkscape
     kdenlive
     kitty
     libreoffice-qt6-fresh
