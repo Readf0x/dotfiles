@@ -87,6 +87,7 @@
       #  org.freedesktop.impl.portal.DynamicLauncher=kde
       #  org.freedesktop.impl.portal.FileChooser=kde
       #'';
+      ".local/share/lutris/runners/xemu/xemu".source = "${pkgs.xemu}/bin/xemu";
     };
 
     sessionVariables = {

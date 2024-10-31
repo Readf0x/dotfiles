@@ -10,8 +10,8 @@
     specialArgs = let
       lib' = import ./../lib {inherit lib conf;};
     in { inherit self inputs conf lib'; };
-    module = x: y: (if builtins.pathExists ./${conf.host}/${x}
-    then [./${conf.host}/${x}]
+    module = x: y: (if builtins.pathExists ./${name}/${x}
+    then [./${name}/${x}]
     else []) ++ [ ./../global/${x} ] ++ y;
   in {
     homeConfigurations.${name} = inputs.home-manager.lib.homeManagerConfiguration {

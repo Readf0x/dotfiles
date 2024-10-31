@@ -41,7 +41,14 @@
 
   xdg = {
     menus.enable = true;
-    mime.enable = true;
+    mime = {
+      enable = true;
+      defaultApplications = {
+        "image/svg+xml" = "inkscape.desktop";
+        "image/png" = [ "org.gnome.eog.desktop" "gimp.desktop" ];
+        "application/x-rar-compressed" = "ark.desktop";
+      };
+    };
     portal = {
       enable = true;
       config = {

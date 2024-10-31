@@ -53,6 +53,7 @@
     kitty
     libreoffice-qt6-fresh
     lutris
+    mangohud
     mpv
     neovide
     obsidian
@@ -65,6 +66,7 @@
     vesktop
     youtube-music
     zathura
+    xemu
 
     # CLI tools
     btop
@@ -75,6 +77,7 @@
     protontricks
     protonup-qt
     radeontop
+    rar
     swww
     vulkan-tools
     winetricks

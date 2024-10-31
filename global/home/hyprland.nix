@@ -305,9 +305,9 @@ in {
         "center, class:^(steam)$"
         "monitor ${(monitor 0).id}, class:(steam)"
         # File dialogs
-        "float, title:((Open|Save|Select) (File|As|Background Image|Folder.*))"
-        "size 900 600, title:((Open|Save|Select) (File|As|Background Image|Folder.*))"
-        "center, title:((Open|Save|Select) (File|As|Background Image|Folder.*))"
+        "float, title:((Open|Save|Select) (File|As|(Background )?Image|Folder.*))"
+        "size 900 600, title:((Open|Save|Select) (File|As|(Background )?Image|Folder.*))"
+        "center, title:((Open|Save|Select) (File|As|(Background )?Image|Folder.*))"
         "float, class:(org.freedesktop.impl.portal.desktop.kde)"
         "size 900 600, class:(org.freedesktop.impl.portal.desktop.kde)"
         "center, class:(org.freedesktop.impl.portal.desktop.kde)"
@@ -452,6 +452,8 @@ in {
         "stayfocused, class:^(card shop simulator.exe)$"
         # Hexchat
         "center, class:^(Hexchat)$, title:( - HexChat)$"
+        # Assassin's Creed IV Black Flag
+        "idleinhibit, title:^(Assassin's Creed IV Black Flag)$"
       ];
     };
   };
