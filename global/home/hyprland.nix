@@ -454,6 +454,7 @@ in {
         "center, class:^(Hexchat)$, title:( - HexChat)$"
         # Assassin's Creed IV Black Flag
         "idleinhibit, title:^(Assassin's Creed IV Black Flag)$"
+        "idleinhibit, class:^(steam_app_default)$"
       ];
     };
   };

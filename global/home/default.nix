@@ -1,4 +1,4 @@
-{ pkgs, conf, lib, ... }: {
+{ pkgs, conf, lib, self, ... }: {
 
   nixpkgs = {
     config.allowUnfree = true;
@@ -92,6 +92,7 @@
 
     sessionVariables = {
       PATH = "$PATH:$HOME/Scripts";
+      WINEDLLPATH = "${self.packages.${conf.system}.discord-rpc}/share/winedll/discord-rpc";
     };
 
     #pointerCursor = {

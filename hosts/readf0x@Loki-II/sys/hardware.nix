@@ -22,6 +22,10 @@
     amdgpu.opencl.enable = true;
 
     cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+
+    bluetooth = {
+      enable = true;
+    };
   };
   services.xserver.videoDrivers = [ "amdgpu" ];
   systemd.tmpfiles.rules = 

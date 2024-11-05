@@ -26,5 +26,6 @@
       variant = "";
     };
     ratbagd.enable = true;
+    blueman.enable = true;
   };
 }
