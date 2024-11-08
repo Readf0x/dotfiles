@@ -184,7 +184,7 @@
             # { name = "codeium";      priority = 3; group_index = 1; }
             { name = "nvim_lsp";     priority = 2; group_index = 1; }
             { name = "zsh";          priority = 2; group_index = 1; entry_filter = zsh_filter; }
-            { name = "fuzzy_path";   priority = 1; group_index = 1; }
+            # { name = "fuzzy_path";   priority = 1; group_index = 1; }
             { name = doc_sym;        priority = 2; group_index = 2; }
             { name = "treesitter";   priority = 2; group_index = 2; }
             { name = "fuzzy_buffer"; priority = 1; group_index = 2; }
