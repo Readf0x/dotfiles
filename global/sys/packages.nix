@@ -69,6 +69,7 @@
     xemu
 
     # CLI tools
+    ani-cli
     btop
     gamescope
     grimblast
