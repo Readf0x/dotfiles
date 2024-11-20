@@ -118,7 +118,7 @@
   qt = {
     enable = true;
     platformTheme.name = "qt5ct";
-    style.name = "kvantum";
+    style.name = "qt5ct";
   };
 
   xdg = {
@@ -194,5 +194,6 @@
     nixvim.enable = false;
     waybar.enable = false;
     #kitty.enable = false;
+    hyprlock.enable = false;
   };
 }

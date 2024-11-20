@@ -76,10 +76,12 @@ in {
           new_optimizations = "on";
         };
 
-        drop_shadow = true;
-        shadow_range = 7;
-        shadow_render_power = 3;
-        "col.shadow" = "rgba(1111119b)";
+        shadow = {
+          enabled = true;
+          range = 7;
+          render_power = 3;
+          color = "rgba(1111119b)";
+        };
       };
 
       # https://wiki.hyprland.org/Configuring/Variables/#misc
