@@ -1,4 +1,4 @@
-{ pkgs, self, conf, lib, ... }: {
+{ pkgs, self, conf, lib, inputs, ... }: {
   environment = {
     etc."/xdg/menus/applications.menu".source =
     "${pkgs.kdePackages.plasma-workspace}/etc/xdg/menus/plasma-applications.menu";
@@ -37,7 +37,9 @@
     ]);
   };
 
-  users.users.${conf.user}.packages = with pkgs; [
+  users.users.${conf.user}.packages = [
+    inputs.xdvdfs.packages.x86_64-linux.default
+  ] ++ (with pkgs; [
     # Desktop Applications
     blender-hip
     dopamine
@@ -90,7 +92,7 @@
     dolphin
     dolphin-plugins
     kdegraphics-thumbnailers
-  ]);
+  ]));
 
   fonts.packages = builtins.attrValues (
     lib.filterAttrs (n: v: lib.hasPrefix "maple-font" n) self.packages.${conf.system}

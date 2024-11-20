@@ -26,6 +26,11 @@
       url = "github:Aylur/ags";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    xdvdfs = {
+      url = "github:antangelo/xdvdfs";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = { flake-parts, ... }@inputs:

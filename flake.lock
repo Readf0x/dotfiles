@@ -497,7 +497,8 @@
         "home-manager": "home-manager",
         "nixpkgs": "nixpkgs",
         "nixvim": "nixvim",
-        "stylix": "stylix"
+        "stylix": "stylix",
+        "xdvdfs": "xdvdfs"
       }
     },
     "stylix": {
@@ -628,6 +629,26 @@
       "original": {
         "owner": "numtide",
         "repo": "treefmt-nix",
+        "type": "github"
+      }
+    },
+    "xdvdfs": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1731456756,
+        "narHash": "sha256-58f9eznPKeUVnUvslcm0CQPC+1xU3Zto+R56IXPBKT4=",
+        "owner": "antangelo",
+        "repo": "xdvdfs",
+        "rev": "1cc850bf1b3487fad7ec7c9eed01d83e8fc75ba4",
+        "type": "github"
+      },
+      "original": {
+        "owner": "antangelo",
+        "repo": "xdvdfs",
         "type": "github"
       }
     }
