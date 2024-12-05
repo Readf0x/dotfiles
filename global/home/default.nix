@@ -105,7 +105,7 @@
           nickname2 = "Narcissus";
           realName = "Phaethon";
           userName = "phaethon";
-          servers = [ "irc.lainchan.org/6697" ];
+          servers = [ "irc.lainchan.org/+6697" ];
           options = {
             useGlobalUserInformation = false;
           };
