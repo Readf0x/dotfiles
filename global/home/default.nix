@@ -40,8 +40,8 @@
       ".librewolf/${conf.librewolfProfile}/chrome".source = pkgs.fetchFromGitHub {
         owner = "readf0x";
         repo = "Firefox-Mod-Blur";
-        rev = "586b9c63466c100d7bcaf8ec4fb12384406cb3cd";
-        hash = "sha256-yH4Sqk7yq5WcQHmr4HHf7gBEtGJtk4JBEV0nnj/05vE=";
+        rev = "ddad9e40fa0d27d7b94e4bb719124f0cc2808137";
+        hash = "sha256-Hndp/FEGhzRfMgIIokGgfcY8vcdLD3My97yL0vsITvs=";
       };
       ".local/share/lutris/runners/xemu/xemu".source = "${pkgs.xemu}/bin/xemu";
     };
