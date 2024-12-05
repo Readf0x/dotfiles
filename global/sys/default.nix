@@ -16,7 +16,7 @@
       enable = true;
       platformTheme = "qt5ct";
       style = {
-        name = "kvantum";
+        name = "kvantum-dark";
       };
     };
   };

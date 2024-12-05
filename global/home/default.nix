@@ -67,14 +67,13 @@
     };
     iconTheme = {
       name = "Colloid-Dark";
-      #package = pkgs.colloid-icon-theme;
+      package = pkgs.colloid-icon-theme;
     };
-    # font.name = "Ubuntu";
   };
   qt = {
     enable = true;
     platformTheme.name = "qt6ct";
-    style.name = "kvantum";
+    style.name = "kvantum-dark";
   };
 
   xdg = {
