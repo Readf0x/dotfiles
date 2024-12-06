@@ -44,6 +44,17 @@
         hash = "sha256-Hndp/FEGhzRfMgIIokGgfcY8vcdLD3My97yL0vsITvs=";
       };
       ".local/share/lutris/runners/xemu/xemu".source = "${pkgs.xemu}/bin/xemu";
+      ".local/share/kio/servicemenus/dragon.desktop".text = ''
+        [Desktop Entry]
+        Type=Service
+        MimeType=application/octet-stream
+        Actions=dragonX
+
+        [Desktop Action dragonX]
+        Name=Drag And Drop (X11)
+        Icon=edit-move
+        Exec=env WAYLAND_DISPLAY= dragon %U
+      '';
     };
 
     sessionVariables = {

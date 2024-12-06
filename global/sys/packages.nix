@@ -86,6 +86,7 @@
     winetricks
     wl-clipboard
     xclip
+    xdragon
   ] ++ (with kdePackages; [
     ark
     breeze-icons

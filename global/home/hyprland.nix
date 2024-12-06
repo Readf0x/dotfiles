@@ -457,6 +457,8 @@ in {
         # Assassin's Creed IV Black Flag
         "idleinhibit, title:^(Assassin's Creed IV Black Flag)$"
         "idleinhibit, class:^(steam_app_default)$"
+        # Dragon Drop
+        "center, class:^(Dragon)$"
       ];
     };
   };
