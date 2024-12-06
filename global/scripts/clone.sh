@@ -1,0 +1,28 @@
+#!/usr/bin/env zsh
+
+if [[ $1 == -h ]] || [[ $1 == --help ]]; then
+  msg="$(sed -e 's/^[ ]*| //m' <<'--------------------'
+    | A script for cloning git repos
+    | 
+    | %UUsage:%u %Bclone.sh%b <REPOSITORY> [PATH] [<ARGS>]
+    | 
+    | %UArguments:%u
+    |   %B<REPOSITORY>%b\tRepository URL
+    | 
+    |   %B[PATH]%b\tRoot directory to clone to. Defaults to ~/Repos.
+    | 
+    |   %B<ARGS>%b\tGit clone args. See %Ugit-clone(1)%u for more info.
+--------------------
+    )"
+  print -P $msg
+else
+  repo=$(echo $1 | sed -r 's|.*/([^/]+/[^/]+)(\.git)?$|\1|')
+  if [[ "$2" == -* ]]; then
+    git clone $(echo "$@[2,-1] --") $1 "$HOME/Repos/$repo"
+  elif [[ -e $2 ]]; then
+    git clone $(echo "$@[3,-1] --") $1 "$2/$repo"
+  else
+    git clone $1 "$HOME/Repos/$repo"
+  fi
+fi
+
