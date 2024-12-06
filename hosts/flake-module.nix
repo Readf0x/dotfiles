@@ -41,8 +41,8 @@
       stateVersion = "24.05";
       email = "davis.a.forsythe@gmail.com";
       realName = "Davis Forsythe";
-      key = "00FF693537C65B9895A6BEE52EE5F4672ED57EA4";
-      librewolfProfile = "mj60kq4g.default";
+      key = "5DA8A55A7FFB950B92BB532C4A48E1852C03CE8A";
+      librewolfProfile = "z3s5q0ct.default";
     };
   };
 in {
