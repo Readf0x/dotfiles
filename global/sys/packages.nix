@@ -42,6 +42,7 @@
   ] ++ (with pkgs; [
     # Desktop Applications
     blender-hip
+    deluge-gtk
     dopamine
     eog
     evolutionWithPlugins
@@ -85,6 +86,7 @@
     vulkan-tools
     winetricks
     wl-clipboard
+    wtype
     xclip
     xdragon
   ] ++ (with kdePackages; [
@@ -99,7 +101,6 @@
     lib.filterAttrs (n: v: lib.hasPrefix "maple-font" n) self.packages.${conf.system}
   ) ++ (with pkgs; [
     cantarell-fonts
-    fira-code-nerdfont
     noto-fonts
   ]);
 
