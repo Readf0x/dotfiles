@@ -12,13 +12,6 @@
 
   nixpkgs.config = {
     allowUnfree = true;
-    qt5 = {
-      enable = true;
-      platformTheme = "qt5ct";
-      style = {
-        name = "kvantum-dark";
-      };
-    };
   };
   #environment.variables = {
   #  QT_QPA_PLATFORMTHEME = "qt5ct";
@@ -63,6 +56,12 @@
         libsForQt5.xdg-desktop-portal-kde
       ];
     };
+  };
+
+  qt = {
+    enable = true;
+    platformTheme = "qt5ct";
+    style = "kvantum";
   };
 
   programs.ssh.askPassword = "";

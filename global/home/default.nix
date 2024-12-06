@@ -70,11 +70,6 @@
       package = pkgs.colloid-icon-theme;
     };
   };
-  qt = {
-    enable = true;
-    platformTheme.name = "qt5ct";
-    style.name = "kvantum-dark";
-  };
 
   xdg = {
     userDirs = {
