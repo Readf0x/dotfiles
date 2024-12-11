@@ -17,9 +17,8 @@
     homeConfigurations.${name} = inputs.home-manager.lib.homeManagerConfiguration {
       pkgs = inputs.nixpkgs.legacyPackages.${system};
       modules = module "home" [
-        inputs.nixvim.homeManagerModules.nixvim
-        inputs.stylix.homeManagerModules.stylix
-        inputs.ags.homeManagerModules.default
+        inputs.nixvim.homeManagerModules.default
+        inputs.stylix.homeManagerModules.default
       ];
       extraSpecialArgs = specialArgs;
     };

@@ -122,11 +122,7 @@ in {
       "$c" = "CTRL";
       "$a" = "ALT";
       "$hyper" = "SHIFT CTRL SUPER ALT";
-      # "$music" = "playerctl --player=$(cat /home/${user}/.config/ags/active.txt)";
       "$music" = "playerctl";
-      # "$agsVolume" = ''ags -r "const volume = (await import('file:///tmp/ags/js/main.js')).VolumeWindow; volume.visible = true"'';
-      # "$agsBrightness" = ''ags -r "const brightness = (await import('file:///tmp/ags/js/main.js')).BrightnessWindow; brightness.visible = true"'';
-      # "$agsActive" = ''ags -r "const active = (await import('file:///tmp/ags/js/main.js')).activeSwitcher; active()"'';
 
       bind = [
         # IMPORTANT:

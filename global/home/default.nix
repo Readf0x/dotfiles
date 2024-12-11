@@ -103,7 +103,6 @@
         "svg.context-properties.content.enabled" = true;
       };
     };
-    ags.enable = true;
     hexchat = {
       enable = true;
       channels = {

@@ -22,8 +22,8 @@
 
     stylix.url = "github:danth/stylix";
 
-    ags = {
-      url = "github:Aylur/ags";
+    xdvdfs = {
+      url = "github:antangelo/xdvdfs";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
