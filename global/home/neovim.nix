@@ -501,15 +501,6 @@
 
       set splitbelow
       set splitright
-
-      if exists('g:neovide')
-        set guifont=Maple_Mono:h11
-        let g:neovide_cursor_vfx_mode = "ripple"
-        let g:neovide_padding_top = 1
-        let g:neovide_padding_right = 1
-        let g:neovide_padding_bottom = 1
-        let g:neovide_padding_left = 1
-      endif
     '';
   };
 }

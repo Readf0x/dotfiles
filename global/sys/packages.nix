@@ -58,7 +58,6 @@
     lutris
     mangohud
     mpv
-    neovide
     obsidian
     pavucontrol
     picard
