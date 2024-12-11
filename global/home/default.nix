@@ -55,6 +55,7 @@
         Icon=edit-move
         Exec=env WAYLAND_DISPLAY= dragon %U
       '';
+      ".config/Kvantum/Colloid".source = "${pkgs.colloid-kde}/share/Kvantum/Colloid";
     };
 
     sessionVariables = {
