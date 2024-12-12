@@ -7,7 +7,7 @@
   imports = [
     ./../shared/stylix.nix
     ./hyprland.nix
-    ./neovim.nix
+    ./nixvim.nix
     ./terminal.nix
   ];
   # Home Manager needs a bit of information about you and the paths it should
