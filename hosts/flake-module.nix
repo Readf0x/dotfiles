@@ -18,7 +18,7 @@
       pkgs = inputs.nixpkgs.legacyPackages.${system};
       modules = module "home" [
         inputs.nixvim.homeManagerModules.default
-        inputs.stylix.homeManagerModules.default
+        inputs.stylix.homeManagerModules.stylix
       ];
       extraSpecialArgs = specialArgs;
     };
