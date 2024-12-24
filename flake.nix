@@ -27,9 +27,12 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    xdvdfs = {
-      url = "github:antangelo/xdvdfs";
-      inputs.nixpkgs.follows = "nixpkgs";
+    islive = {
+      url = "github:readf0x/islive";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        flake-parts.follows = "flake-parts";
+      };
     };
   };
 

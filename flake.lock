@@ -300,6 +300,29 @@
         "type": "github"
       }
     },
+    "islive": {
+      "inputs": {
+        "flake-parts": [
+          "flake-parts"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1735076577,
+        "narHash": "sha256-LxJJMDsAvwMr1O7RCb/LQYSE+JZzdtQoEPlx1Bs5wSI=",
+        "owner": "readf0x",
+        "repo": "islive",
+        "rev": "cce8bcdb7c9ad31976e8492dcb77d449a51c1251",
+        "type": "github"
+      },
+      "original": {
+        "owner": "readf0x",
+        "repo": "islive",
+        "type": "github"
+      }
+    },
     "ixx": {
       "inputs": {
         "flake-utils": [
@@ -452,6 +475,7 @@
       "inputs": {
         "flake-parts": "flake-parts",
         "home-manager": "home-manager",
+        "islive": "islive",
         "nixpkgs": "nixpkgs",
         "nixvim": "nixvim",
         "stylix": "stylix",

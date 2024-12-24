@@ -456,6 +456,8 @@ in {
         "idleinhibit, class:^(steam_app_default)$"
         # Dragon Drop
         "center, class:^(Dragon)$"
+        # IDEA
+        "float, class:^(jetbrains-idea-ce)$, title:^(Welcome to IntelliJ IDEA)$"
       ];
     };
   };

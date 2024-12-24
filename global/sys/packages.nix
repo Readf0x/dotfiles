@@ -38,7 +38,8 @@
   };
 
   users.users.${conf.user}.packages = [
-    inputs.xdvdfs.packages.x86_64-linux.default
+    inputs.xdvdfs.packages.${conf.system}.default
+    inputs.islive.packages.${conf.system}.default
   ] ++ (with pkgs; [
     # Desktop Applications
     blender-hip
@@ -69,6 +70,7 @@
     youtube-music
     zathura
     xemu
+    jetbrains.idea-community
 
     # CLI tools
     ani-cli
@@ -76,6 +78,7 @@
     gamescope
     grimblast
     hyprpicker
+    ncdu
     playerctl
     protontricks
     protonup-qt

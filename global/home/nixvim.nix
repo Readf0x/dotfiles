@@ -162,7 +162,6 @@
           ts_ls.enable = true;
         };
       };
-      codeium-nvim.enable = true;
       cmp = {
         enable = true;
         settings = {
@@ -289,6 +288,7 @@
           vim
           xml
           yaml
+          java
         ];
         settings = {
           highlight.enable = true;
