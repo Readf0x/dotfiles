@@ -108,7 +108,7 @@
         disable_ligatures never
         font_family family="Maple Mono NF" features="+zero +cv03 +ss03"
         font_size 11
-        #symbol_map U+2320-U+2321,U+239B-U+23B3 Noto Sans Math
+        symbol_map U+2320,U+2321,U+239B-U+23B3 Noto Sans Math
 
         window_padding_width 11
 
