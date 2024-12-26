@@ -70,7 +70,7 @@
     youtube-music
     zathura
     xemu
-    jetbrains.idea-community
+    jetbrains.idea-community-bin
 
     # CLI tools
     ani-cli
