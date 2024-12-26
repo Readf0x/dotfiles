@@ -310,11 +310,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1735076577,
-        "narHash": "sha256-LxJJMDsAvwMr1O7RCb/LQYSE+JZzdtQoEPlx1Bs5wSI=",
+        "lastModified": 1735234259,
+        "narHash": "sha256-Q439LFwWo3P+zTCEDyLgMwfRMTkSb7M+YqOz9cKLVSw=",
         "owner": "readf0x",
         "repo": "islive",
-        "rev": "cce8bcdb7c9ad31976e8492dcb77d449a51c1251",
+        "rev": "c0f8a307f73d2ea4f63ee6fef498207ca4724212",
         "type": "github"
       },
       "original": {
