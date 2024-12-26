@@ -236,6 +236,7 @@ in {
         #"/run/wrappers/bin/gnome-keyring-daemon --start --foreground --components=secrets"
         "keepassxc"
         "balooctl enable"
+        "sleep 20 && steam -silent"
       ];
 
       #  _      ___         __             ___       __      
