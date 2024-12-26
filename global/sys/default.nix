@@ -99,6 +99,12 @@
         };
       };
     };
+    cron = {
+      enable = true;
+      # systemCronJobs = [
+      #   "*/15 * * * *  readf0x  if islive caseoh_; then if [ $(notify-send --icon=\"/home/readf0x/Pictures/caseoh.png\" \"CaseOh is live!\" \"C'mon cuh!\" --action=\"WATCH\"=\"Watch Stream\" --action=\"DISMISS\"=\"Dismiss\" --expire-time=2000) == \"WATCH\" ]; then xdg-open \"https://twitch.tv/caseoh_\"; fi; fi"
+      # ];
+    };
   };
 
   security = {
