@@ -53,6 +53,7 @@
     grimblast
     hexchat
     inkscape
+    jetbrains.idea-community-bin
     kdenlive
     kitty
     libreoffice-qt6-fresh
@@ -67,10 +68,10 @@
     seahorse
     swaynotificationcenter
     vesktop
+    vlc
+    xemu
     youtube-music
     zathura
-    xemu
-    jetbrains.idea-community-bin
 
     # CLI tools
     ani-cli
