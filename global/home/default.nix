@@ -108,7 +108,11 @@
       enable = true;
       channels = {
         Lainchan = {
-          autojoin = [ "#questions" "#lainchan" ];
+          autojoin = [
+            "#questions"
+            "#lainchan"
+            "#programming"
+          ];
           nickname = "Phaethon";
           nickname2 = "Narcissus";
           realName = "Phaethon";
