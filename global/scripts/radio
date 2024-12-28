@@ -1,0 +1,7 @@
+#!/usr/bin/env zsh
+if [[ $1 == "lainchain" ]]; then
+  mpv 'https://radio.lainchan.org/listen/lainchan_radio_main/radio.mp3'
+else
+  print "not found"
+fi
+

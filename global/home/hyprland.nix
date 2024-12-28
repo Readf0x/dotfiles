@@ -140,7 +140,7 @@ in {
         "$mod, Escape, exec, hyprlock"
         "$mod, D, togglespecialworkspace, dropdown"
         "$mod, K, togglespecialworkspace, KeepassXC"
-        "$mod, R, exec, ~/Scripts/wallpaper.sh"
+        "$mod, R, exec, ~/Scripts/wallpaper"
         "$mod, N, exec, swaync-client -t"
         "$mod $s, N, exec, swaync-client -C"
         "$mod, Escape, exec, hyprlock"
@@ -153,7 +153,7 @@ in {
         ", XF86AudioPrev, exec, $music previous"
         "$mod, Home, exec, $music previous"
         # TODO: super shift h to swap output devices
-        "$mod $s, H, exec, ~/Scripts/audio.sh"
+        "$mod $s, H, exec, ~/Scripts/audio"
 
         # Window management
         "$mod, Q, killactive,"
@@ -229,7 +229,7 @@ in {
       exec-once = [
         "hyprctl setcursor Bibata-Modern-Ice 24"
         "sleep 20; vesktop"
-        "swww-daemon; sleep 2; wallpaper.sh"
+        "swww-daemon; sleep 2; wallpaper"
         "waybar"
         "swaync"
         "lxqt-policykit-agent"

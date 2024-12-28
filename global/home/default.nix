@@ -56,6 +56,15 @@
         Exec=env WAYLAND_DISPLAY= dragon %U
       '';
       ".config/Kvantum/Colloid".source = "${pkgs.colloid-kde}/share/Kvantum/Colloid";
+      ".config/mpd/mpd.conf".text = ''
+        music_directory "~/Music"
+        playlist_directory "~/.mpd/playlists"
+        db_file "~/.mpd/database"
+        log_file "~/.mpd/log"
+        pid_file "~/.mpd/pid"
+        state_file "~/.mpd/state"
+        sticker_file "~/.mpd/sticker.sql"
+      '';
     };
 
     sessionVariables = {

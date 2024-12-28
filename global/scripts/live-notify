@@ -1,0 +1,8 @@
+#!/usr/bin/env zsh
+if islive $1 && ! cat /tmp/caseoh_; then
+  if [[ $(notify-send --icon="/home/readf0x/Pictures/$1.png" "$1 is live!" "" --action="WATCH"="Watch Stream" --action="DISMISS"="Dismiss" --expire-time=2000) == "WATCH" ]]; then
+    xdg-open "https://twitch.tv/$1"
+  fi
+  echo "seen" > /tmp/caseoh_
+fi
+

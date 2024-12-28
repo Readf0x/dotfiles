@@ -79,6 +79,7 @@
     gamescope
     grimblast
     hyprpicker
+    mpd
     ncdu
     playerctl
     protontricks
@@ -86,11 +87,13 @@
     radeontop
     rar
     swww
+    vimpc
     vulkan-tools
     winetricks
     wl-clipboard
     wtype
     xclip
+    xdg-utils
     xdragon
   ] ++ (with kdePackages; [
     ark
