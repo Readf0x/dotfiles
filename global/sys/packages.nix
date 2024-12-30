@@ -79,7 +79,10 @@
     gamescope
     grimblast
     hyprpicker
+    mpc
     mpd
+    mpd-discord-rpc
+    mpd-mpris
     ncdu
     playerctl
     protontricks
