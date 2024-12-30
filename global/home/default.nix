@@ -111,6 +111,7 @@
         "widget.use-xdg-desktop-portal.file-picker" = 1;
         "widget.use-xdg-desktop-portal.mime-handler" = 1;
         "svg.context-properties.content.enabled" = true;
+        "middlemouse.paste" = false;
       };
     };
     hexchat = {
