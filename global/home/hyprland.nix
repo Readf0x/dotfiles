@@ -122,7 +122,7 @@ in {
       "$c" = "CTRL";
       "$a" = "ALT";
       "$hyper" = "SHIFT CTRL SUPER ALT";
-      "$music" = "playerctl";
+      "$music" = "~/Scripts/media";
 
       bind = [
         # IMPORTANT:
@@ -152,7 +152,7 @@ in {
         "$mod, End, exec, $music next"
         ", XF86AudioPrev, exec, $music previous"
         "$mod, Home, exec, $music previous"
-        # TODO: super shift h to swap output devices
+        "$mod, Insert, exec, $music next-player"
         "$mod $s, H, exec, ~/Scripts/audio"
 
         # Window management

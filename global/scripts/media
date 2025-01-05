@@ -1,0 +1,18 @@
+#!/usr/bin/env zsh
+
+local players=($(playerctl --list-all))
+local activePlayer="$(cat $HOME/.player 2>/dev/null)"
+if [[ ${players[(Ie)$activePlayer]} == 0 ]]; then
+  activePlayer=${players[1]}
+fi
+
+if [[ $1 == "next-player" ]]; then
+  activePlayer=${players[$((${players[(Ie)$activePlayer]}+1))]}
+  if [[ $activePlayer == "" ]]; then
+    activePlayer=${players[1]}
+  fi
+  print $activePlayer > $HOME/.player
+else
+  playerctl --player=$activePlayer $1
+fi
+
