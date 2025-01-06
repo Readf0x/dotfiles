@@ -257,7 +257,7 @@
         };
         mockDevIcons = true;
       };
-      colorizer.enable = true;
+      nvim-colorizer.enable = true;
       neo-tree.enable = true;
       treesitter = {
         enable = true;
