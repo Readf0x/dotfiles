@@ -117,6 +117,7 @@
         set -eu
         for user in /home/*; do
           username=$(basename "$user")
+          mkdir -p "/var/lib/AccountsService/icons"
           if [ -f "$user/.face.icon" ]; then
             if [ ! -f "/var/lib/AccountsService/icons/$username" ]; then
               cp "$user/.face.icon" "/var/lib/AccountsService/icons/$username"

@@ -14,7 +14,7 @@
       options = [ "fmask=0077" "dmask=0077" ];
     };
     "/home" = {
-      device = "/dev/disk/by-uuid/5733a149-db2c-43a4-bbe9-a4b87bde6e39";
+      device = "/dev/disk/by-uuid/baf8ab4f-19fa-4a6f-8b32-476698e8c2f5";
       fsType = "ext4";
     };
     "/mnt/Games" = {
