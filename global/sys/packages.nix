@@ -37,7 +37,14 @@
     ]);
   };
 
-  users.users.${conf.user}.packages = [
+  users.users.${conf.user}.packages = let
+    mpvWithScripts = pkgs.mpv.override {
+      scripts = with pkgs.mpvScripts; [
+        mpris
+        uosc
+      ];
+    };
+  in [
     inputs.xdvdfs.packages.${conf.system}.default
     inputs.islive.packages.${conf.system}.default
   ] ++ (with pkgs; [
@@ -59,7 +66,7 @@
     libreoffice-qt6-fresh
     lutris
     mangohud
-    mpv
+    mpvWithScripts
     obsidian
     pavucontrol
     picard
@@ -74,7 +81,9 @@
     zathura
 
     # CLI tools
-    ani-cli
+    (ani-cli.override {
+      mpv = mpvWithScripts;
+    })
     btop
     gamescope
     grimblast

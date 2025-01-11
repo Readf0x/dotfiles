@@ -104,6 +104,17 @@ in {
         ];
       };
 
+      group = {
+        "col.border_active" = "rgb(ffc24b)";
+        "col.border_inactive" = "rgb(464646)";
+        groupbar = {
+          render_titles = false;
+          height = 1;
+          "col.active" = "rgb(ffc24b)";
+          "col.inactive" = "rgba(46464655)";
+        };
+      };
+
       # https://wiki.hyprland.org/Configuring/Dwindle-Layout/
       dwindle = {
         pseudotile = true;
@@ -128,6 +139,7 @@ in {
         # IMPORTANT:
         "$hyper, L, exec, xdg-open https://linkedin.com/"
 
+        # Applications
         "$mod, Return, exec, kitty"
         "$mod $s, Return, exec, kitty --config ${builtins.toString conf.homeDir}/.config/kitty/safe.conf"
         "$mod, E, exec, dolphin"
@@ -144,6 +156,7 @@ in {
         "$mod, N, exec, swaync-client -t"
         "$mod $s, N, exec, swaync-client -C"
         "$mod, Escape, exec, hyprlock"
+        "$mod, L, exec, lutris"
 
         # Media controls
         ", XF86AudioPlay, exec, $music play-pause"
@@ -163,6 +176,15 @@ in {
         "$mod $s, P, pin,"
         "$mod $c, Home, centerwindow,"
         "$a, Tab, focusurgentorlast,"
+        # Groups
+        "$mod, G, togglegroup"
+        "$mod $a, L, lockactivegroup, toggle"
+        "$mod $a, left, movewindoworgroup, l"
+        "$mod $a, right, movewindoworgroup, r"
+        "$mod $a, up, movewindoworgroup, u"
+        "$mod $a, down, movewindoworgroup, d"
+        "$mod $a, comma, changegroupactive, b"
+        "$mod $a, period, changegroupactive, f"
         # Dwindle
         "$mod, P, pseudo,"
         "$mod, J, togglesplit,"
@@ -237,6 +259,7 @@ in {
         "keepassxc"
         "balooctl enable"
         "sleep 20 && steam -silent"
+        "~/Scripts/start-mpd"
       ];
 
       #  _      ___         __             ___       __      

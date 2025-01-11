@@ -153,12 +153,6 @@
       };
       overwriteConfigFiles = true;
     };
-    mpv = {
-      enable = true;
-      scripts = with pkgs.mpvScripts; [
-        mpris
-      ];
-    };
 
     home-manager.enable = true;
 
