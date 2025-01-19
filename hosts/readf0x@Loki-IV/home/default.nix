@@ -1,5 +1,5 @@
 { ... }: {
   programs.kitty.extraConfig = ''
-    font_size 15
+    font_size 12
   '';
 }
