@@ -173,6 +173,12 @@
     𝙻𝚎𝚝'𝚜 𝚊𝚕𝚕 𝚕𝚘𝚟𝚎 𝙻𝚊𝚒𝚗
   '';
 
+  fileSystems."/tmp" = {
+    fsType = "tmpfs";
+    device = "none";
+    options = [ "size=1G" "mode=777" ];
+  };
+
   system.stateVersion = conf.stateVersion;
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
