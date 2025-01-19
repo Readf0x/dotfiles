@@ -3,6 +3,7 @@
     bat
     ffmpeg
     fzf
+    hyfetch
     hyperfine
     jq
     microfetch
@@ -38,7 +39,7 @@
         ll = "eza -l";
         ls = "eza";
         lt = "eza -T";
-        neofetch = "fastfetch";
+        neofetch = "hyfetch";
         open = "xdg-open";
         v = "$VISUAL";
         zshr = "exec zsh";

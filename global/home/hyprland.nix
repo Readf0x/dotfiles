@@ -280,6 +280,11 @@ in {
       windowrulev2 = [
         # Disallow auto maximize
         "suppressevent maximize, class:(.*)"
+        # Global Opacity
+        "opacity 0.8, class:(.*)"
+        # No opacity on videos
+        "opacity 1, class:^(mpv)$"
+        "opacity 1, class:^(steam_app_.*)"
         # Floating borders
         "bordersize 1, onworkspace:special:dropdown"
         "bordersize 1, onworkspace:special:KeepassXC"
@@ -310,16 +315,15 @@ in {
         # Waydroid
         "fullscreen, class:^([w|W]aydroid.*)"
         # Picture in picture
-        "float, title:^(Picture in picture)$"
-        "keepaspectratio, title:^(Picture in picture)$"
-        "pin, title:^(Picture in picture)$"
         "float, title:^(Picture-in-Picture)$"
         "keepaspectratio, title:^(Picture-in-Picture)$"
         "pin, title:^(Picture-in-Picture)$"
+        "opacity 1, title:^(Picture-in-Picture)$"
         # Gamescope
         "rounding 0, class:(gamescope)"
         "fullscreen, class:(gamescope)"
         "float, class:(gamescope)"
+        "opacity 1, class:(gamescope)"
         # Steam
         "float, title:(Steam Settings)"
         "minsize 1 1, title:^()$,class:^(steam)$"
@@ -461,6 +465,8 @@ in {
         # Godot
         "tile, class:(Godot_Engine), title:(Godot)"
         "tile, class:(\\w+), title:(Godot)"
+        "opacity 1, class:(Godot_Engine), title:(Godot)"
+        "opacity 1, class:(\\w+), title:(Godot)"
         # Fallout New Vegas
         "fullscreen, class:^(steam_app_22380)$"
         # Gimp
@@ -472,7 +478,7 @@ in {
         # Obsidian
         "suppressevent activatefocus, class:^(obsidian)$"
         # TCG
-        "stayfocused, class:^(card shop simulator.exe)$"
+        "opacity 1, class:^(card shop simulator.exe)$"
         # Hexchat
         "center, class:^(Hexchat)$, title:( - HexChat)$"
         # Assassin's Creed IV Black Flag
