@@ -145,4 +145,5 @@
       enableVirtualCamera = true;
     };
   };
+  openssh.enable = true;
 }
