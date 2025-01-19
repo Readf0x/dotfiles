@@ -43,6 +43,17 @@
       key = "5DA8A55A7FFB950B92BB532C4A48E1852C03CE8A";
       librewolfProfile = "z3s5q0ct.default";
     };
+    "readf0x@Loki-IV" = {
+      system = "x86_64-linux";
+      monitors = [
+        { id = "eDP-1"; res = [ 1920 1080 ]; scl = 1; hz = 60; pos = [ 0 0 ]; rot = 0; }
+      ];
+      stateVersion = "24.11";
+      email = "davis.a.forsythe@gmail.com";
+      realName = "Davis Forsythe";
+      key = "5DA8A55A7FFB950B92BB532C4A48E1852C03CE8A";
+      librewolfProfile = "6qar1mkn.default";
+    };
   };
 in {
   flake = with lib; foldl' recursiveUpdate {} (attrValues configs);
