@@ -153,6 +153,7 @@
       };
       overwriteConfigFiles = true;
     };
+    rofi.enable = true;
 
     home-manager.enable = true;
 

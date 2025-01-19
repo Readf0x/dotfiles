@@ -42,6 +42,7 @@
         "application/x-rar-compressed" = "ark.desktop";
         "application/x-7z-compressed" = "ark.desktop";
         "application/zip" = "ark.desktop";
+        "video/*" = "mpv.desktop";
       };
     };
     portal = {

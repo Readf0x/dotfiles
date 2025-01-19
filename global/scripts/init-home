@@ -1,0 +1,25 @@
+#!/usr/bin/env zsh
+
+function dir() {
+mkdir ~/$1
+if [[ $2 ]]; then cat > ~/$1/.directory << EOF
+[Desktop Entry]
+Icon=$2
+EOF
+fi
+}
+
+dir Blender folder-blender
+dir Documents
+dir Downloads
+dir Games folder-games
+dir Godot folder-godot
+dir Music
+dir Obsidian folder-notes
+dir Pictures
+dir Projects folder-code
+dir Repos folder-git
+dir Videos
+ln -s ~/.steam ~/Steam
+ln -s ~/.wine ~/Wine
+
