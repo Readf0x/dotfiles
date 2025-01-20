@@ -230,7 +230,7 @@
           scroll-step = 5;
         };
         battery = {
-          bat = "BAT1";
+          bat = "BAT0";
           interval = 60;
           format = "{icon}  {capacity}%";
           format-icons = [
@@ -321,11 +321,11 @@
         #temperature
         #bluetooth,
         #network {
-            /* background-color: @background-alt; */
+            /* background-color: @background-alt;
             border-radius: 3px;
             padding-left: 0.5em;
             padding-right: 0.5em;
-            margin-left: 0.3em;
+            margin-left: 0.3em; */
         }
 
         #battery,
