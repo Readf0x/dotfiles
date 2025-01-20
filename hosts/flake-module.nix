@@ -42,6 +42,7 @@
       realName = "Davis Forsythe";
       key = "5DA8A55A7FFB950B92BB532C4A48E1852C03CE8A";
       librewolfProfile = "z3s5q0ct.default";
+      pokemon = "buizel";
     };
     "readf0x@Loki-IV" = {
       system = "x86_64-linux";
@@ -53,6 +54,7 @@
       realName = "Davis Forsythe";
       key = "5DA8A55A7FFB950B92BB532C4A48E1852C03CE8A";
       librewolfProfile = "6qar1mkn.default";
+      pokemon = "sylveon";
     };
   };
 in {

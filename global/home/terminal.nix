@@ -54,7 +54,7 @@
         GOPATH = "$HOME/.config/go";
       };
       initExtraFirst = ''
-        [[ $KITTY_WINDOW_ID -gt 1 ]] || ! [[ $KITTY_SHELL_INTEGRATION = no-rc ]] || [[ $SHLVL -gt 1 ]] || pokeget buizel --hide-name
+        [[ $KITTY_WINDOW_ID -gt 1 ]] || ! [[ $KITTY_SHELL_INTEGRATION = no-rc ]] || [[ $SHLVL -gt 1 ]] || pokeget ${conf.pokemon} --hide-name
         export DIRENV_LOG_FORMAT=
       '';
       initExtra = ''
@@ -97,7 +97,6 @@
     };
     kitty = {
       enable = true;
-      #theme = "Tender";
       shellIntegration.enableZshIntegration = true;
       extraConfig = ''
         enable_audio_bell no
