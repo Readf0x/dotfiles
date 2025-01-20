@@ -1,4 +1,4 @@
-{ pkgs, conf, lib, self, ... }: {
+{ pkgs, conf, lib, lib', self, ... }: {
 
   nixpkgs = {
     config.allowUnfree = true;
@@ -205,7 +205,7 @@
         position = "top";
         height = 24;
         spacing = 5;
-        output = "DP-2";
+        output = (lib'.monitors.getId 0).id;
         modules-left = [
           "hyprland/workspaces"
           "tray"
