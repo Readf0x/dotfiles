@@ -176,6 +176,7 @@ in {
         "$mod $s, P, pin,"
         "$mod $c, Home, centerwindow,"
         "$a, Tab, focusurgentorlast,"
+        "$mod, O, setprop, activewindow opaque toggle"
         # Groups
         "$mod, G, togglegroup"
         "$mod $a, L, lockactivegroup, toggle"

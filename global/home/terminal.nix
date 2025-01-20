@@ -110,6 +110,9 @@
         symbol_map U+2320,U+2321,U+239B-U+23B3 Noto Sans Math
 
         window_padding_width 11
+        tab_bar_style separator
+        tab_separator " "
+        tab_title_template "  {title}  "
 
         map ctrl+minus change_font_size all -0.5
         map ctrl+equal change_font_size all +0.5

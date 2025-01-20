@@ -1,5 +1,6 @@
 #!/usr/bin/env zsh
-if [[ $(($(cat /tmp/$1)+5400)) -lt $(date +%s) ]] || ! [ -e /tmp/$1 ] && islive $1; then
+windows=($(hyc clients -j | jq '.[].title' -r))
+if [[ $(($(cat /tmp/$1)+5400)) -lt $(date +%s) ]] || ! [ -e /tmp/$1 ] && islive $1 && [[ ${windows[(Ie)"$1 - Twitch — LibreWolf"]} -eq 0 ]]; then
   if [[ $(notify-send --icon="/home/readf0x/Pictures/$1.png" "$1 is live!" "" --action="WATCH"="Watch Stream" --action="DISMISS"="Dismiss" --expire-time=2000) == "WATCH" ]]; then
     xdg-open "https://twitch.tv/$1"
   fi
