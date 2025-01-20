@@ -232,7 +232,7 @@
         battery = {
           bat = "BAT0";
           interval = 60;
-          format = "{icon}  {capacity}%";
+          format = "{icon}   {capacity}%";
           format-icons = [
             ""
             ""
@@ -250,9 +250,9 @@
         };
         network = {
           format = "";
-          format-ethernet = "󰲝 ";
-          format-wifi = "{icon} ";
-          format-disconnected = "󰲜 ";
+          format-ethernet = "󰲝  ";
+          format-wifi = "{icon}  ";
+          format-disconnected = "󰲜  ";
           format-icons = [
             "󰤯"
             "󰤟"
@@ -314,25 +314,21 @@
         }
 
         #wireplumber,
-        #battery,
         #backlight,
         #tray,
         #memory,
         #temperature
-        #bluetooth,
-        #network {
-            /* background-color: @background-alt;
-            border-radius: 3px;
+	#network,
+        #bluetooth {
             padding-left: 0.5em;
             padding-right: 0.5em;
-            margin-left: 0.3em; */
         }
 
         #battery,
         #memory,
         #language,
         #network {
-            margin-right: 0.8em;
+            /* margin-right: 0.8em; */
         }
       '';
     };
