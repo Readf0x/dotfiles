@@ -34,7 +34,6 @@
     # Home Manager is pretty good at managing dotfiles. The primary way to manage
     # plain files is through 'home.file'.
     file = {
-      ".config/hypr/pfp.png".source = ./../img/pfp.png;
       ".face.icon".source = ./../img/pfp.png;
       ".config/hypr/wallpapers".source = ./../img/wallpapers;
       "Scripts".source = ./../scripts;

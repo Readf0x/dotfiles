@@ -38,7 +38,7 @@ in {
           points = lib'.bezier.over100 [0 0] [12 6] [2 7] [10 10];
         in "custom 1 ${with builtins; concatStringsSep " " (genList (x: toString (elemAt (lib'.bezier.findX x points) 1)) 10)}";
         touchpad = {
-          scroll_factor = 0.25;
+          scroll_factor = 0.1;
           natural_scroll = true;
           disable_while_typing = false;
         };
@@ -543,7 +543,7 @@ in {
       image = [
         {
           monitor = (monitor 0).id;
-          path = "/home/${conf.user}/.config/hypr/pfp.png";
+          path = "/home/${conf.user}/.face.icon";
           size = 256;
           rounding = -1;
           border_size = 2;
@@ -581,6 +581,16 @@ in {
           font_size = 12;
           font_family = "Ubuntu Nerd Font";
           position = "-10, -50";
+          halign = "right";
+          valign = "top";
+        }
+        {
+          monitor = (monitor 0).id;
+          text = "cmd[update:1000] echo \"$(cat /sys/class/power_supply/BAT0/capacity)%\"";
+          color = "rgb(dddddd)";
+          font_size = 12;
+          font_family = "Ubuntu Nerd Font";
+          position = "-10, -70";
           halign = "right";
           valign = "top";
         }
