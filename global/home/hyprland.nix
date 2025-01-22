@@ -251,7 +251,7 @@ in {
       # TODO: finish startup
       exec-once = [
         "hyprctl setcursor Bibata-Modern-Ice 24"
-        "sleep 20; vesktop"
+        "sleep 20; ping discord.com && vesktop"
         "swww-daemon; sleep 2; wallpaper"
         "waybar"
         "swaync"
