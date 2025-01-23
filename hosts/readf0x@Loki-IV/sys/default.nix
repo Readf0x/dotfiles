@@ -1,5 +1,6 @@
-{ lib, ... }: {
+{ ... }: {
   imports = [
+    ./packages.nix
     ./drives.nix
     ./hardware.nix
   ];

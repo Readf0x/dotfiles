@@ -167,7 +167,9 @@ in {
         "$mod, Home, exec, $music previous"
         "$mod, Insert, exec, $music next-player"
         "$mod $s, H, exec, ~/Scripts/audio"
-	", XF86AudioMute, exec, pactl set-sink-mute $(pactl get-default-sink) toggle"
+        ", XF86AudioMute, exec, pactl set-sink-mute $(pactl get-default-sink) toggle"
+        ", XF86MonBrightnessUp, exec, brightnessctl s +5%"
+        ", XF86MonBrightnessDown, exec, brightnessctl s 5%-"
 
         # Window management
         "$mod, Q, killactive,"
