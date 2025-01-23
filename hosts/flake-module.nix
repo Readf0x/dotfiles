@@ -26,6 +26,7 @@
       inherit system specialArgs;
       modules = module "sys" [
         inputs.stylix.nixosModules.stylix
+        inputs.nixos-06cb-009a-fingerprint-sensor.nixosModules."06cb-009a-fingerprint-sensor"
       ];
     };
   };

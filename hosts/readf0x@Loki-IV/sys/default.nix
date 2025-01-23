@@ -1,4 +1,4 @@
-{ ... }: {
+{ lib, ... }: {
   imports = [
     ./drives.nix
     ./hardware.nix
@@ -25,6 +25,11 @@
     blueman.enable = true;
     logind = {
       lidSwitch = "lock";
+    };
+    "06cb-009a-fingerprint-sensor" = {
+      enable = true;
+      backend = "libfprint-tod";
+      calib-data-file = ../fprint/calib-data.bin;
     };
   };
 }
