@@ -167,6 +167,7 @@ in {
         "$mod, Home, exec, $music previous"
         "$mod, Insert, exec, $music next-player"
         "$mod $s, H, exec, ~/Scripts/audio"
+	", XF86AudioMute, exec, pactl set-sink-mute $(pactl get-default-sink) toggle"
 
         # Window management
         "$mod, Q, killactive,"
