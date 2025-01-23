@@ -41,7 +41,7 @@
         lt = "eza -T";
         neofetch = "hyfetch";
         open = "xdg-open";
-        v = "${conf.homeDir}/Scripts/nixvim";
+        v = "$HOME/Scripts/nixvim";
         zshr = "exec zsh";
         ":q" = "exit";
         dev = "nix develop --command zsh";
