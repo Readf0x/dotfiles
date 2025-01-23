@@ -2,4 +2,4 @@
 
 sudo nix-collect-garbage -d && \
 nix-collect-garbage -d && \
-nix store optimize
+nix store optimise
