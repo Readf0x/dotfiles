@@ -41,12 +41,11 @@
         lt = "eza -T";
         neofetch = "hyfetch";
         open = "xdg-open";
-        v = "$VISUAL";
+        v = "${conf.homeDir}/Scripts/nixvim";
         zshr = "exec zsh";
         ":q" = "exit";
         dev = "nix develop --command zsh";
         "power!" = "poweroff";
-        nvim = "echo nada";
       };
       shellGlobalAliases = { "--help" = "--help | bat -plhelp"; };
       localVariables = {

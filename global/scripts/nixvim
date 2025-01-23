@@ -1,0 +1,3 @@
+#!/usr/bin/env zsh
+nix run "github:readf0x/dotfiles#nvim" -- $1
+

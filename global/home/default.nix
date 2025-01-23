@@ -116,8 +116,8 @@
       PATH = "$PATH:$HOME/Scripts";
       WINEDLLPATH = "${self.packages.${conf.system}.discord-rpc}/share/winedll/discord-rpc";
       LD_LIBRARY_PATH = lib.makeLibraryPath [ pkgs.kdePackages.qtbase ] + ":$LD_LIBRARY_PATH";
-      EDITOR = "nix run \"github:readf0x/dotfiles#nvim\" --";
-      VISUAL = "nix run \"github:readf0x/dotfiles#nvim\" --";
+      EDITOR = "${conf.homeDir}/Scripts/nixvim";
+      VISUAL = "${conf.homeDir}/Scripts/nixvim";
     };
 
     #pointerCursor = {
@@ -338,7 +338,7 @@
     home-manager.enable = true;
 
     nixvim = {
-      enable = true;
+      # enable = true;
     } // import ./nixvim.nix { inherit pkgs; };
   };
 
