@@ -43,7 +43,7 @@
         open = "xdg-open";
         v = "nixvim";
         zshr = "exec zsh";
-        ":q" = "exit";
+        ":q" = "if ! [[ $SSH_CONNECTION ]]; then exit; else echo 'goodbye! :3'; sleep 1; exit; fi";
         dev = "nix develop --command zsh";
         "power!" = "poweroff";
       };
