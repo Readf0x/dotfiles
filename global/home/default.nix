@@ -7,7 +7,6 @@
   imports = [
     ./../shared/stylix.nix
     ./hyprland.nix
-    ./nixvim.nix
     ./terminal.nix
   ];
   # Home Manager needs a bit of information about you and the paths it should
@@ -29,6 +28,7 @@
     # environment.
     packages = with pkgs; [
       colloid-kde
+      fd
     ];
 
     # Home Manager is pretty good at managing dotfiles. The primary way to manage
@@ -116,6 +116,8 @@
       PATH = "$PATH:$HOME/Scripts";
       WINEDLLPATH = "${self.packages.${conf.system}.discord-rpc}/share/winedll/discord-rpc";
       LD_LIBRARY_PATH = lib.makeLibraryPath [ pkgs.kdePackages.qtbase ] + ":$LD_LIBRARY_PATH";
+      EDITOR = "nix run \"github:readf0x/dotfiles#nvim\" --";
+      VISUAL = "nix run \"github:readf0x/dotfiles#nvim\" --";
     };
 
     #pointerCursor = {
@@ -334,6 +336,10 @@
     rofi.enable = true;
 
     home-manager.enable = true;
+
+    nixvim = {
+      enable = true;
+    } // import ./nixvim.nix { inherit pkgs; };
   };
 
   stylix.targets = {

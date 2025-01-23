@@ -34,7 +34,7 @@
         ./hosts/flake-module.nix
       ];
       systems = [ "x86_64-linux" ];
-      perSystem = { pkgs, lib, ... }: {
+      perSystem = { pkgs, lib, system, ... }: {
         packages = (
           lib.mapAttrs' (name': value: { name = "maple-font-${name'}"; inherit value; }) (import ./packages/maple-font.nix { inherit pkgs; })
         ) // {
@@ -42,6 +42,10 @@
           chili = import ./packages/chili.nix { inherit pkgs; image = ./global/img/wallpapers/89875190_p0.jpg; hash = "sha256-3a1lYwBRrfIvLddG7228PDdNuKSeWCrs2v7zRVdNxiE="; };
           discord-rpc = import ./packages/discord-rpc.nix { inherit pkgs; };
           noto-math-kitty-profile-fix = import ./packages/noto-math-kitty-profile-fix.nix { inherit pkgs; };
+	  nvim = inputs.nixvim.legacyPackages.${system}.makeNixvimWithModule {
+	    inherit pkgs;
+	    module = import ./global/home/nixvim.nix { inherit pkgs; };
+	  };
         };
       };
     };
