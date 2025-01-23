@@ -116,8 +116,8 @@
       PATH = "$PATH:$HOME/Scripts";
       WINEDLLPATH = "${self.packages.${conf.system}.discord-rpc}/share/winedll/discord-rpc";
       LD_LIBRARY_PATH = lib.makeLibraryPath [ pkgs.kdePackages.qtbase ] + ":$LD_LIBRARY_PATH";
-      EDITOR = "${conf.homeDir}/Scripts/nixvim";
-      VISUAL = "${conf.homeDir}/Scripts/nixvim";
+      EDITOR = "${toString conf.homeDir}/Scripts/nixvim";
+      VISUAL = "${toString conf.homeDir}/Scripts/nixvim";
     };
 
     #pointerCursor = {
