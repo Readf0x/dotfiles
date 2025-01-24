@@ -334,6 +334,7 @@ in {
         "center, title:^(Steam)$, class:^()$"
         "center, class:^(steam)$"
         "monitor ${(monitor 0).id}, class:(steam)"
+        "noinitialfocus, title:^(notificationtoasts.*)$"
         # File dialogs
         "float, title:((Open|Save|Select) (File|As|(Background )?Image|Folder.*))"
         "size 900 600, title:((Open|Save|Select) (File|As|(Background )?Image|Folder.*))"

@@ -144,5 +144,6 @@
       enable = true;
       enableVirtualCamera = true;
     };
+    kdeconnect.enable = true;
   };
 }
