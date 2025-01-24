@@ -20,15 +20,10 @@ dir Pictures
 dir Projects folder-code
 dir Repos folder-git
 dir Videos
+dir .mpd
+dir .steam folder-steam
+dir .wine folder-wine
 
-cat > ~/.steam/.directory << EOF
-[Desktop Entry]
-Icon=folder-steam
-EOF
-cat > ~/$1/.directory << EOF
-[Desktop Entry]
-Icon=folder-wine
-EOF
 ln -s ~/.steam ~/Steam
 ln -s ~/.wine ~/Wine
 

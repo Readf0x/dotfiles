@@ -157,6 +157,9 @@ in {
         "$mod $s, N, exec, swaync-client -C"
         "$mod, Escape, exec, hyprlock"
         "$mod, L, exec, lutris"
+        ", XF86Tools, exec, pavucontrol"
+        ", XF86MonBrightnessUp, exec, brightnessctl s +5%"
+        ", XF86MonBrightnessDown, exec, brightnessctl s 5%-"
 
         # Media controls
         ", XF86AudioPlay, exec, $music play-pause"
@@ -165,11 +168,11 @@ in {
         "$mod, End, exec, $music next"
         ", XF86AudioPrev, exec, $music previous"
         "$mod, Home, exec, $music previous"
+        ", XF86Favorites, exec, $music next-player"
         "$mod, Insert, exec, $music next-player"
         "$mod $s, H, exec, ~/Scripts/audio"
         ", XF86AudioMute, exec, pactl set-sink-mute $(pactl get-default-sink) toggle"
-        ", XF86MonBrightnessUp, exec, brightnessctl s +5%"
-        ", XF86MonBrightnessDown, exec, brightnessctl s 5%-"
+        ", XF86AudioMicMute, exec, pactl set-source-mute $(pactl get-default-source) toggle"
 
         # Window management
         "$mod, Q, killactive,"

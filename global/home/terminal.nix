@@ -1,21 +1,32 @@
 { pkgs, conf, ... }: {
-  home.packages = with pkgs; [
-    bat
-    ffmpeg
-    fzf
-    hyfetch
-    hyperfine
-    jq
-    microfetch
-    nodejs-slim
-    pokeget-rs
-    python3
-    ripgrep
-    unzip
-    wget
-    yt-dlp
-    zip
-  ];
+  home = {
+    packages = with pkgs; [
+      bat
+      ffmpeg
+      fzf
+      hyfetch
+      hyperfine
+      jq
+      microfetch
+      nodejs-slim
+      pokeget-rs
+      python3
+      ripgrep
+      unzip
+      wget
+      yt-dlp
+      zip
+    ];
+    file.".integralrc".text = ''
+      int_direnv_format() {
+        if which go >/dev/null; then 
+          print "%F{6}󰟓"
+        else
+          print "%F{3}⌁"
+        fi
+      }
+    '';
+  };
   programs = {
     zsh = {
       enable = true;

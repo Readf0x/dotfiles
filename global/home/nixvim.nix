@@ -424,6 +424,9 @@
       ls.snippet("en", {
         t({"if err != nil {", "\t"}), i(1),
         t({"", "}"})
+      }),
+      ls.snippet("enl", {
+        t({"if err != nil {", "\tlog.Fatal(err)", "}"})
       })
     })
     ls.add_snippets("nix", {
