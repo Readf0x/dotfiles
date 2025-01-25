@@ -481,6 +481,7 @@ in {
         # Gimp
         "center, title:^(Export Image as), class:^(Gimp-2.10)$"
         "center, title:^(Quit GIMP)$, class:^(Gimp-2.10)$"
+        "opaque on, class:^(gimp-3.0)$"
         # KeepassXC
         "workspace special:KeepassXC, class:^(org.keepassxc.KeePassXC)$"
         "float, class:^(org.keepassxc.KeePassXC)$, title:^(Generate Password)$"
