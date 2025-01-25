@@ -519,6 +519,22 @@
         "type": "github"
       }
     },
+    "nixpkgs-gimp-3": {
+      "locked": {
+        "lastModified": 1735507908,
+        "narHash": "sha256-VA+khC0S0di6w5Yv1kBNRpAihnt2prT/ehQzsKMhEoA=",
+        "owner": "jtojnar",
+        "repo": "nixpkgs",
+        "rev": "771cf18187fefcfaababd35834917c621447fee8",
+        "type": "github"
+      },
+      "original": {
+        "owner": "jtojnar",
+        "ref": "gimp-meson",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "nixpkgs-lib": {
       "locked": {
         "lastModified": 1735774519,
@@ -635,6 +651,7 @@
         "islive": "islive",
         "nixos-06cb-009a-fingerprint-sensor": "nixos-06cb-009a-fingerprint-sensor",
         "nixpkgs": "nixpkgs",
+        "nixpkgs-gimp-3": "nixpkgs-gimp-3",
         "nixvim": "nixvim",
         "stylix": "stylix",
         "xdvdfs": "xdvdfs"
