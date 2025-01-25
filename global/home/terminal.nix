@@ -127,9 +127,137 @@
         map ctrl+equal change_font_size all +0.5
       '';
     };
+    # it is currently impossible to add singular backslashes when converting to json
     fastfetch = {
       enable = true;
+      # settings = {
+      #   display = {
+      #     separator = " ";
+      #   };
+      #   modules = [
+      #     {
+      #       type = "title";
+      #       format = ''\u001b[33m⌠ {6}{7}{8} \u001b[33m∫ \u001b[32m{3} \u001b[33m╰──────────────────────────────'';
+      #     }
+      #     {
+      #       type = "os";
+      #       key = ''\u001b[33m⎮ \u001b[36m󱄅'';
+      #     }
+      #     {
+      #       type = "kernel";
+      #       key = ''\u001b[33m⎮ \u001b[36m'';
+      #     }
+      #     {
+      #       type = "packages";
+      #       key = ''\u001b[33m⎮ \u001b[36m󰏖'';
+      #       format = "{36}";
+      #     }
+      #     {
+      #       type = "shell";
+      #       key = ''\u001b[33m⎮ \u001b[36m'';
+      #     }
+      #     {
+      #       type = "display";
+      #       key = ''\u001b[33m⎮ \u001b[36m󰍹'';
+      #     }
+      #     {
+      #       type = "wm";
+      #       key = ''\u001b[33m⎮ \u001b[36m'';
+      #     }
+      #     {
+      #       type = "cpu";
+      #       key = ''\u001b[33m⎮ \u001b[36m'';
+      #     }
+      #     {
+      #       type = "gpu";
+      #       key = ''\u001b[33m⎮ \u001b[36m󰢮'';
+      #     }
+      #     {
+      #       type = "memory";
+      #       key = ''\u001b[33m⎮ \u001b[36m'';
+      #     }
+      #     {
+      #       type = "disk";
+      #       key = ''\u001b[33m⎮ \u001b[36m󱛟'';
+      #       format = "{10} {1} / {2} ({3}) - {9}";
+      #     }
+      #     {
+      #       type = "swap";
+      #       key = ''\u001b[33m⌡ \u001b[36m󱛟'';
+      #       format = "Swap {1} / {2} ({3})";
+      #     }
+      #     "break"
+      #     "break"
+      #     "colors"
+      #   ];
+      # };
     };
+  };
+  home.file.".config/fastfetch/config.jsonc".text = ''
+    {
+      "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json",
+      "display": {
+        "separator": " "
+      },
+      "modules": [
+        {
+          "type": "title",
+          "format": "\u001B[33m⌠ {6}{7}{8} \u001B[33m∫ \u001B[32m{3} \u001B[33m╰──────────────────────────────"
+        },
+        {
+          "type": "os",
+          "key": "\u001B[33m⎮ \u001B[36m󱄅"
+        },
+        {
+          "type": "kernel",
+          "key": "\u001B[33m⎮ \u001B[36m"
+        },
+        {
+          "type": "packages",
+          "key": "\u001B[33m⎮ \u001B[36m󰏖",
+          "format": "{36}"
+        },
+        {
+          "type": "shell",
+          "key": "\u001B[33m⎮ \u001B[36m"
+        },
+        {
+          "type": "display",
+          "key": "\u001B[33m⎮ \u001B[36m󰍹"
+        },
+        {
+          "type": "wm",
+          "key": "\u001B[33m⎮ \u001B[36m"
+        },
+        {
+          "type": "cpu",
+          "key": "\u001B[33m⎮ \u001B[36m"
+        },
+        {
+          "type": "gpu",
+          "key": "\u001B[33m⎮ \u001B[36m󰢮"
+        },
+        {
+          "type": "memory",
+          "key": "\u001B[33m⎮ \u001B[36m"
+        },
+        {
+          "type": "disk",
+          "key": "\u001B[33m⎮ \u001B[36m󱛟",
+          "format": "{10} {1} / {2} ({3}) - {9}"
+        },
+        {
+          "type": "swap",
+          "key": "\u001B[33m⌡ \u001B[36m󱛟",
+          "format": "Swap {1} / {2} ({3})"
+        },
+        "break",
+        "break",
+        "colors"
+      ]
+    }
+  '';
+  programs = {
     git = {
       enable = true;
       delta = {
