@@ -21,6 +21,7 @@
       qttools
       qtwayland
     ])) ++ (with kdePackages; [
+      kimageformats
       kio-admin
       kio-extras
       kio-fuse

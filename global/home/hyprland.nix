@@ -264,7 +264,7 @@ in {
         "lxqt-policykit-agent"
         #"/run/wrappers/bin/gnome-keyring-daemon --start --foreground --components=secrets"
         "keepassxc"
-        "balooctl enable"
+        "balooctl6 enable"
         "sleep 20 && steam -silent"
         "~/Scripts/start-mpd"
         "${pkgs.kdePackages.kdeconnect-kde}/libexec/kdeconnectd"
