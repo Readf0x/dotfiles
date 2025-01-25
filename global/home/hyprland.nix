@@ -267,6 +267,7 @@ in {
         "balooctl enable"
         "sleep 20 && steam -silent"
         "~/Scripts/start-mpd"
+        "${pkgs.kdePackages.kdeconnect-kde}/libexec/kdeconnectd"
       ];
 
       #  _      ___         __             ___       __      
