@@ -211,6 +211,9 @@
           "hyprland/workspaces"
           "tray"
         ];
+        modules-center = [
+          "custom/player"
+        ];
         modules-right = [
           "wireplumber"
           "clock"
@@ -276,6 +279,11 @@
         tray = {
           icon-size = 16;
           spacing = 16;
+        };
+        "custom/player" = {
+          format = "{}";
+          exec = "${toString conf.homeDir}/Scripts/player-info";
+          interval = 2;
         };
       };
       style = ''
