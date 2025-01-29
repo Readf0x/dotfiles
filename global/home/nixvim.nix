@@ -328,6 +328,7 @@
         fzf-native.enable = true;
       };
     };
+    render-markdown.enable = true;
   };
   extraPlugins = with pkgs.vimPlugins; [
     firenvim
