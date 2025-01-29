@@ -169,6 +169,8 @@ in {
         ", XF86AudioPrev, exec, $music previous"
         "$mod, Home, exec, $music previous"
         ", XF86Favorites, exec, $music next-player"
+        "$s, XF86Favorites, exec, ~/Scripts/player-info notify"
+        "$a, XF86Favorites, exec, notify-send \"Current Battery Level: $(cat /sys/class/power_supply/BAT0/capacity)%\" -t 1000"
         "$mod, Insert, exec, $music next-player"
         "$mod $s, H, exec, ~/Scripts/audio"
         ", XF86AudioMute, exec, pactl set-sink-mute $(pactl get-default-sink) toggle"
@@ -258,6 +260,7 @@ in {
       exec-once = [
         "hyprctl setcursor Bibata-Modern-Ice 24"
         "sleep 20; ping -w 1 discord.com && vesktop"
+        "blueman-applet"
         "swww-daemon; sleep 2; wallpaper"
         "waybar"
         "swaync"
@@ -291,8 +294,8 @@ in {
         # Global Opacity
         "opacity 0.8, class:(.*)"
         # No opacity on videos
-        "opacity 1, class:^(mpv)$"
-        "opacity 1, class:^(steam_app_.*)"
+        "opaque on, class:^(mpv)$"
+        "opaque on, class:^(steam_app_.*)"
         # Floating borders
         "bordersize 1, onworkspace:special:dropdown"
         "bordersize 1, onworkspace:special:KeepassXC"
@@ -309,7 +312,7 @@ in {
         "move 1208 51 class:(pavucontrol)"
         "monitor ${(monitor 0).id}, class:(pavucontrol)"
         "animation slide, class:(pavucontrol)"
-        "opacity 1, class:(pavucontrol)"
+        "opaque on, class:(pavucontrol)"
         # Smile
         "float, class:(smile)"
         # Rofi
@@ -326,12 +329,12 @@ in {
         "float, title:^(Picture-in-Picture)$"
         "keepaspectratio, title:^(Picture-in-Picture)$"
         "pin, title:^(Picture-in-Picture)$"
-        "opacity 1, title:^(Picture-in-Picture)$"
+        "opaque on, title:^(Picture-in-Picture)$"
         # Gamescope
         "rounding 0, class:(gamescope)"
         "fullscreen, class:(gamescope)"
         "float, class:(gamescope)"
-        "opacity 1, class:(gamescope)"
+        "opaque on, class:(gamescope)"
         # Steam
         "float, title:(Steam Settings)"
         "minsize 1 1, title:^()$,class:^(steam)$"
@@ -474,8 +477,8 @@ in {
         # Godot
         "tile, class:(Godot_Engine), title:(Godot)"
         "tile, class:(\\w+), title:(Godot)"
-        "opacity 1, class:(Godot_Engine), title:(Godot)"
-        "opacity 1, class:(\\w+), title:(Godot)"
+        "opaque on, class:(Godot_Engine), title:(Godot)"
+        "opaque on, class:(\\w+), title:(Godot)"
         # Fallout New Vegas
         "fullscreen, class:^(steam_app_22380)$"
         # Gimp
@@ -488,7 +491,7 @@ in {
         # Obsidian
         "suppressevent activatefocus, class:^(obsidian)$"
         # TCG
-        "opacity 1, class:^(card shop simulator.exe)$"
+        "opaque on, class:^(card shop simulator.exe)$"
         # Hexchat
         "center, class:^(Hexchat)$, title:( - HexChat)$"
         # Assassin's Creed IV Black Flag
