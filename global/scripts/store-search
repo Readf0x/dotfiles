@@ -1,0 +1,61 @@
+#!/usr/bin/env zsh
+
+function help() {
+cat <<EOF
+Used to search the nix store
+
+Options:
+  --help, -h: display this message
+  --show-diffs, -i: show diff files
+  --show-drvs, -d: show derivations
+  --show-patches, -p: show patches
+EOF
+}
+
+for opt in $@; do
+  if [[ $opt =~ ^-- ]]; then
+    case $opt in
+      --help)
+        help
+        ;;
+      --show-diffs)
+        diffs=true
+        ;;
+      --show-drvs)
+        drvs=true
+        ;;
+      --show-patches)
+        patches=true
+        ;;
+    esac
+  elif [[ $opt =~ ^- ]]; then
+    for char in $(print ${opt#"-"} | fold -w1); do
+      case $char in
+        h)
+          help
+          ;;
+        i)
+          diffs=true
+          ;;
+        d)
+          drvs=true
+          ;;
+        p)
+          patches=true
+          ;;
+      esac
+    done
+  fi
+done
+
+function filter() {
+  out=$(print $out | grep -v ".$1$")
+}
+
+out=$(ls /nix/store | grep "$@[-1]")
+! [[ $drvs ]] && filter drv
+! [[ $diffs ]] && filter diff
+! [[ $patches ]] && filter patch
+
+print $out
+

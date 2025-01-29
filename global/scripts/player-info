@@ -1,4 +1,8 @@
 #!/usr/bin/env zsh
 
-cat ~/.player
+if [[ $1 == "notify" ]]; then
+  notify-send "Current Player:" $(cat ~/.player) -i music-app-symbolic -t 2000
+else
+  cat ~/.player
+fi
 
