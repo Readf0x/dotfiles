@@ -270,7 +270,8 @@ in {
         "balooctl6 enable"
         "sleep 20 && steam -silent"
         "~/Scripts/start-mpd"
-        "${pkgs.kdePackages.kdeconnect-kde}/libexec/kdeconnectd"
+        # "${pkgs.kdePackages.kdeconnect-kde}/libexec/kdeconnectd"
+        "zsh -c '\${$(realpath $(which kdeconnect-cli))%\"bin/kdeconnect-cli\"}libexec/kdeconnectd'"
       ];
 
       #  _      ___         __             ___       __      
