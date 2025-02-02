@@ -1,13 +1,19 @@
 #!/usr/bin/env zsh
 
 if [[ $1 == '-h' ]]; then
-  echo "usage: $0 [-h] [-d | <name> <url> [--picard]]"
+  echo "usage: $0 [-h] [-d | <name> <url> [--picard] [--cookies <cookies.txt>]]"
 elif [[ $1 != '-d' ]]; then
   local profile="firefox:$(print ~/.librewolf/*.default)"
   mkdir ~/Music/$1
   cd ~/Music/$1
-  yt-dlp -f 'bestaudio[ext=m4a]' --extract-audio --audio-format mp3 --audio-quality 0 --output '%(title)s.%(ext)s' --cookies-from-browser $profile $2
-  if [[ $3 == "--picard" ]]; then
+  if [[ $3 == "--cookies" ]]; then
+    yt-dlp -f 'bestaudio[ext=m4a]' --extract-audio --audio-format mp3 --audio-quality 0 --output '%(title)s.%(ext)s' --cookies $4 $2
+  elif [[ $4 == "cookies" ]]; then
+    yt-dlp -f 'bestaudio[ext=m4a]' --extract-audio --audio-format mp3 --audio-quality 0 --output '%(title)s.%(ext)s' --cookies $5 $2
+  else
+    yt-dlp -f 'bestaudio[ext=m4a]' --extract-audio --audio-format mp3 --audio-quality 0 --output '%(title)s.%(ext)s' --cookies-from-browser $profile $2
+  fi
+  if [[ $3 == "--picard" ]] || [[ $4 == "--picard" ]]; then
     picard -e load ~/Music/"$1"/*.mp3 -e cluster -e scan >/dev/null 2>&1 & disown
   fi
   () {
