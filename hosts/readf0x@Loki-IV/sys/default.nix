@@ -32,5 +32,6 @@
       backend = "libfprint-tod";
       calib-data-file = ../fprint/calib-data.bin;
     };
+    ollama.enable = true;
   };
 }
