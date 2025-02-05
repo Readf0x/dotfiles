@@ -144,6 +144,7 @@ in {
         "$mod $s, Return, exec, kitty --config ${builtins.toString conf.homeDir}/.config/kitty/safe.conf"
         "$mod, E, exec, dolphin"
         "$mod, W, exec, librewolf"
+        "$mod $a, W, exec, librewolf -P I2P"
         "$mod $s, C, exec, hyprpicker -an"
         ", Print, exec, grimblast --freeze copysave area ~/Pictures/Screenshots/screenshot_$(date +%Y-%m-%d_%H-%m-%s).png"
         "$s, Print, exec, grimblast --freeze copysave screen ~/Pictures/Screenshots/screenshot_$(date +%Y-%m-%d_%H-%m-%s).png"

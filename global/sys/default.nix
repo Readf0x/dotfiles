@@ -92,16 +92,20 @@
     #gnome.gnome-keyring.enable = true;
     logind.extraConfig = "HandlePowerKey=ignore";
     i2pd = {
-      enable = false;
+      enable = true;
+      address = "127.0.0.1";
       proto = {
-        socksProxy = {
+        http.enable = true;
+        socksProxy.enable = true;
+        httpProxy = {
           enable = true;
+          # outproxy = "";
         };
-        sam = {
-          enable = true;
-        };
+        sam.enable = true;
         i2cp = {
           enable = true;
+          address = "127.0.0.1";
+          port = 7654;
         };
       };
     };
