@@ -41,8 +41,13 @@
         "image/png" = [ "org.gnome.eog.desktop" "gimp.desktop" ];
         "application/x-rar-compressed" = "ark.desktop";
         "application/x-7z-compressed" = "ark.desktop";
+        "application/x-tar" = "ark.desktop";
         "application/zip" = "ark.desktop";
-        "video/*" = "mpv.desktop";
+        "video/x-msvideo" = "mpv.desktop";
+        "video/mp4" = "mpv.desktop";
+        "video/mpeg" = "mpv.desktop";
+        "video/ogg" = "mpv.desktop";
+        "video/webm" = "mpv.desktop";
       };
     };
     portal = {
