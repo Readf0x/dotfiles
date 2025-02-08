@@ -272,7 +272,8 @@ in {
         "sleep 20; steam -silent"
         "~/Scripts/start-mpd"
         # "${pkgs.kdePackages.kdeconnect-kde}/libexec/kdeconnectd"
-        "zsh -c '\${$(realpath $(which kdeconnect-cli))%\"bin/kdeconnect-cli\"}libexec/kdeconnectd'"
+        "sleep 20; zsh -c '\${$(realpath $(which kdeconnect-cli))%\"bin/kdeconnect-cli\"}libexec/kdeconnectd'"
+        "sleep 20; kdeconnect-indicator"
       ];
 
       #  _      ___         __             ___       __      
@@ -375,7 +376,8 @@ in {
         "suppressevent activate activatefocus, class:^(discord)$"
         "noinitialfocus, class:^(discord)$"
         "focusonactivate off, class:^(discord)$"
-        "monitor ${(monitor 1).id}, class:^(vesktop)$"
+        # "monitor ${(monitor 1).id}, class:^(vesktop)$"
+        "workspace 2, class:^(vesktop)$"
         "suppressevent activate activatefocus, class:^(vesktop)$"
         "noinitialfocus, class:^(vesktop)$"
         "focusonactivate off, class:^(vesktop)$"
