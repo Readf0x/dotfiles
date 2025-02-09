@@ -121,6 +121,11 @@ in {
         preserve_split = true;
       };
 
+      cursor = {
+        no_warps = true;
+        warp_on_change_workspace = true;
+      };
+
       #    ___  _         __  
       #   / _ )(_)__  ___/ /__
       #  / _  / / _ \/ _  (_-<
@@ -378,7 +383,7 @@ in {
         "focusonactivate off, class:^(discord)$"
         # "monitor ${(monitor 1).id}, class:^(vesktop)$"
         "workspace 2, class:^(vesktop)$"
-        "suppressevent activate activatefocus, class:^(vesktop)$"
+        # "suppressevent activate activatefocus, class:^(vesktop)$"
         "noinitialfocus, class:^(vesktop)$"
         "focusonactivate off, class:^(vesktop)$"
         # Telegram
@@ -489,6 +494,8 @@ in {
         "center, title:^(Export Image as), class:^(Gimp-2.10)$"
         "center, title:^(Quit GIMP)$, class:^(Gimp-2.10)$"
         "opaque on, class:^(gimp-3.0)$"
+        "suppressevent activate activatefocus, class:^(gimp-3.0)$"
+        # "stayfocused, title:^(Change Foreground Color)$, class:^(gimp-3.0)$"
         # KeepassXC
         "workspace special:KeepassXC, class:^(org.keepassxc.KeePassXC)$"
         "float, class:^(org.keepassxc.KeePassXC)$, title:^(Generate Password)$"
