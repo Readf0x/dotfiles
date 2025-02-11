@@ -115,7 +115,7 @@
     sessionVariables = {
       PATH = "$PATH:$HOME/Scripts";
       WINEDLLPATH = "${self.packages.${conf.system}.discord-rpc}/share/winedll/discord-rpc";
-      LD_LIBRARY_PATH = lib.makeLibraryPath [ pkgs.kdePackages.qtbase ] + ":$LD_LIBRARY_PATH";
+      LD_LIBRARY_PATH = with pkgs; lib.makeLibraryPath [ kdePackages.qtbase libGL glfw-wayland-minecraft ] + ":$LD_LIBRARY_PATH";
       EDITOR = "${toString conf.homeDir}/Scripts/nixvim";
       VISUAL = "${toString conf.homeDir}/Scripts/nixvim";
     };
