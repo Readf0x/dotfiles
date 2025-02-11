@@ -396,32 +396,20 @@ in {
         # KDE Connect
         "float, class:^(org.kde.kdeconnect.handler)$"
         # Minecraft
-        "fullscreen, class:^(Minecraft\\*? 1.\\d+.*)"
-        "idleinhibit always, class:^(Minecraft\\*? 1.\\d+.*)"
-        "immediate, class:^(Minecraft\\*? 1.\\d+.*)"
-        "monitor ${(monitor 0).id}, class:^(Minecraft\\*? 1.\\d+.*)"
-        "fullscreen, class:^(Minecraft\\*? \\d\\d\\w\\d\\d\\w)"
-        "idleinhibit always, class:^(Minecraft\\*? \\d\\d\\w\\d\\d\\w)"
-        "immediate, class:^(Minecraft\\*? \\d\\d\\w\\d\\d\\w)"
-        "monitor ${(monitor 0).id}, class:^(Minecraft\\*? \\d\\d\\w\\d\\d\\w)"
-        "float, title:^(Minecraft\\*? 1.\\d+.*)"
-        "fullscreen, title:^(Minecraft\\*? 1.\\d+.*)"
-        "idleinhibit always, title:^(Minecraft\\*? 1.\\d+.*)"
-        "immediate, title:^(Minecraft\\*? 1.\\d+.*)"
-        "monitor ${(monitor 0).id}, title:^(Minecraft\\*? 1.\\d+.*)"
-        "float, title:^(Minecraft\\*? \\d\\d\\w\\d\\d\\w)"
-        "fullscreen, title:^(Minecraft\\*? \\d\\d\\w\\d\\d\\w)"
-        "idleinhibit always, title:^(Minecraft\\*? \\d\\d\\w\\d\\d\\w)"
-        "immediate, title:^(Minecraft\\*? \\d\\d\\w\\d\\d\\w)"
-        "monitor ${(monitor 0).id}, title:^(Minecraft\\*? \\d\\d\\w\\d\\d\\w)"
-        "fullscreen, class:^(BigChadGuys Plus v[0-9.]+)$"
-        "idleinhibit always, class:^(BigChadGuys Plus v[0-9.]+)$"
-        "immediate, class:^(BigChadGuys Plus v[0-9.]+)$"
-        "monitor ${(monitor 0).id}, class:^(BigChadGuys Plus v[0-9.]+)$"
-        "fullscreen, class:^(SteamPunk)$"
-        "idleinhibit always, class:^(SteamPunk)$"
-        "immediate, class:^(SteamPunk)$"
-        "monitor ${(monitor 0).id}, class:^(SteamPunk)$"
+      ] ++ (builtins.concatMap (
+        x: [
+          "opaque on, class:${x}"
+          "fullscreen, class:${x}"
+          "idleinhibit always, class:${x}"
+          "immediate, class:${x}"
+          "monitor ${(monitor 0).id}, class:${x}"
+        ]) [
+          "^(Minecraft\\*? 1.\\d+.*)"
+          "^(Minecraft\\*? \\d\\d\\w\\d\\d\\w)"
+          "^(BigChadGuys Plus v\\d+)$"
+          "^(SteamPunk)$"
+        ]
+      ) ++ [
         # Kitty
         "noborder, class:^(kitty)$, title:^(info)$"
         "float, title:^(cava)$"
