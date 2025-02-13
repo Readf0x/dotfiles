@@ -3,8 +3,13 @@
 local blacklist=("alsa_output.pci-0000_03_00.1.hdmi-stereo")
 local sinks=($(pactl list sinks | grep Name: | sed 's/\tName: //'))
 local newSink=${sinks[$((${sinks[(Ie)$(pactl get-default-sink)]}+1))]}
-while [[ ${blacklist[(Ie)$newSink]} != 0 ]]; do
-  newSink=${sinks[$((${sinks[(Ie)$(pactl get-default-sink)]}+1))]}
+let x=1
+if [[ $newSink == "" ]] && (( ${blacklist[(Ie)${sinks[1]}]} )); then
+  newSink=${sinks[2]}
+fi
+while (( ${blacklist[(Ie)$newSink]} )); do
+  x+=1
+  newSink=${sinks[$((${sinks[(Ie)$(pactl get-default-sink)]}+$x))]}
 done
 if [[ $newSink == "" ]]; then
   pactl set-default-sink ${sinks[1]}
