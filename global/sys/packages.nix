@@ -52,11 +52,11 @@
   ] ++ (with pkgs; [
     # Desktop Applications
     blender-hip
+    blockbench
     deluge-gtk
     dopamine
     eog
     evolutionWithPlugins
-    # gimp
     gnome-font-viewer
     godot_4
     grimblast
@@ -73,6 +73,7 @@
     pavucontrol
     picard
     prismlauncher
+    qpwgraph
     rofi
     seahorse
     swaynotificationcenter
