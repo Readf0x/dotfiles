@@ -100,6 +100,7 @@
     protontricks
     protonup-qt
     radeontop
+    ranger
     rar
     swww
     vimpc

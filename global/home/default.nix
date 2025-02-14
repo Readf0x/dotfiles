@@ -116,8 +116,8 @@
       PATH = "$PATH:$HOME/Scripts";
       WINEDLLPATH = "${self.packages.${conf.system}.discord-rpc}/share/winedll/discord-rpc";
       LD_LIBRARY_PATH = with pkgs; lib.makeLibraryPath [ kdePackages.qtbase libGL glfw-wayland-minecraft libpulseaudio openal flite ] + ":$LD_LIBRARY_PATH";
-      EDITOR = "${toString conf.homeDir}/Scripts/nixvim";
-      VISUAL = "${toString conf.homeDir}/Scripts/nixvim";
+      EDITOR = "nvim";
+      VISUAL = "nvim";
     };
 
     #pointerCursor = {
