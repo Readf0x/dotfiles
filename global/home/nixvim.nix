@@ -342,19 +342,12 @@
 
   autoCmd = [
     {
-      event = [
-        "BufNewFile"
-        "BufRead"
-      ];
+      event = [ "BufNewFile" "BufRead" ];
       pattern = "**/hypr/**/*.conf";
       command = "set commentstring='# %s'";
     }
     {
-      event = [
-        "TextChanged"
-        "TextChangedI"
-        "ModeChanged"
-      ];
+      event = [ "TextChanged" "TextChangedI" "ModeChanged" ];
       pattern = "*.md";
       callback = { __raw = ''
         function()
@@ -369,10 +362,7 @@
       '';};
     }
     {
-      event = [
-        "BufNewFile"
-        "BufRead"
-      ];
+      event = [ "BufNewFile" "BufRead" ];
       pattern = "*.nix";
       callback = { __raw = ''
         function()
@@ -388,12 +378,14 @@
       '';};
     }
     {
-      event = [
-        "BufNewFile"
-        "BufRead"
-      ];
+      event = [ "BufNewFile" "BufRead" ];
       pattern = "github.com_*.txt";
       command = "set filetype=markdown";
+    }
+    {
+      event = [ "BufWinEnter" "WinEnter" ];
+      pattern = "term://*";
+      command = "startinsert";
     }
   ];
 
