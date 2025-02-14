@@ -467,8 +467,8 @@ in {
         "center, class:^(evolution-alarm-notify)$"
         "pin, class:^(evolution-alarm-notify)$"
         # LibreWolf
-        "opacity 0.9999999, class:^(LibreWolf)$"
         "float, title:(Close Firefox)"
+        "opaque on, title:( - YouTube — LibreWolf)$, class:^(librewolf)$"
         # Fallout 4
         "fullscreen, class:(steam_app_377160), title:(Fallout4)"
         # Godot
