@@ -290,6 +290,7 @@
         git.paging = {
           pager = "delta --paging=never";
         };
+        os.editPreset = "nvim";
       };
     };
   };

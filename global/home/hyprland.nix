@@ -276,6 +276,7 @@ in {
         "balooctl6 enable"
         "sleep 20; steam -silent"
         "~/Scripts/start-mpd"
+        "qpwgraph -m"
         # "${pkgs.kdePackages.kdeconnect-kde}/libexec/kdeconnectd"
         "sleep 20; zsh -c '\${$(realpath $(which kdeconnect-cli))%\"bin/kdeconnect-cli\"}libexec/kdeconnectd'"
         "sleep 20; kdeconnect-indicator"
