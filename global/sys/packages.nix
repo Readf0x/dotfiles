@@ -124,6 +124,7 @@
   ) ++ (with pkgs; [
     cantarell-fonts
     noto-fonts
+    monocraft
   ]);
 
   programs = {
