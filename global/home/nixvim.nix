@@ -383,8 +383,8 @@
       command = "set filetype=markdown";
     }
     {
-      event = [ "BufWinEnter" "WinEnter" ];
-      pattern = "term://*";
+      event = [ "TermOpen" ];
+      pattern = "*";
       command = "startinsert";
     }
   ];
