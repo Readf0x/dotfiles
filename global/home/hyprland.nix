@@ -276,9 +276,9 @@ in {
         "balooctl6 enable"
         "sleep 20; steam -silent"
         "~/Scripts/start-mpd"
-        "qpwgraph -m"
+        "sleep 20; qpwgraph -m"
         # "${pkgs.kdePackages.kdeconnect-kde}/libexec/kdeconnectd"
-        "sleep 20; zsh -c '\${$(realpath $(which kdeconnect-cli))%\"bin/kdeconnect-cli\"}libexec/kdeconnectd'"
+        "zsh -c '\${$(realpath $(which kdeconnect-cli))%\"bin/kdeconnect-cli\"}libexec/kdeconnectd'"
         "sleep 20; kdeconnect-indicator"
       ];
 
@@ -469,7 +469,7 @@ in {
         "pin, class:^(evolution-alarm-notify)$"
         # LibreWolf
         "float, title:(Close Firefox)"
-        "opaque on, title:( - YouTube — LibreWolf)$, class:^(librewolf)$"
+        "opaque on, title:( - (YouTube|Twitch) — LibreWolf)$, class:^(librewolf)$"
         # Fallout 4
         "fullscreen, class:(steam_app_377160), title:(Fallout4)"
         # Godot

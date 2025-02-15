@@ -9,5 +9,6 @@ in {
       icon = "${TCG}/TCG.png";
     };
   };
+  home.sessionVariables.OLLAMA_MODELS = "/mnt/Games/ollama";
 }
 
