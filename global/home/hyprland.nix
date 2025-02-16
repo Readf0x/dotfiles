@@ -407,7 +407,7 @@ in {
         ]) [
           "^(Minecraft\\*? 1.\\d+.*)"
           "^(Minecraft\\*? \\d\\d\\w\\d\\d\\w)"
-          "^(BigChadGuys Plus v\\d+)$"
+          "^(BigChadGuys Plus)"
           "^(SteamPunk)$"
         ]
       ) ++ [
