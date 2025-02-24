@@ -469,7 +469,7 @@ in {
         "pin, class:^(evolution-alarm-notify)$"
         # LibreWolf
         "float, title:(Close Firefox)"
-        "opaque on, title:( - (YouTube|Twitch) — LibreWolf)$, class:^(librewolf)$"
+        "opaque on, title:((YouTube|Twitch) — LibreWolf)$, class:^(librewolf)$"
         # Fallout 4
         "fullscreen, class:(steam_app_377160), title:(Fallout4)"
         # Godot
@@ -482,9 +482,8 @@ in {
         # Gimp
         "center, title:^(Export Image as), class:^(Gimp-2.10)$"
         "center, title:^(Quit GIMP)$, class:^(Gimp-2.10)$"
-        "opaque on, class:^(gimp-3.0)$"
-        "suppressevent activate activatefocus, class:^(gimp-3.0)$"
-        # "stayfocused, title:^(Change Foreground Color)$, class:^(gimp-3.0)$"
+        "opaque on, class:^(gimp)"
+        "suppressevent activate activatefocus, class:^(gimp)"
         # KeepassXC
         "workspace special:KeepassXC, class:^(org.keepassxc.KeePassXC)$"
         "float, class:^(org.keepassxc.KeePassXC)$, title:^(Generate Password)$"
