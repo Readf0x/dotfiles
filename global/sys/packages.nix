@@ -52,11 +52,8 @@
   ] ++ (with pkgs; [
     # Desktop Applications
     blender-hip
-    blockbench
     deluge-gtk
-    dopamine
     eog
-    evolutionWithPlugins
     gnome-font-viewer
     godot_4
     grimblast
