@@ -28,10 +28,11 @@
       lidSwitch = "lock";
     };
     "06cb-009a-fingerprint-sensor" = {
-      enable = true;
+      enable = false;
       backend = "libfprint-tod";
       calib-data-file = ../fprint/calib-data.bin;
     };
     ollama.enable = true;
+    ratbagd.enable = true;
   };
 }

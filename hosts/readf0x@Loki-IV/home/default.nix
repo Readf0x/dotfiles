@@ -6,10 +6,13 @@
     waybar.settings.bar = {
       modules-right = lib.mkForce [
         "network"
-	"battery"
-	"wireplumber"
-	"clock"
+        "battery"
+        "wireplumber"
+        "clock"
       ];
     };
+  };
+  wayland.windowManager.hyprland = {
+    settings.input.sensitivity = "0.4";
   };
 }

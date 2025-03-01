@@ -69,6 +69,7 @@
     lutris
     mangohud
     mpvWithScripts
+    networkmanagerapplet
     obsidian
     pavucontrol
     picard

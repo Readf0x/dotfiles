@@ -8,6 +8,7 @@
     hostName = conf.host;
     useDHCP = lib.mkDefault true;
     networkmanager.enable = true;
+    firewall.enable = false;
   };
 
   nixpkgs.config = {
@@ -104,13 +105,24 @@
         socksProxy.enable = true;
         httpProxy = {
           enable = true;
-          # outproxy = "";
+          outproxy = "http://exit.stormycloud.i2p";
         };
         sam.enable = true;
         i2cp = {
           enable = true;
           address = "127.0.0.1";
           port = 7654;
+        };
+      };
+      outTunnels = {
+        i2pcraft = {
+          enable = true;
+          address = "127.0.0.1";
+          port = 25565;
+          destination = "abnrfgqqsoy6d3dlc7dzq64c5uir5vd7hxy7s7weo6qvmzigf34a.b32.i2p";
+          keys = "i2pcraft.dat";
+          inbound.length = 3;
+          outbound.length = 3;
         };
       };
     };
