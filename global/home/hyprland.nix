@@ -409,6 +409,7 @@ in {
           "^(Minecraft\\*? \\d\\d\\w\\d\\d\\w)"
           "^(BigChadGuys Plus)"
           "^(SteamPunk)$"
+          "^(GT: New Horizons 2.7.2)$"
         ]
       ) ++ [
         # Kitty

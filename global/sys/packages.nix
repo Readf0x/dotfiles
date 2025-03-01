@@ -96,6 +96,7 @@
     mpd-discord-rpc
     mpd-mpris
     ncdu
+    ncmpcpp
     playerctl
     protontricks
     protonup-qt
@@ -103,7 +104,6 @@
     ranger
     rar
     swww
-    vimpc
     vulkan-tools
     winetricks
     wl-clipboard
