@@ -88,30 +88,45 @@
     (ani-cli.override {
       mpv = mpvWithScripts;
     })
+    bat
     btop
+    ffmpeg
+    fzf
     gamescope
     grimblast
+    hyfetch
+    hyperfine
     hyprpicker
+    jq
+    microfetch
     mpc
     mpd
     mpd-discord-rpc
     mpd-mpris
     ncdu
     ncmpcpp
+    nodejs-slim_23
     playerctl
+    pokeget-rs
     protontricks
     protonup-qt
+    python3
     radeontop
     ranger
     rar
+    ripgrep
     swww
+    unzip
     vulkan-tools
+    wget
     winetricks
     wl-clipboard
     wtype
     xclip
     xdg-utils
     xdragon
+    yt-dlp
+    zip
   ] ++ (with kdePackages; [
     ark
     breeze-icons
