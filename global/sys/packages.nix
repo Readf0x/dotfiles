@@ -52,6 +52,7 @@
   ] ++ (with pkgs; [
     # Desktop Applications
     blender-hip
+    blockbench
     deluge-gtk
     eog
     gnome-font-viewer
