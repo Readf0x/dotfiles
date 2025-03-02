@@ -101,13 +101,8 @@
     lsp = {
       enable = true;
       servers = {
-        astro.enable = true;
         bashls.enable = true;
-        cssls.enable = true;
-        eslint.enable = true;
         gopls.enable = true;
-        html.enable = true;
-        htmx.enable = true;
         jsonls = {
           enable = true;
           settings.schemas = [
