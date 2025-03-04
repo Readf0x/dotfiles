@@ -2,21 +2,21 @@
   description = "readf0x's dotfiles";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-gimp-3.url = "github:jtojnar/nixpkgs/gimp-meson";
 
     home-manager = {
-      url = "github:nix-community/home-manager/release-24.11";
+      url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
     flake-parts.url = "github:hercules-ci/flake-parts";
 
     nixvim = {
-      url = "github:nix-community/nixvim/nixos-24.11";
+      url = "github:nix-community/nixvim";
     };
 
-    stylix.url = "github:danth/stylix/release-24.11";
+    stylix.url = "github:danth/stylix";
 
     xdvdfs.url = "github:antangelo/xdvdfs";
 
@@ -48,10 +48,10 @@
           chili = import ./packages/chili.nix { inherit pkgs; image = ./global/img/wallpapers/89875190_p0.jpg; hash = "sha256-3a1lYwBRrfIvLddG7228PDdNuKSeWCrs2v7zRVdNxiE="; };
           discord-rpc = import ./packages/discord-rpc.nix { inherit pkgs; };
           noto-math-kitty-profile-fix = import ./packages/noto-math-kitty-profile-fix.nix { inherit pkgs; };
-	  nvim = inputs.nixvim.legacyPackages.${system}.makeNixvimWithModule {
-	    inherit pkgs;
-	    module = import ./global/home/nixvim.nix { inherit pkgs; };
-	  };
+          nvim = inputs.nixvim.legacyPackages.${system}.makeNixvimWithModule {
+            inherit pkgs;
+            module = import ./global/home/nixvim.nix { inherit pkgs; };
+          };
         };
       };
     };

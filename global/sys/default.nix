@@ -68,7 +68,7 @@
   qt = {
     enable = true;
     platformTheme = "qt5ct";
-    style = "kvantum";
+    style = lib.mkForce "kvantum";
   };
 
   programs.ssh.askPassword = "";
@@ -198,4 +198,7 @@
   system.stateVersion = conf.stateVersion;
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.extraOptions = ''
+    download-speed = 25000
+  '';
 }

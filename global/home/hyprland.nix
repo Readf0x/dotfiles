@@ -123,7 +123,7 @@ in {
 
       cursor = {
         no_warps = true;
-        warp_on_change_workspace = true;
+        warp_on_change_workspace = 2;
       };
 
       #    ___  _         __  
@@ -299,7 +299,7 @@ in {
       ];
       windowrulev2 = [
         # Disallow auto maximize
-        "suppressevent maximize, class:(.*)"
+        "suppressevent maximize activate activatefocus, class:(.*)"
         # Global Opacity
         "opacity 0.8, class:(.*)"
         # No opacity on videos
@@ -384,7 +384,6 @@ in {
         "focusonactivate off, class:^(discord)$"
         # "monitor ${(monitor 1).id}, class:^(vesktop)$"
         "workspace 2, class:^(vesktop)$"
-        # "suppressevent activate activatefocus, class:^(vesktop)$"
         "noinitialfocus, class:^(vesktop)$"
         "focusonactivate off, class:^(vesktop)$"
         # Telegram

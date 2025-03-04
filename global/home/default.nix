@@ -139,6 +139,13 @@
       package = pkgs.colloid-icon-theme;
     };
   };
+  qt = {
+    platformTheme.name = "qtct";
+    style = {
+      name = "Kvantum";
+      package = pkgs.colloid-kde;
+    };
+  };
 
   xdg = {
     userDirs = {

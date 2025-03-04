@@ -61,7 +61,6 @@
     hexchat
     inkscape
     jetbrains.idea-community-bin
-    kdenlive
     kitty
     libreoffice-qt6-fresh
     lutris
@@ -97,6 +96,7 @@
     hyprpicker
     jq
     microfetch
+    modrinth-app
     mpc
     mpd
     mpd-discord-rpc
@@ -131,6 +131,7 @@
     dolphin
     dolphin-plugins
     kdegraphics-thumbnailers
+    kdenlive
   ]));
 
   fonts.packages = builtins.attrValues (
