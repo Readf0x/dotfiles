@@ -365,5 +365,6 @@
     waybar.enable = false;
     #kitty.enable = false;
     hyprlock.enable = false;
+    qt.enable = false;
   };
 }

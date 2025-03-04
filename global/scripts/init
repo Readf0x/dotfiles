@@ -1,0 +1,108 @@
+#!/usr/bin/env zsh
+
+function dir() {
+mkdir ~/$1
+if [[ $2 ]]; then cat > ~/$1/.directory << EOF
+[Desktop Entry]
+Icon=$2
+EOF
+fi
+}
+
+dir Blender folder-blender
+dir Documents
+dir Downloads
+dir Games folder-games
+dir Godot folder-godot
+dir Music
+dir Obsidian folder-notes
+dir Pictures
+dir Projects folder-code
+dir Repos folder-git
+dir Videos
+dir .mpd
+dir .steam folder-steam
+dir .wine folder-wine
+
+ln -s ~/.steam ~/Steam
+ln -s ~/.wine ~/Wine
+
+cat > ~/.config/kdeglobals << EOF
+[General]
+TerminalApplication=kitty
+
+[Icons]
+Theme=Colloid-Dark
+
+[KDE]
+ShowDeleteCommand=true
+
+[KFileDialog Settings]
+Allow Expansion=false
+Automatically select filename extension=true
+Breadcrumb Navigation=false
+Decoration position=2
+LocationCombo Completionmode=5
+PathCombo Completionmode=5
+Show Bookmarks=false
+Show Full Path=false
+Show Inline Previews=true
+Show Preview=false
+Show Speedbar=true
+Show hidden files=false
+Sort by=Date
+Sort directories first=true
+Sort hidden files last=false
+Sort reversed=true
+View Style=Simple
+
+[KShortcutsDialog Settings]
+Dialog Size=692,480
+
+[PreviewSettings]
+EnableRemoteFolderThumbnail=false
+MaximumRemoteSize=0
+EOF
+
+cat > ~/.config/dolphinrc << EOF
+MenuBar=Disabled
+
+[DetailsMode]
+PreviewSize=16
+
+[UiSettings]
+ColorScheme=*
+
+[ExtractDialog]
+2 screens: Window-Maximized=true
+
+[General]
+ConfirmClosingMultipleTabs=false
+GlobalViewProps=false
+RememberOpenedTabs=false
+Version=202
+ViewPropsTimestamp=2024,8,15,20,28,51.083
+
+[IconsMode]
+IconSize=64
+
+[KFileDialog Settings]
+Places Icons Auto-resize=false
+Places Icons Static Size=22
+
+[KPropertiesDialog]
+2 screens: Window-Maximized=true
+
+[MainWindow]
+MenuBar=Disabled
+
+[PreviewSettings]
+Plugins=appimagethumbnail,audiothumbnail,blenderthumbnail,comicbookthumbnail,cursorthumbnail,djvuthumbnail,ebookthumbnail,exrthumbnail,fontthumbnail,imagethumbnail,jpegthumbnail,kraorathumbnail,windowsexethumbnail,windowsimagethumbnail,mobithumbnail,opendocumentthumbnail,gsthumbnail,rawthumbnail,svgthumbnail,gnome-font-viewer
+
+[VersionControl]
+enabledPlugins=Git
+
+[ViewPropertiesDialog]
+2 screens: Window-Maximized=true
+EOF
+
