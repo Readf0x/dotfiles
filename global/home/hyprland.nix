@@ -303,8 +303,8 @@ in {
         # Global Opacity
         "opacity 0.8, class:(.*)"
         # No opacity on videos
-        "opaque on, class:^(mpv)$"
-        "opaque on, class:^(steam_app_.*)"
+        "prop opaque on, class:^(mpv)$"
+        "prop opaque on, class:^(steam_app_.*)"
         # Floating borders
         "bordersize 1, onworkspace:special:dropdown"
         "bordersize 1, onworkspace:special:KeepassXC"
@@ -321,7 +321,7 @@ in {
         "move 1208 51 class:(pavucontrol)"
         "monitor ${(monitor 0).id}, class:(pavucontrol)"
         "animation slide, class:(pavucontrol)"
-        "opaque on, class:(pavucontrol)"
+        "prop opaque on, class:(pavucontrol)"
         # Smile
         "float, class:(smile)"
         # Rofi
@@ -338,12 +338,12 @@ in {
         "float, title:^(Picture-in-Picture)$"
         "keepaspectratio, title:^(Picture-in-Picture)$"
         "pin, title:^(Picture-in-Picture)$"
-        "opaque on, title:^(Picture-in-Picture)$"
+        "prop opaque on, title:^(Picture-in-Picture)$"
         # Gamescope
         "rounding 0, class:(gamescope)"
         "fullscreen, class:(gamescope)"
         "float, class:(gamescope)"
-        "opaque on, class:(gamescope)"
+        "prop opaque on, class:(gamescope)"
         # Steam
         "float, title:(Steam Settings)"
         "minsize 1 1, title:^()$,class:^(steam)$"
@@ -398,7 +398,7 @@ in {
         # Minecraft
       ] ++ (builtins.concatMap (
         x: [
-          "opaque on, class:${x}"
+          "prop opaque on, class:${x}"
           "fullscreen, class:${x}"
           "idleinhibit always, class:${x}"
           "immediate, class:${x}"
@@ -469,20 +469,20 @@ in {
         "pin, class:^(evolution-alarm-notify)$"
         # LibreWolf
         "float, title:(Close Firefox)"
-        "opaque on, title:((YouTube|Twitch) — LibreWolf)$, class:^(librewolf)$"
+        "prop opaque on, title:((YouTube|Twitch) — LibreWolf)$, class:^(librewolf)$"
         # Fallout 4
         "fullscreen, class:(steam_app_377160), title:(Fallout4)"
         # Godot
         "tile, class:(Godot_Engine), title:(Godot)"
         "tile, class:(\\w+), title:(Godot)"
-        "opaque on, class:(Godot_Engine), title:(Godot)"
-        "opaque on, class:(\\w+), title:(Godot)"
+        "prop opaque on, class:(Godot_Engine), title:(Godot)"
+        "prop opaque on, class:(\\w+), title:(Godot)"
         # Fallout New Vegas
         "fullscreen, class:^(steam_app_22380)$"
         # Gimp
         "center, title:^(Export Image as), class:^(Gimp-2.10)$"
         "center, title:^(Quit GIMP)$, class:^(Gimp-2.10)$"
-        "opaque on, class:^(gimp)"
+        "prop opaque on, class:^(gimp)"
         "suppressevent activate activatefocus, class:^(gimp)"
         # KeepassXC
         "workspace special:KeepassXC, class:^(org.keepassxc.KeePassXC)$"
@@ -490,7 +490,7 @@ in {
         # Obsidian
         "suppressevent activatefocus, class:^(obsidian)$"
         # TCG
-        "opaque on, class:^(card shop simulator.exe)$"
+        "prop opaque on, class:^(card shop simulator.exe)$"
         # Hexchat
         "center, class:^(Hexchat)$, title:( - HexChat)$"
         # Assassin's Creed IV Black Flag

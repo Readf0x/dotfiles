@@ -334,7 +334,7 @@
         #tray,
         #memory,
         #temperature
-	#network,
+        #network,
         #bluetooth {
             padding-left: 0.5em;
             padding-right: 0.5em;
