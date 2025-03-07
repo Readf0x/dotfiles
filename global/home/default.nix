@@ -290,7 +290,7 @@
         "custom/player" = {
           format = "{}";
           exec = "${toString conf.homeDir}/Scripts/player-info";
-          interval = 2;
+          interval = 1;
         };
       };
       style = ''
