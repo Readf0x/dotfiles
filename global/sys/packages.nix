@@ -33,7 +33,7 @@
       qtsvg
       qtwayland
     ]) ++ (with wineWowPackages; [
-      waylandFull
+      stableFull
       fonts
     ]);
   };
@@ -96,7 +96,6 @@
     hyprpicker
     jq
     microfetch
-    modrinth-app
     mpc
     mpd
     mpd-discord-rpc

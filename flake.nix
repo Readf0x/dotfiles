@@ -18,6 +18,8 @@
 
     stylix.url = "github:danth/stylix";
 
+    schizofox.url = "github:schizofox/schizofox";
+
     xdvdfs.url = "github:antangelo/xdvdfs";
 
     islive = {
