@@ -1,0 +1,22 @@
+#!/usr/bin/env zsh
+
+function parseURL() {
+  if rg -q '/' <<< $1; then
+    if rg -q '^http' <<< $1; then
+      print $1
+    else
+      print "https://github.com/$1"
+    fi
+  else
+    print "https://github.com/$(whoami)/$1"
+  fi
+}
+
+git clone $(parseURL $1) $2
+if [ $2 ]; then
+  cd $2
+else
+  cd $(rg -o '[^/]*$' <<< $1)
+fi
+git remote rm origin
+
