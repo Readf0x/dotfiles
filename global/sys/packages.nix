@@ -87,6 +87,7 @@
     })
     bat
     btop
+    clipse
     ffmpeg
     fzf
     gamescope

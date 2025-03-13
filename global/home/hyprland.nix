@@ -280,6 +280,7 @@ in {
         # "${pkgs.kdePackages.kdeconnect-kde}/libexec/kdeconnectd"
         "zsh -c '\${$(realpath $(which kdeconnect-cli))%\"bin/kdeconnect-cli\"}libexec/kdeconnectd'"
         "sleep 20; kdeconnect-indicator"
+        "clipse -listen"
       ];
 
       #  _      ___         __             ___       __      
