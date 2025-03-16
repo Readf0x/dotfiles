@@ -54,6 +54,7 @@
     blender-hip
     blockbench
     deluge-gtk
+    easyeffects
     eog
     gnome-font-viewer
     godot_4
@@ -162,6 +163,9 @@
     };
     obs-studio = {
       enable = true;
+      plugins = with pkgs.obs-studio-plugins; [
+        obs-webkitgtk
+      ];
       enableVirtualCamera = true;
     };
     kdeconnect.enable = true;

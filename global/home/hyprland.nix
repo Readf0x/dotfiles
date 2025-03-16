@@ -304,8 +304,8 @@ in {
         # Global Opacity
         "opacity 0.8, class:(.*)"
         # No opacity on videos
-        "prop opaque on, class:^(mpv)$"
-        "prop opaque on, class:^(steam_app_.*)"
+        "opacity 1.0, class:^(mpv)$"
+        "opacity 1.0, class:^(steam_app_.*)"
         # Floating borders
         "bordersize 1, onworkspace:special:dropdown"
         "bordersize 1, onworkspace:special:KeepassXC"
@@ -316,13 +316,16 @@ in {
         "noshadow, floating:0"
         # Disable blur on popups
         "noblur, class:^()$, title: ^()$"
+        # Auth Window
+        "float, title:^(Authentication Required)$"
+        "size 327 198, title:^(Authentication Required)$"
         # Pavucontrol
         "float, class:(pavucontrol)"
         "size 700 500, class:(pavucontrol)"
         "move 1208 51 class:(pavucontrol)"
         "monitor ${(monitor 0).id}, class:(pavucontrol)"
         "animation slide, class:(pavucontrol)"
-        "prop opaque on, class:(pavucontrol)"
+        "opacity 1.0, class:(pavucontrol)"
         # Smile
         "float, class:(smile)"
         # Rofi
@@ -339,12 +342,12 @@ in {
         "float, title:^(Picture-in-Picture)$"
         "keepaspectratio, title:^(Picture-in-Picture)$"
         "pin, title:^(Picture-in-Picture)$"
-        "prop opaque on, title:^(Picture-in-Picture)$"
+        "opacity 1.0, title:^(Picture-in-Picture)$"
         # Gamescope
         "rounding 0, class:(gamescope)"
         "fullscreen, class:(gamescope)"
         "float, class:(gamescope)"
-        "prop opaque on, class:(gamescope)"
+        "opacity 1.0, class:(gamescope)"
         # Steam
         "float, title:(Steam Settings)"
         "minsize 1 1, title:^()$,class:^(steam)$"
@@ -352,6 +355,7 @@ in {
         "center, class:^(steam)$"
         "monitor ${(monitor 0).id}, class:(steam)"
         "noinitialfocus, title:^(notificationtoasts.*)$"
+        "fullscreen, class:^(steam_app_.*)"
         # File dialogs
         "float, title:((Open|Save|Select) (File|As|(Background )?Image|Folder.*))"
         "size 900 600, title:((Open|Save|Select) (File|As|(Background )?Image|Folder.*))"
@@ -399,7 +403,7 @@ in {
         # Minecraft
       ] ++ (builtins.concatMap (
         x: [
-          "prop opaque on, class:${x}"
+          "opacity 1.0, class:${x}"
           "fullscreen, class:${x}"
           "idleinhibit always, class:${x}"
           "immediate, class:${x}"
@@ -407,7 +411,7 @@ in {
         ]) [
           "^(Minecraft\\*? 1.\\d+.*)"
           "^(Minecraft\\*? \\d\\d\\w\\d\\d\\w)"
-          "^(BigChadGuys Plus)"
+          "^(BigChadGuys Plus .*)"
           "^(SteamPunk)$"
           "^(GT: New Horizons 2.7.2)$"
         ]
@@ -470,20 +474,16 @@ in {
         "pin, class:^(evolution-alarm-notify)$"
         # LibreWolf
         "float, title:(Close Firefox)"
-        "prop opaque on, title:((YouTube|Twitch) — LibreWolf)$, class:^(librewolf)$"
-        # Fallout 4
-        "fullscreen, class:(steam_app_377160), title:(Fallout4)"
+        "opacity 1.0, title:.*(YouTube|Twitch).*, class:^(librewolf)$"
         # Godot
         "tile, class:(Godot_Engine), title:(Godot)"
         "tile, class:(\\w+), title:(Godot)"
-        "prop opaque on, class:(Godot_Engine), title:(Godot)"
-        "prop opaque on, class:(\\w+), title:(Godot)"
-        # Fallout New Vegas
-        "fullscreen, class:^(steam_app_22380)$"
+        "opacity 1.0, class:(Godot_Engine), title:(Godot)"
+        "opacity 1.0, class:(\\w+), title:(Godot)"
         # Gimp
         "center, title:^(Export Image as), class:^(Gimp-2.10)$"
         "center, title:^(Quit GIMP)$, class:^(Gimp-2.10)$"
-        "prop opaque on, class:^(gimp)"
+        "opacity 1.0, class:^(gimp)"
         "suppressevent activate activatefocus, class:^(gimp)"
         # KeepassXC
         "workspace special:KeepassXC, class:^(org.keepassxc.KeePassXC)$"
@@ -491,7 +491,7 @@ in {
         # Obsidian
         "suppressevent activatefocus, class:^(obsidian)$"
         # TCG
-        "prop opaque on, class:^(card shop simulator.exe)$"
+        "opacity 1.0, class:^(card shop simulator.exe)$"
         # Hexchat
         "center, class:^(Hexchat)$, title:( - HexChat)$"
         # Assassin's Creed IV Black Flag
