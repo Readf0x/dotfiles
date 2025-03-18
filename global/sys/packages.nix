@@ -107,6 +107,7 @@
     nodejs-slim_23
     playerctl
     pokeget-rs
+    premid
     protontricks
     protonup-qt
     python3

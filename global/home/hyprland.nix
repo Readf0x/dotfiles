@@ -264,23 +264,24 @@ in {
       #                          /_/    
       # TODO: finish startup
       exec-once = [
+        "balooctl6 enable"
+        "clipse -listen"
         "hyprctl setcursor Bibata-Modern-Ice 24"
-        "sleep 20; ping -w 1 discord.com && vesktop"
+        "lxqt-policykit-agent"
+        "premid"
         "sleep 20; blueman-applet"
+        "sleep 20; kdeconnect-indicator"
+        "sleep 20; keepassxc"
+        "sleep 20; ping -w 1 discord.com && vesktop"
+        "sleep 20; qpwgraph -m"
+        "sleep 20; steam -silent"
+        "swaync"
         "swww-daemon; sleep 2; wallpaper"
         "waybar"
-        "swaync"
-        "lxqt-policykit-agent"
-        #"/run/wrappers/bin/gnome-keyring-daemon --start --foreground --components=secrets"
-        "sleep 20; keepassxc"
-        "balooctl6 enable"
-        "sleep 20; steam -silent"
-        "~/Scripts/start-mpd"
-        "sleep 20; qpwgraph -m"
-        # "${pkgs.kdePackages.kdeconnect-kde}/libexec/kdeconnectd"
         "zsh -c '\${$(realpath $(which kdeconnect-cli))%\"bin/kdeconnect-cli\"}libexec/kdeconnectd'"
-        "sleep 20; kdeconnect-indicator"
-        "clipse -listen"
+        "~/Scripts/start-mpd"
+        # "${pkgs.kdePackages.kdeconnect-kde}/libexec/kdeconnectd"
+        #"/run/wrappers/bin/gnome-keyring-daemon --start --foreground --components=secrets"
       ];
 
       #  _      ___         __             ___       __      
@@ -501,6 +502,9 @@ in {
         "center, class:^(Dragon)$"
         # IDEA
         "float, class:^(jetbrains-idea-ce)$, title:^(Welcome to IntelliJ IDEA)$"
+        # VOTV
+        "fullscreen, class:^(votv-win64-shipping.exe)$"
+        "opacity 1.0, class:^(votv-win64-shipping.exe)$"
       ];
     };
   };
