@@ -30,7 +30,7 @@
     "06cb-009a-fingerprint-sensor" = {
       enable = false;
       backend = "libfprint-tod";
-      calib-data-file = ../fprint/calib-data.bin;
+      calib-data-file = ./fprint/calib-data.bin;
     };
     ollama.enable = true;
     ratbagd.enable = true;
