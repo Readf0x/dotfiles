@@ -19,7 +19,7 @@
   #  QT_STYLE_OVERRIDE = "qt5ct";
   #};
 
-  users.users = lib.mapAttrs conf.users (
+  users.users = lib.mapAttrs (
     name: config: {
       isNormalUser = config.isNormalUser;
       extraGroups = [ "networkmanager" ] ++ (
@@ -27,7 +27,7 @@
       );
       shell = pkgs.${config.shell};
     }
-  );
+  ) conf.users;
 
   #boot.plymouth = {
   #  themePackages = [(pkgs.adi1090x-plymouth-themes.override {

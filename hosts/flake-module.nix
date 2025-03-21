@@ -53,7 +53,7 @@ let
             conf = mergeAttrsList [
               { inherit host system; }
               config
-              { users = mapAttrs (user: hosts: filterAttrs (n: v: n == host) hosts) users; }
+              { users = concatMapAttrs (user: hosts: { ${user} = hosts.${host}; }) users; }
             ];
           };
           modules = buildImports {
