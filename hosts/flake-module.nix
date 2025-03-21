@@ -25,7 +25,7 @@ let
             pkgs = os.legacyPackages.${hosts.${host}.system};
             extraSpecialArgs = rec {
               conf = lib.mergeAttrsList [
-                { inherit homeDir host user self; }
+                { inherit homeDir host user self inputs; }
                 config
                 hosts.${host}
               ];
@@ -48,9 +48,9 @@ let
           inherit system;
           specialArgs = {
             conf = mergeAttrsList [
-              { inherit host system self; }
+              { inherit host system self inputs; }
               config
-              mapAttrs (user: hosts: filterAttrs (n: v: n == host) hosts) users
+              { users = mapAttrs (user: hosts: filterAttrs (n: v: n == host) hosts) users; }
             ];
           };
           modules = buildImports {
