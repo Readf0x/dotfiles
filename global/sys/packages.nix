@@ -48,6 +48,7 @@
   in [
     inputs.xdvdfs.packages.${conf.system}.default
     inputs.islive.packages.${conf.system}.default
+    inputs.quickshell.packages.${conf.system}.default
     inputs.nixpkgs-gimp-3.legacyPackages.${conf.system}.gimp
   ] ++ (with pkgs; [
     # Desktop Applications

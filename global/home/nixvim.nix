@@ -150,6 +150,7 @@
         };
         #nixd.enable = true;
         nil_ls.enable = true;
+        qmlls.enable = true;
       };
     };
     cmp = {
@@ -249,6 +250,7 @@
     };
     colorizer.enable = true;
     neo-tree.enable = true;
+    nix.enable = true;
     treesitter = {
       enable = true;
       folding = true;

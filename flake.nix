@@ -22,6 +22,11 @@
 
     xdvdfs.url = "github:antangelo/xdvdfs";
 
+    quickshell = {
+      url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     islive = {
       url = "github:readf0x/islive";
       inputs = {
