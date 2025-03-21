@@ -24,12 +24,13 @@ let
           value = buildHM {
             pkgs = os.legacyPackages.${hosts.${host}.system};
             extraSpecialArgs = rec {
+              inherit self inputs;
+              lib' = import ../lib { inherit lib conf; };
               conf = lib.mergeAttrsList [
-                { inherit homeDir host user self inputs; }
+                { inherit homeDir host user; }
                 config
                 hosts.${host}
               ];
-              lib' = import ../lib { inherit lib conf; };
             };
             modules = buildImports {
               inherit host user;
@@ -47,8 +48,10 @@ let
         buildOS {
           inherit system;
           specialArgs = {
+            inherit self inputs;
+            lib' = import ../lib { inherit lib conf; };
             conf = mergeAttrsList [
-              { inherit host system self inputs; }
+              { inherit host system; }
               config
               { users = mapAttrs (user: hosts: filterAttrs (n: v: n == host) hosts) users; }
             ];
@@ -87,6 +90,9 @@ in {
       perHost = with lib; data: listToAttrs (lib.map (a: { name = a; value = data; }) (lib.attrNames hosts));
     in {
       readf0x = lib.recursiveUpdate (perHost {
+        admin = true;
+        isNormalUser = true;
+        shell = "zsh";
         email = "davis.a.forsythe@gmail.com";
         realName = "Jean Forsythe";
         key = "5DA8A55A7FFB950B92BB532C4A48E1852C03CE8A";

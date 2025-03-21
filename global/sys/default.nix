@@ -19,11 +19,15 @@
   #  QT_STYLE_OVERRIDE = "qt5ct";
   #};
 
-  users.users.${conf.user} = {
-    isNormalUser = true;
-    extraGroups = [ "networkmanager" "wheel" ];
-    shell = pkgs.zsh;
-  };
+  users.users = lib.mapAttrs conf.users (
+    name: config: {
+      isNormalUser = config.isNormalUser;
+      extraGroups = [ "networkmanager" ] ++ (
+        if config.admin then [ "wheel" ] else []
+      );
+      shell = pkgs.${config.shell};
+    }
+  );
 
   #boot.plymouth = {
   #  themePackages = [(pkgs.adi1090x-plymouth-themes.override {

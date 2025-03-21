@@ -2,15 +2,102 @@
   environment = {
     etc."/xdg/menus/applications.menu".source =
     "${pkgs.kdePackages.plasma-workspace}/etc/xdg/menus/plasma-applications.menu";
-    systemPackages = with pkgs; [
-      git
+    systemPackages = with pkgs; let
+      mpvWithScripts = mpv.override {
+        scripts = with mpvScripts; [
+          mpris
+          uosc
+        ];
+      };
+    in [
+      inputs.xdvdfs.packages.${conf.system}.default
+      inputs.islive.packages.${conf.system}.default
+      inputs.nixpkgs-gimp-3.legacyPackages.${conf.system}.gimp
+    ] ++ [
+      # Desktop Applications
+      blender-hip
+      blockbench
+      deluge-gtk
+      easyeffects
+      eog
+      gnome-font-viewer
+      godot_4
+      grimblast
+      hexchat
+      inkscape
+      jetbrains.idea-community-bin
       keepassxc
+      kitty
+      libreoffice-qt6-fresh
+      lutris
+      mangohud
+      mpvWithScripts
+      networkmanagerapplet
+      obsidian
+      pavucontrol
+      picard
+      prismlauncher
+      qpwgraph
+      rofi
+      seahorse
+      swaynotificationcenter
+      vesktop
+      vlc
+      xemu
+      youtube-music
+      zathura
+
+      # CLI tools
+      (ani-cli.override {
+        mpv = mpvWithScripts;
+      })
+      bat
+      btop
+      clipse
+      ffmpeg
+      fzf
+      gamescope
+      git
+      grimblast
+      hyfetch
+      hyperfine
+      hyprpicker
+      jq
       libnotify
       libsecret
       lxqt.lxqt-policykit
+      microfetch
+      mpc
+      mpd
+      mpd-discord-rpc
+      mpd-mpris
+      ncdu
+      ncmpcpp
       neovim
+      nodejs-slim_23
+      playerctl
+      pokeget-rs
+      protontricks
+      protonup-qt
+      python3
+      radeontop
+      ranger
+      rar
+      ripgrep
       samba
       shared-mime-info
+      swww
+      unzip
+      vulkan-tools
+      wget
+      winetricks
+      wl-clipboard
+      wtype
+      xclip
+      xdg-utils
+      xdragon
+      yt-dlp
+      zip
     ] ++ (with libsForQt5; [
       qt5ct
       qtstyleplugin-kvantum
@@ -32,108 +119,19 @@
       qtstyleplugin-kvantum
       qtsvg
       qtwayland
+
+      # Applications
+      ark
+      breeze-icons
+      dolphin
+      dolphin-plugins
+      kdegraphics-thumbnailers
+      kdenlive
     ]) ++ (with wineWowPackages; [
       stableFull
       fonts
     ]);
   };
-
-  users.users.${conf.user}.packages = let
-    mpvWithScripts = pkgs.mpv.override {
-      scripts = with pkgs.mpvScripts; [
-        mpris
-        uosc
-      ];
-    };
-  in [
-    inputs.xdvdfs.packages.${conf.system}.default
-    inputs.islive.packages.${conf.system}.default
-    inputs.nixpkgs-gimp-3.legacyPackages.${conf.system}.gimp
-  ] ++ (with pkgs; [
-    # Desktop Applications
-    blender-hip
-    blockbench
-    deluge-gtk
-    easyeffects
-    eog
-    gnome-font-viewer
-    godot_4
-    grimblast
-    hexchat
-    inkscape
-    jetbrains.idea-community-bin
-    kitty
-    libreoffice-qt6-fresh
-    lutris
-    mangohud
-    mpvWithScripts
-    networkmanagerapplet
-    obsidian
-    pavucontrol
-    picard
-    prismlauncher
-    qpwgraph
-    rofi
-    seahorse
-    swaynotificationcenter
-    vesktop
-    vlc
-    xemu
-    youtube-music
-    zathura
-
-    # CLI tools
-    (ani-cli.override {
-      mpv = mpvWithScripts;
-    })
-    bat
-    btop
-    clipse
-    ffmpeg
-    fzf
-    gamescope
-    grimblast
-    hyfetch
-    hyperfine
-    hyprpicker
-    jq
-    microfetch
-    mpc
-    mpd
-    mpd-discord-rpc
-    mpd-mpris
-    ncdu
-    ncmpcpp
-    nodejs-slim_23
-    playerctl
-    pokeget-rs
-    protontricks
-    protonup-qt
-    python3
-    radeontop
-    ranger
-    rar
-    ripgrep
-    swww
-    unzip
-    vulkan-tools
-    wget
-    winetricks
-    wl-clipboard
-    wtype
-    xclip
-    xdg-utils
-    xdragon
-    yt-dlp
-    zip
-  ] ++ (with kdePackages; [
-    ark
-    breeze-icons
-    dolphin
-    dolphin-plugins
-    kdegraphics-thumbnailers
-    kdenlive
-  ]));
 
   fonts.packages = builtins.attrValues (
     lib.filterAttrs (n: v: lib.hasPrefix "maple-font" n) self.packages.${conf.system}
