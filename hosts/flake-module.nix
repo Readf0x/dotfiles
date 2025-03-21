@@ -1,64 +1,111 @@
-{ self, inputs, lib, ... }: let
-  mkConf = name: let
-    split = builtins.elemAt (lib.splitString "@" name);
-  in { system, homeDir ? /home/${split 0}, ... }@extra: let
-    conf = {
-      inherit homeDir system;
-      user = split 0;
-      host = split 1;
-    } // extra;
-    specialArgs = let
-      lib' = import ./../lib {inherit lib conf;};
-    in { inherit self inputs conf lib'; };
-    module = x: y: (if builtins.pathExists ./${name}/${x}
-    then [./${name}/${x}]
-    else []) ++ [ ./../global/${x} ] ++ y;
-  in {
-    homeConfigurations.${name} = inputs.home-manager.lib.homeManagerConfiguration {
-      pkgs = inputs.nixpkgs.legacyPackages.${system};
-      modules = module "home" [
-        inputs.nixvim.homeManagerModules.default
-        inputs.stylix.homeManagerModules.stylix
-        inputs.schizofox.homeManagerModules.default
-      ];
-      extraSpecialArgs = specialArgs;
-    };
-    nixosConfigurations.${conf.host} = inputs.nixpkgs.lib.nixosSystem {
-      inherit system specialArgs;
-      modules = module "sys" [
-        inputs.stylix.nixosModules.stylix
-        inputs.nixos-06cb-009a-fingerprint-sensor.nixosModules."06cb-009a-fingerprint-sensor"
-      ];
-    };
-  };
+{ self, inputs, lib, ... }:
+let
+  os = inputs.nixpkgs;
+  hm = inputs.home-manager;
 
-  configs = builtins.mapAttrs mkConf {
-    "readf0x@Loki-II" = {
-      system = "x86_64-linux";
-      monitors = [
-        { id = "DP-2";     res = [ 1920 1080 ]; scl = 1; hz = 60; pos = [ 1920 0 ]; rot = 0; }
-        { id = "HDMI-A-1"; res = [ 1920 1080 ]; scl = 1; hz = 60; pos = [ 0    0 ]; rot = 0; }
-      ];
-      stateVersion = "24.05";
-      email = "davis.a.forsythe@gmail.com";
-      realName = "Davis Forsythe";
-      key = "5DA8A55A7FFB950B92BB532C4A48E1852C03CE8A";
-      librewolfProfile = "z3s5q0ct.default";
-      pokemon = "buizel";
-    };
-    "readf0x@Loki-IV" = {
-      system = "x86_64-linux";
-      monitors = [
-        { id = "eDP-1"; res = [ 1920 1080 ]; scl = 1; hz = 60; pos = [ 0 0 ]; rot = 0; }
-      ];
-      stateVersion = "24.11";
-      email = "davis.a.forsythe@gmail.com";
-      realName = "Davis Forsythe";
-      key = "5DA8A55A7FFB950B92BB532C4A48E1852C03CE8A";
-      librewolfProfile = "6qar1mkn.default";
-      pokemon = "sylveon";
-    };
+  buildOS = os.lib.nixosSystem;
+  buildHM = hm.lib.homeManagerConfiguration;
+
+  mkConf = { hosts, users }: let
+    buildImports = { host, user, modules }:
+    ( if user == "sys"
+        then [../global/sys]
+        else [../global/home]
+    ) ++ (
+      if lib.pathExists ./${host}/${user}
+        then [./${host}/${user}]
+        else []
+    ) ++ modules;
+  in {
+    homeConfigurations = with lib;
+      concatMapAttrs (user: hosts':
+        mapAttrs' (host: { homeDir ? /home/${user}, ... }@config: {
+          name = "${user}@${host}";
+          value = buildHM {
+            pkgs = os.legacyPackages.${hosts.${host}.system};
+            extraSpecialArgs = rec {
+              inherit self inputs;
+              lib' = import ../lib { inherit lib conf; };
+              conf = lib.mergeAttrsList [
+                { inherit homeDir host user; }
+                config
+                hosts.${host}
+              ];
+            };
+            modules = buildImports {
+              inherit host user;
+              modules = [
+                inputs.nixvim.homeManagerModules.default
+                inputs.stylix.homeManagerModules.stylix
+                inputs.schizofox.homeManagerModules.default
+              ];
+            };
+          };
+        }) hosts'
+      ) users;
+    nixosConfigurations = with lib;
+      mapAttrs (host: { system, ... }@config:
+        buildOS {
+          inherit system;
+          specialArgs = {
+            inherit self inputs;
+            lib' = import ../lib { inherit lib conf; };
+            conf = mergeAttrsList [
+              { inherit host system; }
+              config
+              { users = concatMapAttrs (user: hosts: { ${user} = hosts.${host}; }) users; }
+            ];
+          };
+          modules = buildImports {
+            inherit host;
+            user = "sys";
+            modules = [
+              inputs.stylix.nixosModules.stylix
+              inputs.nixos-06cb-009a-fingerprint-sensor.nixosModules."06cb-009a-fingerprint-sensor"
+            ];
+          };
+        }
+      ) hosts;
   };
 in {
-  flake = with lib; foldl' recursiveUpdate {} (attrValues configs);
+  flake = mkConf rec {
+    hosts = {
+      Loki-II = {
+        stateVersion = "24.05";
+        system = "x86_64-linux";
+        monitors = [
+          { id = "DP-2";     res = [ 1920 1080 ]; scl = 1; hz = 60; pos = [ 1920 0 ]; rot = 0; }
+          { id = "HDMI-A-1"; res = [ 1920 1080 ]; scl = 1; hz = 60; pos = [ 0    0 ]; rot = 0; }
+        ];
+      };
+      Loki-IV = {
+        stateVersion = "24.11";
+        system = "x86_64-linux";
+        monitors = [
+          { id = "eDP-1"; res = [ 1920 1080 ]; scl = 1; hz = 60; pos = [ 0 0 ]; rot = 0; }
+        ];
+      };
+    };
+    users = let 
+      perHost = with lib; data: listToAttrs (lib.map (a: { name = a; value = data; }) (lib.attrNames hosts));
+    in {
+      readf0x = lib.recursiveUpdate (perHost {
+        admin = true;
+        isNormalUser = true;
+        shell = "zsh";
+        email = "davis.a.forsythe@gmail.com";
+        realName = "Jean Forsythe";
+        key = "5DA8A55A7FFB950B92BB532C4A48E1852C03CE8A";
+      }) {
+        Loki-II = {
+          pokemon = "buizel";
+          librewolfProfile = "z3s5q0ct.default";
+        };
+        Loki-IV = {
+          pokemon = "sylveon";
+          librewolfProfile = "6qar1mkn.default";
+        };
+      };
+    };
+  };
 }
