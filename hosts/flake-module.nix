@@ -37,7 +37,6 @@ let
               modules = [
                 inputs.nixvim.homeManagerModules.default
                 inputs.stylix.homeManagerModules.stylix
-                inputs.schizofox.homeManagerModules.default
               ];
             };
           };
