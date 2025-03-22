@@ -1,4 +1,4 @@
 # INSTRUCTIONS
-- add host definition in `hosts/flake-module.nix` & `hosts/<USER>@<HOSTNAME>/`
+- add host & user definitions in `hosts/flake-module.nix`, `hosts/<HOSTNAME>/`, & `hosts/<HOSTNAME>/<USERNAME>/`
 - `sudo nixos-rebuild switch --flake . && home-manager switch --flake .`
 - `init-home`
