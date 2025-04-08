@@ -91,6 +91,7 @@ in {
         focus_on_activate = true;
       };
       xwayland.force_zero_scaling = true;
+      ecosystem.no_update_news = true;
 
       # https://wiki.hyprland.org/Configuring/Animations/
       animations = {
@@ -269,12 +270,12 @@ in {
         "hyprctl setcursor Bibata-Modern-Ice 24"
         "lxqt-policykit-agent"
         "premid"
-        "sleep 20; blueman-applet"
-        "sleep 20; kdeconnect-indicator"
-        "sleep 20; keepassxc"
-        "sleep 20; ping -w 1 discord.com && vesktop"
-        "sleep 20; qpwgraph -m"
-        "sleep 20; steam -silent"
+        "blueman-applet"
+        "kdeconnect-indicator"
+        "keepassxc"
+        "ping -w 1 discord.com && vesktop"
+        "qpwgraph -m"
+        "steam -silent"
         "swaync"
         "swww-daemon; sleep 2; wallpaper"
         "waybar"
@@ -505,6 +506,8 @@ in {
         # VOTV
         "fullscreen, class:^(votv-win64-shipping.exe)$"
         "opacity 1.0, class:^(votv-win64-shipping.exe)$"
+        # CEMU
+        "opacity 1.0, title:^(Cemu 2.5 - .*)$"
       ];
     };
   };

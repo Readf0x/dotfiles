@@ -20,8 +20,6 @@
 
     schizofox.url = "github:schizofox/schizofox";
 
-    xdvdfs.url = "github:antangelo/xdvdfs";
-
     quickshell = {
       url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -59,6 +57,7 @@
             inherit pkgs;
             module = import ./global/home/nixvim.nix { inherit pkgs; };
           };
+          ukmm-fork = import ./packages/ukmm.nix { inherit pkgs; };
         };
       };
     };

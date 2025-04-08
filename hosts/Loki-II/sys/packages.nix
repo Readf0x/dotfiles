@@ -1,9 +1,12 @@
-{ pkgs, ... }: {
+{ pkgs, self, conf, ... }: {
   environment = {
-    systemPackages = with pkgs; [
+    systemPackages = [
+      self.packages.${conf.system}.ukmm-fork
+    ] ++ (with pkgs; [
       piper
       qemu
-    ];
+      cemu
+    ]);
   };
 
   virtualisation.libvirtd.enable = true;

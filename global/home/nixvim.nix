@@ -55,7 +55,7 @@
     # Leader
     { action = cmd "Neotree toggle";                key = "<leader>e";  mode = "n";         options.desc = "Toggle NeoTree";      }
     { action = cmd "noh";                           key = "<leader>u";  mode = "n";         options.desc = "Clear highlight";     }
-    { action = cmd "w";                             key = "<leader>w";  mode = "n";         options.desc = "Save";                }
+    { action = cmd "w";                             key = "<leader>s";  mode = "n";         options.desc = "Save";                }
     { action = toggle "vim.o.relativenumber";       key = "<leader>n";  mode = "n";         options.desc = "Toggle relative";     }
     { action = "<cmd>EasyAlign";                    key = "<leader>a";  mode = "n";         options.desc = "Align";               }
     { action = cmd "Telescope";                     key = "<leader>tt"; mode = "n";         options.desc = "All";                 }
@@ -325,6 +325,20 @@
       };
     };
     render-markdown.enable = true;
+    vimwiki = {
+      enable = false;
+      settings = {
+        autowriteall = 1;
+        list = [
+          {
+            ext = ".md";
+            path = "~/Notes";
+            syntax = "markdown";
+          }
+        ];
+      };
+    };
+    image.enable = true;
   };
   extraPlugins = with pkgs.vimPlugins; [
     firenvim
@@ -375,7 +389,7 @@
     }
     {
       event = [ "BufNewFile" "BufRead" ];
-      pattern = "github.com_*.txt";
+      pattern = "*.md";
       command = "set filetype=markdown";
     }
     {
