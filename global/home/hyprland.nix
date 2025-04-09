@@ -500,7 +500,7 @@ in {
         "idleinhibit, title:^(Assassin's Creed IV Black Flag)$"
         "idleinhibit, class:^(steam_app_default)$"
         # Dragon Drop
-        "center, class:^(Dragon)$"
+        "center, class:^(Dragon-drop)$"
         # IDEA
         "float, class:^(jetbrains-idea-ce)$, title:^(Welcome to IntelliJ IDEA)$"
         # VOTV

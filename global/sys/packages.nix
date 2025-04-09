@@ -36,6 +36,7 @@
       obsidian
       pavucontrol
       picard
+      premid
       prismlauncher
       qpwgraph
       rofi
