@@ -7,6 +7,9 @@
         print "%F{3}⌁"
       fi
     }
+    # export int_vim_indicators=(
+    #   ""
+    # )
   '';
   programs = {
     zsh = {
@@ -62,6 +65,8 @@
         autoload -Uz +X compinit && compinit
         zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
         zstyle ':completion:*' menu select
+
+        function run() { nix run "nixpkgs#$1" '' + "$\{@:2} " + ''}
       '';
     };
     eza = {
@@ -98,6 +103,7 @@
         font_family family="Maple Mono NF" features="+zero +cv03 +ss03"
         font_size 11
         symbol_map U+2320,U+2321,U+239B-U+23B3 Noto Sans Math
+        symbol_map U+25CB-U+25D7 Ubuntu
 
         window_padding_width 11
         tab_bar_style separator
