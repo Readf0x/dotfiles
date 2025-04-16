@@ -308,6 +308,7 @@ in {
         # No opacity on videos
         "opacity 1.0, class:^(mpv)$"
         "opacity 1.0, class:^(steam_app_.*)"
+        "opacity 1.0, class:^(streaming_client)$"
         # Floating borders
         "bordersize 1, onworkspace:special:dropdown"
         "bordersize 1, onworkspace:special:KeepassXC"
