@@ -40,6 +40,7 @@
       LD_LIBRARY_PATH = with pkgs; lib.makeLibraryPath [ kdePackages.qtbase libGL glfw-wayland-minecraft libpulseaudio openal flite ] + ":$LD_LIBRARY_PATH";
       EDITOR = "nvim";
       VISUAL = "nvim";
+      SSH_ASKPASS = "${pkgs.x11_ssh_askpass}/libexec/ssh-askpass";
     };
 
     #pointerCursor = {

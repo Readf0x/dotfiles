@@ -14,10 +14,11 @@
   nixpkgs.config = {
     allowUnfree = true;
   };
-  #environment.variables = {
+  environment.variables = {
   #  QT_QPA_PLATFORMTHEME = "qt5ct";
   #  QT_STYLE_OVERRIDE = "qt5ct";
-  #};
+    SSH_ASKPASS = lib.mkForce "${pkgs.x11_ssh_askpass}/libexec/ssh-askpass";
+  };
 
   users.users = lib.mapAttrs (
     name: config: {
@@ -75,7 +76,6 @@
     style = lib.mkForce "kvantum";
   };
 
-  programs.ssh.askPassword = "";
   services = {
     openssh = {
       enable = true;
