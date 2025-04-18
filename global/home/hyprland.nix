@@ -511,6 +511,8 @@ in {
         "opacity 1.0, class:^(votv-win64-shipping.exe)$"
         # CEMU
         "opacity 1.0, title:^(Cemu 2.5 - .*)$"
+        # Virt Manager
+        "opacity 1.0, class:^(.virt-manager-wrapped)$, title:^(.* on .*)$"
       ];
     };
   };
