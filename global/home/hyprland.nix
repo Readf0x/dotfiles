@@ -275,7 +275,9 @@ in {
         "keepassxc"
         "ping -w 1 discord.com && vesktop"
         "qpwgraph -m"
-        "steam -silent"
+        # **DO NOT ENABLE**
+        # Steam uses a *shit ton* of power. Should only be opening when in use (on mobile devices)
+        # "steam -silent"
         "swaync"
         "swww-daemon; sleep 2; wallpaper"
         "waybar"

@@ -10,5 +10,6 @@ in {
     };
   };
   home.sessionVariables.OLLAMA_MODELS = "/mnt/Games/ollama";
+  wayland.windowManager.hyprland.settings.exec-once = [ "steam -silent" ];
 }
 

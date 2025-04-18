@@ -34,5 +34,8 @@
     };
     ollama.enable = true;
     ratbagd.enable = true;
+    auto-cpufreq = {
+      enable = true;
+    };
   };
 }
