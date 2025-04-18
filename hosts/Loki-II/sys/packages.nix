@@ -16,7 +16,6 @@
       enable = true;
       gpuOverclock.enable = true;
     };
-    virt-manager.enable = true;
     gamemode = {
       enable = true;
       settings = {
