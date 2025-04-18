@@ -12,7 +12,6 @@
     in [
       inputs.islive.packages.${conf.system}.default
       inputs.quickshell.packages.${conf.system}.default
-      inputs.nixpkgs-gimp-3.legacyPackages.${conf.system}.gimp
     ] ++ [
       # Desktop Applications
       blender-hip
@@ -20,8 +19,8 @@
       deluge-gtk
       easyeffects
       eog
+      gimp
       gnome-font-viewer
-      godot_4
       grimblast
       hexchat
       inkscape
@@ -116,7 +115,6 @@
       kservice
       plasma-workspace
       qt6ct
-      qt6gtk2
       qtstyleplugin-kvantum
       qtsvg
       qtwayland

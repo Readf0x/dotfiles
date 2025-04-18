@@ -3,7 +3,6 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    nixpkgs-gimp-3.url = "github:jtojnar/nixpkgs/gimp-meson";
 
     home-manager = {
       url = "github:nix-community/home-manager";
