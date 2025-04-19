@@ -1,15 +1,18 @@
 { pkgs, self, conf, ... }: {
-  environment = {
-    systemPackages = [
-      self.packages.${conf.system}.ukmm-fork
-    ] ++ (with pkgs; [
-      piper
-      qemu
-      cemu
-    ]);
-  };
+  environment.systemPackages = [
+    self.packages.${conf.system}.ukmm-fork
+  ] ++ (with pkgs; [
+    piper
+    qemu
+    cemu
+    distrobox
+    distrobox-tui
+  ]);
 
-  virtualisation.libvirtd.enable = true;
+  virtualisation = {
+    libvirtd.enable = true;
+    docker.enable = true;
+  };
 
   programs = {
     corectrl = {

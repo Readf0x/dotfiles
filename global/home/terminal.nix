@@ -66,7 +66,10 @@
         zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
         zstyle ':completion:*' menu select
 
-        function run() { nix run "nixpkgs#$1" '' + "$\{@:2} " + ''}
+        function run() { nix run "nixpkgs#$1" -- '' + "$\{@:2} " + ''}
+        function db() {
+          distrobox $1 --root '' + "$\{@:2} " + ''
+        }
 
         if test -n "$KITTY_INSTALLATION_DIR"; then
           export KITTY_SHELL_INTEGRATION="enabled"
