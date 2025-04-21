@@ -43,7 +43,6 @@
       swaynotificationcenter
       vesktop
       vlc
-      wayvnc
       xemu
       youtube-music
       zathura
