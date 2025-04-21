@@ -149,7 +149,10 @@
           ];
         };
         #nixd.enable = true;
-        nil_ls.enable = true;
+        nil_ls = {
+          enable = true;
+          settings.nix.flake.autoArchive = true;
+        };
         qmlls.enable = true;
       };
     };
