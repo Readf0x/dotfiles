@@ -38,7 +38,7 @@
         open = "xdg-open";
         v = "nvim";
         zshr = "exec zsh";
-        ":q" = "if ! [[ $SSH_CONNECTION ]]; then exit; else echo 'goodbye! :3'; sleep 1; exit; fi";
+        ":q" = "exit";
         dev = "nix develop --command zsh";
         "power!" = "poweroff";
       };

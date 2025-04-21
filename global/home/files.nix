@@ -70,11 +70,11 @@
         merge-conflict-theirs-diff-header-style = yellow bold
         merge-conflict-theirs-diff-header-decoration-style = blue box
     '';
-    ".ssh/config".text = ''
-      Host Loki-II
-        HostName 10.1.11.104
-      Host Loki-IV
-        HostName 10.1.11.100
-    '';
+    # ".ssh/config".text = ''
+    #   Host Loki-II
+    #     HostName 10.1.11.104
+    #   Host Loki-IV
+    #     HostName 10.1.11.100
+    # '';
   };
 }

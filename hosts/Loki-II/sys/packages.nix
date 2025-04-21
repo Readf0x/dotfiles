@@ -5,6 +5,7 @@
     piper
     qemu
     cemu
+    bridge-utils
     distrobox
     distrobox-tui
   ]);

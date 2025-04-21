@@ -419,6 +419,7 @@ in {
           "^(BigChadGuys Plus .*)"
           "^(SteamPunk)$"
           "^(GT: New Horizons 2.7.2)$"
+          "^(Raspberry Flavoured .*)"
         ]
       ) ++ [
         # Kitty

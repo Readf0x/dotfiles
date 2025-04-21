@@ -9,6 +9,10 @@
     useDHCP = lib.mkDefault true;
     networkmanager.enable = true;
     firewall.enable = false;
+    hosts = {
+      "10.1.11.104" = [ "Loki-II" "loki2" ];
+      "10.1.11.100" = [ "Loki-IV" "loki4" ];
+    };
   };
 
   nixpkgs.config = {

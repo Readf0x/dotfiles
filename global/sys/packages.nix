@@ -39,7 +39,7 @@
       prismlauncher
       qpwgraph
       rofi
-      seahorse
+      scrcpy
       swaynotificationcenter
       vesktop
       vlc
@@ -51,6 +51,7 @@
       (ani-cli.override {
         mpv = mpvWithScripts;
       })
+      android-tools
       bat
       btop
       clipse
