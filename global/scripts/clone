@@ -4,7 +4,7 @@ if [[ $1 == -h ]] || [[ $1 == --help ]]; then
   msg="$(sed -e 's/^[ ]*| //m' <<'--------------------'
     | A script for cloning git repos
     | 
-    | %UUsage:%u %Bclone.sh%b <REPOSITORY> [PATH] [<ARGS>]
+    | %UUsage:%u %Bclone%b <REPOSITORY> [PATH] [<ARGS>]
     | 
     | %UArguments:%u
     |   %B<REPOSITORY>%b\tRepository URL
