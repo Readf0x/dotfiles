@@ -12,7 +12,11 @@
 
   virtualisation = {
     libvirtd.enable = true;
-    docker.enable = true;
+    docker.enable = false;
+    podman = {
+      enable = true;
+      dockerCompat = true;
+    };
   };
 
   programs = {

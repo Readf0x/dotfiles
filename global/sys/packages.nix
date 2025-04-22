@@ -66,6 +66,7 @@
       jq
       libnotify
       libsecret
+      lshw
       lxqt.lxqt-policykit
       microfetch
       mpc

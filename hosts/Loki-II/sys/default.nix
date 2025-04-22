@@ -1,4 +1,4 @@
-{ ... }: {
+{ pkgs, ... }: {
   nixpkgs.config.rocmSupport = true;
 
   imports = [
@@ -23,7 +23,7 @@
 
   networking = {
     firewall.enable = false;
-  };
+  }; 
   services = {
     xserver.xkb = {
       layout = "us";
@@ -40,4 +40,6 @@
       rocmOverrideGfx = "10.3.2";
     };
   };
+
+  systemd.services."libvirtd".path = [ pkgs.passt ];
 }

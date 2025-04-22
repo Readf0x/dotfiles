@@ -41,6 +41,7 @@
         ":q" = "exit";
         dev = "nix develop --command zsh";
         "power!" = "poweroff";
+        db = "distrobox";
       };
       shellGlobalAliases = { "--help" = "--help | bat -plhelp"; };
       localVariables = {
@@ -67,9 +68,9 @@
         zstyle ':completion:*' menu select
 
         function run() { nix run "nixpkgs#$1" -- '' + "$\{@:2} " + ''}
-        function db() {
-          distrobox $1 --root '' + "$\{@:2} " + ''
-        }
+        #function db() {
+        #  distrobox $1 --root '' + "$\{@:2} " + ''
+        #}
 
         if test -n "$KITTY_INSTALLATION_DIR"; then
           export KITTY_SHELL_INTEGRATION="enabled"
