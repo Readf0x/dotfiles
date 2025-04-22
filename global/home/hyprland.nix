@@ -514,6 +514,8 @@ in {
         "opacity 1.0, title:^(Cemu 2.5 - .*)$"
         # Virt Manager
         "opacity 1.0, class:^(.virt-manager-wrapped)$, title:^(.* on .*)$"
+        # Kdenlive
+        "opacity 1.0, class:^(org.kde.kdenlive)$"
       ];
     };
   };
