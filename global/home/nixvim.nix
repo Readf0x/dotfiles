@@ -251,7 +251,7 @@
       };
       mockDevIcons = true;
     };
-    colorizer.enable = true;
+    # colorizer.enable = true;
     neo-tree.enable = true;
     nix.enable = true;
     treesitter = {
@@ -328,19 +328,19 @@
       };
     };
     render-markdown.enable = true;
-    vimwiki = {
-      enable = false;
-      settings = {
-        autowriteall = 1;
-        list = [
-          {
-            ext = ".md";
-            path = "~/Notes";
-            syntax = "markdown";
-          }
-        ];
-      };
-    };
+    # vimwiki = {
+    #   enable = false;
+    #   settings = {
+    #     autowriteall = 1;
+    #     list = [
+    #       {
+    #         ext = ".md";
+    #         path = "~/Notes";
+    #         syntax = "markdown";
+    #       }
+    #     ];
+    #   };
+    # };
     image.enable = true;
   };
   extraPlugins = with pkgs.vimPlugins; [

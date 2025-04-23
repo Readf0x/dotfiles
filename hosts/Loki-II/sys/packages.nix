@@ -1,6 +1,6 @@
-{ pkgs, self, conf, ... }: {
+{ pkgs, ... }: {
   environment.systemPackages = [
-    self.packages.${conf.system}.ukmm-fork
+    # self.packages.${conf.system}.ukmm-fork
   ] ++ (with pkgs; [
     piper
     qemu
@@ -8,6 +8,7 @@
     bridge-utils
     distrobox
     distrobox-tui
+    virtiofsd
   ]);
 
   virtualisation = {

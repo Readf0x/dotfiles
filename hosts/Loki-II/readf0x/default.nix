@@ -1,4 +1,4 @@
-{ self, conf, ... }: let
+{ ... }: let
   TCG = "/mnt/Games/Games/TCG.Card.Shop.Simulator.v0.47.3";
 in {
   xdg.desktopEntries = {
@@ -8,12 +8,12 @@ in {
       categories = [ "Game" ];
       icon = "${TCG}/TCG.png";
     };
-    ukmm = {
-      name = "UKMM";
-      comment = "Starts U-King Mod Manager";
-      exec = "${self.packages.${conf.system}.ukmm-fork}/bin/ukmm %u";
-      mimeType = [ "x-scheme-handler/bcml" ];
-    };
+    # ukmm = {
+    #   name = "UKMM";
+    #   comment = "Starts U-King Mod Manager";
+    #   exec = "${self.packages.${conf.system}.ukmm-fork}/bin/ukmm %u";
+    #   mimeType = [ "x-scheme-handler/bcml" ];
+    # };
   };
   home.sessionVariables.OLLAMA_MODELS = "/mnt/Games/ollama";
   wayland.windowManager.hyprland.settings.exec-once = [ "steam -silent" ];

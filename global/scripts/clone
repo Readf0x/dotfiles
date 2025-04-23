@@ -1,5 +1,17 @@
 #!/usr/bin/env zsh
 
+function parseURL() {
+  if rg -q '/' <<< $1; then
+    if rg -q '^http' <<< $1; then
+      print $1
+    else
+      print "https://github.com/$1"
+    fi
+  else
+    print "https://github.com/$(whoami)/$1"
+  fi
+}
+
 if [[ $1 == -h ]] || [[ $1 == --help ]]; then
   msg="$(sed -e 's/^[ ]*| //m' <<'--------------------'
     | A script for cloning git repos
@@ -18,11 +30,11 @@ if [[ $1 == -h ]] || [[ $1 == --help ]]; then
 else
   repo=$(echo $1 | sed -r 's|.*/([^/]+/[^/]+)(\.git)?$|\1|')
   if [[ "$2" == -* ]]; then
-    git clone $(echo "$@[2,-1] --") $1 "$HOME/Repos/$repo"
+    git clone $(echo "$@[2,-1] --") $(parseURL $1) "$HOME/Repos/$repo"
   elif [[ -e $2 ]]; then
-    git clone $(echo "$@[3,-1] --") $1 "$2/$repo"
+    git clone $(echo "$@[3,-1] --") $(parseURL $1) "$2/$repo"
   else
-    git clone $1 "$HOME/Repos/$repo"
+    git clone $(parseURL $1) "$HOME/Repos/$repo"
   fi
 fi
 
