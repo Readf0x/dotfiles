@@ -1,0 +1,5 @@
+#!/usr/bin/env zsh
+
+scp $1 $2
+rm $1
+
