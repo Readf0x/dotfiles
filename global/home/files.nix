@@ -1,7 +1,7 @@
-{ pkgs, conf, ... }: {
+{ pkgs, conf, inputs, ... }: {
   home.file = {
     ".face.icon".source = ./../img/pfp.png;
-    ".config/hypr/wallpapers".source = ./../img/wallpapers;
+    ".config/hypr/wallpapers".source = "${inputs.wallpapers.packages.${conf.system}.default}";
     "Scripts".source = ./../scripts;
     ".librewolf/${conf.librewolfProfile}/chrome".source = pkgs.fetchFromGitHub {
       owner = "readf0x";

@@ -563,6 +563,22 @@
         "type": "github"
       }
     },
+    "nixpkgs_4": {
+      "locked": {
+        "lastModified": 1745391562,
+        "narHash": "sha256-sPwcCYuiEopaafePqlG826tBhctuJsLx/mhKKM5Fmjo=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "8a2f738d9d1f1d986b5a4cd2fd2061a7127237d7",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "nixvim": {
       "inputs": {
         "devshell": "devshell",
@@ -642,7 +658,8 @@
         "nixpkgs": "nixpkgs",
         "nixvim": "nixvim",
         "quickshell": "quickshell",
-        "stylix": "stylix"
+        "stylix": "stylix",
+        "wallpapers": "wallpapers"
       }
     },
     "stylix": {
@@ -776,6 +793,24 @@
       "original": {
         "owner": "numtide",
         "repo": "treefmt-nix",
+        "type": "github"
+      }
+    },
+    "wallpapers": {
+      "inputs": {
+        "nixpkgs": "nixpkgs_4"
+      },
+      "locked": {
+        "lastModified": 1745545762,
+        "narHash": "sha256-OQtfHwYMr75sdL2hBF0O4UiPMB/NJEvaIEGpNbZadp4=",
+        "owner": "readf0x",
+        "repo": "wallpapers",
+        "rev": "8557f7216fe0920c72ecbf2ddfcfdea7573e56e2",
+        "type": "github"
+      },
+      "original": {
+        "owner": "readf0x",
+        "repo": "wallpapers",
         "type": "github"
       }
     }

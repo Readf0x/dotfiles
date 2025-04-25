@@ -36,6 +36,10 @@
       url = "github:ahbnr/nixos-06cb-009a-fingerprint-sensor?ref=24.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    wallpapers = {
+      url = "github:readf0x/wallpapers";
+    };
   };
 
   outputs = { flake-parts, ... }@inputs:
@@ -49,7 +53,7 @@
           lib.mapAttrs' (name': value: { name = "maple-font-${name'}"; inherit value; }) (import ./packages/maple-font.nix { inherit pkgs; })
         ) // {
           # TODO: fix this ABSOLUTE NIGHTMARE NIGHTMARE NIGHTMARE NIGHTMARE NIGHTMARE NIGHTMARE NIGHTMARE NIGHTMARE NIGHTMARE NIGHTMARE NIGHTMARE
-          chili = import ./packages/chili.nix { inherit pkgs; image = ./global/img/wallpapers/89875190_p0.jpg; hash = "sha256-3a1lYwBRrfIvLddG7228PDdNuKSeWCrs2v7zRVdNxiE="; };
+          chili = import ./packages/chili.nix { inherit pkgs; image = builtins.toPath "${inputs.wallpapers.packages.${system}.default}/89875190_p0.jpg"; hash = "sha256-3a1lYwBRrfIvLddG7228PDdNuKSeWCrs2v7zRVdNxiE="; };
           discord-rpc = import ./packages/discord-rpc.nix { inherit pkgs; };
           noto-math-kitty-profile-fix = import ./packages/noto-math-kitty-profile-fix.nix { inherit pkgs; };
           nvim = inputs.nixvim.legacyPackages.${system}.makeNixvimWithModule {
