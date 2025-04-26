@@ -28,7 +28,7 @@ if [[ $1 == -h ]] || [[ $1 == --help ]]; then
     )"
   print -P $msg
 else
-  repo=$(echo $1 | sed -r 's|.*/([^/]+/[^/]+)(\.git)?$|\1|')
+  repo=$(parseURL $1 | sed -r 's|.*/([^/]+/[^/]+)(\.git)?$|\1|')
   if [[ "$2" == -* ]]; then
     git clone $(echo "$@[2,-1] --") $(parseURL $1) "$HOME/Repos/$repo"
   elif [[ -e $2 ]]; then
