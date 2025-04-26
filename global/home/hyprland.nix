@@ -401,8 +401,9 @@ in {
         "float, title:^(Media viewer)$, class:^(org.telegram.desktop)$"
         "monitor ${(monitor 1).id}, class:^(org.telegram.desktop)$"
         # ScrCpy
-        "keepaspectratio, class:^(scrcpy)$"
-        "pseudo, class:^(scrcpy)$"
+        "keepaspectratio, class:^(.scrcpy-wrapped)$"
+        "pseudo, class:^(.scrcpy-wrapped)$"
+        "opacity 1.0, class:^(.scrcpy-wrapped)$"
         # KDE Connect
         "float, class:^(org.kde.kdeconnect.handler)$"
         # Minecraft
@@ -422,6 +423,9 @@ in {
           "^(Raspberry Flavoured .*)"
         ]
       ) ++ [
+        # Half Life
+        "fullscreen, class:^(hl2_linux)$"
+        "opacity 1.0, class:^(hl2_linux)$"
         # Kitty
         "noborder, class:^(kitty)$, title:^(info)$"
         "float, title:^(cava)$"

@@ -265,6 +265,7 @@
         go
         html
         hyprlang
+        java
         javascript
         jsdoc
         json
@@ -275,6 +276,7 @@
         markdown
         markdown_inline
         nix
+        qmljs
         query
         regex
         scss
@@ -283,7 +285,6 @@
         vim
         xml
         yaml
-        java
       ];
       settings = {
         highlight.enable = true;
