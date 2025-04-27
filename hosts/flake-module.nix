@@ -24,7 +24,9 @@ let
           value = buildHM {
             pkgs = os.legacyPackages.${hosts.${host}.system};
             extraSpecialArgs = rec {
-              inherit self inputs;
+              inherit self;
+              inputs = (lib.removeAttrs inputs ["unstable"]);
+              unstable = inputs.unstable.legacyPackages.${system};
               lib' = import ../lib { inherit lib conf; };
               conf = lib.mergeAttrsList [
                 { inherit homeDir host user; }
@@ -48,7 +50,9 @@ let
         buildOS {
           inherit system;
           specialArgs = {
-            inherit self inputs;
+            inherit self;
+            inputs = (lib.removeAttrs inputs ["unstable"]);
+            unstable = inputs.unstable.legacyPackages.${system};
             lib' = import ../lib { inherit lib conf; };
             conf = mergeAttrsList [
               { inherit host system; }

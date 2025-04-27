@@ -1,4 +1,4 @@
-{ pkgs, self, conf, lib, inputs, ... }: {
+{ pkgs, self, conf, lib, inputs, unstable, ... }: {
   environment = {
     etc."/xdg/menus/applications.menu".source =
     "${pkgs.kdePackages.plasma-workspace}/etc/xdg/menus/plasma-applications.menu";
@@ -12,6 +12,7 @@
     in [
       inputs.islive.packages.${conf.system}.default
       inputs.quickshell.packages.${conf.system}.default
+      unstable.gimp3
     ] ++ [
       # Desktop Applications
       blender-hip
@@ -19,7 +20,6 @@
       deluge-gtk
       easyeffects
       eog
-      gimp
       gnome-font-viewer
       grimblast
       hexchat
