@@ -5,6 +5,9 @@ in {
   wayland.windowManager.hyprland = {
     enable = true;
     systemd.variables = ["--all"];
+    plugins = with pkgs.hyprlandPlugins; [
+      hyprwinwrap
+    ];
     settings = {
       #    ____         __              ____    __  __  _             
       #   / __/_ _____ / /____ __ _    / __/__ / /_/ /_(_)__  ___ ____

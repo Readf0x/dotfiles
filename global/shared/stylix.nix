@@ -1,7 +1,7 @@
 { pkgs, self, conf, inputs, ... }: {
   stylix = {
     enable = true;
-    image = "${inputs.wallpapers.packages.${conf.system}.default}/89875190_p0.jpg";
+    image = builtins.toPath "${inputs.wallpapers.packages.${conf.system}.default}/89875190_p0.jpg";
     base16Scheme = "${pkgs.base16-schemes}/share/themes/tender.yaml";
     fonts = {
       serif = {
