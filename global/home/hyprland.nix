@@ -484,7 +484,7 @@ in {
         "pin, class:^(evolution-alarm-notify)$"
         # LibreWolf
         "float, title:(Close Firefox)"
-        "opacity 1.0, title:.*(YouTube|Twitch).*, class:^(librewolf)$"
+        "opacity 1.0, title:.*(YouTube|Twitch|Figma).*, class:^(librewolf)$"
         # Godot
         "tile, class:(Godot_Engine), title:(Godot)"
         "tile, class:(\\w+), title:(Godot)"

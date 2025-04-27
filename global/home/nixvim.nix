@@ -153,7 +153,10 @@
           enable = true;
           settings.nix.flake.autoArchive = true;
         };
-        qmlls.enable = true;
+        qmlls = {
+          enable = true;
+          cmd = [ "qmlls" "-E" ];
+        };
       };
     };
     cmp = {
