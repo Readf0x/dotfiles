@@ -117,6 +117,7 @@
       kservice
       plasma-workspace
       qt6ct
+      qtdeclarative
       qtstyleplugin-kvantum
       qtsvg
       qtwayland
