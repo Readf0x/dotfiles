@@ -21,7 +21,7 @@
       DisableFirefoxScreenshots = true;
       DisableBuiltinPDFViewer = true;
       DisableSetDesktopBackground = true;
-      NoDefaultBookmarks = true;
+      NoDefaultBookmarks = false;
       Extensions.Uninstall = [
         "google@search.mozilla.org"
         "bing@search.mozilla.org"
