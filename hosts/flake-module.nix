@@ -25,7 +25,7 @@ let
             pkgs = os.legacyPackages.${hosts.${host}.system};
             extraSpecialArgs = rec {
               inherit self inputs;
-              unstable = inputs.unstable.legacyPackages.${system};
+              unstable = inputs.unstable.legacyPackages.${hosts.${host}.system};
               lib' = import ../lib { inherit lib conf; };
               conf = lib.mergeAttrsList [
                 { inherit homeDir host user; }
@@ -38,6 +38,8 @@ let
               modules = [
                 inputs.nixvim.homeManagerModules.default
                 inputs.stylix.homeManagerModules.stylix
+                inputs.textfox.homeManagerModules.default
+                inputs.nur.modules.homeManager.default
                 # inputs.schizofox.homeManagerModules.default
               ];
             };
@@ -50,7 +52,7 @@ let
           inherit system;
           specialArgs = {
             inherit self inputs;
-            unstable = inputs.unstable.legacyPackages.${system};
+            unstable = inputs.unstable.legacyPackages.${hosts.${host}.system};
             lib' = import ../lib { inherit lib conf; };
             conf = mergeAttrsList [
               { inherit host system; }
@@ -64,6 +66,7 @@ let
             modules = [
               inputs.stylix.nixosModules.stylix
               inputs.nixos-06cb-009a-fingerprint-sensor.nixosModules."06cb-009a-fingerprint-sensor"
+              inputs.nur.modules.nixos.default
             ];
           };
         }

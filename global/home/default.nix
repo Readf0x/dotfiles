@@ -6,7 +6,7 @@
 
   imports = [
     ./../shared/stylix.nix
-    # ./browser.nix
+    ./browser.nix
     ./files.nix
     ./hyprland.nix
     ./terminal.nix
@@ -147,5 +147,6 @@
     #kitty.enable = false;
     hyprlock.enable = false;
     # qt.enable = false;
+    firefox.enable = false;
   };
 }

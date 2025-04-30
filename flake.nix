@@ -5,6 +5,11 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
     unstable.url = "github:nixos/nixpkgs/nixos-unstable";
 
+    nur = {
+      url = "github:nix-community/NUR";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     home-manager = {
       url = "github:nix-community/home-manager/release-24.11";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -17,8 +22,6 @@
     };
 
     stylix.url = "github:danth/stylix/release-24.11";
-
-    # schizofox.url = "github:schizofox/schizofox";
 
     quickshell = {
       url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
@@ -41,6 +44,8 @@
     wallpapers = {
       url = "github:readf0x/wallpapers";
     };
+
+    textfox.url = "github:adriankarlen/textfox";
   };
 
   outputs = { flake-parts, ... }@inputs:
@@ -56,7 +61,6 @@
           # TODO: fix this ABSOLUTE NIGHTMARE NIGHTMARE NIGHTMARE NIGHTMARE NIGHTMARE NIGHTMARE NIGHTMARE NIGHTMARE NIGHTMARE NIGHTMARE NIGHTMARE
           chili = import ./packages/chili.nix { inherit pkgs; image = builtins.toPath "${inputs.wallpapers.packages.${system}.default}/89875190_p0.jpg"; hash = "sha256-3a1lYwBRrfIvLddG7228PDdNuKSeWCrs2v7zRVdNxiE="; };
           discord-rpc = import ./packages/discord-rpc.nix { inherit pkgs; };
-          noto-math-kitty-profile-fix = import ./packages/noto-math-kitty-profile-fix.nix { inherit pkgs; };
           nvim = inputs.nixvim.legacyPackages.${system}.makeNixvimWithModule {
             inherit pkgs;
             module = import ./global/home/nixvim.nix { inherit pkgs; };

@@ -1,74 +1,173 @@
-{ ... }: {
-  programs.schizofox = {
-    enable = false;
-    security = {
-      sanitizeOnShutdown.enable = true;
-      userAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:106.0) Gecko/20100101 Firefox/106.0";
-    };
-    theme = {
-      colors = {
-        background = "282828";
-        background-darker = "383838";
-        foreground = "EEEEEE";
-      };
-      font = "Ubuntu";
-    };
-    misc = {
-      drm.enable = true;
-      disableWebgl = false;
-      contextMenu.enable = true;
-      bookmarks = [
-        {
-          Title = "Nix Packages";
-          URL = "https://search.nixos.org/packages";
-          placement = "menu";
-        }
-        {
-          Title = "LAINCHAN";
-          URL = "https://lainchan.org/";
-          placement = "menu";
-        }
+{ pkgs, lib, ... }: {
+  textfox = {
+    enable = true;
+    profile = "Default";
+  };
+  programs.firefox = {
+    enable = true;
+    package = pkgs.firefox-esr;
+    nativeMessagingHosts = [ pkgs.keepassxc ];
+
+    policies = {
+      DisableAppUpdate = true;
+      AppUpdateURL = "https://localhost/";
+      OverrideFirstRunPage = "";
+      OverridePostUpdatePage = "";
+      DisableFirefoxStudies = true;
+      DisableTelemetry = true;
+      DisableFeedbackCommands = true;
+      DisablePocket = true;
+      DisableFirefoxAccounts = true;
+      DisableFirefoxScreenshots = true;
+      DisableBuiltinPDFViewer = true;
+      DisableSetDesktopBackground = true;
+      NoDefaultBookmarks = true;
+      Extensions.Uninstall = [
+        "google@search.mozilla.org"
+        "bing@search.mozilla.org"
+        "amazondotcom@search.mozilla.org"
+        "ebay@search.mozilla.org"
+        "twitter@search.mozilla.org"
       ];
-    };
-    settings = {
-      "privacy.resistFingerprinting" = false;
-      "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
-      "svg.context-properties.content.enabled" = true;
-      "middlemouse.paste" = false;
-      "browser.toolbars.bookmarks.visibility" = "never";
-    };
-    search = {
-      defaultSearchEngine = "DuckDuckGo";
-      removeEngines = ["Google" "Bing" "Amazon.com" "eBay" "Twitter"];
-    };
-    extensions = {
-      simplefox.enable = false;
-      darkreader.enable = true;
-      extraExtensions = let
+      # Apparently only supported in the ESR so that's great
+      SearchEngines = {
+        Remove = [
+          "google@search.mozilla.org"
+          "bing@search.mozilla.org"
+          "amazondotcom@search.mozilla.org"
+          "ebay@search.mozilla.org"
+          "twitter@search.mozilla.org"
+        ];
+        Default = "DuckDuckGo";
+      };
+      ExtensionSettings = let
         latest = addon_id: "https://addons.mozilla.org/firefox/downloads/latest/${addon_id}/latest.xpi";
-      in {
-        "{36bdf805-c6f2-4f41-94d2-9b646342c1dc}".install_url = latest "export-cookies-txt";
-        "{74145f27-f039-47ce-a470-a662b129930a}".install_url = latest "clearurls";
-        "{b86e4813-687a-43e6-ab65-0bde4ab75758}".install_url = latest "localcdn-fork-of-decentraleyes";
-        "DontFuckWithPaste@raim.ist".install_url = latest "don-t-fuck-with-paste";
-        "{531906d3-e22f-4a6c-a102-8057b88a1a63}".install_url = latest "single-file";
-        "skipredirect@sblask".install_url = latest "skip-redirect";
-        "7esoorv3@alefvanoon.anonaddy.me".install_url = latest "libredirect";
-        "moz-addon-prod@7tv.app".install_url = "https://extension.7tv.gg/v3.0.9/ext.xpi";
-        "gdpr@cavi.au.dk".install_url = latest "consent_o_matic";
-        "enhancerforyoutube@maximerf.addons.mozilla.org".install_url = latest "enhancer-for-youtube";
-        "keepassxc-browser@keepassxc.org".install_url = latest "keepassxc-browser";
-        "mouse-pinch-to-zoom@niziolek.dev".install_url = latest "mouse-pinch-to-zoom";
-        "new-window-without-toolbar@tkrkt.com".install_url = latest "new-window-without-toolbar";
-        "{9063c2e9-e07c-4c2c-9646-cfe7ca8d0498}".install_url = latest "old-reddit-redirect";
-        "jid1-MnnxcxisBPnSXQ@jetpack".install_url = latest "privacy-badger17";
-        "jid1-xUfzOsOFlzSOXg@jetpack".install_url = latest "reddit-enhancement-suite";
-        "{762f9885-5a13-4abd-9c77-433dcd38b8fd}".install_url = latest "return-youtube-dislikes";
-        "sponsorBlocker@ajay.app".install_url = latest "sponsorblock";
-        "jid1-93WyvpgvxzGATw@jetpack".install_url = latest "to-google-translate";
-        "tubemod@extension.com".install_url = latest "tubemod";
-        "{d3d2a327-1ae0-4fd6-b732-0844d0b7fd4c}".install_url = latest "twitch-live-channels";
-        "{3c79db25-5fc9-4386-aaf7-0aaf5e07930f}".install_url = latest "vimium-ff";
+        mapExt = builtins.mapAttrs (name: value: {
+          installation_mode = "normal_installed";
+          install_url = value;
+        });
+      in mapExt {
+        "{36bdf805-c6f2-4f41-94d2-9b646342c1dc}" = latest "export-cookies-txt";
+        "{74145f27-f039-47ce-a470-a662b129930a}" = latest "clearurls";
+        "{b86e4813-687a-43e6-ab65-0bde4ab75758}" = latest "localcdn-fork-of-decentraleyes";
+        "DontFuckWithPaste@raim.ist" = latest "don-t-fuck-with-paste";
+        "{531906d3-e22f-4a6c-a102-8057b88a1a63}" = latest "single-file";
+        "skipredirect@sblask" = latest "skip-redirect";
+        "7esoorv3@alefvanoon.anonaddy.me" = latest "libredirect";
+        "gdpr@cavi.au.dk" = latest "consent_o_matic";
+        "keepassxc-browser@keepassxc.org" = latest "keepassxc-browser";
+        "mouse-pinch-to-zoom@niziolek.dev" = latest "mouse-pinch-to-zoom";
+        "new-window-without-toolbar@tkrkt.com" = latest "new-window-without-toolbar";
+        "jid1-93WyvpgvxzGATw@jetpack" = latest "to-google-translate";
+        # "tubemod@extension.com" = latest "tubemod";
+        "{d7742d87-e61d-4b78-b8a1-b469842139fa}" = latest "vimium-ff";
+      } // {
+        "uBlock0@raymondhill.net" = {
+          installation_mode = "force_installed";
+          install_url = latest "ublock-origin";
+        };
+      };
+      SupportMenu = {
+        Title = "Submit an issue"; # LMAO who is ever gonna click on this??
+        URL = "https://github.com/readf0x/dotfiles/issues";
+      };
+    };
+
+    profiles = {
+      Default = {
+        id = 0;
+        isDefault = true;
+        # This file was generated by Chat Gippity, don't trust it
+        # I have reviewed it, but not *thoroughly*
+        settings = import ./firefox_hardening_config.nix // {
+          "middlemouse.paste" = false;
+          "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
+          # It's pretty cool but it's broken on 24.11, untested with ESR
+          # "widget.use-xdg-desktop-portal.file-picker" = 1;
+          "widget.use-xdg-desktop-portal.mime-handler" = 1;
+          "browser.toolbars.bookmarks.visibility" = "never";
+          "browser.uiCustomization.state" = ''browser.uiCustomization.state	{"placements":{"widget-overflow-fixed-list":[],"unified-extensions-area":["moz-addon-prod_7tv_app-browser-action","sponsorblocker_ajay_app-browser-action","jid1-mnnxcxisbpnsxq_jetpack-browser-action","_3c078156-979c-498b-8990-85f7987dd929_-browser-action","mouse-pinch-to-zoom_niziolek_dev-browser-action","dontfuckwithpaste_raim_ist-browser-action","new-window-without-toolbar_tkrkt_com-browser-action","skipredirect_sblask-browser-action","_74145f27-f039-47ce-a470-a662b129930a_-browser-action","_531906d3-e22f-4a6c-a102-8057b88a1a63_-browser-action","_36bdf805-c6f2-4f41-94d2-9b646342c1dc_-browser-action","7esoorv3_alefvanoon_anonaddy_me-browser-action","_b86e4813-687a-43e6-ab65-0bde4ab75758_-browser-action","firefoxcolor_mozilla_com-browser-action","_076d8ebb-5df6-48e0-a619-99315c395644_-browser-action","_a7399979-5203-4489-9861-b168187b52e1_-browser-action","addon_darkreader_org-browser-action","enhancerforyoutube_maximerf_addons_mozilla_org-browser-action","_762f9885-5a13-4abd-9c77-433dcd38b8fd_-browser-action"],"nav-bar":["bookmarks-menu-button","back-button","forward-button","stop-reload-button","ublock0_raymondhill_net-browser-action","urlbar-container","save-to-pocket-button","downloads-button","_d7742d87-e61d-4b78-b8a1-b469842139fa_-browser-action","keepassxc-browser_keepassxc_org-browser-action","_d3d2a327-1ae0-4fd6-b732-0844d0b7fd4c_-browser-action","fxa-toolbar-menu-button","unified-extensions-button"],"toolbar-menubar":["menubar-items"],"TabsToolbar":["tabbrowser-tabs","new-tab-button","alltabs-button"],"PersonalToolbar":["import-button","personal-bookmarks"]},"seen":["developer-button","mouse-pinch-to-zoom_niziolek_dev-browser-action","dontfuckwithpaste_raim_ist-browser-action","_d7742d87-e61d-4b78-b8a1-b469842139fa_-browser-action","new-window-without-toolbar_tkrkt_com-browser-action","skipredirect_sblask-browser-action","_74145f27-f039-47ce-a470-a662b129930a_-browser-action","ublock0_raymondhill_net-browser-action","_531906d3-e22f-4a6c-a102-8057b88a1a63_-browser-action","keepassxc-browser_keepassxc_org-browser-action","_36bdf805-c6f2-4f41-94d2-9b646342c1dc_-browser-action","7esoorv3_alefvanoon_anonaddy_me-browser-action","_b86e4813-687a-43e6-ab65-0bde4ab75758_-browser-action","firefoxcolor_mozilla_com-browser-action","_076d8ebb-5df6-48e0-a619-99315c395644_-browser-action","_a7399979-5203-4489-9861-b168187b52e1_-browser-action","addon_darkreader_org-browser-action","enhancerforyoutube_maximerf_addons_mozilla_org-browser-action","jid1-mnnxcxisbpnsxq_jetpack-browser-action","_3c078156-979c-498b-8990-85f7987dd929_-browser-action","_762f9885-5a13-4abd-9c77-433dcd38b8fd_-browser-action","_d3d2a327-1ae0-4fd6-b732-0844d0b7fd4c_-browser-action","sponsorblocker_ajay_app-browser-action","moz-addon-prod_7tv_app-browser-action"],"dirtyAreaCache":["nav-bar","unified-extensions-area","PersonalToolbar","TabsToolbar","toolbar-menubar"],"currentVersion":20,"newElementCount":7}'';
+          "extensions.autoDisableScopes" = 0;
+          "browser.display.background_color" = "#282828";
+          "privacy.fingerprintingProtection" = true;
+          "privacy.fingerprintingProtection.overrides" = "+AllTargets,-CSSPrefersColorScheme";
+        };
+
+        bookmarks = [
+          {
+            name = "NixOS Packages";
+            url = "https://search.nixos.org/packages";
+          }
+          {
+            name = "Nix Manual";
+            url = "https://ryantm.github.io/nixpkgs/";
+          }
+          {
+            name = "Immich";
+            url = "http://immich.planetbob.net/";
+          }
+          {
+            name = "Requests";
+            url = "http://requests.planetbob.net/";
+          }
+          {
+            name = "AMP";
+            url = "http://10.0.0.2:8081/";
+          }
+          {
+            name = "Git";
+            url = "http://gitlab.planetbob.net/";
+          }
+          {
+            name = "LAINCHAN";
+            url = "https://lainchan.org/";
+          }
+          {
+            name = "Quickshell";
+            url = "https://quickshell.outfoxxed.me/";
+          }
+        ];
+
+        extensions = with pkgs.nur.repos.rycee.firefox-addons; [
+          darkreader
+          enhancer-for-youtube
+          firefox-color
+          privacy-badger
+          purpleadblock
+          reddit-enhancement-suite
+          return-youtube-dislikes
+          seventv
+          sponsorblock
+          twitch-auto-points
+
+          (buildFirefoxXpiAddon {
+            pname = "twitch-live-channels";
+            version = "1.0.24";
+            addonId = "{d3d2a327-1ae0-4fd6-b732-0844d0b7fd4c}";
+            url = "https://addons.mozilla.org/firefox/downloads/latest/twitch-live-channels/latest.xpi";
+            sha256 = "sha256-AZqaXyX6rHB3ZABQUbMx3AESAaWIjaCO9/301nV+RSo=";
+            meta = { homepage = "https://github.com/s4my/TwitchLiveChannels/";
+              description = "Twitch Live Channels helps you keep track of who is LIVE out of the channels you follow on Twitch.";
+              license = lib.licenses.gpl3;
+              mozPermissions = [
+                "storage"
+                "notifications"
+                "identity"
+                "https://*.twitch.tv/"
+              ];
+              platforms = lib.platforms.all;
+            };
+          })
+        ];
+
+        search = {
+          default = "DuckDuckGo";
+          engines = {};
+        };
+      };
+      I2P = {
+        id = 1;
+        isDefault = false;
       };
     };
   };
