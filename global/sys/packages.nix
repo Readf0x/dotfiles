@@ -1,4 +1,4 @@
-{ pkgs, self, conf, lib, inputs, unstable, ... }: {
+{ pkgs, conf, lib, inputs, unstable, ... }: {
   environment = {
     etc."/xdg/menus/applications.menu".source =
     "${pkgs.kdePackages.plasma-workspace}/etc/xdg/menus/plasma-applications.menu";
@@ -137,7 +137,7 @@
   };
 
   fonts.packages = builtins.attrValues (
-    lib.filterAttrs (n: v: lib.hasPrefix "maple-font" n) self.packages.${conf.system}
+    lib.filterAttrs (n: v: ! lib.hasSuffix "-unhinted" n) unstable.maple-mono
   ) ++ (with pkgs; [
     cantarell-fonts
     noto-fonts
