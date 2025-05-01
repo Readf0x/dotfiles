@@ -58,7 +58,7 @@
         packages = (
           lib.mapAttrs' (name': value: { name = "maple-font-${name'}"; inherit value; }) (import ./packages/maple-font.nix { inherit pkgs; })
         ) // {
-          # TODO: fix this ABSOLUTE NIGHTMARE NIGHTMARE NIGHTMARE NIGHTMARE NIGHTMARE NIGHTMARE NIGHTMARE NIGHTMARE NIGHTMARE NIGHTMARE NIGHTMARE
+          # [TODO] fix this ABSOLUTE NIGHTMARE NIGHTMARE NIGHTMARE NIGHTMARE NIGHTMARE NIGHTMARE NIGHTMARE NIGHTMARE NIGHTMARE NIGHTMARE NIGHTMARE
           chili = import ./packages/chili.nix { inherit pkgs; image = builtins.toPath "${inputs.wallpapers.packages.${system}.default}/89875190_p0.jpg"; hash = "sha256-3a1lYwBRrfIvLddG7228PDdNuKSeWCrs2v7zRVdNxiE="; };
           discord-rpc = import ./packages/discord-rpc.nix { inherit pkgs; };
           nvim = inputs.nixvim.legacyPackages.${system}.makeNixvimWithModule {

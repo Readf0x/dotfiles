@@ -73,6 +73,7 @@
       };
     };
 
+    # [TODO] Decide whether or not to save history & tabs
     profiles = {
       Default = {
         id = 0;

@@ -269,7 +269,7 @@ in {
       #  _\ \/ __/ _ `/ __/ __/ // / _ \
       # /___/\__/\_,_/_/  \__/\_,_/ .__/
       #                          /_/    
-      # TODO: finish startup
+      # [TODO] finish startup
       exec-once = [
         "balooctl6 enable"
         "clipse -listen"
