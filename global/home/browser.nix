@@ -86,11 +86,11 @@
           # "widget.use-xdg-desktop-portal.file-picker" = 1;
           "widget.use-xdg-desktop-portal.mime-handler" = 1;
           "browser.toolbars.bookmarks.visibility" = "never";
-          "browser.uiCustomization.state" = ''browser.uiCustomization.state	{"placements":{"widget-overflow-fixed-list":[],"unified-extensions-area":["moz-addon-prod_7tv_app-browser-action","sponsorblocker_ajay_app-browser-action","jid1-mnnxcxisbpnsxq_jetpack-browser-action","_3c078156-979c-498b-8990-85f7987dd929_-browser-action","mouse-pinch-to-zoom_niziolek_dev-browser-action","dontfuckwithpaste_raim_ist-browser-action","new-window-without-toolbar_tkrkt_com-browser-action","skipredirect_sblask-browser-action","_74145f27-f039-47ce-a470-a662b129930a_-browser-action","_531906d3-e22f-4a6c-a102-8057b88a1a63_-browser-action","_36bdf805-c6f2-4f41-94d2-9b646342c1dc_-browser-action","7esoorv3_alefvanoon_anonaddy_me-browser-action","_b86e4813-687a-43e6-ab65-0bde4ab75758_-browser-action","firefoxcolor_mozilla_com-browser-action","_076d8ebb-5df6-48e0-a619-99315c395644_-browser-action","_a7399979-5203-4489-9861-b168187b52e1_-browser-action","addon_darkreader_org-browser-action","enhancerforyoutube_maximerf_addons_mozilla_org-browser-action","_762f9885-5a13-4abd-9c77-433dcd38b8fd_-browser-action"],"nav-bar":["bookmarks-menu-button","back-button","forward-button","stop-reload-button","ublock0_raymondhill_net-browser-action","urlbar-container","save-to-pocket-button","downloads-button","_d7742d87-e61d-4b78-b8a1-b469842139fa_-browser-action","keepassxc-browser_keepassxc_org-browser-action","_d3d2a327-1ae0-4fd6-b732-0844d0b7fd4c_-browser-action","fxa-toolbar-menu-button","unified-extensions-button"],"toolbar-menubar":["menubar-items"],"TabsToolbar":["tabbrowser-tabs","new-tab-button","alltabs-button"],"PersonalToolbar":["import-button","personal-bookmarks"]},"seen":["developer-button","mouse-pinch-to-zoom_niziolek_dev-browser-action","dontfuckwithpaste_raim_ist-browser-action","_d7742d87-e61d-4b78-b8a1-b469842139fa_-browser-action","new-window-without-toolbar_tkrkt_com-browser-action","skipredirect_sblask-browser-action","_74145f27-f039-47ce-a470-a662b129930a_-browser-action","ublock0_raymondhill_net-browser-action","_531906d3-e22f-4a6c-a102-8057b88a1a63_-browser-action","keepassxc-browser_keepassxc_org-browser-action","_36bdf805-c6f2-4f41-94d2-9b646342c1dc_-browser-action","7esoorv3_alefvanoon_anonaddy_me-browser-action","_b86e4813-687a-43e6-ab65-0bde4ab75758_-browser-action","firefoxcolor_mozilla_com-browser-action","_076d8ebb-5df6-48e0-a619-99315c395644_-browser-action","_a7399979-5203-4489-9861-b168187b52e1_-browser-action","addon_darkreader_org-browser-action","enhancerforyoutube_maximerf_addons_mozilla_org-browser-action","jid1-mnnxcxisbpnsxq_jetpack-browser-action","_3c078156-979c-498b-8990-85f7987dd929_-browser-action","_762f9885-5a13-4abd-9c77-433dcd38b8fd_-browser-action","_d3d2a327-1ae0-4fd6-b732-0844d0b7fd4c_-browser-action","sponsorblocker_ajay_app-browser-action","moz-addon-prod_7tv_app-browser-action"],"dirtyAreaCache":["nav-bar","unified-extensions-area","PersonalToolbar","TabsToolbar","toolbar-menubar"],"currentVersion":20,"newElementCount":7}'';
           "extensions.autoDisableScopes" = 0;
           "browser.display.background_color" = "#282828";
           "privacy.fingerprintingProtection" = true;
           "privacy.fingerprintingProtection.overrides" = "+AllTargets,-CSSPrefersColorScheme";
+          "extensions.webextensions.ExtensionStorageIDB.enabled" = false;
         };
 
         bookmarks = [
@@ -129,6 +129,7 @@
         ];
 
         extensions = with pkgs.nur.repos.rycee.firefox-addons; [
+          consent-o-matic
           darkreader
           enhancer-for-youtube
           firefox-color
@@ -163,6 +164,7 @@
         search = {
           default = "DuckDuckGo";
           engines = {};
+          force = true;
         };
       };
       I2P = {

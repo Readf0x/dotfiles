@@ -143,6 +143,7 @@ in {
       "$a" = "ALT";
       "$hyper" = "SHIFT CTRL SUPER ALT";
       "$music" = "~/Scripts/media";
+      "$browser" = "firefox-esr";
 
       bind = [
         # IMPORTANT:
@@ -152,8 +153,8 @@ in {
         "$mod, Return, exec, kitty"
         "$mod $s, Return, exec, kitty --config ${builtins.toString conf.homeDir}/.config/kitty/safe.conf"
         "$mod, E, exec, dolphin"
-        "$mod, W, exec, firefox-esr"
-        "$mod $a, W, exec, firefox-esr -P I2P"
+        "$mod, W, exec, $browser"
+        "$mod $a, W, exec, $browser -P I2P"
         "$mod $s, C, exec, hyprpicker -an"
         ", Print, exec, grimblast --freeze copysave area ~/Pictures/Screenshots/screenshot_$(date +%Y-%m-%d_%H-%m-%s).png"
         "$s, Print, exec, grimblast --freeze copysave screen ~/Pictures/Screenshots/screenshot_$(date +%Y-%m-%d_%H-%m-%s).png"
@@ -227,6 +228,8 @@ in {
         "$mod, tab, movecurrentworkspacetomonitor, +1"
         "$mod, mouse_down, workspace, e-1"
         "$mod, mouse_up, workspace, e+1"
+
+        "$mod, R, exec, rofi -show run"
       ] ++ (
         builtins.concatLists (builtins.genList (
           x: let
@@ -488,6 +491,9 @@ in {
         # LibreWolf
         "float, title:(Close Firefox)"
         "opacity 1.0, title:.*(YouTube|Twitch|Figma).*, class:^(firefox-esr)$"
+        "opacity 1.0, title:.*(YouTube|Twitch|Figma).*, class:^(firefox)$"
+        # Figma Linux
+        "opacity 1.0, class:^(figma-linux)$"
         # Godot
         "tile, class:(Godot_Engine), title:(Godot)"
         "tile, class:(\\w+), title:(Godot)"

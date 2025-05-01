@@ -58,6 +58,11 @@
         "video/mpeg" = "mpv.desktop";
         "video/ogg" = "mpv.desktop";
         "video/webm" = "mpv.desktop";
+        "text/html" = "firefox-esr.desktop";
+        "x-scheme-handler/http" = "firefox-esr.desktop";
+        "x-scheme-handler/https" = "firefox-esr.desktop";
+        "x-scheme-handler/about" = "firefox-esr.desktop";
+        "x-scheme-handler/unknown" = "firefox-esr.desktop";
       };
     };
     portal = {
