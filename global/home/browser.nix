@@ -2,6 +2,11 @@
   textfox = {
     enable = true;
     profile = "Default";
+    config.extraConfig = ''
+      #tabbrowser-tabbox::before {
+        padding: 6px 4px 0;
+      }
+    '';
   };
   programs.firefox = {
     enable = true;
