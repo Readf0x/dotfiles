@@ -55,14 +55,10 @@
         "{36bdf805-c6f2-4f41-94d2-9b646342c1dc}" = latest "export-cookies-txt";
         "{74145f27-f039-47ce-a470-a662b129930a}" = latest "clearurls";
         "{b86e4813-687a-43e6-ab65-0bde4ab75758}" = latest "localcdn-fork-of-decentraleyes";
-        "DontFuckWithPaste@raim.ist" = latest "don-t-fuck-with-paste";
-        "{531906d3-e22f-4a6c-a102-8057b88a1a63}" = latest "single-file";
         "skipredirect@sblask" = latest "skip-redirect";
         "7esoorv3@alefvanoon.anonaddy.me" = latest "libredirect";
-        "gdpr@cavi.au.dk" = latest "consent_o_matic";
         "keepassxc-browser@keepassxc.org" = latest "keepassxc-browser";
         "mouse-pinch-to-zoom@niziolek.dev" = latest "mouse-pinch-to-zoom";
-        "new-window-without-toolbar@tkrkt.com" = latest "new-window-without-toolbar";
         "jid1-93WyvpgvxzGATw@jetpack" = latest "to-google-translate";
         # "tubemod@extension.com" = latest "tubemod";
         "{d7742d87-e61d-4b78-b8a1-b469842139fa}" = latest "vimium-ff";
@@ -133,13 +129,16 @@
         extensions = with pkgs.nur.repos.rycee.firefox-addons; [
           consent-o-matic
           darkreader
+          don-t-fuck-with-paste
           enhancer-for-youtube
           firefox-color
+          new-window-without-toolbar
           privacy-badger
           purpleadblock
           reddit-enhancement-suite
           return-youtube-dislikes
           seventv
+          single-file
           sponsorblock
           twitch-auto-points
 
@@ -173,6 +172,16 @@
       I2P = {
         id = 1;
         isDefault = false;
+        settings = import ./firefox_hardening_config.nix // {
+          "extensions.autoDisableScopes" = 0;
+          "privacy.window.maxInnerWidth" = 1400;
+          "privacy.window.maxInnerHeight" = 900;
+        };
+
+        extensions = with pkgs.nur.repos.rycee.firefox-addons; [
+          noscript
+          foxyproxy-standard
+        ];
       };
     };
   };

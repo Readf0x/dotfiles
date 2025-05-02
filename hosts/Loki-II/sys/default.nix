@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{ pkgs, unstable, ... }: {
   nixpkgs.config.rocmSupport = true;
 
   imports = [
@@ -38,6 +38,10 @@
         HCC_AMDGPU_TARGET = "gfx1032";
       };
       rocmOverrideGfx = "10.3.2";
+    };
+    open-webui = {
+      enable = true;
+      package = unstable.open-webui;
     };
   };
 

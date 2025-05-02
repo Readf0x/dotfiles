@@ -137,7 +137,7 @@
   };
 
   fonts.packages = builtins.attrValues (
-    lib.filterAttrs (n: v: ! lib.hasSuffix "-unhinted" n) unstable.maple-mono
+    lib.filterAttrs (n: v: ! lib.hasSuffix "-unhinted" n && lib.isDerivation v) unstable.maple-mono
   ) ++ (with pkgs; [
     cantarell-fonts
     noto-fonts
