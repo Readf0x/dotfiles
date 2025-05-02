@@ -1,8 +1,11 @@
-{ pkgs, lib, ... }: {
+{ pkgs, lib, config, ... }: {
   textfox = {
     enable = true;
     profile = "Default";
   };
+  # home.file.".mozilla/firefox/Default/chrome/config.css" = config.home.file.".mozilla/firefox/Default/chrome/config.css" ++ ''
+  #   @-moz-document url-prefix(about:blank) {*{background-color:#282828;}}
+  # '';
   programs.firefox = {
     enable = true;
     package = pkgs.firefox-esr;
@@ -89,9 +92,16 @@
           "browser.toolbars.bookmarks.visibility" = "never";
           "extensions.autoDisableScopes" = 0;
           "browser.display.background_color" = "#282828";
-          "privacy.fingerprintingProtection" = true;
-          "privacy.fingerprintingProtection.overrides" = "+AllTargets,-CSSPrefersColorScheme";
+          # Doesn't work in ESR D:
+          # "privacy.fingerprintingProtection" = true;
+          # "privacy.fingerprintingProtection.overrides" = "+AllTargets,-CSSPrefersColorScheme";
           "extensions.webextensions.ExtensionStorageIDB.enabled" = false;
+          "browser.sessionstore.resume_session_once" = false;
+          "browser.startup.page" = 2;
+          # Disable aggressive privacy options that make UX worse
+          "privacy.resistFingerprinting" = false;
+          "webgl.disabled" = false;
+          "privacy.clearOnShutdown.history" = false;
         };
 
         bookmarks = [

@@ -57,11 +57,11 @@ in {
 
       # https://wiki.hyprland.org/Configuring/Variables/#general
       general = {
-        gaps_in = 0;
-        gaps_out = 0;
-        border_size = 0;
-        "col.active_border" = "rgb(dddddd)";
-        "col.inactive_border" = "rgb(464646)";
+        gaps_in = 2;
+        gaps_out = 2;
+        border_size = 2;
+        "col.active_border" = "rgb(eeeeee)";
+        "col.inactive_border" = "rgb(eeeeee)";
 
         layout = "dwindle";
 
@@ -80,7 +80,7 @@ in {
         };
 
         shadow = {
-          enabled = true;
+          enabled = false;
           range = 7;
           render_power = 3;
           color = "rgba(1111119b)";
@@ -163,7 +163,7 @@ in {
         "$mod, Escape, exec, hyprlock"
         "$mod, D, togglespecialworkspace, dropdown"
         "$mod, K, togglespecialworkspace, KeepassXC"
-        "$mod, R, exec, ~/Scripts/wallpaper"
+        "$mod $s, R, exec, ~/Scripts/wallpaper"
         "$mod, N, exec, swaync-client -t"
         "$mod $s, N, exec, swaync-client -C"
         "$mod, Escape, exec, hyprlock"
@@ -312,19 +312,19 @@ in {
         # Disallow auto maximize
         "suppressevent maximize activate activatefocus, class:(.*)"
         # Global Opacity
-        "opacity 0.8, class:(.*)"
+        # "opacity 0.8, class:(.*)"
         # No opacity on videos
         "opacity 1.0, class:^(mpv)$"
         "opacity 1.0, class:^(steam_app_.*)"
         "opacity 1.0, class:^(streaming_client)$"
         # Floating borders
-        "bordersize 1, onworkspace:special:dropdown"
-        "bordersize 1, onworkspace:special:KeepassXC"
-        "bordersize 1, floating:1"
-        "rounding 8, onworkspace:special:dropdown"
-        "rounding 8, onworkspace:special:KeepassXC"
-        "rounding 8, floating:1"
-        "noshadow, floating:0"
+        # "bordersize 1, onworkspace:special:dropdown"
+        # "bordersize 1, onworkspace:special:KeepassXC"
+        # "bordersize 1, floating:1"
+        # "rounding 8, onworkspace:special:dropdown"
+        # "rounding 8, onworkspace:special:KeepassXC"
+        # "rounding 8, floating:1"
+        # "noshadow, floating:0"
         # Disable blur on popups
         "noblur, class:^()$, title: ^()$"
         # Auth Window

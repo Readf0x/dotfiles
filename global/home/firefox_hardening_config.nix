@@ -117,7 +117,7 @@
   "media.peerconnection.ice.proxy_only_if_behind_proxy" = true;
   "media.peerconnection.ice.default_address_only" = true;
   "media.peerconnection.ice.no_host" = true;
-  # "webgl.disabled" = true;
+  "webgl.disabled" = true;
   "media.autoplay.default" = 5;
   "media.eme.enabled" = false;
   "browser.download.useDownloadDir" = false;
@@ -146,7 +146,7 @@
   "privacy.clearOnShutdown.sessions" = true;
   "privacy.clearOnShutdown.sitesettings" = false;
   "privacy.sanitize.timeSpan" = 0;
-  # "privacy.resistFingerprinting" = true;
+  "privacy.resistFingerprinting" = true;
   "privacy.window.maxInnerWidth" = 1600;
   "privacy.window.maxInnerHeight" = 900;
   "privacy.resistFingerprinting.block_mozAddonManager" = true;
