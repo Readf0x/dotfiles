@@ -94,11 +94,13 @@
           # "privacy.fingerprintingProtection.overrides" = "+AllTargets,-CSSPrefersColorScheme";
           "extensions.webextensions.ExtensionStorageIDB.enabled" = false;
           "browser.sessionstore.resume_session_once" = false;
-          "browser.startup.page" = 2;
+          "browser.startup.page" = 3;
+          "browser.startup.restorePreviousSession" = true;
           # Disable aggressive privacy options that make UX worse
           "privacy.resistFingerprinting" = false;
           "webgl.disabled" = false;
           "privacy.clearOnShutdown.history" = false;
+          "privacy.sanitize.sanitizeOnShutdown" = false;
         };
 
         bookmarks = [
