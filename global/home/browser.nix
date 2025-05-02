@@ -2,9 +2,6 @@
   textfox = {
     enable = true;
     profile = "Default";
-    config.extraConfig = ''
-      @-moz-document url-prefix(about:blank) {*{background-color:#282828;}}
-    '';
   };
   programs.firefox = {
     enable = true;
