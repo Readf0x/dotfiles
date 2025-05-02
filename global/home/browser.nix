@@ -122,6 +122,8 @@
             url = "https://wiki.hyprland.org/"; }
           { name = "Quickshell";
             url = "https://quickshell.outfoxxed.me/"; }
+          { name = "YouTube";
+            url = "https://youtube.com/"; }
         ];
         extensions = with pkgs.nur.repos.rycee.firefox-addons; [
           consent-o-matic
