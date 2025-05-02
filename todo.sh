@@ -4,6 +4,7 @@
 function meow() {
   print "\# \[TODO\]";
 
+  # [TODO] Condense items
   items=(${(f)"$(rg '\[TODO\]')"})
   for i in $items; do
     print "$i" | sed 's/^\([a-zA-Z0-9\/\.]*\)/*\1*/' | sed 's/:\s*# /:\n/' | sed 's/\[TODO\]/-/'
