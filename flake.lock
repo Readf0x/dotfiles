@@ -934,11 +934,11 @@
         "nixpkgs": "nixpkgs_5"
       },
       "locked": {
-        "lastModified": 1746203341,
-        "narHash": "sha256-xVRSpxkwHPmoptT5ksihS1lnFC7LBijPXsiY8PXeQAw=",
+        "lastModified": 1746209175,
+        "narHash": "sha256-szqTJuKhs2wlZBcwlt38N6/F1CcZUC/ba/Ck1fDp5J4=",
         "owner": "readf0x",
         "repo": "wallpapers",
-        "rev": "4d62c6573492282717e6d741a81c785dd6dc668d",
+        "rev": "7265ee7c9f4115969ae458daf51d77e7284c10a1",
         "type": "github"
       },
       "original": {

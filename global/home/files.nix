@@ -1,8 +1,19 @@
-{ pkgs, conf, inputs, ... }: {
+{ pkgs, lib, lib', conf, inputs, ... }: let
+  mlib = lib'.monitors;
+in {
   home.file = {
     ".face.icon".source = ./../img/pfp.png;
     ".config/hypr/wallpapers".source = "${inputs.wallpapers.packages.${conf.system}.default}";
-    "Scripts".source = ./../scripts;
+    # "Scripts".source = ./../scripts;
+    "Scripts/wallpaper" = {
+      text = ''
+        #!/usr/bin/env zsh
+        # local arr=($(find -H "$HOME/.config/hypr/wallpapers" -name '*.jpg'))
+      '' + (lib.concatStringsSep "\n" (lib.imap0 (i: v:
+        "swww img -t none -o ${v.id} ~/.config/hypr/wallpapers/${builtins.toString i}.jpg"
+      ) conf.monitors));
+      executable = true;
+    };
     ".librewolf/${conf.librewolfProfile}/chrome".source = pkgs.fetchFromGitHub {
       owner = "readf0x";
       repo = "Firefox-Mod-Blur";
@@ -76,5 +87,5 @@
     #   Host Loki-IV
     #     HostName 10.1.11.100
     # '';
-  };
+  } // (lib.mapAttrs' (n: v: lib.nameValuePair "Scripts/${n}" { source = builtins.toPath "${builtins.toString ./..}/scripts/${n}"; }) (builtins.readDir ../scripts));
 }
