@@ -934,15 +934,16 @@
         "nixpkgs": "nixpkgs_5"
       },
       "locked": {
-        "lastModified": 1745545762,
-        "narHash": "sha256-OQtfHwYMr75sdL2hBF0O4UiPMB/NJEvaIEGpNbZadp4=",
+        "lastModified": 1746203341,
+        "narHash": "sha256-xVRSpxkwHPmoptT5ksihS1lnFC7LBijPXsiY8PXeQAw=",
         "owner": "readf0x",
         "repo": "wallpapers",
-        "rev": "8557f7216fe0920c72ecbf2ddfcfdea7573e56e2",
+        "rev": "4d62c6573492282717e6d741a81c785dd6dc668d",
         "type": "github"
       },
       "original": {
         "owner": "readf0x",
+        "ref": "neofuturism",
         "repo": "wallpapers",
         "type": "github"
       }

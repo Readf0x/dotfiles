@@ -42,7 +42,7 @@
     };
 
     wallpapers = {
-      url = "github:readf0x/wallpapers";
+      url = "github:readf0x/wallpapers/neofuturism";
     };
 
     textfox.url = "github:readf0x/textfox";
