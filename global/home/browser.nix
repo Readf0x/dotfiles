@@ -1,11 +1,11 @@
-{ pkgs, lib, config, ... }: {
+{ pkgs, lib, ... }: {
   textfox = {
     enable = true;
     profile = "Default";
+    config.extraConfig = ''
+      @-moz-document url-prefix(about:blank) {*{background-color:#282828;}}
+    '';
   };
-  # home.file.".mozilla/firefox/Default/chrome/config.css" = config.home.file.".mozilla/firefox/Default/chrome/config.css" ++ ''
-  #   @-moz-document url-prefix(about:blank) {*{background-color:#282828;}}
-  # '';
   programs.firefox = {
     enable = true;
     package = pkgs.firefox-esr;
@@ -105,40 +105,25 @@
         };
 
         bookmarks = [
-          {
-            name = "NixOS Packages";
-            url = "https://search.nixos.org/packages";
-          }
-          {
-            name = "Nix Manual";
-            url = "https://ryantm.github.io/nixpkgs/";
-          }
-          {
-            name = "Immich";
-            url = "http://immich.planetbob.net/";
-          }
-          {
-            name = "Requests";
-            url = "http://requests.planetbob.net/";
-          }
-          {
-            name = "AMP";
-            url = "http://10.0.0.2:8081/";
-          }
-          {
-            name = "Git";
-            url = "http://gitlab.planetbob.net/";
-          }
-          {
-            name = "LAINCHAN";
-            url = "https://lainchan.org/";
-          }
-          {
-            name = "Quickshell";
-            url = "https://quickshell.outfoxxed.me/";
-          }
+          { name = "NixOS Packages";
+            url = "https://search.nixos.org/packages"; }
+          { name = "Nix Manual";
+            url = "https://ryantm.github.io/nixpkgs/"; }
+          { name = "Immich";
+            url = "http://immich.planetbob.net/"; }
+          { name = "Requests";
+            url = "http://requests.planetbob.net/"; }
+          { name = "AMP";
+            url = "http://10.0.0.2:8081/"; }
+          { name = "Git";
+            url = "http://gitlab.planetbob.net/"; }
+          { name = "LAINCHAN";
+            url = "https://lainchan.org/"; }
+          { name = "Hyprland Wiki";
+            url = "https://wiki.hyprland.org/"; }
+          { name = "Quickshell";
+            url = "https://quickshell.outfoxxed.me/"; }
         ];
-
         extensions = with pkgs.nur.repos.rycee.firefox-addons; [
           consent-o-matic
           darkreader

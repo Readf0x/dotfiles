@@ -45,7 +45,7 @@
       url = "github:readf0x/wallpapers";
     };
 
-    textfox.url = "github:adriankarlen/textfox";
+    textfox.url = "github:readf0x/textfox";
   };
 
   outputs = { flake-parts, ... }@inputs:
