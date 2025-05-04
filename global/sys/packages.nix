@@ -141,8 +141,9 @@
   ) ++ (with pkgs; [
     cantarell-fonts
     # makes gimp 3 take 100x longer to open
-    # noto-fonts
-    noto-fonts-cjk-sans
+    # Fuck it, we'll wait
+    noto-fonts
+    # noto-fonts-cjk-sans
     monocraft
   ]);
 
