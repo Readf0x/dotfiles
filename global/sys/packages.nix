@@ -140,7 +140,9 @@
     lib.filterAttrs (n: v: ! lib.hasSuffix "-unhinted" n && lib.isDerivation v) unstable.maple-mono
   ) ++ (with pkgs; [
     cantarell-fonts
-    noto-fonts
+    # makes gimp 3 take 100x longer to open
+    # noto-fonts
+    noto-fonts-cjk-sans
     monocraft
   ]);
 

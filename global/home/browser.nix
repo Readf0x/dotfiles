@@ -101,6 +101,7 @@
           "webgl.disabled" = false;
           "privacy.clearOnShutdown.history" = false;
           "privacy.sanitize.sanitizeOnShutdown" = false;
+          "media.autoplay.default" = 0;
         };
 
         bookmarks = [

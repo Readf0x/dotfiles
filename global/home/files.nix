@@ -30,7 +30,7 @@ in {
       [Desktop Action dragonX]
       Name=Drag And Drop (X11)
       Icon=edit-move
-      Exec=env WAYLAND_DISPLAY= dragon-drop %U
+      Exec=env WAYLAND_DISPLAY= dragon %U
     '';
     ".config/Kvantum/Colloid".source = "${pkgs.colloid-kde}/share/Kvantum/Colloid";
     ".config/mpd/mpd.conf".text = ''

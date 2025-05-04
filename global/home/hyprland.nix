@@ -623,6 +623,7 @@ in {
           halign = "right";
           valign = "top";
         }
+        # [TODO] Make this specific to laptop
         {
           monitor = (monitor 0).id;
           text = "cmd[update:1000] echo \"$(cat /sys/class/power_supply/BAT0/capacity)%\"";
