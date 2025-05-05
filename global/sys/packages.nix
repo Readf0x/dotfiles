@@ -55,6 +55,7 @@
       android-tools
       bat
       btop
+      cava
       clipse
       ffmpeg
       fzf
@@ -118,7 +119,7 @@
       kservice
       plasma-workspace
       qt6ct
-      qtdeclarative
+      full
       qtstyleplugin-kvantum
       qtsvg
       qtwayland

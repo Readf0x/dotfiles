@@ -1,7 +1,10 @@
 #!/usr/bin/env zsh
-if [[ $1 == "lainchain" ]]; then
-  mpv 'https://radio.lainchan.org/listen/lainchan_radio_main/radio.mp3'
-else
-  print "not found"
-fi
+
+case $1 in
+  lainchan) mpv 'https://radio.lainchan.org/listen/lainchan_radio_main/radio.mp3' ;;
+  anonradio) mpv 'http://anonradio.net:8000/anonradio' ;;
+  lainon.life) mpv 'http://lainon.life:8000/cyberia.mp3'
+  *) print "not found"
+  ;;
+esac
 
