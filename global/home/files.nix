@@ -1,6 +1,4 @@
-{ pkgs, lib, lib', conf, inputs, ... }: let
-  mlib = lib'.monitors;
-in {
+{ pkgs, lib, conf, inputs, ... }: {
   home.file = {
     ".face.icon".source = ./../img/pfp.png;
     ".config/hypr/wallpapers".source = "${inputs.wallpapers.packages.${conf.system}.default}";
@@ -81,6 +79,12 @@ in {
         merge-conflict-theirs-diff-header-style = yellow bold
         merge-conflict-theirs-diff-header-decoration-style = blue box
     '';
+    ".config/quickshell".source = pkgs.fetchFromGitHub {
+      owner = "readf0x";
+      repo = "quickshell";
+      rev = "50dbaf9bbdc867ef769653e05f6a969f0b868949";
+      hash = "sha256-4m4yUnORikGq9eUkE/N9GfgBwFA+4nI45/a2oF7SaLA=";
+    };
     # ".ssh/config".text = ''
     #   Host Loki-II
     #     HostName 10.1.11.104
