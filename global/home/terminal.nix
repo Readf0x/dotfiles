@@ -39,7 +39,9 @@
         v = "nvim";
         zshr = "exec zsh";
         ":q" = "exit";
-        ";q" = "exit";
+        ":Q" = "exit";
+        "q" = "exit";
+        "Q" = "exit";
         dev = "nix develop --command zsh";
         "power!" = "poweroff";
         db = "distrobox";
