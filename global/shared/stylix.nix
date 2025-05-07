@@ -2,7 +2,7 @@
   stylix = {
     enable = true;
     image = builtins.toPath "${inputs.wallpapers.packages.${conf.system}.default}/89875190_p0.jpg";
-    base16Scheme = "${pkgs.base16-schemes}/share/themes/tender.yaml";
+    base16Scheme = ./mead.yaml;
     fonts = {
       serif = {
         package = pkgs.noto-fonts;

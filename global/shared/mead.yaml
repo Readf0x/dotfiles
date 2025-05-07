@@ -1,0 +1,21 @@
+system: "base16"
+name: "mead"
+author: "readf0x (https://github.com/readf0x)"
+variant: "dark"
+palette:
+  base00: "373635"  # color00 Black (background)
+  base01: "383838"  # color18
+  base02: "484848"  # color19
+  base03: "4C4946"  # color08 Bright_Black
+  base04: "b8b8b8"  # color20
+  base05: "FFF0E7"  # color07 White (foreground)
+  base06: "e8e8e8"  # color21
+  base07: "feffff"  # color15 Bright_White
+  base08: "BD594A"  # color01 Red
+  base09: "dc9656"  # color16
+  base0A: "ffc24b"  # color03 Yellow
+  base0B: "89A044"  # color02 Green
+  base0C: "3E966D"  # color06 Cyan
+  base0D: "5394B8"  # color04 Blue
+  base0E: "BD7C4A"  # color05 Magenta
+  base0F: "a16946"  # color17

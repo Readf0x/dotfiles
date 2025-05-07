@@ -60,8 +60,8 @@ in {
         gaps_in = 2;
         gaps_out = 2;
         border_size = 2;
-        "col.active_border" = "rgb(eeeeee)";
-        "col.inactive_border" = "rgb(eeeeee)";
+        "col.active_border" = "rgb(FFF0E7)";
+        "col.inactive_border" = "rgb(FFF0E7)";
 
         layout = "dwindle";
 
