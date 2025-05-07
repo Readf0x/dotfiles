@@ -5,8 +5,8 @@
     base16Scheme = "${pkgs.base16-schemes}/share/themes/tender.yaml";
     fonts = {
       serif = {
-        package = pkgs.google-fonts;
-        name = "Bitter";
+        package = pkgs.noto-fonts;
+        name = "Noto Serif";
       };
       sansSerif = {
         package = pkgs.ubuntu_font_family;
@@ -33,6 +33,7 @@
 
     targets = {
       nixvim.enable = false;
+      gnome.enable = false;
       gtk.enable = false;
     };
 

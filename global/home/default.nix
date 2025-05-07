@@ -61,6 +61,10 @@
       name = "Colloid-Dark";
       package = pkgs.colloid-icon-theme;
     };
+    # font = {
+    #   name = "Ubuntu";
+    #   package = pkgs.ubuntu_font_family;
+    # };
   };
   qt = {
     platformTheme.name = "qtct";
