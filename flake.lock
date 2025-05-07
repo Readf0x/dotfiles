@@ -808,15 +808,15 @@
         "nur": "nur_2"
       },
       "locked": {
-        "lastModified": 1746193506,
-        "narHash": "sha256-l0AX3WyTqYJO/PzGO7MjH0Fl7bOiiQGajqcKGabxCic=",
-        "owner": "readf0x",
+        "lastModified": 1746528461,
+        "narHash": "sha256-eGcYTy5DtU5CaZndgDlAvrwyj2le5YLHGWM1b/l48bA=",
+        "owner": "adriankarlen",
         "repo": "textfox",
-        "rev": "33043a6fca495f9de9fedea27e48fe1a1d75a4ee",
+        "rev": "94d0f1d595f347d512e307596e63c36e2b3b4de1",
         "type": "github"
       },
       "original": {
-        "owner": "readf0x",
+        "owner": "adriankarlen",
         "repo": "textfox",
         "type": "github"
       }

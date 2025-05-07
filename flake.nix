@@ -45,7 +45,7 @@
       url = "github:readf0x/wallpapers/neofuturism";
     };
 
-    textfox.url = "github:readf0x/textfox";
+    textfox.url = "github:adriankarlen/textfox";
   };
 
   outputs = { flake-parts, ... }@inputs:
