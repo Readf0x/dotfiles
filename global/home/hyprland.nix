@@ -142,7 +142,7 @@ in {
       "$c" = "CTRL";
       "$a" = "ALT";
       "$hyper" = "SHIFT CTRL SUPER ALT";
-      "$music" = "~/Scripts/media";
+      "$music" = "qs ipc call player";
       "$browser" = "firefox-esr";
 
       bind = [
@@ -159,7 +159,7 @@ in {
         ", Print, exec, grimblast --freeze copysave area ~/Pictures/Screenshots/screenshot_$(date +%Y-%m-%d_%H-%m-%s).png"
         "$s, Print, exec, grimblast --freeze copysave screen ~/Pictures/Screenshots/screenshot_$(date +%Y-%m-%d_%H-%m-%s).png"
         "$mod, F4, exec, wlogout -p layer-shell -b 5 -c 10"
-        "$mod, F5, exec, pkill waybar; waybar"
+        "$mod, F5, exec, qs kill; qs"
         "$mod, Escape, exec, hyprlock"
         "$mod, D, togglespecialworkspace, dropdown"
         "$mod, K, togglespecialworkspace, KeepassXC"
@@ -173,16 +173,16 @@ in {
         ", XF86MonBrightnessDown, exec, brightnessctl s 5%-"
 
         # Media controls
-        ", XF86AudioPlay, exec, $music play-pause"
-        "$mod, F10, exec, $music play-pause"
+        ", XF86AudioPlay, exec, $music playPause"
+        "$mod, F10, exec, $music playPause"
         ", XF86AudioNext, exec, $music next"
         "$mod, End, exec, $music next"
         ", XF86AudioPrev, exec, $music previous"
         "$mod, Home, exec, $music previous"
-        ", XF86Favorites, exec, $music next-player"
+        ", XF86Favorites, exec, $music nextPlayer"
+        "$mod, Insert, exec, $music nextPlayer"
         "$s, XF86Favorites, exec, ~/Scripts/player-info notify"
         "$a, XF86Favorites, exec, notify-send \"Current Battery Level: $(cat /sys/class/power_supply/BAT0/capacity)%\" -t 1000"
-        "$mod, Insert, exec, $music next-player"
         "$mod $s, H, exec, ~/Scripts/audio"
         ", XF86AudioMute, exec, pactl set-sink-mute $(pactl get-default-sink) toggle"
         ", XF86AudioMicMute, exec, pactl set-source-mute $(pactl get-default-source) toggle"
@@ -245,9 +245,9 @@ in {
         10)
       );
       binde = [
-        ", XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_SINK@ .05+"
+        ", XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_SINK@ .1+"
         "$mod, page_up, exec, wpctl set-volume @DEFAULT_SINK@ .05+"
-        ", XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_SINK@ .05-"
+        ", XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_SINK@ .1-"
         "$mod, page_down, exec, wpctl set-volume @DEFAULT_SINK@ .05-"
 
         "$mod $c, left, resizeactive, -60 0"
@@ -274,7 +274,7 @@ in {
         "clipse -listen"
         "hyprctl setcursor Bibata-Modern-Ice 24"
         "lxqt-policykit-agent"
-        "premid"
+        # "premid"
         "blueman-applet"
         "kdeconnect-indicator"
         "keepassxc"
@@ -285,9 +285,9 @@ in {
         # "steam -silent"
         "swaync"
         "swww-daemon; sleep 2; wallpaper"
-        "waybar"
+        "qs"
         "zsh -c '\${$(realpath $(which kdeconnect-cli))%\"bin/kdeconnect-cli\"}libexec/kdeconnectd'"
-        "~/Scripts/start-mpd"
+        # "~/Scripts/start-mpd"
         # "${pkgs.kdePackages.kdeconnect-kde}/libexec/kdeconnectd"
         #"/run/wrappers/bin/gnome-keyring-daemon --start --foreground --components=secrets"
       ];

@@ -36,14 +36,12 @@
       obsidian
       pavucontrol
       picard
-      premid
       prismlauncher
       qpwgraph
       rofi
       scrcpy
       swaynotificationcenter
       vesktop
-      vlc
       xemu
       youtube-music
       zathura
