@@ -57,13 +57,14 @@
       perSystem = { pkgs, lib, system, ... }: {
         packages = {
           # [TODO] fix this ABSOLUTE NIGHTMARE NIGHTMARE NIGHTMARE NIGHTMARE NIGHTMARE NIGHTMARE NIGHTMARE NIGHTMARE NIGHTMARE NIGHTMARE NIGHTMARE
-          chili = import ./packages/chili.nix { inherit pkgs; image = builtins.toPath "${inputs.wallpapers.packages.${system}.default}/89875190_p0.jpg"; hash = "sha256-3a1lYwBRrfIvLddG7228PDdNuKSeWCrs2v7zRVdNxiE="; };
+          chili = import ./packages/chili.nix { inherit pkgs; image = builtins.toPath "${inputs.wallpapers.packages.${system}.default}/0.jpg"; hash = "sha256-qUXKgOCMESkvtAZYLMYpmH6CeP/zyJfDD+QiO2WjqUA="; };
           discord-rpc = import ./packages/discord-rpc.nix { inherit pkgs; };
           nvim = inputs.nixvim.legacyPackages.${system}.makeNixvimWithModule {
             inherit pkgs;
             module = import ./global/home/nixvim.nix { inherit pkgs; };
           };
           ukmm-fork = import ./packages/ukmm.nix { inherit pkgs; };
+          fonts = import ./packages/fonts.nix { inherit pkgs; };
         };
       };
     };

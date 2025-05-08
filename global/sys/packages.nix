@@ -1,4 +1,4 @@
-{ pkgs, conf, lib, inputs, unstable, ... }: {
+{ pkgs, conf, self, lib, inputs, unstable, ... }: {
   environment = {
     etc."/xdg/menus/applications.menu".source =
     "${pkgs.kdePackages.plasma-workspace}/etc/xdg/menus/plasma-applications.menu";
@@ -138,6 +138,7 @@
   fonts.packages = builtins.attrValues (
     lib.filterAttrs (n: v: ! lib.hasSuffix "-unhinted" n && lib.isDerivation v) unstable.maple-mono
   ) ++ (with pkgs; [
+    self.packages.${conf.system}.fonts
     cantarell-fonts
     # makes gimp 3 take 100x longer to open
     # Fuck it, we'll wait

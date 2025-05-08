@@ -2,11 +2,14 @@
   textfox = {
     enable = true;
     profile = "Default";
-    config.extraConfig = ''
-      #tabbrowser-tabbox::before {
-        padding: 6px 4px 0;
-      }
-    '';
+    config = {
+      extraConfig = ''
+        #tabbrowser-tabbox::before {
+          margin: -1.3rem 0rem;
+        }
+      '';
+      font.family = "Courier";
+    };
   };
   programs.firefox = {
     enable = true;
@@ -55,8 +58,6 @@
         "{36bdf805-c6f2-4f41-94d2-9b646342c1dc}" = latest "export-cookies-txt";
         "{74145f27-f039-47ce-a470-a662b129930a}" = latest "clearurls";
         "{b86e4813-687a-43e6-ab65-0bde4ab75758}" = latest "localcdn-fork-of-decentraleyes";
-        "skipredirect@sblask" = latest "skip-redirect";
-        "7esoorv3@alefvanoon.anonaddy.me" = latest "libredirect";
         "keepassxc-browser@keepassxc.org" = latest "keepassxc-browser";
         "mouse-pinch-to-zoom@niziolek.dev" = latest "mouse-pinch-to-zoom";
         "jid1-93WyvpgvxzGATw@jetpack" = latest "to-google-translate";
@@ -134,13 +135,10 @@
           firefox-color
           new-window-without-toolbar
           privacy-badger
-          purpleadblock
           reddit-enhancement-suite
           return-youtube-dislikes
           seventv
-          single-file
           sponsorblock
-          twitch-auto-points
 
           (buildFirefoxXpiAddon {
             pname = "twitch-live-channels";
