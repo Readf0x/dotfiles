@@ -18,10 +18,7 @@
       # Desktop Applications
       blender-hip
       blockbench
-      deluge-gtk
       easyeffects
-      eog
-      gnome-font-viewer
       grimblast
       hexchat
       inkscape
@@ -39,6 +36,7 @@
       prismlauncher
       qpwgraph
       rofi
+      rssguard
       scrcpy
       swaynotificationcenter
       vesktop
@@ -127,8 +125,10 @@
       breeze-icons
       dolphin
       dolphin-plugins
+      gwenview
       kdegraphics-thumbnailers
       kdenlive
+      ktorrent
     ]) ++ (with wineWowPackages; [
       stableFull
       fonts
