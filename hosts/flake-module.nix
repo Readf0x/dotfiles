@@ -104,11 +104,9 @@ in {
       }) {
         Loki-II = {
           pokemon = "buizel";
-          librewolfProfile = "z3s5q0ct.default";
         };
         Loki-IV = {
           pokemon = "sylveon";
-          librewolfProfile = "6qar1mkn.default";
         };
       };
     };

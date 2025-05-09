@@ -12,12 +12,6 @@
       ) conf.monitors));
       executable = true;
     };
-    ".librewolf/${conf.librewolfProfile}/chrome".source = pkgs.fetchFromGitHub {
-      owner = "readf0x";
-      repo = "Firefox-Mod-Blur";
-      rev = "ddad9e40fa0d27d7b94e4bb719124f0cc2808137";
-      hash = "sha256-Hndp/FEGhzRfMgIIokGgfcY8vcdLD3My97yL0vsITvs=";
-    };
     ".local/share/lutris/runners/xemu/xemu".source = "${pkgs.xemu}/bin/xemu";
     ".local/share/kio/servicemenus/dragon.desktop".text = ''
       [Desktop Entry]

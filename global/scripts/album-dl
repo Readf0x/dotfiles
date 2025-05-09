@@ -3,7 +3,7 @@
 if [[ $1 == '-h' ]]; then
   echo "usage: $0 [-h] [-d | <name> <url> [--picard] [--cookies <cookies.txt>]]"
 elif [[ $1 != '-d' ]]; then
-  local profile="firefox:$(print ~/.librewolf/*.default)"
+  local profile="firefox:$(print ~/.mozilla/firefox/Default)"
   mkdir ~/Music/$1
   cd ~/Music/$1
   if [[ $3 == "--cookies" ]]; then
