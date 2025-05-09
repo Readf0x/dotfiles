@@ -185,6 +185,7 @@ in {
         "$a, XF86Favorites, exec, notify-send \"Current Battery Level: $(cat /sys/class/power_supply/BAT0/capacity)%\" -t 1000"
         "$mod $s, H, exec, ~/Scripts/audio"
         ", XF86AudioMute, exec, pactl set-sink-mute $(pactl get-default-sink) toggle"
+        "$mod, Delete, exec, pactl set-sink-mute $(pactl get-default-sink) toggle"
         ", XF86AudioMicMute, exec, pactl set-source-mute $(pactl get-default-source) toggle"
 
         # Window management
