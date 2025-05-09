@@ -246,9 +246,9 @@ in {
       );
       binde = [
         ", XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_SINK@ .1+"
-        "$mod, page_up, exec, wpctl set-volume @DEFAULT_SINK@ .05+"
+        "$mod, page_up, exec, wpctl set-volume @DEFAULT_SINK@ .1+"
         ", XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_SINK@ .1-"
-        "$mod, page_down, exec, wpctl set-volume @DEFAULT_SINK@ .05-"
+        "$mod, page_down, exec, wpctl set-volume @DEFAULT_SINK@ .1-"
 
         "$mod $c, left, resizeactive, -60 0"
         "$mod $c, right, resizeactive, 60 0"
