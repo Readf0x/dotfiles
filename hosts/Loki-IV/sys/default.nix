@@ -18,6 +18,7 @@
     LC_TELEPHONE = "en_US.UTF-8";
     LC_TIME = "en_US.UTF-8";
   };
+  networking.networkmanager.wifi.backend = "iwd";
   services = {
     xserver.xkb = {
       layout = "us";
