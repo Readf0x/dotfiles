@@ -8,7 +8,7 @@
           margin: -1.3rem 0rem;
         }
       '';
-      font.family = "Courier";
+      font.family = "Courier20, Courier13, Courier, monospace";
     };
   };
   programs.firefox = {
