@@ -624,17 +624,6 @@ in {
           halign = "right";
           valign = "top";
         }
-        # [TODO] Make this specific to laptop
-        {
-          monitor = (monitor 0).id;
-          text = "cmd[update:1000] echo \"$(cat /sys/class/power_supply/BAT0/capacity)%\"";
-          color = "rgb(dddddd)";
-          font_size = 12;
-          font_family = "Ubuntu Nerd Font";
-          position = "-10, -70";
-          halign = "right";
-          valign = "top";
-        }
       ];
     };
   };

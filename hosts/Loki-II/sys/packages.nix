@@ -6,18 +6,11 @@
     qemu
     cemu
     bridge-utils
-    distrobox
-    distrobox-tui
     virtiofsd
   ]);
 
   virtualisation = {
     libvirtd.enable = true;
-    docker.enable = false;
-    podman = {
-      enable = true;
-      dockerCompat = true;
-    };
   };
 
   programs = {

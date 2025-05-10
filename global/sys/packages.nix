@@ -53,6 +53,8 @@
       btop
       cava
       clipse
+      distrobox
+      distrobox-tui
       ffmpeg
       fzf
       gamescope

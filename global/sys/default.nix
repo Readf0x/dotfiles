@@ -1,4 +1,4 @@
-{ pkgs, conf, self, lib, ... }: {
+{ pkgs, conf, inputs, lib, ... }: {
   imports = [
     ./../shared/stylix.nix
     ./packages.nix
@@ -105,7 +105,11 @@
       sddm = {
         enable = true;
         wayland.enable = true;
-        theme = let name = "chili"; in "${self.packages.${conf.system}.${name}}/share/sddm/themes/${name}";
+        theme = let
+          chili = pkgs.sddm-chili-theme.override {
+            themeConfig = { background = "${inputs.wallpapers.packages.${conf.system}.default}/0.jpg"; };
+          };
+        in "${chili}/share/sddm/themes/chili";
       };
     };
     #gnome.gnome-keyring.enable = true;
@@ -214,4 +218,12 @@
   nix.extraOptions = ''
     download-speed = 25000
   '';
+
+  virtualisation = {
+    docker.enable = false;
+    podman = {
+      enable = true;
+      dockerCompat = true;
+    };
+  };
 }

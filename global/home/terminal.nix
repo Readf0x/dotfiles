@@ -25,7 +25,6 @@
         ];
       };
       shellAliases = {
-        cat = "bat";
         diff = "diff --color";
         grep = "rg";
         hyc = "hyprctl";
@@ -46,11 +45,19 @@
         "power!" = "poweroff";
         db = "distrobox";
       };
-      shellGlobalAliases = { "--help" = "--help | bat -plhelp"; };
       localVariables = {
         MANPAGER = "sh -c 'col -bx | bat -l man -p'";
         GOPATH = "$HOME/.config/go";
       };
+      initExtraBeforeCompInit = ''
+        if [[ $CONTAINER_ID ]]; then
+          export function compinit() {
+            unfunction compinit
+            autoload -Uz compinit
+            compinit -i $@
+          }
+        fi
+      '';
       initExtraFirst = ''
         [[ $KITTY_WINDOW_ID -gt 1 ]] || ! [[ $KITTY_SHELL_INTEGRATION = no-rc ]] || [[ $SHLVL -gt 1 ]] || pokeget ${conf.pokemon} --hide-name
         export DIRENV_LOG_FORMAT=
@@ -64,9 +71,7 @@
         bindkey '^[[F' end-of-line
         bindkey '^[[A' history-substring-search-up
         bindkey '^[[B' history-substring-search-down
-        autoload -U select-word-style
-        select-word-style bash
-        autoload -Uz +X compinit && compinit
+        autoload -U select-word-style && select-word-style bash
         zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
         zstyle ':completion:*' menu select
 
@@ -75,12 +80,12 @@
         #  distrobox $1 --root '' + "$\{@:2} " + ''
         #}
 
-        # if test -n "$KITTY_INSTALLATION_DIR"; then
-        #   export KITTY_SHELL_INTEGRATION="enabled"
-        #   autoload -Uz -- "$KITTY_INSTALLATION_DIR"/shell-integration/zsh/kitty-integration
-        #   kitty-integration
-        #   unfunction kitty-integration
-        # fi
+        alias cat=bat
+        alias -g -- --help='--help | bat -plhelp'
+        if [[ $VENDOR = debian ]]; then
+          alias cat=batcat
+          alias -g -- --help='--help | batcat -plhelp'
+        fi
       '';
     };
     eza = {

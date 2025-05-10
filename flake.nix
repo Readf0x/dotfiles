@@ -56,8 +56,6 @@
       systems = [ "x86_64-linux" ];
       perSystem = { pkgs, lib, system, ... }: {
         packages = {
-          # [TODO] fix this ABSOLUTE NIGHTMARE NIGHTMARE NIGHTMARE NIGHTMARE NIGHTMARE NIGHTMARE NIGHTMARE NIGHTMARE NIGHTMARE NIGHTMARE NIGHTMARE
-          chili = import ./packages/chili.nix { inherit pkgs; image = builtins.toPath "${inputs.wallpapers.packages.${system}.default}/0.jpg"; hash = "sha256-qUXKgOCMESkvtAZYLMYpmH6CeP/zyJfDD+QiO2WjqUA="; };
           discord-rpc = import ./packages/discord-rpc.nix { inherit pkgs; };
           nvim = inputs.nixvim.legacyPackages.${system}.makeNixvimWithModule {
             inherit pkgs;

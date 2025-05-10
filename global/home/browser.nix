@@ -158,7 +158,6 @@
               platforms = lib.platforms.all;
             };
           })
-          # [TODO] package premid extension
         ];
 
         search = {
