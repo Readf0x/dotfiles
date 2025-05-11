@@ -76,8 +76,8 @@
     ".config/quickshell".source = pkgs.fetchFromGitHub {
       owner = "readf0x";
       repo = "quickshell";
-      rev = "220b139bb9d156006c7bd109086538dc82fd74e5";
-      hash = "sha256-KSJ+MwSwztWMrhACa5GT0RNQl3lH8+VR9OVMMl0WVQQ=";
+      rev = "1e9b8e1a19cc8e0906b20d6d458d3b0807980792";
+      hash = "sha256-99NFpCsn/2vlqN21O6w64+fGos6SbhngP+TnovqU/xI=";
     };
     # ".ssh/config".text = ''
     #   Host Loki-II
