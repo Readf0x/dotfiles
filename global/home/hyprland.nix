@@ -368,9 +368,9 @@ in {
         "noinitialfocus, title:^(notificationtoasts.*)$"
         "fullscreen, class:^(steam_app_.*)"
         # File dialogs
-        "float, title:((Open|Save|Select) (File|As|(Background )?Image|Folder.*))"
+        "float, title:((Open|Save|Select) (File|As|(Background )?Image|Folder|Font.*))"
         "size 900 600, title:((Open|Save|Select) (File|As|(Background )?Image|Folder.*))"
-        "center, title:((Open|Save|Select) (File|As|(Background )?Image|Folder.*))"
+        "center, title:((Open|Save|Select) (File|As|(Background )?Image|Folder|Font.*))"
         "float, class:(org.freedesktop.impl.portal.desktop.kde)"
         "size 900 600, class:(org.freedesktop.impl.portal.desktop.kde)"
         "center, class:(org.freedesktop.impl.portal.desktop.kde)"
@@ -461,7 +461,8 @@ in {
         "float, class:(python3), initialTitle:(screenpen)"
         "noanim, class:(python3), initialTitle:(screenpen)"
         # FontForge
-        "tile, class:(fontforge), title:^(?!fontforge)"
+        "float, class:(fontforge)"
+        "tile, class:(fontforge), title:^([^ ]+  [^ ]+\.[^ ]+ ([^ ]+))$"
         # Blockbench
         "float, class:^(blockbench)$, title:^()$"
         "size 900 600, class:(blockbench), title:^()$"
