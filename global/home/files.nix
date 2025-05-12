@@ -73,6 +73,9 @@
         merge-conflict-theirs-diff-header-style = yellow bold
         merge-conflict-theirs-diff-header-decoration-style = blue box
     '';
+    ".config/bat/config".text = ''
+      --theme="base16"
+    '';
     # ".ssh/config".text = ''
     #   Host Loki-II
     #     HostName 10.1.11.104
