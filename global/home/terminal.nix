@@ -77,7 +77,7 @@
         function run() { nix run "nixpkgs#$1" -- ''+"$\{@:2} "+''}
         function db() {
           if [[ $1 = "enter" ]]; then
-            distrobox enter $2 --additional-flags "--env SSH_CONNECTION=$SSH_CONNECTION" ''+"$\{@:3}"+''
+            distrobox enter $2 --additional-flags "--env SSH_CONNECTION=$SSH_CONNECTION" ''+"$\{@:3}"+'';
           else
             distrobox $@
           fi
