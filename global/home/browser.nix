@@ -99,6 +99,8 @@
           "browser.startup.restorePreviousSession" = true;
           # Disable aggressive privacy options that make UX worse
           "privacy.resistFingerprinting" = false;
+          "privacy.resistFingerprinting.autoDeclineNoUserInputCanvasPrompts" = false;
+          "privacy.resistFingerprinting.randomDataOnCanvasExtract" = false;
           "webgl.disabled" = false;
           "privacy.clearOnShutdown.history" = false;
           "privacy.sanitize.sanitizeOnShutdown" = false;
