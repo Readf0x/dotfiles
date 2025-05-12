@@ -126,6 +126,8 @@
             url = "https://quickshell.outfoxxed.me/"; }
           { name = "YouTube";
             url = "https://youtube.com/"; }
+          { name = "Vineyard";
+            url = "https://vineyard.yt/";}
         ];
         extensions = with pkgs.nur.repos.rycee.firefox-addons; [
           consent-o-matic
