@@ -599,7 +599,7 @@ in {
           monitor = (monitor 0).id;
           text = "$USER";
           color = "rgb(dddddd)";
-          font_size = 12;
+          font_size = 13;
           font_family = "Courier";
           position = "0, -60";
           halign = "center";
@@ -619,7 +619,7 @@ in {
           monitor = (monitor 0).id;
           text = "cmd[update:60000] date +%D";
           color = "rgb(dddddd)";
-          font_size = 12;
+          font_size = 13;
           font_family = "Courier";
           position = "-10, -50";
           halign = "right";

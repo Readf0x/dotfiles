@@ -43,7 +43,6 @@
         "Q" = "exit";
         dev = "nix develop --command zsh";
         "power!" = "poweroff";
-        db = "distrobox";
       };
       localVariables = {
         MANPAGER = "sh -c 'col -bx | bat -l man -p'";
@@ -75,10 +74,14 @@
         zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
         zstyle ':completion:*' menu select
 
-        function run() { nix run "nixpkgs#$1" -- '' + "$\{@:2} " + ''}
-        #function db() {
-        #  distrobox $1 --root '' + "$\{@:2} " + ''
-        #}
+        function run() { nix run "nixpkgs#$1" -- ''+"$\{@:2} "+''}
+        function db() {
+          if [[ $1 = "enter" ]]; then
+            distrobox enter $2 --additional-flags "--env SSH_CONNECTION=$SSH_CONNECTION" ''+"$\{@:3}"+''
+          else
+            distrobox $@
+          fi
+        }
 
         alias cat=bat
         alias -g -- --help='--help | bat -plhelp'
