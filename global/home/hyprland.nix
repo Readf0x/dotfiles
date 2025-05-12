@@ -600,7 +600,7 @@ in {
           text = "$USER";
           color = "rgb(dddddd)";
           font_size = 12;
-          font_family = "Ubuntu Nerd Font";
+          font_family = "Courier";
           position = "0, -60";
           halign = "center";
           valign = "center";
@@ -609,8 +609,8 @@ in {
           monitor = (monitor 0).id;
           text = "cmd[update:1000] date +%I:%M\\ %p";
           color = "rgb(dddddd)";
-          font_size = 25;
-          font_family = "Ubuntu Nerd Font";
+          font_size = 20;
+          font_family = "Courier20";
           position = "-10, -10";
           halign = "right";
           valign = "top";
@@ -620,7 +620,7 @@ in {
           text = "cmd[update:60000] date +%D";
           color = "rgb(dddddd)";
           font_size = 12;
-          font_family = "Ubuntu Nerd Font";
+          font_family = "Courier";
           position = "-10, -50";
           halign = "right";
           valign = "top";
