@@ -73,12 +73,6 @@
         merge-conflict-theirs-diff-header-style = yellow bold
         merge-conflict-theirs-diff-header-decoration-style = blue box
     '';
-    ".config/quickshell".source = pkgs.fetchFromGitHub {
-      owner = "readf0x";
-      repo = "quickshell";
-      rev = "d81c0040d7a355c670987f3e3b73ee133557c07f";
-      hash = "sha256-oJhPY9+KBS664zISNsYRddvEavDinU1lz9siKNdfnc4=";
-    };
     # ".ssh/config".text = ''
     #   Host Loki-II
     #     HostName 10.1.11.104

@@ -142,7 +142,7 @@ in {
       "$c" = "CTRL";
       "$a" = "ALT";
       "$hyper" = "SHIFT CTRL SUPER ALT";
-      "$music" = "qs ipc call player";
+      "$music" = "neoshell ipc call player";
       "$browser" = "firefox-esr";
 
       bind = [
@@ -159,7 +159,7 @@ in {
         ", Print, exec, grimblast --freeze copysave area ~/Pictures/Screenshots/screenshot_$(date +%Y-%m-%d_%H-%m-%s).png"
         "$s, Print, exec, grimblast --freeze copysave screen ~/Pictures/Screenshots/screenshot_$(date +%Y-%m-%d_%H-%m-%s).png"
         "$mod, F4, exec, wlogout -p layer-shell -b 5 -c 10"
-        "$mod, F5, exec, qs kill; qs"
+        "$mod, F5, exec, neoshell kill; neoshell"
         "$mod, Escape, exec, hyprlock"
         "$mod, D, togglespecialworkspace, dropdown"
         "$mod, K, togglespecialworkspace, KeepassXC"
@@ -286,7 +286,7 @@ in {
         # "steam -silent"
         "swaync"
         "swww-daemon; sleep 2; wallpaper"
-        "qs"
+        "neoshell"
         "zsh -c '\${$(realpath $(which kdeconnect-cli))%\"bin/kdeconnect-cli\"}libexec/kdeconnectd'"
         # "~/Scripts/start-mpd"
         # "${pkgs.kdePackages.kdeconnect-kde}/libexec/kdeconnectd"

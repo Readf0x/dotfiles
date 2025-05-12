@@ -11,7 +11,8 @@
       };
     in [
       inputs.islive.packages.${conf.system}.default
-      inputs.quickshell.packages.${conf.system}.default
+      # inputs.quickshell.packages.${conf.system}.default
+      inputs.neoshell.packages.${conf.system}.default
       unstable.gimp3
       unstable.figma-linux
     ] ++ [

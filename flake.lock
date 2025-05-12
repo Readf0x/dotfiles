@@ -478,6 +478,27 @@
         "type": "github"
       }
     },
+    "neoshell": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "quickshell": "quickshell"
+      },
+      "locked": {
+        "lastModified": 1747071674,
+        "narHash": "sha256-jXPIXhyTREIlHgEROPUJlIyoUxOLd5c3yQ/4uV25PTc=",
+        "owner": "readf0x",
+        "repo": "quickshell",
+        "rev": "00d2eb0cd462265996c9199275a28dfd54350439",
+        "type": "github"
+      },
+      "original": {
+        "owner": "readf0x",
+        "repo": "quickshell",
+        "type": "github"
+      }
+    },
     "nix-darwin": {
       "inputs": {
         "nixpkgs": [
@@ -706,15 +727,16 @@
     "quickshell": {
       "inputs": {
         "nixpkgs": [
+          "neoshell",
           "nixpkgs"
         ]
       },
       "locked": {
-        "lastModified": 1746510767,
-        "narHash": "sha256-0Pjx+XN//AH8xBwWCVoKVLADLvbfJ+2VsrXW5CbIQIo=",
+        "lastModified": 1747013431,
+        "narHash": "sha256-gCQprMblYaezaC/vkqeIXeayJvzgg5UMEY/kb/Ivp/k=",
         "ref": "refs/heads/master",
-        "rev": "8863bf55ff5c4045e82e468aa7a8e7969e8c921d",
-        "revCount": 507,
+        "rev": "ca26210cc48bf48a42ad820e25fa884cc122b7b4",
+        "revCount": 508,
         "type": "git",
         "url": "https://git.outfoxxed.me/outfoxxed/quickshell"
       },
@@ -728,11 +750,11 @@
         "flake-parts": "flake-parts",
         "home-manager": "home-manager",
         "islive": "islive",
+        "neoshell": "neoshell",
         "nixos-06cb-009a-fingerprint-sensor": "nixos-06cb-009a-fingerprint-sensor",
         "nixpkgs": "nixpkgs",
         "nixvim": "nixvim",
         "nur": "nur",
-        "quickshell": "quickshell",
         "stylix": "stylix",
         "textfox": "textfox",
         "unstable": "unstable",
