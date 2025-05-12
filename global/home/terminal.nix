@@ -131,6 +131,8 @@
 
         map ctrl+minus change_font_size all -0.5
         map ctrl+equal change_font_size all +0.5
+
+        allow_remote_control yes
       '';
     };
     # it is currently impossible to add singular backslashes when converting to json
