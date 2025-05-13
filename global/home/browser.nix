@@ -5,7 +5,7 @@
     config = {
       extraConfig = ''
         #tabbrowser-tabbox::before {
-          margin: -1.3rem 0rem;
+          margin: -1.39rem 0rem;
         }
 
         @-moz-document url-prefix(about:blank) {*{background-color:#373635 !important;}}
