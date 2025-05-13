@@ -1,6 +1,6 @@
 # This is AI slop!!!!
 # I processed https://brainfucksec.github.io/firefox-hardening-guide#aboutconfig
-# through Chat Gippity to make this. It's probably got more than a few errors, beware!
+# through Chat Gippity to make this.
 {
   "browser.aboutConfig.showWarning" = false;
   "browser.startup.page" = 0;
