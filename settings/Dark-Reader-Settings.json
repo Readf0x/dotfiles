@@ -9,7 +9,7 @@
         "grayscale": 0,
         "sepia": 0,
         "useFont": true,
-        "fontFamily": "Courier20, Courier13, Courier, monospace, sans-serif",
+        "fontFamily": "Courier20, Courier16, Courier13, Courier, monospace, sans-serif",
         "textStroke": 0,
         "engine": "dynamicTheme",
         "stylesheet": "",
@@ -150,7 +150,9 @@
         "booru.vineshroom.net",
         "xue.neocities.org",
         "old.reddit.com",
-        "bsky.app"
+        "bsky.app",
+        "vanillaos.org",
+        "vineyard.yt"
     ],
     "changeBrowserTheme": false,
     "syncSettings": true,

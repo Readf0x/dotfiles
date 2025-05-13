@@ -116,9 +116,7 @@
       kio-extras
       kio-fuse
       kservice
-      plasma-workspace
       qt6ct
-      full
       qtstyleplugin-kvantum
       qtsvg
       qtwayland
