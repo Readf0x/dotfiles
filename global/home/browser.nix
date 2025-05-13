@@ -7,6 +7,8 @@
         #tabbrowser-tabbox::before {
           margin: -1.3rem 0rem;
         }
+
+        @-moz-document url-prefix(about:blank) {*{background-color:#373635 !important;}}
       '';
       font.family = "Courier20, Courier16, Courier13, Courier, monospace";
     };

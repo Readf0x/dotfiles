@@ -486,11 +486,11 @@
         "quickshell": "quickshell"
       },
       "locked": {
-        "lastModified": 1747080017,
-        "narHash": "sha256-itXqOTS3st5KRpTg2FvlTE8I0bBl6O8gpgOcyareCWo=",
+        "lastModified": 1747161688,
+        "narHash": "sha256-H7nZlw+Usb2HxVZ7+fMit3xRI290ZbU9sTmK23WzRv4=",
         "owner": "readf0x",
         "repo": "quickshell",
-        "rev": "8488256a303d8977d821a5c0ff6f9959728bd5a7",
+        "rev": "e6478b330059cb88252e432904db5a2ae6780711",
         "type": "github"
       },
       "original": {

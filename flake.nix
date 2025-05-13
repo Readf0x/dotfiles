@@ -62,7 +62,6 @@
             module = import ./global/home/nixvim.nix { inherit pkgs; };
           };
           ukmm-fork = import ./packages/ukmm.nix { inherit pkgs; };
-          fonts = import ./packages/fonts.nix { inherit pkgs; };
         };
       };
     };
