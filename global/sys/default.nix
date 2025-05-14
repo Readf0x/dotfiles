@@ -48,7 +48,9 @@
       enable = true;
       defaultApplications = {
         "image/svg+xml" = "inkscape.desktop";
-        "image/png" = [ "org.gnome.eog.desktop" "gimp.desktop" ];
+        "image/png" = [ "com.interversehq.qView.desktop" "gimp.desktop" ];
+        "image/jpeg" = [ "com.interversehq.qView.desktop" "gimp.desktop" ];
+        "image/bmp" = [ "com.interversehq.qView.desktop" "gimp.desktop" ];
         "application/x-rar-compressed" = "ark.desktop";
         "application/x-7z-compressed" = "ark.desktop";
         "application/x-tar" = "ark.desktop";
@@ -144,6 +146,7 @@
       };
     };
     cron.enable = true;
+    gpm.enable = true;
   };
 
   # https://discourse.nixos.org/t/setting-sddm-profile-picture/49604

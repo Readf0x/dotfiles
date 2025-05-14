@@ -36,6 +36,7 @@
       picard
       prismlauncher
       qpwgraph
+      qview
       rofi
       rssguard
       scrcpy
@@ -126,7 +127,6 @@
       breeze-icons
       dolphin
       dolphin-plugins
-      gwenview
       kdegraphics-thumbnailers
       kdenlive
       ktorrent
