@@ -4,14 +4,13 @@
   rgb = col: "rgb(${col})";
   rgba = col: "rgba(${col})";
   colors = config.lib.stylix.colors;
-  hasPlugin = plugin: builtins.elem plugin.name (builtins.map (f: f.name) config.wayland.windowManager.hyprland.plugins);
+  ifPlugin = plugin: val: if builtins.elem plugin.name (builtins.map (f: f.name) config.wayland.windowManager.hyprland.plugins) then val else null;
 in {
   wayland.windowManager.hyprland = {
     enable = true;
     systemd.variables = ["--all"];
     plugins = with pkgs.hyprlandPlugins; [
       hyprwinwrap
-      hyprbars
     ];
     settings = {
       #    ____         __              ____    __  __  _             
@@ -136,22 +135,20 @@ in {
       };
 
       # https://github.com/hyprwm/hyprland-plugins/blob/main/hyprbars/README.md
-      plugin.hyprbars = if hasPlugin pkgs.hyprlandPlugins.hyprbars then
-        {
-          bar_color = rgb colors.base00;
-          bar_height = 15;
-          "col.text" = rgb colors.base05;
-          bar_text_font = "Courier13";
-          bar_padding = 2;
-          bar_text_align = "left";
-          bar_precedence_over_border = true;
+      plugin.hyprbars = ifPlugin pkgs.hyprlandPlugins.hyprbars {
+        bar_color = rgb colors.base00;
+        bar_height = 15;
+        "col.text" = rgb colors.base05;
+        bar_text_font = "Courier13";
+        bar_padding = 2;
+        bar_text_align = "left";
+        bar_precedence_over_border = true;
 
-          hyprbars-button = [
-            "${rgb colors.base00}, 11, , hyprctl dispatch killactive, ${rgb colors.base05}"
-            "${rgb colors.base00}, 11, , hyprctl dispatch fullscreen 1, ${rgb colors.base05}"
-          ];
-        }
-      else null;
+        hyprbars-button = [
+          "${rgb colors.base00}, 11, , hyprctl dispatch killactive, ${rgb colors.base05}"
+          "${rgb colors.base00}, 11, , hyprctl dispatch fullscreen 1, ${rgb colors.base05}"
+        ];
+      };
 
       #    ___  _         __  
       #   / _ )(_)__  ___/ /__
