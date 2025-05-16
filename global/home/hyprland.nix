@@ -1,12 +1,17 @@
-{ pkgs, conf, lib', ... }: let
+{ pkgs, conf, config, lib', ... }: let
   mLib = lib'.monitors;
   monitor = mLib.getId;
+  rgb = col: "rgb(${col})";
+  rgba = col: "rgba(${col})";
+  colors = config.lib.stylix.colors;
+  hasPlugin = plugin: builtins.elem plugin.name (builtins.map (f: f.name) config.wayland.windowManager.hyprland.plugins);
 in {
   wayland.windowManager.hyprland = {
     enable = true;
     systemd.variables = ["--all"];
     plugins = with pkgs.hyprlandPlugins; [
       hyprwinwrap
+      hyprbars
     ];
     settings = {
       #    ____         __              ____    __  __  _             
@@ -60,8 +65,8 @@ in {
         gaps_in = 2;
         gaps_out = 2;
         border_size = 2;
-        "col.active_border" = "rgb(FFF0E7)";
-        "col.inactive_border" = "rgb(FFF0E7)";
+        "col.active_border" = rgb "FFF0E7";
+        "col.inactive_border" = rgb "FFF0E7";
 
         layout = "dwindle";
 
@@ -83,7 +88,7 @@ in {
           enabled = false;
           range = 7;
           render_power = 3;
-          color = "rgba(1111119b)";
+          color = rgba "1111119b";
         };
       };
 
@@ -109,13 +114,13 @@ in {
       };
 
       group = {
-        "col.border_active" = "rgb(ffc24b)";
-        "col.border_inactive" = "rgb(464646)";
+        "col.border_active" = rgb "ffc24b";
+        "col.border_inactive" = rgb "464646";
         groupbar = {
           render_titles = false;
           height = 1;
-          "col.active" = "rgb(ffc24b)";
-          "col.inactive" = "rgba(46464655)";
+          "col.active" = rgb "ffc24b";
+          "col.inactive" = rgba "46464655";
         };
       };
 
@@ -129,6 +134,24 @@ in {
         no_warps = true;
         warp_on_change_workspace = 2;
       };
+
+      # https://github.com/hyprwm/hyprland-plugins/blob/main/hyprbars/README.md
+      plugin.hyprbars = if hasPlugin pkgs.hyprlandPlugins.hyprbars then
+        {
+          bar_color = rgb colors.base00;
+          bar_height = 15;
+          "col.text" = rgb colors.base05;
+          bar_text_font = "Courier13";
+          bar_padding = 2;
+          bar_text_align = "left";
+          bar_precedence_over_border = true;
+
+          hyprbars-button = [
+            "${rgb colors.base00}, 11, , hyprctl dispatch killactive, ${rgb colors.base05}"
+            "${rgb colors.base00}, 11, , hyprctl dispatch fullscreen 1, ${rgb colors.base05}"
+          ];
+        }
+      else null;
 
       #    ___  _         __  
       #   / _ )(_)__  ___/ /__
@@ -559,16 +582,16 @@ in {
           dots_spacing = 0.15;
           dots_center = true;
           dots_rounding = -1;
-          outer_color = "rgb(dddddd)";
-          inner_color = "rgb(2c2c2c)";
-          font_color = "rgb(ffffff)";
+          outer_color = rgb "dddddd";
+          inner_color = rgb "2c2c2c";
+          font_color = rgb "ffffff";
           fade_on_empty = false;
           fade_timeout = 1000;
           placeholder_text = ''<span foreground="##939393" style="italic" font_size="11pt">Input Password...</span>'';
           hide_input = false;
           rounding = 8;
-          check_color = "rgb(ffd600)";
-          fail_color = "rgb(f44336)";
+          check_color = rgb "ffd600";
+          fail_color = rgb "f44336";
           fail_text = "<i>$FAIL <b>($ATTEMPTS)</b></i>";
           fail_transition = 300;
           capslock_color = -1;
@@ -588,7 +611,7 @@ in {
           size = 256;
           rounding = -1;
           border_size = 2;
-          border_color = "rgb(313244)";
+          border_color = rgb "313244";
           position = "0, 80";
           halign = "center";
           valign = "center";
@@ -598,7 +621,7 @@ in {
         {
           monitor = (monitor 0).id;
           text = "$USER";
-          color = "rgb(dddddd)";
+          color = rgb "dddddd";
           font_size = 13;
           font_family = "Courier";
           position = "0, -60";
@@ -608,7 +631,7 @@ in {
         {
           monitor = (monitor 0).id;
           text = "cmd[update:1000] date +%I:%M\\ %p";
-          color = "rgb(dddddd)";
+          color = rgb "dddddd";
           font_size = 20;
           font_family = "Courier20";
           position = "-10, -10";
@@ -618,7 +641,7 @@ in {
         {
           monitor = (monitor 0).id;
           text = "cmd[update:60000] date +%D";
-          color = "rgb(dddddd)";
+          color = rgb "dddddd";
           font_size = 13;
           font_family = "Courier";
           position = "-10, -50";

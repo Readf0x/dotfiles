@@ -135,17 +135,23 @@
     ]);
   };
 
-  fonts.packages = builtins.attrValues (
-    lib.filterAttrs (n: v: ! lib.hasSuffix "-unhinted" n && lib.isDerivation v) unstable.maple-mono
-  ) ++ (with pkgs; [
-    inputs.neoshell.packages.${conf.system}.courier
-    cantarell-fonts
-    # makes gimp 3 take 100x longer to open
-    # Fuck it, we'll wait
-    noto-fonts
-    # noto-fonts-cjk-sans
-    monocraft
-  ]);
+  fonts = {
+    packages = builtins.attrValues (
+      lib.filterAttrs (n: v: ! lib.hasSuffix "-unhinted" n && lib.isDerivation v) unstable.maple-mono
+    ) ++ (with pkgs; [
+      inputs.neoshell.packages.${conf.system}.courier
+      cantarell-fonts
+      # makes gimp 3 take 100x longer to open
+      # Fuck it, we'll wait
+      noto-fonts
+      # noto-fonts-cjk-sans
+      monocraft
+    ]);
+    fontconfig.defaultFonts.sansSerif = [ "Mead Icons" ];
+    fontconfig.defaultFonts.emoji = [ "Mead Icons" ];
+    fontconfig.defaultFonts.serif = [ "Mead Icons" ];
+    fontconfig.defaultFonts.monospace = [ "Mead Icons" ];
+  };
 
   programs = {
     git.enable = true;
