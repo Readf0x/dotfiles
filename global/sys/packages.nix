@@ -1,4 +1,4 @@
-{ pkgs, conf, self, lib, inputs, unstable, ... }: {
+{ pkgs, conf, lib, inputs, unstable, ... }: {
   environment = {
     etc."/xdg/menus/applications.menu".source =
     "${pkgs.kdePackages.plasma-workspace}/etc/xdg/menus/plasma-applications.menu";
@@ -60,7 +60,6 @@
       ffmpeg
       fzf
       gamescope
-      git
       grimblast
       hyfetch
       hyperfine
@@ -149,6 +148,7 @@
   ]);
 
   programs = {
+    git.enable = true;
     hyprland = {
       enable = true;
       portalPackage = pkgs.xdg-desktop-portal-hyprland;

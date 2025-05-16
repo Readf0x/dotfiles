@@ -65,6 +65,7 @@
         "x-scheme-handler/https" = "firefox-esr.desktop";
         "x-scheme-handler/about" = "firefox-esr.desktop";
         "x-scheme-handler/unknown" = "firefox-esr.desktop";
+        "application/vnd.microsoft.portable-executable" = "wine.desktop";
       };
     };
     portal = {
@@ -74,6 +75,7 @@
           default = [ "hyprland" "kde" ];
         };
       };
+      xdgOpenUsePortal = true;
       extraPortals = with pkgs; [
         xdg-desktop-portal-hyprland
         libsForQt5.xdg-desktop-portal-kde
