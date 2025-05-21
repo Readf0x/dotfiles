@@ -1,4 +1,4 @@
-{ lib, conf }: rec {
+{ lib, conf, ... }: rec {
   getId = num: builtins.elemAt conf.monitors (
     if num >= lib.length conf.monitors
     then (lib.length conf.monitors - 1)

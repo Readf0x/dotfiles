@@ -2,6 +2,7 @@
   imports = [
     ./../shared/stylix.nix
     ./packages.nix
+    ./grub.nix
   ];
 
   networking = {
@@ -111,7 +112,7 @@
         wayland.enable = true;
         theme = let
           chili = pkgs.sddm-chili-theme.override {
-            themeConfig = { background = "${inputs.wallpapers.packages.${conf.system}.default}/0.jpg"; };
+            themeConfig = { background = "${inputs.wallpapers.packages.${conf.system}.default}/lock.jpg"; };
           };
         in "${chili}/share/sddm/themes/chili";
       };
@@ -230,5 +231,9 @@
       enable = true;
       dockerCompat = true;
     };
+  };
+
+  stylix.targets = {
+    grub.enable = false;
   };
 }

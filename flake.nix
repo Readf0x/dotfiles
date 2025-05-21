@@ -46,6 +46,8 @@
     };
 
     textfox.url = "github:adriankarlen/textfox";
+
+    grub2-themes.url = "github:vinceliuice/grub2-themes";
   };
 
   outputs = { flake-parts, ... }@inputs:
@@ -55,13 +57,15 @@
       ];
       systems = [ "x86_64-linux" ];
       perSystem = { pkgs, lib, system, ... }: {
-        packages = {
-          discord-rpc = import ./packages/discord-rpc.nix { inherit pkgs; };
+        packages = let
+          package = p: import ./packages/${p}.nix pkgs;
+        in {
           nvim = inputs.nixvim.legacyPackages.${system}.makeNixvimWithModule {
             inherit pkgs;
             module = import ./global/home/nixvim.nix { inherit pkgs; };
           };
-          ukmm-fork = import ./packages/ukmm.nix { inherit pkgs; };
+          ukmm-fork = package "ukmm";
+          discord-rpc = package "discord-rpc";
         };
       };
     };

@@ -1,4 +1,16 @@
-{ pkgs, ... }: with pkgs;
+{ lib
+, stdenv
+, rustPlatform
+, fetchFromGitHub
+, cmake
+, pkg-config
+, wrapGAppsHook3
+, libglvnd
+, libxkbcommon
+, openssl
+, ...
+}:
+
 rustPlatform.buildRustPackage (finalAttrs: {
   pname = "ukmm";
   version = "0.16.0";
@@ -54,8 +66,6 @@ rustPlatform.buildRustPackage (finalAttrs: {
     # Requires Clear Camera mod
     "--skip=bnp::test_convert"
   ];
-
-  passthru.updateScript = nix-update-script { };
 
   meta = with lib; {
     description = "New mod manager for The Legend of Zelda: Breath of the Wild";

@@ -1,10 +1,17 @@
 { config, pkgs, lib, modulesPath, ... }: {
   imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
   boot = {
-    loader.systemd-boot.enable = true;
-    loader.efi.canTouchEfiVariables = true;
-    initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usbhid" "usb_storage" "sd_mod" ];
-    initrd.kernelModules = [ "amdgpu" ];
+    loader = {
+      systemd-boot.enable = false;
+      grub = {
+        enable = true;
+      };
+      efi.canTouchEfiVariables = true;
+    };
+    initrd = {
+      availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usbhid" "usb_storage" "sd_mod" ];
+      kernelModules = [ "amdgpu" ];
+    };
     kernelModules = [ "kvm-amd" ];
     kernelPackages = pkgs.linuxPackages_zen;
     kernel.sysctl = { "vm.swappiness" = 80; };

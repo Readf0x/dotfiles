@@ -1,4 +1,9 @@
-{ pkgs, ... }: with pkgs; pkgs.stdenv.mkDerivation {
+{ stdenv
+, fetchurl
+, ...
+}:
+
+stdenv.mkDerivation {
   pname = "discord-rpc";
   version = "1";
 

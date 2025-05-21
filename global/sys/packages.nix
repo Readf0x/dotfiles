@@ -61,6 +61,7 @@
       fzf
       gamescope
       grimblast
+      grub2
       hyfetch
       hyperfine
       hyprpicker

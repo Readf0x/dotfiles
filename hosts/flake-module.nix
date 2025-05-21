@@ -26,7 +26,8 @@ let
             extraSpecialArgs = rec {
               inherit self inputs;
               unstable = inputs.unstable.legacyPackages.${hosts.${host}.system};
-              lib' = import ../lib { inherit lib conf; };
+              lib' = import ../lib { inherit lib conf; pkgs = os.legacyPackages.${hosts.${host}.system}; };
+              pkgs' = self.packages.${system};
               conf = lib.mergeAttrsList [
                 { inherit homeDir host user; }
                 config
@@ -40,7 +41,6 @@ let
                 inputs.stylix.homeManagerModules.stylix
                 inputs.textfox.homeManagerModules.default
                 inputs.nur.modules.homeManager.default
-                # inputs.schizofox.homeManagerModules.default
               ];
             };
           };
@@ -50,10 +50,11 @@ let
       mapAttrs (host: { system, ... }@config:
         buildOS {
           inherit system;
-          specialArgs = {
+          specialArgs = rec {
             inherit self inputs;
             unstable = inputs.unstable.legacyPackages.${hosts.${host}.system};
-            lib' = import ../lib { inherit lib conf; };
+            lib' = import ../lib { inherit lib conf; pkgs = os.legacyPackages.${hosts.${host}.system}; };
+            pkgs' = self.packages.${system};
             conf = mergeAttrsList [
               { inherit host system; }
               config
@@ -67,6 +68,7 @@ let
               inputs.stylix.nixosModules.stylix
               inputs.nixos-06cb-009a-fingerprint-sensor.nixosModules."06cb-009a-fingerprint-sensor"
               inputs.nur.modules.nixos.default
+              inputs.grub2-themes.nixosModules.default
             ];
           };
         }
