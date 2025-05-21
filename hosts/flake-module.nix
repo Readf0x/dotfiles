@@ -27,7 +27,7 @@ let
               inherit self inputs;
               unstable = inputs.unstable.legacyPackages.${hosts.${host}.system};
               lib' = import ../lib { inherit lib conf; pkgs = os.legacyPackages.${hosts.${host}.system}; };
-              pkgs' = self.packages.${system};
+              pkgs' = self.packages.${hosts.${host}.system};
               conf = lib.mergeAttrsList [
                 { inherit homeDir host user; }
                 config

@@ -1,4 +1,26 @@
-{ lib', inputs, conf, ... }: {
+{ pkgs, lib', inputs, conf, ... }: let
+  resizeImage = 
+    { image
+    , size
+    , name ? "resized-image"
+    }:
+
+    pkgs.stdenv.mkDerivation (finalAttrs: {
+      pname = name;
+      version = "1.0";
+
+      src = image;
+
+      nativeBuildInputs = with pkgs; [ imagemagick libjpeg libpng ];
+
+      phases = [ "installPhase" ];
+
+      installPhase = ''
+        mkdir -p $out
+        magick "$src" -resize ${size}^ -gravity center -extent ${size} "$out/${name}.png"
+      '';
+    });
+in {
   boot.loader = {
     grub = {
       efiSupport = true;
@@ -9,10 +31,11 @@
       enable = true;
       theme = "vimix";
       customResolution = lib'.monitors.toRes (lib'.monitors.getId 0).res;
-      splashImage = lib'.resizeImage {
+      splashImage = "${resizeImage {
         image = "${inputs.wallpapers.packages.${conf.system}.default}/boot.jpg";
         size = customResolution;
-      };
+        name = "boot";
+      } }/boot.png";
     };
   };
 }
