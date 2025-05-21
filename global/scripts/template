@@ -12,11 +12,26 @@ function parseURL() {
   fi
 }
 
-git clone $(parseURL $1) $2
-if [ $2 ]; then
-  cd $2
+if [[ $1 == -h ]] || [[ $1 == --help ]]; then
+  msg="$(sed -e 's/^[ ]*| //m' <<'--------------------'
+    | A script for cloning git template repos
+    | 
+    | %UUsage:%u %Bclone%b <TEMPLATE> [PATH]
+    | 
+    | %UArguments:%u
+    |   %B<TEMPLATE>%b\tRepository URL, accepts `username/repo' and `repo'. Defaults to github for hosting and your username.
+    | 
+    |   %B[PATH]%b\tDirectory to clone to.
+--------------------
+    )"
+  print -P $msg
 else
-  cd $(rg -o '[^/]*$' <<< $1)
+  git clone $(parseURL $1) $2
+  if [ $2 ]; then
+    cd $2
+  else
+    cd $(rg -o '[^/]*$' <<< $1)
+  fi
+  git remote rm origin
 fi
-git remote rm origin
 

@@ -238,6 +238,8 @@ in {
         "$mod $s, right, movewindow, r"
         "$mod $s, up, movewindow, u"
         "$mod $s, down, movewindow, d"
+        # [TODO] figure out how to swap windows without resizing
+        # "$mod, S, swapwindow"
 
         #"$mod, I, workspace, name:info"
         #"$mod, Y, workspace, name:music"
