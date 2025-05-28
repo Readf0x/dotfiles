@@ -991,11 +991,11 @@
         "nixpkgs": "nixpkgs_6"
       },
       "locked": {
-        "lastModified": 1747784933,
-        "narHash": "sha256-AtA2ap2rlUdowpCF6IpfhGMwXNTFSstMNwd7cGPURQg=",
+        "lastModified": 1747794312,
+        "narHash": "sha256-QoBESZC4tIRu5r20R2OA4rrLcJONUAHdZy1eZ0f96mg=",
         "owner": "readf0x",
         "repo": "wallpapers",
-        "rev": "7b6d463beee273157a8097eb176d143b19b918b0",
+        "rev": "7b83f5da8b561564366063c61598f44680c5a86b",
         "type": "github"
       },
       "original": {

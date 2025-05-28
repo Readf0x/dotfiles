@@ -1,4 +1,5 @@
 { pkgs, conf, ... }: {
+  # [TODO] Investigate tmux
   home.file.".integralrc".text = ''
     int_direnv_format() {
       if which go >/dev/null; then 

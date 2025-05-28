@@ -1,0 +1,4 @@
+#!/usr/bin/env zsh
+
+bat $(which $1)
+

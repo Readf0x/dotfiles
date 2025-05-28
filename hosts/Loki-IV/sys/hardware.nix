@@ -4,10 +4,11 @@
 { config, lib, pkgs, modulesPath, ... }: {
   imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
   boot = {
-    loader.grub.device = [ "/dev/disk/by-uuid/0FD5-2648" ];
-    loader.grub.efiSupport = true;
-    loader.systemd-boot.enable = true;
-    loader.efi.canTouchEfiVariables = true;
+    loader = {
+      systemd-boot.enable = false;
+      efi.canTouchEfiVariables = true;
+      grub.enable = true;
+    };
     initrd.availableKernelModules = [ "xhci_pci" "nvme" "usb_storage" "sd_mod" ];
     initrd.kernelModules = [ ];
     kernelModules = [ "kvm-intel" ];
