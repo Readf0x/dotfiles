@@ -65,6 +65,7 @@
         "jid1-93WyvpgvxzGATw@jetpack" = latest "to-google-translate";
         # "tubemod@extension.com" = latest "tubemod";
         "{d7742d87-e61d-4b78-b8a1-b469842139fa}" = latest "vimium-ff";
+        "{a6c4a591-f1b2-4f03-b3ff-767e5bedf4e7}" = latest "user-agent-string-switcher";
       } // {
         "uBlock0@raymondhill.net" = {
           installation_mode = "force_installed";
