@@ -139,6 +139,6 @@
     #kitty.enable = false;
     hyprlock.enable = false;
     # qt.enable = false;
-    firefox.enable = false;
+    firefox.enable = lib.mkForce false;
   };
 }
