@@ -39,10 +39,6 @@
       };
       rocmOverrideGfx = "10.3.2";
     };
-    open-webui = {
-      enable = true;
-      package = unstable.open-webui;
-    };
   };
 
   systemd.services."libvirtd".path = [ pkgs.passt ];

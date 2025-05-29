@@ -38,7 +38,7 @@ let
               inherit host user;
               modules = [
                 inputs.nixvim.homeManagerModules.default
-                inputs.stylix.homeManagerModules.stylix
+                inputs.stylix.homeModules.stylix
                 inputs.textfox.homeManagerModules.default
                 inputs.nur.modules.homeManager.default
               ];

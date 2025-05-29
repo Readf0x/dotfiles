@@ -78,7 +78,7 @@
       ncdu
       ncmpcpp
       neovim
-      nodejs-slim_23
+      nodejs-slim
       playerctl
       pokeget-rs
       protontricks

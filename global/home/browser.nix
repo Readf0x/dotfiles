@@ -48,7 +48,7 @@
           "ebay@search.mozilla.org"
           "twitter@search.mozilla.org"
         ];
-        Default = "DuckDuckGo";
+        Default = "ddg";
       };
       ExtensionSettings = let
         latest = addon_id: "https://addons.mozilla.org/firefox/downloads/latest/${addon_id}/latest.xpi";
@@ -110,31 +110,34 @@
           "media.autoplay.default" = 0;
         };
 
-        bookmarks = [
-          { name = "NixOS Packages";
-            url = "https://search.nixos.org/packages"; }
-          { name = "Nix Manual";
-            url = "https://ryantm.github.io/nixpkgs/"; }
-          { name = "Immich";
-            url = "http://immich.planetbob.net/"; }
-          { name = "Requests";
-            url = "http://requests.planetbob.net/"; }
-          { name = "AMP";
-            url = "http://10.0.0.2:8081/"; }
-          { name = "Git";
-            url = "http://gitlab.planetbob.net/"; }
-          { name = "LAINCHAN";
-            url = "https://lainchan.org/"; }
-          { name = "Hyprland Wiki";
-            url = "https://wiki.hyprland.org/"; }
-          { name = "Quickshell";
-            url = "https://quickshell.outfoxxed.me/"; }
-          { name = "YouTube";
-            url = "https://youtube.com/"; }
-          { name = "Vineyard";
-            url = "https://vineyard.yt/";}
-        ];
-        extensions = with pkgs.nur.repos.rycee.firefox-addons; [
+        bookmarks = {
+          force = true;
+          settings = [
+            { name = "NixOS Packages";
+              url = "https://search.nixos.org/packages"; }
+            { name = "Nix Manual";
+              url = "https://ryantm.github.io/nixpkgs/"; }
+            { name = "Immich";
+              url = "http://immich.planetbob.net/"; }
+            { name = "Requests";
+              url = "http://requests.planetbob.net/"; }
+            { name = "AMP";
+              url = "http://10.0.0.2:8081/"; }
+            { name = "Git";
+              url = "http://gitlab.planetbob.net/"; }
+            { name = "LAINCHAN";
+              url = "https://lainchan.org/"; }
+            { name = "Hyprland Wiki";
+              url = "https://wiki.hyprland.org/"; }
+            { name = "Quickshell";
+              url = "https://quickshell.outfoxxed.me/"; }
+            { name = "YouTube";
+              url = "https://youtube.com/"; }
+            { name = "Vineyard";
+              url = "https://vineyard.yt/";}
+          ];
+        };
+        extensions.packages = with pkgs.nur.repos.rycee.firefox-addons; [
           consent-o-matic
           darkreader
           don-t-fuck-with-paste
@@ -168,11 +171,12 @@
         ];
 
         search = {
-          default = "DuckDuckGo";
+          default = "ddg";
           engines = {};
           force = true;
         };
       };
+
       I2P = {
         id = 1;
         isDefault = false;
@@ -182,7 +186,7 @@
           "privacy.window.maxInnerHeight" = 900;
         };
 
-        extensions = with pkgs.nur.repos.rycee.firefox-addons; [
+        extensions.packages = with pkgs.nur.repos.rycee.firefox-addons; [
           noscript
           foxyproxy-standard
         ];

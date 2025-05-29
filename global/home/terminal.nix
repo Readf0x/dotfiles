@@ -1,4 +1,4 @@
-{ pkgs, conf, ... }: {
+{ pkgs, lib, conf, ... }: {
   # [TODO] Investigate tmux
   home.file.".integralrc".text = ''
     int_direnv_format() {
@@ -49,48 +49,50 @@
         MANPAGER = "sh -c 'col -bx | bat -l man -p'";
         GOPATH = "$HOME/.config/go";
       };
-      initExtraBeforeCompInit = ''
-        if [[ $CONTAINER_ID ]]; then
-          export function compinit() {
-            unfunction compinit
-            autoload -Uz compinit
-            compinit -i $@
-          }
-        fi
-      '';
-      initExtraFirst = ''
-        [[ $KITTY_WINDOW_ID -gt 1 ]] || ! [[ $KITTY_SHELL_INTEGRATION = no-rc ]] || [[ $SHLVL -gt 1 ]] || pokeget ${conf.pokemon} --hide-name
-        export DIRENV_LOG_FORMAT=
-      '';
-      initExtra = ''
-        bindkey -v
-        bindkey -M viins '^H' backward-kill-word
-        bindkey -M viins '^[[1;5D' backward-word
-        bindkey -M viins '^[[1;5C' forward-word
-        bindkey '^[[H' beginning-of-line
-        bindkey '^[[F' end-of-line
-        bindkey '^[[A' history-substring-search-up
-        bindkey '^[[B' history-substring-search-down
-        autoload -U select-word-style && select-word-style bash
-        zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
-        zstyle ':completion:*' menu select
-
-        function run() { nix run "nixpkgs#$1" -- ''+"$\{@:2} "+''}
-        function db() {
-          if [[ $1 = "enter" ]]; then
-            distrobox enter $2 --additional-flags "--env SSH_CONNECTION=$SSH_CONNECTION" ''+"$\{@:3}"+'';
-          else
-            distrobox $@
+      initContent = lib.mkMerge [
+        (lib.mkOrder 550 ''
+          if [[ $CONTAINER_ID ]]; then
+            export function compinit() {
+              unfunction compinit
+              autoload -Uz compinit
+              compinit -i $@
+            }
           fi
-        }
+        '')
+        (lib.mkBefore ''
+          [[ $KITTY_WINDOW_ID -gt 1 ]] || ! [[ $KITTY_SHELL_INTEGRATION = no-rc ]] || [[ $SHLVL -gt 1 ]] || pokeget ${conf.pokemon} --hide-name
+          export DIRENV_LOG_FORMAT=
+        '')
+        (''
+          bindkey -v
+          bindkey -M viins '^H' backward-kill-word
+          bindkey -M viins '^[[1;5D' backward-word
+          bindkey -M viins '^[[1;5C' forward-word
+          bindkey '^[[H' beginning-of-line
+          bindkey '^[[F' end-of-line
+          bindkey '^[[A' history-substring-search-up
+          bindkey '^[[B' history-substring-search-down
+          autoload -U select-word-style && select-word-style bash
+          zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
+          zstyle ':completion:*' menu select
 
-        alias cat=bat
-        alias -g -- --help='--help | bat -plhelp'
-        if [[ $VENDOR = debian ]]; then
-          alias cat=batcat
-          alias -g -- --help='--help | batcat -plhelp'
-        fi
-      '';
+          function run() { nix run "nixpkgs#$1" -- ''+"$\{@:2} "+''}
+          function db() {
+            if [[ $1 = "enter" ]]; then
+              distrobox enter $2 --additional-flags "--env SSH_CONNECTION=$SSH_CONNECTION" ''+"$\{@:3}"+'';
+            else
+              distrobox $@
+            fi
+          }
+
+          alias cat=bat
+          alias -g -- --help='--help | bat -plhelp'
+          if [[ $VENDOR = debian ]]; then
+            alias cat=batcat
+            alias -g -- --help='--help | batcat -plhelp'
+          fi
+        '')
+      ];
     };
     eza = {
       enable = true;
