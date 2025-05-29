@@ -98,7 +98,7 @@ in {
         focus_on_activate = true;
       };
       xwayland.force_zero_scaling = true;
-      # ecosystem.no_update_news = true;
+      ecosystem.no_update_news = true;
 
       # https://wiki.hyprland.org/Configuring/Animations/
       animations = {
