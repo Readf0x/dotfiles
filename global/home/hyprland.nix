@@ -388,7 +388,7 @@ in {
         "center, class:^(steam)$"
         "monitor ${(monitor 0).id}, class:(steam)"
         "noinitialfocus, title:^(notificationtoasts.*)$"
-        "fullscreen, class:^(steam_app_.*)"
+        # "fullscreen, class:^(steam_app_.*)"
         # File dialogs
         "float, title:((Open|Save|Select) (File|As|(Background )?Image|Folder|Font.*))"
         "size 900 600, title:((Open|Save|Select) (File|As|(Background )?Image|Folder.*))"

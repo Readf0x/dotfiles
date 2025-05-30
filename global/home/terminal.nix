@@ -47,6 +47,7 @@
       };
       localVariables = {
         MANPAGER = "sh -c 'col -bx | bat -l man -p'";
+        PAGER = "bat";
         GOPATH = "$HOME/.config/go";
       };
       initContent = lib.mkMerge [

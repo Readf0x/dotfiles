@@ -1,4 +1,4 @@
-{ pkgs, unstable, ... }: {
+{ pkgs, conf, lib, ... }: {
   nixpkgs.config.rocmSupport = true;
 
   imports = [
@@ -42,4 +42,8 @@
   };
 
   systemd.services."libvirtd".path = [ pkgs.passt ];
+
+  users.users = lib.mapAttrs (
+    name: config: { extraGroups = [ "gamemode" ]; }
+  ) conf.users;
 }
