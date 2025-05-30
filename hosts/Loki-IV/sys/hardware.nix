@@ -15,7 +15,6 @@
     extraModulePackages = [ ];
     kernelPackages = pkgs.linuxPackages_zen;
     kernel.sysctl = { "vm.swappiness" = 80; };
-    plymouth.enable = true;
   };
   networking.useDHCP = lib.mkDefault true;
   hardware = {

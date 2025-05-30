@@ -15,7 +15,6 @@
     kernelModules = [ "kvm-amd" ];
     kernelPackages = pkgs.linuxPackages_zen;
     kernel.sysctl = { "vm.swappiness" = 80; };
-    plymouth.enable = true;
   };
   hardware = {
     xone.enable = true;
