@@ -102,7 +102,7 @@ in {
         isNormalUser = true;
         shell = "zsh";
         email = "davis.a.forsythe@gmail.com";
-        realName = "Jean Forsythe";
+        realName = "readf0x";
         key = "5DA8A55A7FFB950B92BB532C4A48E1852C03CE8A";
       }) {
         Loki-II = {

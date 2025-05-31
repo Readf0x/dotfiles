@@ -78,6 +78,7 @@
       ncdu
       ncmpcpp
       neovim
+      nix-search
       nodejs-slim
       playerctl
       pokeget-rs
