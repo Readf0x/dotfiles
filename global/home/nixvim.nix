@@ -189,7 +189,7 @@
           "<C-Space>" = "cmp.mapping.complete()";
           "<C-d>"     = "cmp.mapping.scroll_docs(-4)";
           "<C-e>"     = "cmp.mapping.close()";
-          "<C-f>"     = "cmp.mapping.scroll_docs(4)";
+          "<C-u>"     = "cmp.mapping.scroll_docs(4)";
           "<CR>"      = ''
             cmp.mapping(function(fallback)
               if cmp.visible() then
@@ -232,6 +232,9 @@
     luasnip = {
       enable = true;
       fromVscode = [{}];
+      fromLua = [
+        { paths = ./snippets; }
+      ];
     };
     friendly-snippets.enable = true;
     mini = {
@@ -254,7 +257,7 @@
       };
       mockDevIcons = true;
     };
-    # colorizer.enable = true;
+    colorizer.enable = true;
     neo-tree.enable = true;
     nix.enable = true;
     treesitter = {
@@ -424,44 +427,6 @@
   extraConfigLuaPost = ''
     require("telescope").load_extension("zoxide")
     vim.keymap.del("n", "<leader>gy")
-    if vim.g.started_by_firenvim == true then
-      vim.cmd("colorscheme default")
-    end
-    local ls = require("luasnip");
-    local t = ls.text_node;
-    local i = ls.insert_node;
-    ls.add_snippets("go", {
-      ls.snippet("en", {
-        t({"if err != nil {", "\t"}), i(1),
-        t({"", "}"})
-      }),
-      ls.snippet("enl", {
-        t({"if err != nil {", "\tlog.Fatal(err)", "}"})
-      })
-    })
-    ls.add_snippets("nix", {
-      ls.snippet("e", {
-        t("enable = true;")
-      }),
-      ls.snippet("ed", {
-        t(".enable = true;")
-      }),
-      ls.snippet("ea", {
-        t({" = {", "\tenable = true;"}),
-        t({"", "\t"}), i(1),
-        t({"", "};"})
-      }),
-      ls.snippet("\'\'", {
-        t({"\'\'"}),
-        t({""}), i(0),
-        t({"", "\'\'"})
-      }),
-      ls.snippet("ml", {
-        t({"\'\'"}),
-        t({""}), i(0),
-        t({"", "\'\'"})
-      }),
-    })
   '';
   extraConfigVim = ''
     source ${pkgs.vimPlugins.vim-easy-align}/autoload/easy_align.vim
