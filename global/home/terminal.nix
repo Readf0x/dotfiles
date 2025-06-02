@@ -103,7 +103,6 @@
           if [[ $VENDOR = debian ]]; then
             alias cat=batcat
             alias -g -- --help='--help | batcat -plhelp'
-            path=(${"$\{path:#$HOME/Scripts/debian}"})
           else
             function db() {
               if [[ $1 = "enter" ]]; then

@@ -1,5 +1,9 @@
 #!/usr/bin/env zsh
 
+if [[ $VENDER = debian ]]; then
+  print "Already in container"
+  exit 1
+fi
 if podman container exists debian; then
   distrobox enter debian
 else
