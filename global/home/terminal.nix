@@ -1,17 +1,35 @@
 { pkgs, lib, conf, ... }: {
   # [TODO] Investigate tmux
-  home.file.".integralrc".text = ''
-    int_direnv_format() {
-      if which go >/dev/null; then 
-        print "%F{6}󰟓"
-      else
-        print "%F{3}⌁"
-      fi
-    }
-    # export int_vim_indicators=(
-    #   ""
-    # )
-  '';
+  home.file = {
+    ".integralrc".text = ''
+      int_direnv_format() {
+        if which go >/dev/null; then 
+          print "%F{6}󰟓"
+        else
+          print "%F{3}⌁"
+        fi
+      }
+      # export int_vim_indicators=(
+      #   ""
+      # )
+    '';
+    ".config/hyfetch.json".text = builtins.toJSON {
+      preset = "transgender";
+      mode = "rgb";
+      light_dark = "dark";
+      lightness = 0.8;
+      color_align = {
+          mode = "horizontal";
+          custom_colors = [];
+          fore_back = null;
+      };
+      backend = "fastfetch";
+      args = null;
+      distro = null;
+      pride_month_shown = [];
+      pride_month_disable = true;
+    };
+  };
   programs = {
     zsh = {
       enable = true;
@@ -46,8 +64,7 @@
         "power!" = "poweroff";
       };
       localVariables = {
-        MANPAGER = "sh -c 'col -bx | bat -l man -p'";
-        PAGER = "bat";
+        PAGER = "bat -p";
         GOPATH = "$HOME/.config/go";
       };
       initContent = lib.mkMerge [
@@ -77,20 +94,25 @@
           zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
           zstyle ':completion:*' menu select
 
-          function run() { nix run "nixpkgs#$1" -- ''+"$\{@:2} "+''}
-          function db() {
-            if [[ $1 = "enter" ]]; then
-              distrobox enter $2 --additional-flags "--env SSH_CONNECTION=$SSH_CONNECTION" ''+"$\{@:3}"+'';
-            else
-              distrobox $@
-            fi
-          }
+          function run() { nix run nixpkgs#$1 -- ${"$\{@:2} "}}
+          function shell() { eval nix shell nixpkgs#{${"$\{(j:,:)@}"}} }
 
           alias cat=bat
           alias -g -- --help='--help | bat -plhelp'
+
           if [[ $VENDOR = debian ]]; then
             alias cat=batcat
             alias -g -- --help='--help | batcat -plhelp'
+            path=(${"$\{path:#$HOME/Scripts/debian}"})
+          else
+            function db() {
+              if [[ $1 = "enter" ]]; then
+                distrobox enter $2 --additional-flags "--env SSH_CONNECTION=$SSH_CONNECTION" ${"$\{@:3}"};
+              else
+                distrobox $@
+              fi
+            }
+          compdef db=distrobox
           fi
         '')
       ];

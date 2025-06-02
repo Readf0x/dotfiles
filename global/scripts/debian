@@ -1,0 +1,13 @@
+#!/usr/bin/env zsh
+
+if podman container exists debian; then
+  distrobox enter debian
+else
+  distrobox assemble create --file /dev/stdin << EOF
+[debian]
+image=debian:latest
+additional_packages="bat ripgrep python3-pip"
+init_hooks=pip install hyfetch --break-system-packages
+EOF
+fi
+
