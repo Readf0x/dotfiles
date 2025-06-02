@@ -20,8 +20,8 @@
       blender-hip
       blockbench
       easyeffects
-      grimblast
       hexchat
+      hyprshot
       inkscape
       jetbrains.idea-community-bin
       keepassxc

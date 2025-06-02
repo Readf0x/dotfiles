@@ -9,6 +9,8 @@ in {
   wayland.windowManager.hyprland = {
     enable = true;
     systemd.variables = ["--all"];
+    package = null;
+    portalPackage = null;
     plugins = with pkgs.hyprlandPlugins; [
       hyprwinwrap
     ];
@@ -176,8 +178,9 @@ in {
         "$mod, W, exec, $browser"
         "$mod $a, W, exec, $browser -P I2P"
         "$mod $s, C, exec, hyprpicker -an"
-        ", Print, exec, grimblast --freeze copysave area ~/Pictures/Screenshots/screenshot_$(date +%Y-%m-%d_%H-%m-%s).png"
-        "$s, Print, exec, grimblast --freeze copysave screen ~/Pictures/Screenshots/screenshot_$(date +%Y-%m-%d_%H-%m-%s).png"
+        ", Print, exec, hyprshot -zsm region -f screenshot_$(date +%Y-%m-%d_%H-%m-%s).png -o ${builtins.toString conf.homeDir}/Pictures/Screenshots"
+        "$s, Print, exec, hyprshot -zsm window -f screenshot_$(date +%Y-%m-%d_%H-%m-%s).png -o ${builtins.toString conf.homeDir}/Pictures/Screenshots"
+        "$a, Print, exec, hyprshot -zsm output -f screenshot_$(date +%Y-%m-%d_%H-%m-%s).png -o ${builtins.toString conf.homeDir}/Pictures/Screenshots"
         "$mod, F4, exec, wlogout -p layer-shell -b 5 -c 10"
         "$mod, F5, exec, neoshell kill; neoshell"
         "$mod, Escape, exec, hyprlock"
