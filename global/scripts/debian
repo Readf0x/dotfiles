@@ -1,6 +1,6 @@
 #!/usr/bin/env zsh
 
-if [[ $VENDER = debian ]]; then
+if [[ $VENDOR = debian ]]; then
   print "Already in container"
   exit 1
 fi

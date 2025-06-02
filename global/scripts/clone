@@ -12,7 +12,7 @@ function parseURL() {
   fi
 }
 
-if [[ $1 == -h ]] || [[ $1 == --help ]]; then
+if [[ $1 == (-h|--help) ]]; then
   msg="$(sed -e 's/^[ ]*| //m' <<'--------------------'
     | A script for cloning git repos
     | 
