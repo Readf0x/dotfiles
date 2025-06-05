@@ -94,8 +94,14 @@
           zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
           zstyle ':completion:*' menu select
 
-          function run() { nix run nixpkgs#$1 -- ${"$\{@:2} "}}
-          function shell() { eval nix shell nixpkgs#{${"$\{(j:,:)@}"}} }
+          function run() { nix run nixpkgs#$1 -- ${"$\{@:2}"}}
+          function shell() {
+            if [[ ${"$\{#@}"} > 1 ]]; then
+              eval nix shell nixpkgs#{${"$\{(j:,:)@}"}}
+            else
+              nix shell nixpkgs#$1
+            fi
+          }
 
           alias cat=bat
           alias -g -- --help='--help | bat -plhelp'

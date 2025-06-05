@@ -555,6 +555,8 @@ in {
         "opacity 1.0, class:^(.virt-manager-wrapped)$, title:^(.* on .*)$"
         # Kdenlive
         "opacity 1.0, class:^(org.kde.kdenlive)$"
+        # qView
+        "tile, class:^(com.interversehq.qView)$"
       ];
     };
   };
