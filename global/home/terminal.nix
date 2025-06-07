@@ -102,6 +102,10 @@
               nix shell nixpkgs#$1
             fi
           }
+          function path2array() {
+            local input=$1
+            print -l ${"$\{(s/:/)input}"}
+          }
 
           alias cat=bat
           alias -g -- --help='--help | bat -plhelp'

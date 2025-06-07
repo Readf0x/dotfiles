@@ -10,7 +10,7 @@
       };
       sansSerif = {
         package = pkgs.ubuntu_font_family;
-        name = "Courier";
+        name = "Ubuntu";
       };
       monospace = {
         package = unstable.maple-mono.variable;

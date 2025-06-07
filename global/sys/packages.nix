@@ -41,7 +41,27 @@
       rssguard
       scrcpy
       swaynotificationcenter
-      vesktop
+      (vesktop.overrideAttrs (prev: {
+        desktopItems = makeDesktopItem {
+          name = "vesktop";
+          desktopName = "Vesktop";
+          exec = "vesktop --enable-features=UseOzonePlatform,WaylandWindowDecorations --ozone-platform-hint=auto %U";
+          icon = "vesktop";
+          startupWMClass = "Vesktop";
+          genericName = "Internet Messenger";
+          keywords = [
+            "discord"
+            "vencord"
+            "electron"
+            "chat"
+          ];
+          categories = [
+            "Network"
+            "InstantMessaging"
+            "Chat"
+          ];
+        };
+      }))
       xemu
       youtube-music
       zathura
