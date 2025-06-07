@@ -1,0 +1,76 @@
+#!/usr/bin/env zsh
+
+tim=30
+device=$1
+
+function help() {
+  msg="$(sed -e 's/^[ ]*| //m' <<'--------------------'
+    | Watch for changes in KDE Connect devices
+    | 
+    | %UUsage:%u %Bkdeconnect-watch%b <DEVICE> [OPTIONS] [-- <COMMAND>...]
+    | 
+    | %UArguments:%u
+    |   %B<DEVICE>%b:
+    |         Device to watch for changes on
+    |   %B<COMMAND>%b:
+    |         Command to run on exit
+    | 
+    | %UOptions:%u
+    |   %B-h%b, %B--help%b:
+    |         Print help
+    |   %B-d%b, %B--disconnection%b:
+    |         Watch for disconnection instead of connection
+    |   %B-t%b, %B--time%b:
+    |         Polling rate
+--------------------
+    )"
+  print -P $msg
+}
+
+for opt in $@; do
+  if [[ $opt =~ ^--. ]]; then
+    case $opt in
+      --help)
+        help
+        ;;
+      --disconnection)
+        discon=true
+        ;;
+      --time)
+        tim=${@[$((${@[(Ie)$opt]}+1))]}
+        ;;
+    esac
+  elif [[ $opt =~ ^-[^-] ]]; then
+    for char in $(print ${opt#"-"} | fold -w1); do
+      case $char in
+        h)
+          help
+          ;;
+        d)
+          discon=true
+          ;;
+        t)
+          tim=${@[$((${@[(Ie)$opt]}+1))]}
+          ;;
+      esac
+    done
+  elif [[ $opt = '--' ]]; then
+    COMMAND=$@[${@[(Ie)--]}+1,-1]
+  fi
+done
+
+con=false
+
+while true; do
+  if eval "$([[ $con = true ]] && print "! ")kdeconnect-cli -a 2>/dev/null | grep $device &>/dev/null"; then
+    if [[ $discon ]] && [[ $con = false ]]; then
+      con=true
+    else
+      break
+    fi
+  fi
+  sleep $tim
+done
+
+eval $COMMAND
+
