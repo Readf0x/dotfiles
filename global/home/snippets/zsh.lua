@@ -118,7 +118,7 @@ return {
     t({
       "for opt in $@; do",
       "\tif [[ $opt =~ ^-- ]]; then",
-      "\t\t$opt in",
+      "\t\tcase $opt in",
       "\t\t\t--"
     }), i(1, "help"), t(")"),
     t({"", wide_in}), i(2, "help"),
