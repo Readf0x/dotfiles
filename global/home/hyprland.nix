@@ -556,7 +556,7 @@ in {
         # Kdenlive
         "opacity 1.0, class:^(org.kde.kdenlive)$"
         # qView
-        "tile, class:^(com.interversehq.qView)$"
+        "suppressevent fullscreen, class:^(com.interversehq.qView)$"
       ];
     };
   };
