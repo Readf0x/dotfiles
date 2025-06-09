@@ -21,8 +21,8 @@
       text = "cmd[update:1000] echo \"$(cat /sys/class/power_supply/BAT0/capacity)%\"";
       color = "rgb(dddddd)";
       font_size = 12;
-      font_family = "Ubuntu Nerd Font";
-      position = "-10, -70";
+      font_family = "Courier";
+      position = "-10, -50";
       halign = "right";
       valign = "top";
     }

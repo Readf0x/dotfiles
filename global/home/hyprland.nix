@@ -636,7 +636,7 @@ in {
           monitor = (monitor 0).id;
           text = "cmd[update:1000] date +%I:%M\\ %p";
           color = rgb "dddddd";
-          font_size = 20;
+          font_size = 16;
           font_family = "Courier20";
           position = "-10, -10";
           halign = "right";
@@ -648,7 +648,7 @@ in {
           color = rgb "dddddd";
           font_size = 13;
           font_family = "Courier";
-          position = "-10, -50";
+          position = "-10, -30";
           halign = "right";
           valign = "top";
         }
