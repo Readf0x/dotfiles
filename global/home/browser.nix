@@ -5,7 +5,39 @@
     config = {
       extraConfig = ''
         #tabbrowser-tabbox::before {
-          margin: -1.39rem 0rem;
+          content: none;
+        }
+        #tabbrowser-tabbox {
+          margin: 0 !important;
+          background-color: var(--tf-bg) !important;
+          border-color: var(--tf-accent) !important;
+          padding: 0 !important;
+        }
+        #sidebar-box::before {
+          content: none;
+        }
+        #sidebar-box {
+          margin: 0 2px 0 0 !important;
+          border-color: #FFF0E7 !important;
+        }
+        #nav-bar::before {
+          content: none;
+        }
+        #nav-bar {
+          background-color: var(--tf-bg) !important;
+          border-color: var(--tf-accent) !important;
+        }
+        :root[tabsintitlebar] #toolbar-menubar[autohide="true"] {
+          padding-top: 0 !important;
+        }
+        :root {
+          --tf-navbar-margin: 0 0 2px;
+        }
+        body {
+          background-color: transparent !important;
+        }
+        #navigator-toolbox {
+          background-color: transparent !important;
         }
 
         @-moz-document url-prefix(about:blank) {*{background-color:#373635 !important;}}

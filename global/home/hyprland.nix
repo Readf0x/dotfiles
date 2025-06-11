@@ -66,7 +66,7 @@ in {
 
       # https://wiki.hyprland.org/Configuring/Variables/#general
       general = {
-        gaps_in = 2;
+        gaps_in = 1;
         gaps_out = 2;
         border_size = 2;
         "col.active_border" = rgb "FFF0E7";
@@ -170,6 +170,7 @@ in {
       "$music" = "neoshell ipc call player";
       "$browser" = "firefox-esr";
 
+      # [TODO] create vim binds
       bind = [
         # IMPORTANT:
         "$hyper, L, exec, xdg-open https://linkedin.com/"
@@ -309,7 +310,7 @@ in {
         "blueman-applet"
         "kdeconnect-indicator"
         "keepassxc"
-        "ping -w 1 discord.com && vesktop"
+        "ping -w 1 discord.com && vesktop --enable-features=UseOzonePlatform,WaylandWindowDecorations --ozone-platform-hint=auto"
         "qpwgraph -m"
         # **DO NOT ENABLE**
         # Steam uses a *shit ton* of power. Should only be opening when in use (on mobile devices)
@@ -519,10 +520,11 @@ in {
         "size 500 400, class:^(evolution-alarm-notify)$"
         "center, class:^(evolution-alarm-notify)$"
         "pin, class:^(evolution-alarm-notify)$"
-        # LibreWolf
+        # Firefox
         "float, title:(Close Firefox)"
         "opacity 1.0, title:.*(YouTube|Twitch|Figma).*, class:^(firefox-esr)$"
         "opacity 1.0, title:.*(YouTube|Twitch|Figma).*, class:^(firefox)$"
+        "bordersize 0, initialTitle:^(Mozilla Firefox)$"
         # Figma Linux
         "opacity 1.0, class:^(figma-linux)$"
         # Godot
