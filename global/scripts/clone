@@ -31,10 +31,13 @@ else
   repo=$(parseURL $1 | sed -r 's|.*/([^/]+/[^/]+)(\.git)?$|\1|')
   if [[ "$2" == -* ]]; then
     git clone $(echo "$@[2,-1] --") $(parseURL $1) "$HOME/Repos/$repo"
+    cd "$HOME/Repos/$repo"
   elif [[ -e $2 ]]; then
     git clone $(echo "$@[3,-1] --") $(parseURL $1) "$2/$repo"
+    cd "$2/Repos/$repo"
   else
     git clone $(parseURL $1) "$HOME/Repos/$repo"
+    cd "$HOME/Repos/$repo"
   fi
 fi
 

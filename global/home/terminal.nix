@@ -76,6 +76,7 @@
               compinit -i $@
             }
           fi
+          autoload bashcompinit && bashcompinit
         '')
         (lib.mkBefore ''
           [[ $KITTY_WINDOW_ID -gt 1 ]] || ! [[ $KITTY_SHELL_INTEGRATION = no-rc ]] || [[ $SHLVL -gt 1 ]] || pokeget ${conf.pokemon} --hide-name
@@ -83,6 +84,7 @@
         '')
         (''
           bindkey -v
+          bindkey '^U' kill-whole-line
           bindkey -M viins '^H' backward-kill-word
           bindkey -M viins '^[[1;5D' backward-word
           bindkey -M viins '^[[1;5C' forward-word
@@ -95,6 +97,7 @@
           zstyle ':completion:*' menu select
 
           function run() { nix run nixpkgs#$1 -- ${"$\{@:2}"}}
+          function surun() { sudo nix run nixpkgs#$1 -- ${"$\{@:2}"}}
           function shell() {
             if [[ ${"$\{#@}"} > 1 ]]; then
               eval nix shell nixpkgs#{${"$\{(j:,:)@}"}}
@@ -105,6 +108,12 @@
           function path2array() {
             local input=$1
             print -l ${"$\{(s/:/)input}"}
+          }
+          function spawn() {
+            $@ &>/dev/null & disown
+          }
+          function clone() {
+            source $HOME/Scripts/clone $@
           }
 
           alias cat=bat
