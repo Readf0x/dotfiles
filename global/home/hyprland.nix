@@ -1,4 +1,4 @@
-{ pkgs, conf, config, lib', ... }: let
+{ pkgs, conf, config, lib', pkgs', ... }: let
   mLib = lib'.monitors;
   monitor = mLib.getId;
   rgb = col: "rgb(${col})";
@@ -6,6 +6,9 @@
   colors = config.lib.stylix.colors;
   ifPlugin = plugin: val: if builtins.elem plugin.name (builtins.map (f: f.name) config.wayland.windowManager.hyprland.plugins) then val else null;
 in {
+  home.packages = [
+    pkgs'.hypr-zoom
+  ];
   wayland.windowManager.hyprland = {
     enable = true;
     systemd.variables = ["--all"];
@@ -194,6 +197,8 @@ in {
         ", XF86Tools, exec, pavucontrol"
         ", XF86MonBrightnessUp, exec, brightnessctl s +5%"
         ", XF86MonBrightnessDown, exec, brightnessctl s 5%-"
+        "$mod, mouse:276, exec, hypr-zoom -duration 250 -steps 75 -target 2"
+        "$mod, mouse:275, exec, hypr-zoom -duration 250 -steps 75 -target 1"
 
         # Media controls
         ", XF86AudioPlay, exec, $music playPause"
@@ -655,7 +660,7 @@ in {
       ];
     };
   };
-  home.packages = [ pkgs.hypridle ];
+  # home.packages = [ pkgs.hypridle ];
   services.hypridle = {
     enable = true;
     settings = {
