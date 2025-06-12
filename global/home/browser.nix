@@ -40,6 +40,13 @@
           background-color: transparent !important;
         }
 
+        @-moz-document url-prefix(about:) {
+          .devtools-side-splitter {
+            background-color: #FFF0E7;
+            width: 7px;
+          }
+        }
+
         @-moz-document url-prefix(about:blank) {*{background-color:#373635 !important;}}
       '';
       font.family = "Courier20, Courier16, Courier13, Courier, monospace";
@@ -182,6 +189,7 @@
           return-youtube-dislikes
           seventv
           sponsorblock
+          shinigami-eyes
 
           (buildFirefoxXpiAddon {
             pname = "twitch-live-channels";
@@ -189,7 +197,8 @@
             addonId = "{d3d2a327-1ae0-4fd6-b732-0844d0b7fd4c}";
             url = "https://addons.mozilla.org/firefox/downloads/latest/twitch-live-channels/latest.xpi";
             sha256 = "sha256-AZqaXyX6rHB3ZABQUbMx3AESAaWIjaCO9/301nV+RSo=";
-            meta = { homepage = "https://github.com/s4my/TwitchLiveChannels/";
+            meta = {
+              homepage = "https://github.com/s4my/TwitchLiveChannels/";
               description = "Twitch Live Channels helps you keep track of who is LIVE out of the channels you follow on Twitch.";
               license = lib.licenses.gpl3;
               mozPermissions = [
@@ -198,6 +207,19 @@
                 "identity"
                 "https://*.twitch.tv/"
               ];
+              platforms = lib.platforms.all;
+            };
+          })
+          (buildFirefoxXpiAddon {
+            pname = "youtube-full-windowed";
+            version = "1.1.1";
+            addonId = "{c10b86a1-fefb-4929-a2b7-bdb2c8018da5}";
+            url = "https://addons.mozilla.org/firefox/downloads/latest/youtube-full-windowed/latest.xpi";
+            sha256 = "sha256-iTlBoUWi1bb1S5Ah0MrJUqpQkP3G7K6JELzLX8usgfo=";
+            meta = {
+              homepage = "https://github.com/darco1991/youtube-full-windowed";
+              description = "This extension adds the ability to toggle a full windowed mode in YouTube website";
+              mozPermissions = [];
               platforms = lib.platforms.all;
             };
           })
@@ -233,4 +255,7 @@
       };
     };
   };
+  home.file.".mozilla/firefox/Default/browser-extension-data/FirefoxColor@mozilla.com/storage.js".text = ''
+    {"firstRunDone":true,"images":{},"theme":{"colors":{"toolbar":{"r":55,"g":54,"b":53},"toolbar_text":{"r":255,"g":240,"b":231},"frame":{"r":55,"g":54,"b":53},"tab_background_text":{"r":255,"g":240,"b":231},"toolbar_field":{"r":76,"g":73,"b":70},"toolbar_field_text":{"r":255,"g":240,"b":231},"tab_line":{"r":255,"g":240,"b":231},"popup":{"r":55,"g":54,"b":53},"popup_text":{"r":255,"g":240,"b":231}},"images":{"additional_backgrounds":[],"custom_backgrounds":[]}}}
+  '';
 }

@@ -128,6 +128,20 @@
     nixvim = {
       enable = true;
     } // import ./nixvim.nix { inherit pkgs; };
+
+    mpv = {
+      enable = true;
+      package = pkgs.mpv.override {
+        scripts = with pkgs.mpvScripts; [
+          mpris
+          uosc
+        ];
+      };
+      config = {
+        script-opts = "ytdl_hook-ytdl_path=${pkgs.yt-dlp}/bin/yt-dlp";
+        ytdl-format = "bestvideo[height<=?720][fps<=?30][vcodec!=?vp9]+bestaudio/best";
+      };
+    };
   };
 
   stylix.targets = {

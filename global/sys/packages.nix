@@ -133,6 +133,7 @@
       qttools
       qtwayland
     ])) ++ (with kdePackages; [
+      kcalendarcore
       kimageformats
       kio-admin
       kio-extras
@@ -150,6 +151,7 @@
       dolphin-plugins
       kdegraphics-thumbnailers
       kdenlive
+      korganizer
       ktorrent
     ]) ++ (with wineWowPackages; [
       stableFull

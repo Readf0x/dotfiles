@@ -85,9 +85,9 @@
         (''
           bindkey -v
           bindkey '^U' kill-whole-line
-          bindkey -M viins '^H' backward-kill-word
-          bindkey -M viins '^[[1;5D' backward-word
-          bindkey -M viins '^[[1;5C' forward-word
+          bindkey '^H' backward-kill-word
+          bindkey '^[[1;5D' backward-word
+          bindkey '^[[1;5C' forward-word
           bindkey '^[[H' beginning-of-line
           bindkey '^[[F' end-of-line
           bindkey '^[[A' history-substring-search-up
@@ -130,7 +130,10 @@
                 distrobox $@
               fi
             }
-          compdef db=distrobox
+            compdef db=distrobox
+          fi
+          if tty | grep tty &>/dev/null; then
+            alias mpv="mpv --vo=drm"
           fi
         '')
       ];

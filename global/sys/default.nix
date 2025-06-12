@@ -28,7 +28,7 @@
   users.users = lib.mapAttrs (
     name: config: {
       isNormalUser = config.isNormalUser;
-      extraGroups = [ "networkmanager" ] ++ (
+      extraGroups = [ "networkmanager" "video" ] ++ (
         if config.admin then [ "wheel" ] else []
       );
       shell = pkgs.${config.shell};
@@ -150,6 +150,7 @@
     };
     cron.enable = true;
     gpm.enable = true;
+    # kmscon.enable = true;
   };
 
   # https://discourse.nixos.org/t/setting-sddm-profile-picture/49604
