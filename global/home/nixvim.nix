@@ -57,15 +57,37 @@
     { action = cmd "noh";                           key = "<leader>u";  mode = "n";         options.desc = "Clear highlight";     }
     { action = cmd "w";                             key = "<leader>s";  mode = "n";         options.desc = "Save";                }
     { action = toggle "vim.o.relativenumber";       key = "<leader>n";  mode = "n";         options.desc = "Toggle relative";     }
-    { action = "<cmd>EasyAlign";                    key = "<leader>a";  mode = "n";         options.desc = "Align";               }
+    { action = ":EasyAlign ";                       key = "<leader>a";  mode = "n";         options.desc = "Align";               }
     { action = cmd "Telescope";                     key = "<leader>tt"; mode = "n";         options.desc = "All";                 }
     { action = lua "vim.diagnostic.open_float()" f; key = "<leader>d";  mode = "n";         options.desc = "Diagnostic";          }
     { action = ":IncRename ";                       key = "<leader>r";  mode = "n";         options.desc = "Rename";              }
+    { action = cmd "CccPick";                       key = "<leader>c";  mode = "n";         options.desc = "Color Picker";        }
   ] ++ map (x: {
     action = cmd "Telescope ${x.cmd}"; key = "<leader>t${x.key}"; mode = "n"; options.desc = x.name;
   }) telescope_opts;
 
-  colorscheme = "tender";
+  # colorscheme = "tender";
+  colorschemes.base16 = {
+    enable = true;
+    colorscheme = {
+      base00 = "#373635";
+      base01 = "#292928";
+      base02 = "#4C4946";
+      base03 = "#625f5d";
+      base04 = "#4a4644";
+      base05 = "#FFF0E7";
+      base06 = "#E0D7C2";
+      base07 = "#FFF7F2";
+      base08 = "#5394B8";
+      base09 = "#89A044";
+      base0A = "#ffc24b";
+      base0B = "#dc9656";
+      base0C = "#BD594A";
+      base0D = "#3E966D";
+      base0E = "#BD7C4A";
+      base0F = "#a16946";
+    };
+  };
 
   plugins = {
     which-key = {
@@ -258,6 +280,7 @@
       mockDevIcons = true;
     };
     colorizer.enable = true;
+    ccc.enable = true;
     neo-tree.enable = true;
     nix.enable = true;
     treesitter = {
@@ -443,12 +466,12 @@
     set signcolumn=yes
     set scrolloff=10
 
-    hi NormalFloat guibg=#1D1D1D
-    hi Pmenu guifg=#EEEEEE guibg=#1D1D1D
+    hi NormalFloat guibg=#292928
+    hi Pmenu guifg=#FFF0E7 guibg=#292928
     hi Statement gui=italic cterm=italic
-    hi @property.jsonc guifg=#73CEF4 ctermfg=81
-    hi @tag.html guifg=#EEEEEE
-    hi @punctuation.delimiter.jsdoc guifg=#EEEEEE
+    hi @property.jsonc guifg=#5394B8 ctermfg=81
+    hi @tag.html guifg=#FFF0E7
+    hi @punctuation.delimiter.jsdoc guifg=#FFF0E7
 
     set splitbelow
     set splitright
