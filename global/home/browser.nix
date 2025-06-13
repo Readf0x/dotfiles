@@ -194,25 +194,26 @@
           sponsorblock
           shinigami-eyes
 
-          (buildFirefoxXpiAddon {
-            pname = "twitch-live-channels";
-            version = "1.0.24";
-            addonId = "{d3d2a327-1ae0-4fd6-b732-0844d0b7fd4c}";
-            url = "https://addons.mozilla.org/firefox/downloads/latest/twitch-live-channels/latest.xpi";
-            sha256 = "sha256-AZqaXyX6rHB3ZABQUbMx3AESAaWIjaCO9/301nV+RSo=";
-            meta = {
-              homepage = "https://github.com/s4my/TwitchLiveChannels/";
-              description = "Twitch Live Channels helps you keep track of who is LIVE out of the channels you follow on Twitch.";
-              license = lib.licenses.gpl3;
-              mozPermissions = [
-                "storage"
-                "notifications"
-                "identity"
-                "https://*.twitch.tv/"
-              ];
-              platforms = lib.platforms.all;
-            };
-          })
+          # Disabled in favor of Chatterino
+          # (buildFirefoxXpiAddon {
+          #   pname = "twitch-live-channels";
+          #   version = "1.0.24";
+          #   addonId = "{d3d2a327-1ae0-4fd6-b732-0844d0b7fd4c}";
+          #   url = "https://addons.mozilla.org/firefox/downloads/latest/twitch-live-channels/latest.xpi";
+          #   sha256 = "sha256-AZqaXyX6rHB3ZABQUbMx3AESAaWIjaCO9/301nV+RSo=";
+          #   meta = {
+          #     homepage = "https://github.com/s4my/TwitchLiveChannels/";
+          #     description = "Twitch Live Channels helps you keep track of who is LIVE out of the channels you follow on Twitch.";
+          #     license = lib.licenses.gpl3;
+          #     mozPermissions = [
+          #       "storage"
+          #       "notifications"
+          #       "identity"
+          #       "https://*.twitch.tv/"
+          #     ];
+          #     platforms = lib.platforms.all;
+          #   };
+          # })
           (buildFirefoxXpiAddon {
             pname = "youtube-full-windowed";
             version = "1.1.1";

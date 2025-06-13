@@ -198,8 +198,6 @@ in {
         ", XF86Tools, exec, pavucontrol"
         ", XF86MonBrightnessUp, exec, brightnessctl s +5%"
         ", XF86MonBrightnessDown, exec, brightnessctl s 5%-"
-        "$mod, mouse:276, exec, hypr-zoom -duration 250 -steps 75 -target 2"
-        "$mod, mouse:275, exec, hypr-zoom -duration 250 -steps 75 -target 1"
 
         # Media controls
         ", XF86AudioPlay, exec, $music playPause"

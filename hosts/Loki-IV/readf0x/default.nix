@@ -13,7 +13,13 @@
     };
   };
   wayland.windowManager.hyprland = {
-    settings.input.sensitivity = "0.4";
+    settings = {
+      input.sensitivity = "0.4";
+      bind = [
+        "$mod, mouse:276, exec, hypr-zoom -duration 250 -steps 30 -target 2"
+        "$mod, mouse:275, exec, hypr-zoom -duration 250 -steps 30 -target 1"
+      ];
+    };
   };
   programs.hyprlock.settings.label = [
     {

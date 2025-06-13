@@ -18,6 +18,7 @@
       # Desktop Applications
       blender-hip
       blockbench
+      chatterino7
       easyeffects
       gimp3-with-plugins
       hexchat
@@ -205,5 +206,6 @@
     };
     kdeconnect.enable = true;
     virt-manager.enable = true;
+    nh.enable = true;
   };
 }
