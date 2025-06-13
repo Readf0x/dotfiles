@@ -1,5 +1,4 @@
 #!/usr/bin/env zsh
 
-sudo nix-collect-garbage -d && \
-nix-collect-garbage -d && \
+nh clean
 nix store optimise

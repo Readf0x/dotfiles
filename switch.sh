@@ -1,5 +1,5 @@
 #!/usr/bin/env zsh
 
-sudo nixos-rebuild switch --flake $PWD
-home-manager switch --flake $PWD
+nh os switch .
+nh home switch .
 
