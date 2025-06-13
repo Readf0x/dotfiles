@@ -19,6 +19,9 @@
         #sidebar-box {
           margin: 0 2px 0 0 !important;
           border-color: #FFF0E7 !important;
+          &:hover {
+            border-color: #FFF0E7 !important;
+          }
         }
         #nav-bar::before {
           content: none;
