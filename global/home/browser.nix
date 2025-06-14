@@ -259,7 +259,20 @@
       };
     };
   };
-  home.file.".mozilla/firefox/Default/browser-extension-data/FirefoxColor@mozilla.com/storage.js".text = ''
-    {"firstRunDone":true,"images":{},"theme":{"colors":{"toolbar":{"r":55,"g":54,"b":53},"toolbar_text":{"r":255,"g":240,"b":231},"frame":{"r":55,"g":54,"b":53},"tab_background_text":{"r":255,"g":240,"b":231},"toolbar_field":{"r":76,"g":73,"b":70},"toolbar_field_text":{"r":255,"g":240,"b":231},"tab_line":{"r":255,"g":240,"b":231},"popup":{"r":55,"g":54,"b":53},"popup_text":{"r":255,"g":240,"b":231}},"images":{"additional_backgrounds":[],"custom_backgrounds":[]}}}
-  '';
+  home.file = let
+    extension = x: ".mozilla/firefox/Default/browser-extension-data/${x}/storage.js";
+  in {
+    ${extension "FirefoxColor@mozilla.com"}.text = ''
+      {"firstRunDone":true,"images":{},"theme":{"colors":{"toolbar":{"r":55,"g":54,"b":53},"toolbar_text":{"r":255,"g":240,"b":231},"frame":{"r":55,"g":54,"b":53},"tab_background_text":{"r":255,"g":240,"b":231},"toolbar_field":{"r":76,"g":73,"b":70},"toolbar_field_text":{"r":255,"g":240,"b":231},"tab_line":{"r":255,"g":240,"b":231},"popup":{"r":55,"g":54,"b":53},"popup_text":{"r":255,"g":240,"b":231}},"images":{"additional_backgrounds":[],"custom_backgrounds":[]}}}
+    '';
+    ${extension "moz-addon-prod@7tv.app"}.text = ''
+      {"seen_onboarding":true}
+    '';
+    ${extension "enhancerforyoutube@maximerf.addons.mozilla.org"}.text = ''
+      {"blur":0,"brightness":100,"contrast":100,"grayscale":0,"huerotate":0,"invert":0,"saturate":100,"sepia":0,"applyvideofilters":false,"backgroundcolor":"#000000","backgroundopacity":85,"blackbars":false,"blockautoplay":true,"blockhfrformats":false,"blockwebmformats":false,"boostvolume":false,"cinemamode":false,"cinemamodewideplayer":true,"controlbar":{"active":false,"autohide":false,"centered":true,"position":"absolute"},"controls":["loop","reverse-playlist","volume-booster","cards-end-screens","cinema-mode","size","pop-up-player","speed","video-filters","screenshot","keyboard-shortcuts","options"],"controlsvisible":false,"controlspeed":true,"controlspeedmousebutton":false,"controlvolume":false,"controlvolumemousebutton":false,"convertshorts":true,"customcolors":{"--main-color":"#f43753","--main-background":"#373635","--second-background":"#4c4946","--hover-background":"#484848","--main-text":"#fff0e7","--dimmer-text":"#b8b8b8","--shadow":"#000000"},"customcssrules":"yt-chip-cloud-chip-renderer[selected] #text.yt-chip-cloud-chip-renderer { color: var(--main-background) !important; }\n#movie_player { background: black; }","customscript":"","customtheme":true,"darktheme":true,"date":1733512959186,"defaultvolume":true,"disableautoplay":true,"executescript":false,"expanddescription":false,"filter":"none","hidecardsendscreens":false,"hidechat":false,"hidecomments":false,"hiderelated":false,"hideshorts":true,"ignoreplaylists":true,"ignorepopupplayer":true,"localecode":"en_US","localedir":"ltr","message":false,"miniplayer":true,"miniplayerposition":"_top-left","miniplayersize":"_400x225","newestcomments":false,"overridespeeds":true,"pauseforegroundtab":false,"pausevideos":true,"popuplayersize":"640x360","qualityembeds":"medium","qualityembedsfullscreen":"hd1080","qualityplaylists":"hd1080","qualityplaylistsfullscreen":"hd1080","qualityvideos":"hd1080","qualityvideosfullscreen":"hd1080","reload":false,"reversemousewheeldirection":false,"selectquality":true,"selectqualityfullscreenoff":false,"selectqualityfullscreenon":false,"speed":1,"speedvariation":0.1,"stopvideos":false,"theatermode":true,"theme":"youtube-deep-dark-custom","themevariant":"youtube-deep-dark-vertex-dark.css","update":1733512959186,"volume":100,"volumemultiplier":3,"volumevariation":5,"wideplayer":false,"wideplayerviewport":false}
+    '';
+    ${extension "addon@darkreader.org"}.text = ''
+      {"schemeVersion":2,"enabledByDefault":true,"disabledFor":[],"enabledFor":[],"displayedNews":["firefox-bugs","google-docs-bugs"],"readNews":["firefox-bugs","google-docs-bugs"],"installation":{"date":1746738441677,"reason":"browser_update","version":"4.9.103"}}
+    '';
+  };
 }
