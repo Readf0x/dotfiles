@@ -44,7 +44,7 @@ function noyes() {
 }
 
 function installrepo() {
-  sudo mkdir -p /mnt/readf0x/Repos/readf0x
+  sudo mkdir -p /mnt/home/readf0x/Repos/readf0x
   sudo cp -r /tmp/dotfiles /mnt/home/readf0x/Repos/readf0x/dotfiles
 }
 
