@@ -82,12 +82,5 @@
     #   Host Loki-IV
     #     HostName 10.1.11.100
     # '';
-    ".reload" = {
-      source = "${inputs.neoshell.packages.${conf.system}.default}/bin/neoshell";
-      onChange = ''
-        pkill quickshell
-        ${inputs.neoshell.packages.${conf.system}.default}/bin/neoshell -d
-      '';
-    };
   } // (lib.mapAttrs' (n: v: lib.nameValuePair "Scripts/${n}" { source = builtins.toPath "${builtins.toString ./..}/scripts/${n}"; }) (builtins.readDir ../scripts));
 }
