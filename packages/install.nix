@@ -4,16 +4,16 @@
 }:
 
 stdenv.mkDerivation (finalAttrs: {
-  pname = "init";
+  pname = "install";
   version = "1";
 
-  src = ../global/scripts;
+  src = ./installer;
 
   buildInputs = [ zsh ];
 
   installPhase = ''
     mkdir -p $out/bin
-    cp init $out/bin/init
+    cp installer.zsh $out/bin/install
   '';
 })
 

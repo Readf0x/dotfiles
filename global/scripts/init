@@ -100,21 +100,3 @@ enabledPlugins=Git
 2 screens: Window-Maximized=true
 EOF
 
-source /etc/os-release
-if [[ $FLAKE_OWNER != "readf0x" ]]; then
-  cd ~/Repos
-  git clone https://github.com/readf0x/dotfiles readf0x/dotfiles
-  cd readf0x/dotfiles
-  if ! [[ -d "./hosts/$HOSTNAME" ]]; then
-    print -P "Please create a system definition in %B%F{2}./hosts/flake-module.nix%f%b"
-    print -P "You may then exit the shell and the system will be built automatically."
-    zsh -i
-  fi
-  while ! nixos-rebuild switch --flake .; do
-    zsh -i
-  done
-  while ! home-manager switch --flake .; do
-    zsh -i
-  done
-fi
-
