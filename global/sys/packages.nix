@@ -143,6 +143,7 @@
       qtstyleplugin-kvantum
       qtsvg
       qtwayland
+      plasma-browser-integration
 
       # Applications
       ark

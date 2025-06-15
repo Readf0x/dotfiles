@@ -319,7 +319,8 @@ in {
         "zsh -c '\${$(realpath $(which kdeconnect-cli))%\"bin/kdeconnect-cli\"}libexec/kdeconnectd'"
         # "~/Scripts/start-mpd"
         # "${pkgs.kdePackages.kdeconnect-kde}/libexec/kdeconnectd"
-        #"/run/wrappers/bin/gnome-keyring-daemon --start --foreground --components=secrets"
+        # "/run/wrappers/bin/gnome-keyring-daemon --start --foreground --components=secrets"
+        "plasma-browser-integration-host"
       ];
 
       #  _      ___         __             ___       __      

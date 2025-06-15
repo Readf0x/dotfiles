@@ -58,7 +58,7 @@
   programs.firefox = {
     enable = true;
     package = pkgs.firefox-esr;
-    nativeMessagingHosts = [ pkgs.keepassxc ];
+    nativeMessagingHosts = [ pkgs.keepassxc pkgs.kdePackages.plasma-browser-integration ];
 
     policies = {
       DisableAppUpdate = true;
@@ -151,6 +151,7 @@
           "privacy.clearOnShutdown.history" = false;
           "privacy.sanitize.sanitizeOnShutdown" = false;
           "media.autoplay.default" = 0;
+          "media.hardwaremediakeys.enabled" = false;
         };
 
         bookmarks = {
@@ -193,6 +194,7 @@
           seventv
           sponsorblock
           shinigami-eyes
+          plasma-integration
 
           # Disabled in favor of Chatterino
           # (buildFirefoxXpiAddon {
