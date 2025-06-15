@@ -471,6 +471,8 @@
     hi Statement gui=italic cterm=italic
     hi @property.jsonc guifg=#5394B8 ctermfg=81
     hi @tag.html guifg=#FFF0E7
+    hi htmlTag guifg=#FFF0E7
+    hi htmlEndTag guifg=#FFF0E7
     hi @punctuation.delimiter.jsdoc guifg=#FFF0E7
 
     set splitbelow
