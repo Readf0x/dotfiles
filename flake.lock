@@ -398,11 +398,11 @@
         "quickshell": "quickshell"
       },
       "locked": {
-        "lastModified": 1749955487,
-        "narHash": "sha256-lpaepPBmAhO734INXhtEQws7FCO/Keb5WREf3DuEnkY=",
+        "lastModified": 1749998695,
+        "narHash": "sha256-qjrvxUNpJnrraBA4gB6m7m58xfo0EuFU+nMFgObAhJw=",
         "owner": "readf0x",
         "repo": "quickshell",
-        "rev": "0e133b10a5345522f7e08faf5f7dab90451a2088",
+        "rev": "e76e0e7e2a9a21db5898ecab84c628455a4978d9",
         "type": "github"
       },
       "original": {
