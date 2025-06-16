@@ -31,14 +31,6 @@
     };
     ratbagd.enable = true;
     blueman.enable = true;
-    ollama = {
-      enable = true;
-      acceleration = "rocm";
-      environmentVariables = {
-        HCC_AMDGPU_TARGET = "gfx1032";
-      };
-      rocmOverrideGfx = "10.3.2";
-    };
   };
 
   systemd.services."libvirtd".path = [ pkgs.passt ];

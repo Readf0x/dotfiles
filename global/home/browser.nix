@@ -104,7 +104,6 @@
         "{b86e4813-687a-43e6-ab65-0bde4ab75758}" = latest "localcdn-fork-of-decentraleyes";
         "keepassxc-browser@keepassxc.org" = latest "keepassxc-browser";
         "mouse-pinch-to-zoom@niziolek.dev" = latest "mouse-pinch-to-zoom";
-        "jid1-93WyvpgvxzGATw@jetpack" = latest "to-google-translate";
         # "tubemod@extension.com" = latest "tubemod";
         "{d7742d87-e61d-4b78-b8a1-b469842139fa}" = latest "vimium-ff";
         "{a6c4a591-f1b2-4f03-b3ff-767e5bedf4e7}" = latest "user-agent-string-switcher";

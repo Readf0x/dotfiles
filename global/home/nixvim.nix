@@ -372,6 +372,21 @@
     #   };
     # };
     image.enable = true;
+    dap = {
+      enable = true;
+    };
+    dap-go = {
+      enable = true;
+    };
+    dap-view = {
+      enable = true;
+    };
+    dap-virtual-text = {
+      enable = true;
+    };
+    neotest = {
+      enable = true;
+    };
   };
   extraPlugins = with pkgs.vimPlugins; [
     firenvim

@@ -208,6 +208,7 @@ in {
         "$mod, Home, exec, $music previous"
         ", XF86Favorites, exec, $music nextPlayer"
         "$mod, Insert, exec, $music nextPlayer"
+        "$mod $s, Insert, exec, neoshell ipc call popup toggleVisible"
         "$s, XF86Favorites, exec, ~/Scripts/player-info notify"
         "$a, XF86Favorites, exec, notify-send \"Current Battery Level: $(cat /sys/class/power_supply/BAT0/capacity)%\" -t 1000"
         "$mod $s, H, exec, ~/Scripts/audio"

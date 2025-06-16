@@ -120,7 +120,7 @@
     #gnome.gnome-keyring.enable = true;
     logind.extraConfig = "HandlePowerKey=ignore";
     i2pd = {
-      enable = true;
+      enable = false;
       address = "127.0.0.1";
       proto = {
         http.enable = true;

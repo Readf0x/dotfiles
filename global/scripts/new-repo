@@ -1,0 +1,66 @@
+#!/usr/bin/env zsh
+
+repopath="$HOME/Repos/$USER"
+name=${@: -1}
+
+function help() {
+  msg="$(sed -e 's/^[ ]*| //m' <<'--------------------'
+    | Create a new repo in ~/Repos/<USER>/
+    | 
+    | %UUsage:%u %Bnew-repo%b [OPTIONS] <NAME>
+    | 
+    | %UArguments:%u
+    | 
+    | %UOptions:%u
+    |   %B-h%b, %B--help%b:
+    |         Print help
+    |   %B-p%b, %B--path%b:
+    |         Path to place repo
+    |   %B-f%b, %B--flake%b:
+    |         Flake template to use
+--------------------
+    )"
+  print -P $msg
+  exit 0
+}
+
+for opt in $@; do
+  if [[ $opt =~ ^-- ]]; then
+    case $opt in
+      --help)
+        help
+        ;;
+      --path)
+        repopath=${@[$((${@[(Ie)$opt]}+1))]}
+        ;;
+      --flake)
+        flake=${@[$((${@[(Ie)$opt]}+1))]}
+        ;;
+    esac
+  elif [[ $opt =~ ^- ]]; then
+    for char in $(print ${opt#"-"} | fold -w1); do
+      case $char in
+        h)
+          help
+          ;;
+        p)
+          repopath=${@[$((${@[(Ie)$opt]}+1))]}
+          ;;
+        f)
+          flake=${@[$((${@[(Ie)$opt]}+1))]}
+          ;;
+      esac
+    done
+  fi
+done
+
+# Main logic
+set -e
+cd $repopath
+mkdir $name
+cd $name
+git init
+if [[ -v flake ]]; then
+  nix flake init -t $flake
+fi
+

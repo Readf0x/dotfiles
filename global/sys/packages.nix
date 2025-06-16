@@ -99,6 +99,7 @@
       ncdu
       ncmpcpp
       neovim
+      nix-output-monitor
       nodejs-slim
       playerctl
       pokeget-rs
