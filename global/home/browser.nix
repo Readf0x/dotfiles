@@ -186,14 +186,15 @@
           don-t-fuck-with-paste
           enhancer-for-youtube
           firefox-color
+          greasemonkey
           new-window-without-toolbar
+          plasma-integration
           privacy-badger
           reddit-enhancement-suite
           return-youtube-dislikes
           seventv
-          sponsorblock
           shinigami-eyes
-          plasma-integration
+          sponsorblock
 
           # Disabled in favor of Chatterino
           # (buildFirefoxXpiAddon {

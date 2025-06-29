@@ -12,7 +12,7 @@
     firewall.enable = false;
     hosts = {
       "10.1.11.104" = [ "Loki-II" "loki2" ];
-      "10.1.11.100" = [ "Loki-IV" "loki4" ];
+      "10.1.11.101" = [ "Loki-IV" "loki4" ];
     };
   };
 
@@ -151,6 +151,14 @@
     cron.enable = true;
     gpm.enable = true;
     # kmscon.enable = true;
+    syncthing = let
+      user = lib.elemAt (lib.mapAttrsToList (n: v: n) (lib.filterAttrs (n: v: v.syncthing == true) conf.users)) 0;
+    in {
+      inherit user;
+      enable = true;
+      overrideDevices = false;
+      overrideFolders = false;
+    };
   };
 
   # https://discourse.nixos.org/t/setting-sddm-profile-picture/49604

@@ -30,38 +30,51 @@
     f = "false";
   in [
     # Remaps
-    { action = "cc";                                key = "C";          mode = "n";         options.desc = "Change line";         }
-    { action = "<End>";                             key = "<CR>";                           options.desc = "End of line";         }
-    { action = "zl";                                key = "<C-l>";      mode = [ "n" "v" ]; options.desc = "Scroll right single"; }
-    { action = "zL";                                key = "<C-k>";      mode = [ "n" "v" ]; options.desc = "Scroll right";        }
-    { action = "zh";                                key = "<C-h>";      mode = [ "n" "v" ]; options.desc = "Scroll left single";  }
-    { action = "zH";                                key = "<C-j>";      mode = [ "n" "v" ]; options.desc = "Scroll left";         }
-    { action = luasnip "1";                         key = "<C-n>";      mode = [ "i" "s" ]; options.desc = "Next choice";         }
-    { action = luasnip "-1";                        key = "<C-m>";      mode = [ "i" "s" ]; options.desc = "Prev choice";         }
+    { action = "cc";                                key = "C";           mode = "n";         options.desc = "Change line";         }
+    { action = "<End>";                             key = "<CR>";                            options.desc = "End of line";         }
+    { action = "zl";                                key = "<C-l>";       mode = [ "n" "v" ]; options.desc = "Scroll right single"; }
+    { action = "zL";                                key = "<C-k>";       mode = [ "n" "v" ]; options.desc = "Scroll right";        }
+    { action = "zh";                                key = "<C-h>";       mode = [ "n" "v" ]; options.desc = "Scroll left single";  }
+    { action = "zH";                                key = "<C-j>";       mode = [ "n" "v" ]; options.desc = "Scroll left";         }
+    { action = luasnip "1";                         key = "<C-n>";       mode = [ "i" "s" ]; options.desc = "Next choice";         }
+    { action = luasnip "-1";                        key = "<C-m>";       mode = [ "i" "s" ]; options.desc = "Prev choice";         }
     # Git
-    { action = cmd "Gitsigns reset_hunk";           key = "<C-g>r";     mode = [ "n" "v" ]; options.desc = "Reset hunk";          }
-    { action = cmd "Gitsigns stage_hunk";           key = "<C-g>s";     mode = [ "n" "v" ]; options.desc = "Stage hunk";          }
-    { action = cmd "Gitsigns stage_buffer";         key = "<C-g>S";     mode = "n";         options.desc = "Stage buffer";        }
-    { action = cmd "Gitsigns undo_stage_hunk";      key = "<C-g>u";     mode = "n";         options.desc = "Undo stage";          }
-    { action = cmd "Gitsigns reset_buffer";         key = "<C-g>R";     mode = "n";         options.desc = "Reset buffer";        }
-    { action = cmd "Gitsigns preview_hunk";         key = "<C-g>p";     mode = "n";         options.desc = "Preview hunk";        }
-    { action = cmd "Gitsigns blame_line";           key = "<C-g>b";     mode = "n";         options.desc = "Blame line";          }
-    { action = cmd "Gitsigns diffthis";             key = "<C-g>d";     mode = "n";         options.desc = "Diff";                }
-    { action = cmd "Gitsigns toggle_deleted";       key = "<C-g>D";     mode = "n";         options.desc = "Toggle deleted";      }
-    { action = gitlinker.line_normal;               key = "<C-g>l";     mode = "n";         options.desc = "Copy line url";       }
-    { action = gitlinker.line_visual;               key = "<C-g>l";     mode = "v";         options.desc = "Copy line url";       }
-    { action = gitlinker.homepage;                  key = "<C-g>h";     mode = "n";         options.desc = "Copy homepage";       }
-    { action = cmd "LazyGit";                       key = "<C-g>g";     mode = "n";         options.desc = "Open lazygit";        }
+    { action = cmd "Gitsigns reset_hunk";           key = "<C-g>r";      mode = [ "n" "v" ]; options.desc = "Reset hunk";          }
+    { action = cmd "Gitsigns stage_hunk";           key = "<C-g>s";      mode = [ "n" "v" ]; options.desc = "Stage hunk";          }
+    { action = cmd "Gitsigns stage_buffer";         key = "<C-g>S";      mode = "n";         options.desc = "Stage buffer";        }
+    { action = cmd "Gitsigns undo_stage_hunk";      key = "<C-g>u";      mode = "n";         options.desc = "Undo stage";          }
+    { action = cmd "Gitsigns reset_buffer";         key = "<C-g>R";      mode = "n";         options.desc = "Reset buffer";        }
+    { action = cmd "Gitsigns preview_hunk";         key = "<C-g>p";      mode = "n";         options.desc = "Preview hunk";        }
+    { action = cmd "Gitsigns blame_line";           key = "<C-g>b";      mode = "n";         options.desc = "Blame line";          }
+    { action = cmd "Gitsigns diffthis";             key = "<C-g>d";      mode = "n";         options.desc = "Diff";                }
+    { action = cmd "Gitsigns toggle_deleted";       key = "<C-g>D";      mode = "n";         options.desc = "Toggle deleted";      }
+    { action = gitlinker.line_normal;               key = "<C-g>l";      mode = "n";         options.desc = "Copy line url";       }
+    { action = gitlinker.line_visual;               key = "<C-g>l";      mode = "v";         options.desc = "Copy line url";       }
+    { action = gitlinker.homepage;                  key = "<C-g>h";      mode = "n";         options.desc = "Copy homepage";       }
+    { action = cmd "LazyGit";                       key = "<C-g>g";      mode = "n";         options.desc = "Open lazygit";        }
     # Leader
-    { action = cmd "Neotree toggle";                key = "<leader>e";  mode = "n";         options.desc = "Toggle NeoTree";      }
-    { action = cmd "noh";                           key = "<leader>u";  mode = "n";         options.desc = "Clear highlight";     }
-    { action = cmd "w";                             key = "<leader>s";  mode = "n";         options.desc = "Save";                }
-    { action = toggle "vim.o.relativenumber";       key = "<leader>n";  mode = "n";         options.desc = "Toggle relative";     }
-    { action = ":EasyAlign ";                       key = "<leader>a";  mode = "n";         options.desc = "Align";               }
-    { action = cmd "Telescope";                     key = "<leader>tt"; mode = "n";         options.desc = "All";                 }
-    { action = lua "vim.diagnostic.open_float()" f; key = "<leader>d";  mode = "n";         options.desc = "Diagnostic";          }
-    { action = ":IncRename ";                       key = "<leader>r";  mode = "n";         options.desc = "Rename";              }
-    { action = cmd "CccPick";                       key = "<leader>c";  mode = "n";         options.desc = "Color Picker";        }
+    { action = cmd "Neotree toggle";                key = "<leader>e";   mode = "n";         options.desc = "Toggle NeoTree";      }
+    { action = cmd "noh";                           key = "<leader>u";   mode = "n";         options.desc = "Clear highlight";     }
+    { action = cmd "w";                             key = "<leader>s";   mode = "n";         options.desc = "Save";                }
+    { action = toggle "vim.o.relativenumber";       key = "<leader>n";   mode = "n";         options.desc = "Toggle relative";     }
+    { action = ":EasyAlign ";                       key = "<leader>A";   mode = [ "n" "v" ]; options.desc = "Align";               }
+    { action = cmd "Telescope";                     key = "<leader>tt";  mode = "n";         options.desc = "All";                 }
+    { action = lua "vim.diagnostic.open_float()" f; key = "<leader>d";   mode = "n";         options.desc = "Diagnostic";          }
+    { action = ":IncRename ";                       key = "<leader>r";   mode = "n";         options.desc = "Rename";              }
+    { action = cmd "CccPick";                       key = "<leader>c";   mode = "n";         options.desc = "Color Picker";        }
+    { action = lua "vim.lsp.buf.definition()" f;    key = "gd";          mode = "n";         options.desc = "Definition";          }
+    { action = cmd "DapContinue";                   key = "<leader>Dc";  mode = "n";         options.desc = "Continue";            }
+    { action = cmd "DapNew";                        key = "<leader>Dn";  mode = "n";         options.desc = "New";                 }
+    { action = cmd "DapPause";                      key = "<leader>Dp";  mode = "n";         options.desc = "Pause";               }
+    { action = cmd "DapStepInto";                   key = "<leader>Di";  mode = "n";         options.desc = "Step Into";           }
+    { action = cmd "DapStepOut";                    key = "<leader>Do";  mode = "n";         options.desc = "Step Out";            }
+    { action = cmd "DapStepOver";                   key = "<leader>DO";  mode = "n";         options.desc = "Step Over";           }
+    { action = cmd "DapTerminate";                  key = "<leader>Dt";  mode = "n";         options.desc = "Terminate";           }
+    { action = cmd "DapToggleBreakpoint";           key = "<leader>Db";  mode = "n";         options.desc = "Toggle Breakpoint";   }
+    { action = cmd "DapToggleRepl";                 key = "<leader>Dr";  mode = "n";         options.desc = "Toggle Repl";         }
+    { action = cmd "DapViewToggle";                 key = "<leader>Dv";  mode = "n";         options.desc = "Toggle View";         }
+    { action = cmd "DapVirtualTextForceRefresh";    key = "<leader>DVr"; mode = "n";         options.desc = "Force Refresh";       }
+    { action = cmd "DapVirtualTextToggle";          key = "<leader>DVt"; mode = "n";         options.desc = "Toggle";              }
   ] ++ map (x: {
     action = cmd "Telescope ${x.cmd}"; key = "<leader>t${x.key}"; mode = "n"; options.desc = x.name;
   }) telescope_opts;
@@ -98,9 +111,10 @@
           { __unkeyed = "<C-g>"; group = "Git"; mode = [ "n" "v" ]; }
           {
             __unkeyed = [
-              { __unkeyed = "<leader>";  group = "Leader";    }
-              { __unkeyed = "<leader>t"; group = "Telescope"; }
+              { __unkeyed = "<leader>";  group = "Leader";     }
+              { __unkeyed = "<leader>t"; group = "Telescope";  }
               { __unkeyed = "<leader>b"; group = "Per buffer"; }
+              { __unkeyed = "<leader>D"; group = "DAP";        }
             ];
             mode = [ "n" "v" ];
           }
@@ -429,9 +443,9 @@
 
           vim.keymap.set("i", "<C-e>", function() require("luasnip").snip_expand(require("luasnip").get_snippets().nix[1]) end, { buffer = vim.fn.bufnr("%") })
           vim.keymap.set("i", "<M-C-E>", function() require("luasnip").snip_expand(require("luasnip").get_snippets().nix[3]) end, { buffer = vim.fn.bufnr("%") })
-          vim.keymap.set("n", "<leader>bh", "<cmd>term home-manager switch --flake .<CR>", { buffer = vim.fn.bufnr("%"), desc = "Build Home-Manager" })
-          vim.keymap.set("n", "<leader>bt", "<cmd>term sudo nixos-rebuild test --flake .<CR>", { buffer = vim.fn.bufnr("%"), desc = "System rebuild test" })
-          vim.keymap.set("n", "<leader>br", "<cmd>term sudo nixos-rebuild switch --flake .<CR>", { buffer = vim.fn.bufnr("%"), desc = "System rebuild switch" })
+          vim.keymap.set("n", "<leader>bh", "<cmd>term nh home switch .<CR>", { buffer = vim.fn.bufnr("%"), desc = "Build Home-Manager" })
+          vim.keymap.set("n", "<leader>bt", "<cmd>term nh os test .<CR>", { buffer = vim.fn.bufnr("%"), desc = "System rebuild test" })
+          vim.keymap.set("n", "<leader>br", "<cmd>term nh os switch .<CR>", { buffer = vim.fn.bufnr("%"), desc = "System rebuild switch" })
         end
       '';};
     }
@@ -439,6 +453,11 @@
       event = [ "BufNewFile" "BufRead" ];
       pattern = "*.md";
       command = "set filetype=markdown";
+    }
+    {
+      event = [ "BufNewFile" "BufRead" ];
+      pattern = "*.go";
+      command = "set expandtab";
     }
     {
       event = [ "TermOpen" ];

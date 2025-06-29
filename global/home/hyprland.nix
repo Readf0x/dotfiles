@@ -302,7 +302,7 @@ in {
         # "premid"
         "blueman-applet"
         "kdeconnect-indicator"
-        "keepassxc"
+        "[workspace special:KeepassXC silent] keepassxc"
         "ping -w 1 discord.com && vesktop --enable-features=UseOzonePlatform,WaylandWindowDecorations --ozone-platform-hint=auto"
         "qpwgraph -m"
         # **DO NOT ENABLE**

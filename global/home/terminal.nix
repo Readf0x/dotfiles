@@ -62,6 +62,7 @@
         "Q" = "exit";
         dev = "nix develop --command zsh";
         "power!" = "poweroff";
+        time = "hyperfine";
       };
       localVariables = {
         PAGER = "bat -p";
@@ -173,7 +174,7 @@
         font_family family="Maple Mono NF" features="+zero +cv03 +ss03"
         font_size 11
         symbol_map U+2320,U+2321,U+239B-U+23B3 Noto Sans Math
-        symbol_map U+25CB-U+25D7 Ubuntu
+        symbol_map U+25A0-U+25FF DejaVu Sans Mono
 
         window_padding_width 11
         tab_bar_style separator

@@ -16,6 +16,7 @@
       unstable.figma-linux
     ] ++ [
       # Desktop Applications
+      audacity
       blender-hip
       blockbench
       chatterino7
@@ -41,6 +42,7 @@
       rofi
       rssguard
       scrcpy
+      syncthing
       swaynotificationcenter
       (vesktop.overrideAttrs (prev: {
         desktopItems = makeDesktopItem {
