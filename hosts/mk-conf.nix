@@ -65,7 +65,7 @@
             user = "sys";
             modules = [
               inputs.stylix.nixosModules.stylix
-              inputs.nixos-06cb-009a-fingerprint-sensor.nixosModules."06cb-009a-fingerprint-sensor"
+              # inputs.nixos-06cb-009a-fingerprint-sensor.nixosModules."06cb-009a-fingerprint-sensor"
               inputs.nur.modules.nixos.default
               inputs.grub2-themes.nixosModules.default
             ];

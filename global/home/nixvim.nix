@@ -401,6 +401,7 @@
     neotest = {
       enable = true;
     };
+    undotree.enable = true;
   };
   extraPlugins = with pkgs.vimPlugins; [
     firenvim

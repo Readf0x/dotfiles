@@ -28,11 +28,11 @@
     logind = {
       lidSwitch = "lock";
     };
-    "06cb-009a-fingerprint-sensor" = {
-      enable = false;
-      backend = "libfprint-tod";
-      calib-data-file = ./fprint/calib-data.bin;
-    };
+    # "06cb-009a-fingerprint-sensor" = {
+    #   enable = false;
+    #   backend = "libfprint-tod";
+    #   calib-data-file = ./fprint/calib-data.bin;
+    # };
     ollama.enable = true;
     ratbagd.enable = true;
     auto-cpufreq = {

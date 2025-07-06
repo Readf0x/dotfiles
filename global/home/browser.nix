@@ -151,6 +151,7 @@
           "privacy.sanitize.sanitizeOnShutdown" = false;
           "media.autoplay.default" = 0;
           "media.hardwaremediakeys.enabled" = false;
+          "ui.key.menuAccessKeyFocuses" = false;
         };
 
         bookmarks = {

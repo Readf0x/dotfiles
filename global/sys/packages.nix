@@ -43,6 +43,7 @@
       rssguard
       scrcpy
       syncthing
+      ungoogled-chromium
       swaynotificationcenter
       (vesktop.overrideAttrs (prev: {
         desktopItems = makeDesktopItem {
@@ -204,6 +205,7 @@
       enable = true;
       plugins = with pkgs.obs-studio-plugins; [
         obs-webkitgtk
+        obs-pipewire-audio-capture
       ];
       enableVirtualCamera = true;
     };
