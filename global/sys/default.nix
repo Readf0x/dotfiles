@@ -202,9 +202,6 @@
       #sddm.enableGnomeKeyring = true;
       hyprlock = {};
     };
-    sudo.enable = true;
-    # ensure there is always a functioning root access service
-    doas.enable = ! sudo.enable;
   };
 
   environment.etc = {

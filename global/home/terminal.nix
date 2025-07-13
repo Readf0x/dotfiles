@@ -63,7 +63,6 @@
         dev = "nix develop --command zsh";
         "power!" = "poweroff";
         time = "hyperfine";
-        # sudo = "doas";
       };
       localVariables = {
         PAGER = "bat -p";
