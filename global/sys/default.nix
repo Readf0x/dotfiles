@@ -28,7 +28,7 @@
   users.users = lib.mapAttrs (
     name: config: {
       isNormalUser = config.isNormalUser;
-      extraGroups = [ "networkmanager" "video" ] ++ (
+      extraGroups = [ "networkmanager" "video" "syncthing" ] ++ (
         if config.admin then [ "wheel" ] else []
       );
       shell = pkgs.${config.shell};
@@ -152,12 +152,14 @@
     gpm.enable = true;
     # kmscon.enable = true;
     syncthing = let
+      # this is a stupid hack that doesn't properly support multi-user
       user = lib.elemAt (lib.mapAttrsToList (n: v: n) (lib.filterAttrs (n: v: v.syncthing == true) conf.users)) 0;
     in {
       inherit user;
       enable = true;
       overrideDevices = false;
       overrideFolders = false;
+      systemService = false;
     };
   };
 
@@ -200,7 +202,7 @@
       #sddm.enableGnomeKeyring = true;
       hyprlock = {};
     };
-    sudo.enable = false;
+    sudo.enable = true;
     # ensure there is always a functioning root access service
     doas.enable = ! sudo.enable;
   };
