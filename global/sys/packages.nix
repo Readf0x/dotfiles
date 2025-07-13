@@ -83,7 +83,6 @@
       distrobox-tui
       ffmpeg
       fzf
-      gamescope
       grimblast
       grub2
       hyfetch
@@ -106,8 +105,6 @@
       nodejs-slim
       playerctl
       pokeget-rs
-      protontricks
-      protonup-qt
       python3
       radeontop
       ranger
@@ -191,11 +188,13 @@
     zsh.enable = true;
     steam = {
       enable = true;
-      # Impossible to use protontricks with this setup
-      #extraCompatPackages = with pkgs; [
-      #  proton-ge-bin
-      #];
+      extraCompatPackages = with pkgs; [
+        proton-ge-bin
+      ];
+      protontricks.enable = true;
+      extest.enable = true;
     };
+    gamescope.enable = true;
     mtr.enable = true;
     gnupg.agent = {
       enable = true;

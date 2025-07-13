@@ -193,13 +193,16 @@
     sddm = { after = [ "sddm-avatar.service" ]; };
   };
 
-  security = {
+  security = rec {
     rtkit.enable = true;
     polkit.enable = true;
     pam.services = {
       #sddm.enableGnomeKeyring = true;
       hyprlock = {};
     };
+    sudo.enable = false;
+    # ensure there is always a functioning root access service
+    doas.enable = ! sudo.enable;
   };
 
   environment.etc = {
