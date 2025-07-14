@@ -25,7 +25,6 @@
       hexchat
       hyprshot
       inkscape
-      jetbrains.idea-community-bin
       keepassxc
       kitty
       libreoffice-qt6-fresh
@@ -113,7 +112,9 @@
       samba
       shared-mime-info
       swww
+      tmux
       unzip
+      uutils-coreutils-noprefix
       vulkan-tools
       wget
       winetricks
@@ -173,10 +174,10 @@
       # noto-fonts-cjk-sans
       monocraft
     ]);
-    fontconfig.defaultFonts.sansSerif = [ "Mead Icons" ];
-    fontconfig.defaultFonts.emoji = [ "Mead Icons" ];
-    fontconfig.defaultFonts.serif = [ "Mead Icons" ];
-    fontconfig.defaultFonts.monospace = [ "Mead Icons" ];
+    # fontconfig.defaultFonts.sansSerif = [ "Mead Icons" ];
+    # fontconfig.defaultFonts.emoji = [ "Mead Icons" ];
+    # fontconfig.defaultFonts.serif = [ "Mead Icons" ];
+    # fontconfig.defaultFonts.monospace = [ "Mead Icons" ];
   };
 
   programs = {

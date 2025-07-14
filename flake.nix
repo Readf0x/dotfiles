@@ -17,9 +17,7 @@
 
     flake-parts.url = "github:hercules-ci/flake-parts";
 
-    nixvim = {
-      url = "github:nix-community/nixvim/nixos-25.05";
-    };
+    nixvim.url = "github:nix-community/nixvim/nixos-25.05";
 
     stylix.url = "github:danth/stylix/release-25.05";
 
@@ -36,9 +34,7 @@
       };
     };
 
-    wallpapers = {
-      url = "github:readf0x/wallpapers/neofuturism";
-    };
+    wallpapers.url = "github:readf0x/wallpapers/neofuturism";
 
     textfox.url = "github:adriankarlen/textfox";
 

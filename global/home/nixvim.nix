@@ -388,16 +388,27 @@
     image.enable = true;
     dap = {
       enable = true;
+      signs = {
+        dapBreakpoint = {
+          text = "●";
+          texthl = "DapBreakpoint";
+        };
+        dapBreakpointCondition = {
+          text = "○";
+          texthl = "DapBreakpointCondition";
+        };
+        dapLogPoint = {
+          text = "";
+          texthl = "DapLogPoint";
+        };
+      };
     };
     dap-go = {
       enable = true;
+      settings.delve.path = "${pkgs.delve}/bin/dlv";
     };
-    dap-view = {
-      enable = true;
-    };
-    dap-virtual-text = {
-      enable = true;
-    };
+    dap-view.enable = true;
+    dap-virtual-text.enable = true;
     neotest = {
       enable = true;
     };

@@ -354,5 +354,10 @@
         os.editPreset = "nvim";
       };
     };
+    tmux = {
+      enable = true;
+      aggressiveResize = true;
+      keyMode = "vi";
+    };
   };
 }
