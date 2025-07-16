@@ -51,9 +51,6 @@ Sort hidden files last=false
 Sort reversed=true
 View Style=Simple
 
-[KShortcutsDialog Settings]
-Dialog Size=692,480
-
 [PreviewSettings]
 EnableRemoteFolderThumbnail=false
 MaximumRemoteSize=0

@@ -32,7 +32,6 @@
       mangohud
       mpvWithScripts
       networkmanagerapplet
-      obsidian
       pavucontrol
       picard
       prismlauncher
@@ -81,6 +80,7 @@
       distrobox
       distrobox-tui
       ffmpeg
+      file
       fzf
       grimblast
       grub2

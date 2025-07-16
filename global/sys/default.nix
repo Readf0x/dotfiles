@@ -161,6 +161,7 @@
       overrideFolders = false;
       systemService = false;
     };
+    flatpak.enable = true;
   };
 
   # https://discourse.nixos.org/t/setting-sddm-profile-picture/49604
