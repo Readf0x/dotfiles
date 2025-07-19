@@ -116,6 +116,9 @@
           function clone() {
             source $HOME/Scripts/clone $@
           }
+          function gpgmsg() {
+            print "$2" | gpg --encrypt -ar "$1"
+          }
 
           alias cat=bat
           alias -g -- --help='--help | bat -plhelp'
