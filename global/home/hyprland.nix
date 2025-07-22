@@ -1,4 +1,4 @@
-{ pkgs, conf, config, lib', pkgs', ... }: let
+{ pkgs, conf, config, lib, lib', pkgs', ... }: let
   mLib = lib'.monitors;
   monitor = mLib.getId;
   rgb = col: "rgb(${col})";
@@ -103,7 +103,12 @@ in {
         focus_on_activate = true;
       };
       xwayland.force_zero_scaling = true;
-      ecosystem.no_update_news = true;
+      ecosystem = {
+        no_update_news = true;
+        no_donation_nag = true;
+      };
+
+      experimental.xx_color_management_v4 = lib.lists.any (x: x.hdr) conf.monitors;
 
       # https://wiki.hyprland.org/Configuring/Animations/
       animations = {

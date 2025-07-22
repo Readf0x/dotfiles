@@ -30,6 +30,7 @@
               conf = lib.mergeAttrsList [
                 { inherit homeDir host user; }
                 config
+                { inherit hosts; }
                 hosts.${host}
               ];
             };
@@ -57,6 +58,7 @@
             conf = mergeAttrsList [
               { inherit host system; }
               config
+              { inherit hosts; }
               { users = concatMapAttrs (user: hosts: { ${user} = hosts.${host}; }) users; }
             ];
           };

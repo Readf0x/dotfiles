@@ -1,4 +1,4 @@
-{ pkgs, conf, inputs, lib, ... }: {
+{ pkgs, conf, inputs, lib, ... }: rec {
   imports = [
     ./../shared/stylix.nix
     ./packages.nix
@@ -10,10 +10,9 @@
     useDHCP = lib.mkDefault true;
     networkmanager.enable = true;
     firewall.enable = false;
-    hosts = {
-      "10.1.11.104" = [ "Loki-II" "loki2" ];
-      "10.1.11.101" = [ "Loki-IV" "loki4" ];
-    };
+    hosts = lib.mapAttrs' (
+      n: v: lib.nameValuePair v.ssh.ip [ n v.ssh.shortname ]
+    ) conf.hosts;
   };
 
   nixpkgs.config = {
@@ -237,10 +236,17 @@
 
   system.stateVersion = conf.stateVersion;
 
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
-  nix.extraOptions = ''
-    download-speed = 25000
-  '';
+  nix = {
+    settings = {
+      experimental-features = [ "nix-command" "flakes" ];
+      substituters = [ "https://cache.nixos.org" ] ++ (
+        lib.mapAttrsToList (name: attr: "ssh://${name}") networking.hosts
+      );
+    };
+    extraOptions = ''
+      download-speed = 25000
+    '';
+  };
 
   virtualisation = {
     docker.enable = false;

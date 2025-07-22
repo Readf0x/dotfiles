@@ -4,6 +4,10 @@ in {
   flake = mkConf rec {
     hosts = {
       Loki-II = {
+        ssh = {
+          ip = "10.1.11.104";
+          shortname = "loki2";
+        };
         stateVersion = "24.05";
         system = "x86_64-linux";
         monitors = [
@@ -12,11 +16,15 @@ in {
         ];
       };
       Loki-IV = {
+        ssh = {
+          ip = "10.1.11.101";
+          shortname = "loki4";
+        };
         stateVersion = "24.11";
         system = "x86_64-linux";
         monitors = [
-          { id = "eDP-1"; res = [ 1920 1080 ]; scl = 1; hz = 60; pos = [ 0 1080 ]; rot = 0; hdr = false; }
-          { id = "HDMI-A-2"; res = [ 1920 1080 ]; scl = 1; hz = 60; pos = [ 0 0 ]; rot = 0; hdr = false; }
+          { id = "eDP-1";    res = [ 1920 1080 ]; scl = 1; hz = 60; pos = [ 0 1080 ]; rot = 0; hdr = false; }
+          { id = "HDMI-A-2"; res = [ 1920 1080 ]; scl = 1; hz = 60; pos = [ 0 0    ]; rot = 0; hdr = false; }
         ];
       };
     };
