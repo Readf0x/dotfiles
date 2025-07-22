@@ -16,7 +16,6 @@
   programs = {
     corectrl = {
       enable = true;
-      gpuOverclock.enable = true;
     };
     gamemode = {
       enable = true;

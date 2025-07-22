@@ -25,7 +25,10 @@
       enable32Bit = true;
     };
     graphics.extraPackages = [ pkgs.rocmPackages.clr.icd ];
-    amdgpu.opencl.enable = true;
+    amdgpu = {
+      opencl.enable = true;
+      overdrive.enable = true;
+    };
 
     cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 
