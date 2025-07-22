@@ -77,11 +77,13 @@
       btop
       cava
       clipse
+      delve
       distrobox
       distrobox-tui
       ffmpeg
       file
       fzf
+      go
       grimblast
       grub2
       hyfetch
