@@ -96,6 +96,10 @@
         PrintMotd = true;
       };
     };
+    nix-serve = {
+      enable = true;
+      secretKeyFile = "/etc/nix/cache-priv-key.pem";
+    };
     pipewire = {
       enable = true;
       pulse.enable = true;
@@ -240,8 +244,12 @@
     settings = {
       experimental-features = [ "nix-command" "flakes" ];
       substituters = [ "https://cache.nixos.org" ] ++ (
-        lib.mapAttrsToList (name: attr: "ssh://${name}") networking.hosts
+        lib.mapAttrsToList (name: attr: "http://${name}:5000") networking.hosts
       );
+      trusted-public-keys = [
+        "Loki2:XXJZyhytus5gu7xvzb/lXiAkJusYgh5eaBBoYYanbg0="
+        "Loki4:JTKGVJHy2T1xIIjIV48SyCTqk137ayoggWb1gjoCmuQ="
+      ];
     };
     extraOptions = ''
       download-speed = 25000
