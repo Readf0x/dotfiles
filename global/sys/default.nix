@@ -243,7 +243,7 @@
   nix = {
     settings = {
       experimental-features = [ "nix-command" "flakes" ];
-      substituters = [ "https://cache.nixos.org" ] ++ (
+      substituters = (
         lib.mapAttrsToList (name: attr: "http://${name}:5000") networking.hosts
       );
       trusted-public-keys = [
