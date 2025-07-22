@@ -333,7 +333,7 @@
       userName = conf.user;
       userEmail = conf.email;
       signing = {
-        key = conf.key;
+        key = conf.gpg;
         signByDefault = true;
       };
       extraConfig = {

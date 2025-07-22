@@ -39,6 +39,8 @@
     textfox.url = "github:adriankarlen/textfox";
 
     grub2-themes.url = "github:vinceliuice/grub2-themes";
+
+    agenix.url = "github:ryantm/agenix";
   };
 
   outputs = { flake-parts, ... }@inputs:

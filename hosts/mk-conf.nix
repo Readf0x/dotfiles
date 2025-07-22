@@ -41,6 +41,7 @@
                 inputs.stylix.homeModules.stylix
                 inputs.textfox.homeManagerModules.default
                 inputs.nur.modules.homeManager.default
+                inputs.agenix.homeManagerModules.default
               ];
             };
           };
@@ -70,6 +71,7 @@
               # inputs.nixos-06cb-009a-fingerprint-sensor.nixosModules."06cb-009a-fingerprint-sensor"
               inputs.nur.modules.nixos.default
               inputs.grub2-themes.nixosModules.default
+              inputs.agenix.nixosModules.default
             ];
           };
         }
