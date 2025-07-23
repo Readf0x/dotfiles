@@ -42,6 +42,7 @@
                 inputs.textfox.homeManagerModules.default
                 inputs.nur.modules.homeManager.default
                 inputs.agenix.homeManagerModules.default
+                inputs.integral-prompt.homeManagerModules.default
               ];
             };
           };

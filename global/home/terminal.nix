@@ -1,35 +1,5 @@
 { pkgs, lib, conf, ... }: {
   # [TODO] Investigate tmux
-  home.file = {
-    ".integralrc".text = ''
-      int_direnv_format() {
-        if which go >/dev/null; then 
-          print "%F{6}󰟓"
-        else
-          print "%F{3}⌁"
-        fi
-      }
-      # export int_vim_indicators=(
-      #   ""
-      # )
-    '';
-    ".config/hyfetch.json".text = builtins.toJSON {
-      preset = "transgender";
-      mode = "rgb";
-      light_dark = "dark";
-      lightness = 0.8;
-      color_align = {
-          mode = "horizontal";
-          custom_colors = [];
-          fore_back = null;
-      };
-      backend = "fastfetch";
-      args = null;
-      distro = null;
-      pride_month_shown = [];
-      pride_month_disable = true;
-    };
-  };
   programs = {
     zsh = {
       enable = true;
@@ -37,12 +7,12 @@
       antidote = {
         enable = true;
         plugins = [
-          "readf0x/integral-prompt"
           "zdharma-continuum/fast-syntax-highlighting kind:defer"
           "zsh-users/zsh-autosuggestions kind:defer"
           "zsh-users/zsh-history-substring-search kind:defer"
         ];
       };
+      integral-prompt.enable = true;
       shellAliases = {
         diff = "diff --color";
         grep = "rg";
@@ -257,74 +227,6 @@
       # };
     };
   };
-  home.file.".config/fastfetch/config.jsonc".text = ''
-    {
-      "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json",
-      "display": {
-        "separator": " "
-      },
-      "modules": [
-        {
-          "type": "title",
-          "format": "\u001B[33m⌠ {6}{7}{8} \u001B[33m∫ \u001B[32m{3} \u001B[33m╰──────────────────────────────"
-        },
-        {
-          "type": "host",
-          "key": "\u001B[33m⎮ \u001B[36m󰌢"
-        },
-        {
-          "type": "os",
-          "key": "\u001B[33m⎮ \u001B[36m󱄅"
-        },
-        {
-          "type": "kernel",
-          "key": "\u001B[33m⎮ \u001B[36m"
-        },
-        {
-          "type": "packages",
-          "key": "\u001B[33m⎮ \u001B[36m󰏖",
-          "format": "{9} (system), {10} (user)"
-        },
-        {
-          "type": "shell",
-          "key": "\u001B[33m⎮ \u001B[36m"
-        },
-        {
-          "type": "display",
-          "key": "\u001B[33m⎮ \u001B[36m󰍹"
-        },
-        {
-          "type": "wm",
-          "key": "\u001B[33m⎮ \u001B[36m"
-        },
-        {
-          "type": "cpu",
-          "key": "\u001B[33m⎮ \u001B[36m"
-        },
-        {
-          "type": "gpu",
-          "key": "\u001B[33m⎮ \u001B[36m󰢮"
-        },
-        {
-          "type": "memory",
-          "key": "\u001B[33m⎮ \u001B[36m"
-        },
-        {
-          "type": "disk",
-          "key": "\u001B[33m⎮ \u001B[36m󱛟",
-          "format": "{10} {1} / {2} ({3}) - {9}"
-        },
-        {
-          "type": "swap",
-          "key": "\u001B[33m⌡ \u001B[36m󱛟",
-          "format": "Swap {1} / {2} ({3})"
-        },
-        "break",
-        "break",
-        "colors"
-      ]
-    }
-  '';
   programs = {
     git = {
       enable = true;
@@ -363,5 +265,103 @@
       aggressiveResize = true;
       keyMode = "vi";
     };
+  };
+  home.file = {
+    ".integralrc".text = ''
+      int_direnv_format() {
+        if which go >/dev/null; then 
+          print "%F{6}󰟓"
+        else
+          print "%F{3}⌁"
+        fi
+      }
+      # export int_vim_indicators=(
+      #   ""
+      # )
+    '';
+    ".config/hyfetch.json".text = builtins.toJSON {
+      preset = "transgender";
+      mode = "rgb";
+      light_dark = "dark";
+      lightness = 0.8;
+      color_align = {
+          mode = "horizontal";
+          custom_colors = [];
+          fore_back = null;
+      };
+      backend = "fastfetch";
+      args = null;
+      distro = null;
+      pride_month_shown = [];
+      pride_month_disable = true;
+    };
+    ".config/fastfetch/config.jsonc".text = ''
+      {
+        "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json",
+        "display": {
+          "separator": " "
+        },
+        "modules": [
+          {
+            "type": "title",
+            "format": "\u001B[33m⌠ {6}{7}{8} \u001B[33m∫ \u001B[32m{3} \u001B[33m╰──────────────────────────────"
+          },
+          {
+            "type": "host",
+            "key": "\u001B[33m⎮ \u001B[36m󰌢"
+          },
+          {
+            "type": "os",
+            "key": "\u001B[33m⎮ \u001B[36m󱄅"
+          },
+          {
+            "type": "kernel",
+            "key": "\u001B[33m⎮ \u001B[36m"
+          },
+          {
+            "type": "packages",
+            "key": "\u001B[33m⎮ \u001B[36m󰏖",
+            "format": "{9} (system), {10} (user)"
+          },
+          {
+            "type": "shell",
+            "key": "\u001B[33m⎮ \u001B[36m"
+          },
+          {
+            "type": "display",
+            "key": "\u001B[33m⎮ \u001B[36m󰍹"
+          },
+          {
+            "type": "wm",
+            "key": "\u001B[33m⎮ \u001B[36m"
+          },
+          {
+            "type": "cpu",
+            "key": "\u001B[33m⎮ \u001B[36m"
+          },
+          {
+            "type": "gpu",
+            "key": "\u001B[33m⎮ \u001B[36m󰢮"
+          },
+          {
+            "type": "memory",
+            "key": "\u001B[33m⎮ \u001B[36m"
+          },
+          {
+            "type": "disk",
+            "key": "\u001B[33m⎮ \u001B[36m󱛟",
+            "format": "{10} {1} / {2} ({3}) - {9}"
+          },
+          {
+            "type": "swap",
+            "key": "\u001B[33m⌡ \u001B[36m󱛟",
+            "format": "Swap {1} / {2} ({3})"
+          },
+          "break",
+          "break",
+          "colors"
+        ]
+      }
+    '';
   };
 }
