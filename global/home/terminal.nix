@@ -267,18 +267,7 @@
     };
   };
   home.file = {
-    ".integralrc".text = ''
-      int_direnv_format() {
-        if which go >/dev/null; then 
-          print "%F{6}󰟓"
-        else
-          print "%F{3}⌁"
-        fi
-      }
-      # export int_vim_indicators=(
-      #   ""
-      # )
-    '';
+    # ".integralrc".text = builtins.toJSON { };
     ".config/hyfetch.json".text = builtins.toJSON {
       preset = "transgender";
       mode = "rgb";
