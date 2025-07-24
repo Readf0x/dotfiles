@@ -10,8 +10,23 @@ else
   distrobox assemble create --file /dev/stdin << EOF
 [debian]
 image=debian:latest
-additional_packages="bat ripgrep python3-pip"
-init_hooks=pip install hyfetch --break-system-packages
+init_hooks="""
+cat > /etc/apt/sources.list.d/testing.list << EOL
+Types: deb
+URIs: http://deb.debian.org/debian
+Suites: testing testing-updates
+Components: main
+Signed-By: /usr/share/keyrings/debian-archive-keyring.gpg
+
+Types: deb
+URIs: http://deb.debian.org/debian-security
+Suites: testing-security
+Components: main
+Signed-By: /usr/share/keyrings/debian-archive-keyring.gpg
+EOL
+apt update
+apt install -yt testing hyfetch bat ripgrep
+"""
 EOF
 fi
 
