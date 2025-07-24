@@ -12,7 +12,21 @@
           "zsh-users/zsh-history-substring-search kind:defer"
         ];
       };
-      integral-prompt.enable = true;
+      integral-prompt = {
+        enable = true;
+        config = {
+          modules_right = [];
+          modules = [
+            "nix"
+            "visym"
+            "error"
+            "dir"
+            "ssh+"
+            "git"
+            "jobs"
+          ];
+        };
+      };
       shellAliases = {
         diff = "diff --color";
         grep = "rg";
@@ -267,19 +281,6 @@
     };
   };
   home.file = {
-    ".integralrc".text = builtins.toJSON {
-      "$schema" = "${inputs.integral-prompt.packages.${conf.system}.default}/share/integral/schema.json";
-      modules_right = [];
-      modules = [
-        "nix"
-        "visym"
-        "error"
-        "dir"
-        "ssh+"
-        "git"
-        "jobs"
-      ];
-    };
     ".config/hyfetch.json".text = builtins.toJSON {
       preset = "transgender";
       mode = "rgb";
