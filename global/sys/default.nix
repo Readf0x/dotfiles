@@ -21,8 +21,6 @@
     allowUnfree = true;
   };
   environment.variables = {
-  #  QT_QPA_PLATFORMTHEME = "qt5ct";
-  #  QT_STYLE_OVERRIDE = "qt5ct";
     SSH_ASKPASS = lib.mkForce "${pkgs.x11_ssh_askpass}/libexec/ssh-askpass";
   };
 

@@ -50,8 +50,6 @@
       };
       localVariables = {
         PAGER = "bat -p";
-        GOROOT = "$HOME/.config/go";
-        GOPATH = "$HOME/.config/go/bin";
       };
       initContent = lib.mkMerge [
         (lib.mkOrder 550 ''
