@@ -33,6 +33,14 @@
         flake-parts.follows = "flake-parts";
       };
     };
+    
+    templating-engine = {
+      url = "github:readf0x/templating-engine";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        flake-parts.follows = "flake-parts";
+      };
+    };
 
     wallpapers.url = "github:readf0x/wallpapers/neofuturism";
 

@@ -697,6 +697,7 @@
         "nixvim": "nixvim",
         "nur": "nur",
         "stylix": "stylix",
+        "templating-engine": "templating-engine",
         "textfox": "textfox",
         "unstable": "unstable",
         "wallpapers": "wallpapers"
@@ -807,6 +808,29 @@
       "original": {
         "owner": "nix-systems",
         "repo": "default",
+        "type": "github"
+      }
+    },
+    "templating-engine": {
+      "inputs": {
+        "flake-parts": [
+          "flake-parts"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1753541710,
+        "narHash": "sha256-/U6bQcN6AzLlW8gn+BNcoqOR6rSxypZ0CcG4prSC2i4=",
+        "owner": "readf0x",
+        "repo": "templating-engine",
+        "rev": "5e517aba12d884f2593f37c9326d1bc5f16553a9",
+        "type": "github"
+      },
+      "original": {
+        "owner": "readf0x",
+        "repo": "templating-engine",
         "type": "github"
       }
     },
