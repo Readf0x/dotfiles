@@ -368,5 +368,59 @@
         ]
       }
     '';
+    ".config/bat/syntaxes/TET.sublime-syntax".text = ''
+      %YAML 1.2
+      ---
+      name: Templating Engine Template
+      file_extensions:
+        - tet
+      scope: text.xml.templating-engine
+      contexts:
+        main:
+          - match: '<\|'
+            scope: punctuation.section.embedded.begin.templating-engine
+            push: embedded-go
+          - include: scope:text.xml
+
+        embedded-go:
+          - meta_scope: source.go.embedded.templating-engine
+          - meta_content_scope: source.go.embedded.templating-engine
+
+          # End embedded Go block
+          - match: '\|>'
+            scope: punctuation.section.embedded.end.templating-engine
+            pop: true
+
+          # Match and highlight modifier like `:w`
+          - match: ':(\w+)\b'
+            captures:
+              0: keyword.other.templating-engine
+              1: support.function.modifier.templating-engine
+
+          # Minimal Go syntax subset to prevent greediness
+          - match: '//.*$'
+            scope: comment.line.double-slash.go
+
+          - match: '"(?:\\.|[^"\\])*"'
+            scope: string.quoted.double.go
+
+          - match: '\b(if|else|for|func|return|var|const|struct|switch|case|break|continue|default|import|package)\b'
+            scope: keyword.control.go
+
+          - match: '\b(true|false|nil)\b'
+            scope: constant.language.go
+
+          - match: '\b\d+\b'
+            scope: constant.numeric.integer.go
+
+          - match: '[a-zA-Z_]\w*'
+            scope: variable.other.go
+
+          - match: '[\[\]{}(),.;]'
+            scope: punctuation.separator.go
+
+          - match: '[-+*/%=!<>|&^]+'
+            scope: keyword.operator.go
+    '';
   };
 }
