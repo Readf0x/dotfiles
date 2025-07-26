@@ -1,4 +1,4 @@
-{ pkgs, lib, conf, inputs, ... }: {
+{ pkgs, lib, conf, ... }: {
   # [TODO] Investigate tmux
   programs = {
     zsh = {
@@ -134,6 +134,11 @@
         "--group-directories-first"
         "--header"
       ];
+      theme = {
+        extensions = {
+          tet = { icon = { glyph = ""; }; };
+        };
+      };
     };
     zoxide = {
       enable = true;

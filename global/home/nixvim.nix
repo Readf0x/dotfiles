@@ -463,6 +463,15 @@
     }
     {
       event = [ "BufNewFile" "BufRead" ];
+      pattern = "*.tet";
+      callback = {__raw = ''
+        function()
+          vim.bo.filetype = vim.fn.expand('%:t'):match("^.+%.([^.]+)%.tet$")
+        end
+      '';};
+    }
+    {
+      event = [ "BufNewFile" "BufRead" ];
       pattern = "*.md";
       command = "set filetype=markdown";
     }
