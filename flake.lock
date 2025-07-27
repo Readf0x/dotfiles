@@ -821,11 +821,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1753541710,
-        "narHash": "sha256-/U6bQcN6AzLlW8gn+BNcoqOR6rSxypZ0CcG4prSC2i4=",
+        "lastModified": 1753574631,
+        "narHash": "sha256-AP8pP5ngI2gwSwR//OheRGvpOAhFE9e3Ryr/FpNUq48=",
         "owner": "readf0x",
         "repo": "templating-engine",
-        "rev": "5e517aba12d884f2593f37c9326d1bc5f16553a9",
+        "rev": "e6a562e1f97df9456166685e0c0c4334c3af6dbc",
         "type": "github"
       },
       "original": {
