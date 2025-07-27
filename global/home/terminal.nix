@@ -44,7 +44,6 @@
         ":Q" = "exit";
         "q" = "exit";
         "Q" = "exit";
-        dev = "nix develop --command zsh";
         "power!" = "poweroff";
         time = "hyperfine";
       };
@@ -80,13 +79,21 @@
           zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
           zstyle ':completion:*' menu select
 
-          function run() { nix run nixpkgs#$1 -- ${"$\{@:2}"}}
-          function surun() { sudo nix run nixpkgs#$1 -- ${"$\{@:2}"}}
+          realnix=$(which nix)
+          function nix() {
+            case "$1" in;
+              build|develop|shell) nom $@ ;;
+              *) realnix $@ ;;
+            esac
+          }
+          compdef nix=nix
+          function run() { realnix run nixpkgs#$1 -- ${"$\{@:2}"}}
+          function surun() { sudo realnix run nixpkgs#$1 -- ${"$\{@:2}"}}
           function shell() {
             if [[ ${"$\{#@}"} > 1 ]]; then
-              eval nix shell nixpkgs#{${"$\{(j:,:)@}"}}
+              eval nom shell nixpkgs#{${"$\{(j:,:)@}"}}
             else
-              nix shell nixpkgs#$1
+              nom shell nixpkgs#$1
             fi
           }
           function path2array() {
