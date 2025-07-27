@@ -79,7 +79,7 @@
           zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
           zstyle ':completion:*' menu select
 
-          realnix=$(which nix)
+          alias realnix="$(which nix)"
           function nix() {
             case "$1" in;
               build|develop|shell) nom $@ ;;
@@ -109,7 +109,7 @@
           function gpgmsg() {
             print "$2" | gpg --encrypt -ar "$1"
           }
-          alias realman=$(which man)
+          alias realman="$(which man)"
           function man() {
             realman $@ | bat -plman
           }
