@@ -154,4 +154,6 @@
   stylix.targets = {
     grub.enable = false;
   };
+
+  documentation.man.generateCaches = true;
 }
