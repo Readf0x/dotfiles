@@ -167,8 +167,8 @@
               url = "http://requests.planetbob.net/"; }
             { name = "AMP";
               url = "http://10.0.0.2:8081/"; }
-            { name = "Git";
-              url = "http://gitlab.planetbob.net/"; }
+            { name = "DeepWiki";
+              url = "https://deepwiki.com/";}
             { name = "LAINCHAN";
               url = "https://lainchan.org/"; }
             { name = "Hyprland Wiki";
