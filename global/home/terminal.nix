@@ -102,6 +102,11 @@
           function gpgmsg() {
             print "$2" | gpg --encrypt -ar "$1"
           }
+          alias realman=$(which man)
+          function man() {
+            realman $@ | bat -plman
+          }
+          compdef man=man
 
           alias cat=bat
           alias -g -- --help='--help | bat -plhelp'
