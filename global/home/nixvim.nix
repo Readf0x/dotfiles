@@ -465,6 +465,16 @@
     {
       event = [ "BufNewFile" "BufRead" ];
       pattern = "*.tet";
+      callback = { __raw = ''
+        function()
+          vim.keymap.set("i", "<C-e>", function() require("luasnip").snip_expand(require("luasnip").get_snippets().tet[1]) end, { buffer = vim.fn.bufnr("%") })
+          vim.keymap.set("n", "<leader>bb", "<cmd>!te "..vim.fn.expand("%p").."<CR>", { buffer = vim.fn.bufnr("%"), desc = "Process file" })
+        end
+      '';};
+    }
+    {
+      event = [ "BufNewFile" "BufRead" ];
+      pattern = "*.tet";
       command = "set filetype=tet";
     }
     {
@@ -475,6 +485,11 @@
           require"luasnip".filetype_extend("tet", { "html" })
         end
       '';};
+    }
+    {
+      event = [ "BufNewFile" "BufRead" ];
+      pattern = "*.css.tet";
+      command = "set filetype=css";
     }
     {
       event = [ "BufNewFile" "BufRead" ];
