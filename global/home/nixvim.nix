@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{ pkgs, inputs, ... }: {
   clipboard = {
     register = "unnamedplus";
     providers = {
@@ -328,6 +328,7 @@
         vim
         xml
         yaml
+        inputs.tree-sitter-tet.packages.${pkgs.system}.default
       ];
       settings = {
         highlight.enable = true;
@@ -464,11 +465,12 @@
     {
       event = [ "BufNewFile" "BufRead" ];
       pattern = "*.tet";
-      callback = {__raw = ''
-        function()
-          vim.bo.filetype = vim.fn.expand('%:t'):match("^.+%.([^.]+)%.tet$")
-        end
-      '';};
+      command = "set filetype=tet";
+      # callback = {__raw = ''
+      #   function()
+      #     vim.bo.filetype = vim.fn.expand('%:t'):match("^.+%.([^.]+)%.tet$")
+      #   end
+      # '';};
     }
     {
       event = [ "BufNewFile" "BufRead" ];

@@ -41,6 +41,13 @@
         flake-parts.follows = "flake-parts";
       };
     };
+    tree-sitter-tet = {
+      url = "github:readf0x/tree-sitter-tet";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        flake-parts.follows = "flake-parts";
+      };
+    };
 
     wallpapers.url = "github:readf0x/wallpapers/neofuturism";
 
@@ -68,7 +75,7 @@
         in {
           nvim = inputs.nixvim.legacyPackages.${system}.makeNixvimWithModule {
             inherit pkgs;
-            module = import ./global/home/nixvim.nix { inherit pkgs; };
+            module = import ./global/home/nixvim.nix { inherit pkgs inputs; };
           };
           ukmm-fork = package "ukmm";
           discord-rpc = package "discord-rpc";

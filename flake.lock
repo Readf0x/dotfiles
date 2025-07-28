@@ -699,6 +699,7 @@
         "stylix": "stylix",
         "templating-engine": "templating-engine",
         "textfox": "textfox",
+        "tree-sitter-tet": "tree-sitter-tet",
         "unstable": "unstable",
         "wallpapers": "wallpapers"
       }
@@ -931,6 +932,29 @@
       "original": {
         "owner": "tinted-theming",
         "repo": "base16-zed",
+        "type": "github"
+      }
+    },
+    "tree-sitter-tet": {
+      "inputs": {
+        "flake-parts": [
+          "flake-parts"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1753716619,
+        "narHash": "sha256-oeVIUWxCbnPALwPHWGWUn5KItXqoOiGFkjq9AV4PEAs=",
+        "owner": "readf0x",
+        "repo": "tree-sitter-tet",
+        "rev": "8ca7e9bdf22d3b05b629796f78a4d68027893f2e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "readf0x",
+        "repo": "tree-sitter-tet",
         "type": "github"
       }
     },
