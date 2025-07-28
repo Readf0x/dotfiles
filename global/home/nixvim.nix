@@ -466,11 +466,15 @@
       event = [ "BufNewFile" "BufRead" ];
       pattern = "*.tet";
       command = "set filetype=tet";
-      # callback = {__raw = ''
-      #   function()
-      #     vim.bo.filetype = vim.fn.expand('%:t'):match("^.+%.([^.]+)%.tet$")
-      #   end
-      # '';};
+    }
+    {
+      event = [ "BufNewFile" "BufRead" ];
+      pattern = "*.html.tet";
+      callback = {__raw = ''
+        function()
+          require"luasnip".filetype_extend("tet", { "html" })
+        end
+      '';};
     }
     {
       event = [ "BufNewFile" "BufRead" ];
@@ -507,6 +511,11 @@
   extraConfigLuaPost = ''
     require("telescope").load_extension("zoxide")
     vim.keymap.del("n", "<leader>gy")
+
+    function get_current_lang()
+      local curline = vim.fn.line(".")
+      return vim.treesitter.get_parser():language_for_range({curline, 0, curline, 0}):lang()
+    end
   '';
   extraConfigVim = ''
     source ${pkgs.vimPlugins.vim-easy-align}/autoload/easy_align.vim
