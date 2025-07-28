@@ -79,16 +79,15 @@
           zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
           zstyle ':completion:*' menu select
 
-          alias realnix="$(which nix)"
           function nix() {
             case "$1" in;
               build|develop|shell) nom $@ ;;
-              *) realnix $@ ;;
+              *) builtin command nix $@ ;;
             esac
           }
           compdef nix=nix
-          function run() { realnix run nixpkgs#$1 -- ${"$\{@:2}"}}
-          function surun() { sudo realnix run nixpkgs#$1 -- ${"$\{@:2}"}}
+          function run() { builtin command nix run nixpkgs#$1 -- ${"$\{@:2}"}}
+          function surun() { sudo builtin command nix run nixpkgs#$1 -- ${"$\{@:2}"}}
           function shell() {
             if [[ ${"$\{#@}"} > 1 ]]; then
               eval nom shell nixpkgs#{${"$\{(j:,:)@}"}}
@@ -109,9 +108,8 @@
           function gpgmsg() {
             print "$2" | gpg --encrypt -ar "$1"
           }
-          alias realman="$(which man)"
           function man() {
-            realman $@ | bat -plman
+            builtin command man $@ | bat -plman
           }
           compdef man=man
 
