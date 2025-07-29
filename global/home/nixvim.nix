@@ -58,10 +58,12 @@
     { action = cmd "w";                             key = "<leader>s";   mode = "n";         options.desc = "Save";                }
     { action = toggle "vim.o.relativenumber";       key = "<leader>n";   mode = "n";         options.desc = "Toggle relative";     }
     { action = ":EasyAlign ";                       key = "<leader>A";   mode = [ "n" "v" ]; options.desc = "Align";               }
+    { action = "vi{:EasyAlign<CR>* ";               key = "<leader>V";   mode = "n";         options.desc = "Align struct";        }
     { action = cmd "Telescope";                     key = "<leader>tt";  mode = "n";         options.desc = "All";                 }
     { action = lua "vim.diagnostic.open_float()" f; key = "<leader>d";   mode = "n";         options.desc = "Diagnostic";          }
     { action = ":IncRename ";                       key = "<leader>r";   mode = "n";         options.desc = "Rename";              }
     { action = cmd "CccPick";                       key = "<leader>c";   mode = "n";         options.desc = "Color Picker";        }
+    { action = cmd "TSContextToggle";               key = "<leader>C";   mode = "n";         options.desc = "Toggle Context";      }
     { action = lua "vim.lsp.buf.definition()" f;    key = "gd";          mode = "n";         options.desc = "Definition";          }
     { action = cmd "DapContinue";                   key = "<leader>Dc";  mode = "n";         options.desc = "Continue";            }
     { action = cmd "DapNew";                        key = "<leader>Dn";  mode = "n";         options.desc = "New";                 }
@@ -299,7 +301,6 @@
     nix.enable = true;
     treesitter = {
       enable = true;
-      folding = true;
       nixvimInjections = true;
       grammarPackages = with pkgs.vimPlugins.nvim-treesitter.builtGrammars; [
         bash

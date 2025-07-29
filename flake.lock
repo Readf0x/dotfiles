@@ -344,11 +344,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1753652218,
-        "narHash": "sha256-u3PxlC2Oej1bwVPv6srGLYmk9crNttkDc5sFCcGYghY=",
+        "lastModified": 1753839644,
+        "narHash": "sha256-g0Z+OvmkMO/I9DcL1cx6mY9eJaMPOH+A9el5pt7m2i4=",
         "owner": "readf0x",
         "repo": "integral-prompt",
-        "rev": "8e510c32ff55a29c68200dd49e6d0edec32332d1",
+        "rev": "bc784bdc00ef1913c0850a275a8f6081bf0cb91a",
         "type": "github"
       },
       "original": {

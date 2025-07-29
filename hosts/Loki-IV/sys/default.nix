@@ -33,7 +33,6 @@
     #   backend = "libfprint-tod";
     #   calib-data-file = ./fprint/calib-data.bin;
     # };
-    ollama.enable = true;
     ratbagd.enable = true;
     auto-cpufreq = {
       enable = true;
