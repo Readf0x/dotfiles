@@ -85,6 +85,8 @@
       ffmpeg
       file
       fzf
+      gdb
+      gf
       go
       grimblast
       grub2
