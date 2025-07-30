@@ -109,6 +109,7 @@
       nix-output-monitor
       nodejs-slim
       playerctl
+      podman-compose
       pokeget-rs
       python3
       radeontop
