@@ -6,12 +6,8 @@ if ! [[ $HOSTNAME = "Loki-IV" ]] && ping loki4 -w 1 2>&1 >/dev/null; then
 elif ! [[ $HOSTNAME = "Loki-II" ]] && ping loki2 -w 1 2>&1 >/dev/null; then
   SUB+='http://loki2:5000'
 fi
+SUB+="https://cache.nixos.org"
 
-if [[ ${#SUB} > 0 ]]; then
-  nh os switch . -- --option substituters "$SUB" $@
-  nh home switch . -- --option substituters "$SUB" $@
-else
-  nh os switch . -- $@
-  nh home switch . -- $@
-fi
+nh os switch . -- --option substituters "$SUB" $@
+nh home switch . -- --option substituters "$SUB" $@
 
