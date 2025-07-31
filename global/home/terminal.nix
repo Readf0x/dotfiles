@@ -83,13 +83,13 @@
           zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
           zstyle ':completion:*' menu select
 
-          function nix() {
-            case "$1" in;
-              build|develop|shell) nom $@ ;;
-              *) builtin command nix $@ ;;
-            esac
-          }
-          if [[ $CONTAINER_ID ]]; then
+          if ! [[ -v CONTAINER_ID ]]; then
+            function nix() {
+              case "$1" in;
+                build|develop|shell) nom $@ ;;
+                *) builtin command nix $@ ;;
+              esac
+            }
             compdef nix=nix
           fi
           function run() { builtin command nix run nixpkgs#$1 -- ${"$\{@:2}"}}
