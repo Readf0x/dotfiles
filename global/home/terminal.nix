@@ -26,7 +26,7 @@
             "jobs"
           ];
           dir.replace = [
-            [ "${toString conf.homeDir}/Repos/" "󰊢 " ]
+            [ "${toString conf.homeDir}/Repos/" "󰊢 /" ]
             [ "${toString conf.homeDir}/Repos" "󰊢" ]
           ];
         };
