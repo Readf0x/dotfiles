@@ -1,32 +1,18 @@
 #!/usr/bin/env zsh
 
+image="[debian]
+image=debian:testing
+additional_packages=\"hyfetch bat ripgrep\""
 if [[ $VENDOR = debian ]]; then
   print "Already in container"
   exit 1
 fi
 if podman container exists debian; then
-  distrobox enter debian
+  if ! distrobox enter debian; then
+    podman rm debian
+    distrobox assemble create --file /dev/stdin <<< $image
+  fi
 else
-  distrobox assemble create --file /dev/stdin << EOF
-[debian]
-image=debian:latest
-init_hooks="""
-cat > /etc/apt/sources.list.d/testing.list << EOL
-Types: deb
-URIs: http://deb.debian.org/debian
-Suites: testing testing-updates
-Components: main
-Signed-By: /usr/share/keyrings/debian-archive-keyring.gpg
-
-Types: deb
-URIs: http://deb.debian.org/debian-security
-Suites: testing-security
-Components: main
-Signed-By: /usr/share/keyrings/debian-archive-keyring.gpg
-EOL
-apt update
-apt install -yt testing hyfetch bat ripgrep
-"""
-EOF
+  distrobox assemble create --file /dev/stdin <<< $image
 fi
 

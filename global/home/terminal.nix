@@ -89,7 +89,9 @@
               *) builtin command nix $@ ;;
             esac
           }
-          compdef nix=nix
+          if [[ $CONTAINER_ID ]]; then
+            compdef nix=nix
+          fi
           function run() { builtin command nix run nixpkgs#$1 -- ${"$\{@:2}"}}
           function surun() { sudo builtin command nix run nixpkgs#$1 -- ${"$\{@:2}"}}
           function shell() {
