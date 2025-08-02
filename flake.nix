@@ -18,7 +18,6 @@
           ukmm-fork = package "ukmm";
           discord-rpc = package "discord-rpc";
           hypr-zoom = package "hypr-zoom";
-          install = package "install";
         };
       };
     };
