@@ -1,6 +1,28 @@
 {
   description = "readf0x's dotfiles";
 
+  outputs = { flake-parts, ... }@inputs:
+    flake-parts.lib.mkFlake { inherit inputs; } {
+      imports = [
+        ./hosts/flake-module.nix
+      ];
+      systems = [ "x86_64-linux" ];
+      perSystem = { pkgs, lib, system, ... }: {
+        packages = let
+          package = p: import ./packages/${p}.nix pkgs;
+        in {
+          nvim = inputs.nixvim.legacyPackages.${system}.makeNixvimWithModule {
+            inherit pkgs;
+            module = import ./global/home/nixvim.nix { inherit pkgs inputs; };
+          };
+          ukmm-fork = package "ukmm";
+          discord-rpc = package "discord-rpc";
+          hypr-zoom = package "hypr-zoom";
+          install = package "install";
+        };
+      };
+    };
+
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05";
     unstable.url = "github:nixos/nixpkgs/nixos-unstable";
@@ -62,26 +84,4 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
-
-  outputs = { flake-parts, ... }@inputs:
-    flake-parts.lib.mkFlake { inherit inputs; } {
-      imports = [
-        ./hosts/flake-module.nix
-      ];
-      systems = [ "x86_64-linux" ];
-      perSystem = { pkgs, lib, system, ... }: {
-        packages = let
-          package = p: import ./packages/${p}.nix pkgs;
-        in {
-          nvim = inputs.nixvim.legacyPackages.${system}.makeNixvimWithModule {
-            inherit pkgs;
-            module = import ./global/home/nixvim.nix { inherit pkgs inputs; };
-          };
-          ukmm-fork = package "ukmm";
-          discord-rpc = package "discord-rpc";
-          hypr-zoom = package "hypr-zoom";
-          install = package "install";
-        };
-      };
-    };
 }
