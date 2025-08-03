@@ -50,6 +50,7 @@ case "$1" in
     else
       notify "Build failed!" "$output"
     fi
+    print "$output"
     ;;
 esac
 
