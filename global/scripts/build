@@ -1,0 +1,55 @@
+#!/usr/bin/env zsh
+
+function help() {
+  msg="$(sed -e 's/^[ ]*| //m' <<'--------------------'
+    | Notify when a build is completed
+    | 
+    | %UUsage:%u %Bbuild%b <LANGUAGE> [OPTIONS]
+    | 
+    | %UArguments:%u
+    |   %B<LANGUAGE>%b
+    |         Language to target for supports:
+    |           Go
+    | 
+    | %UOptions:%u
+    |   %B-h%b, %B--help%b:
+    |         Print help
+--------------------
+    )"
+  print -P $msg
+  exit 0
+}
+
+for opt in $@; do
+  if [[ $opt =~ ^-- ]]; then
+    case $opt in
+      --help)
+        help
+        ;;
+    esac
+  elif [[ $opt =~ ^- ]]; then
+    for char in $(print ${opt#"-"} | fold -w1); do
+      case $char in
+        h)
+          help
+          ;;
+      esac
+    done
+  fi
+done
+
+function notify() {
+  notify-send -u critical -t 5000 -a "Builds" -i builder $@
+}
+
+case "$1" in
+  go)
+    output=$(go build ${@[2,-1]} 2>&1)
+    if [[ $? = 0 ]]; then
+      notify "Build completed successfully" "$output"
+    else
+      notify "Build failed!" "$output"
+    fi
+    ;;
+esac
+
