@@ -8,7 +8,7 @@ function help() {
     | 
     | %UArguments:%u
     |   %B<LANGUAGE>%b
-    |         Language to target for supports:
+    |         Language to target, supports:
     |           Go
     | 
     | %UOptions:%u
