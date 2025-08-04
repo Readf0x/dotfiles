@@ -18,15 +18,10 @@
       unstable.figma-linux
     ] ++ [
       # Desktop Applications
-      audacity
-      blender-hip
-      blockbench
       chatterino7
       easyeffects
       gimp3-with-plugins
-      hexchat
       hyprshot
-      inkscape
       keepassxc
       kitty
       libreoffice-qt6-fresh
@@ -35,14 +30,11 @@
       mpvWithScripts
       networkmanagerapplet
       pavucontrol
-      picard
       prismlauncher
       qpwgraph
       qview
       rofi
-      rssguard
       scrcpy
-      syncthing
       ungoogled-chromium
       swaynotificationcenter
       (vesktop.overrideAttrs (prev: {

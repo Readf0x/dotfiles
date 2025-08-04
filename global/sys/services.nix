@@ -64,16 +64,6 @@
     cron.enable = true;
     gpm.enable = true;
     # kmscon.enable = true;
-    syncthing = let
-      # this is a stupid hack that doesn't properly support multi-user
-      user = lib.elemAt (lib.mapAttrsToList (n: v: n) (lib.filterAttrs (n: v: v.syncthing == true) conf.users)) 0;
-    in {
-      inherit user;
-      enable = true;
-      overrideDevices = false;
-      overrideFolders = false;
-      systemService = false;
-    };
     flatpak.enable = true;
   };
 

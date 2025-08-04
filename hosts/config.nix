@@ -61,7 +61,6 @@ in rec {
       readf0x = lib.recursiveUpdate (perHost {
         admin = true;
         isNormalUser = true;
-        syncthing = true;
         shell = "zsh";
         email = "davis.a.forsythe@gmail.com";
         realName = "readf0x";

@@ -2,10 +2,14 @@
   environment.systemPackages = [
     # self.packages.${conf.system}.ukmm-fork
   ] ++ (with pkgs; [
+    audacity
+    blender-hip
+    bridge-utils
+    cemu
+    inkscape
+    picard
     piper
     qemu
-    cemu
-    bridge-utils
     virtiofsd
   ]);
 
