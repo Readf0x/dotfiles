@@ -40,6 +40,7 @@ in rec {
           { id = "DP-2";     res = [ 1920 1080 ]; scl = 1; hz = 60; pos = [ 1920 0 ]; rot = 0; hdr = false; }
           { id = "HDMI-A-1"; res = [ 1920 1080 ]; scl = 1; hz = 60; pos = [ 0    0 ]; rot = 0; hdr = false; }
         ];
+        trusted-public-key = "Loki2:XXJZyhytus5gu7xvzb/lXiAkJusYgh5eaBBoYYanbg0=";
       };
       Loki-IV = {
         ssh = {
@@ -53,6 +54,7 @@ in rec {
           { id = "eDP-1";    res = [ 1920 1080 ]; scl = 1; hz = 60; pos = [ 0 1080 ]; rot = 0; hdr = false; }
           { id = "HDMI-A-2"; res = [ 1920 1080 ]; scl = 1; hz = 60; pos = [ 0 0    ]; rot = 0; hdr = false; }
         ];
+        trusted-public-key = "Loki4:JTKGVJHy2T1xIIjIV48SyCTqk137ayoggWb1gjoCmuQ=";
       };
     };
     users = let 

@@ -1,4 +1,4 @@
-{ pkgs, conf, lib, ... }: {
+{ pkgs, conf, lib, ... }: rec {
   imports = [
     ./../shared/stylix.nix
     ./packages.nix
@@ -126,15 +126,8 @@
   nix = {
     settings = {
       experimental-features = [ "nix-command" "flakes" ];
-      # nix does this in the stupidest way possible and I don't feel like writing a wrapper rn
-      # so instead of specifying when *not* to use hosts ill just specify when *to* use a host
-      # substituters = [ "https://cache.nixos.org/" ] ++ (
-      #   lib.mapAttrsToList (name: attr: "http://${name}:5000") networking.hosts
-      # );
-      trusted-public-keys = [
-        "Loki2:XXJZyhytus5gu7xvzb/lXiAkJusYgh5eaBBoYYanbg0="
-        "Loki4:JTKGVJHy2T1xIIjIV48SyCTqk137ayoggWb1gjoCmuQ="
-      ];
+      extra-substituters = lib.mapAttrsToList (name: attr: "http://${name}:5000") networking.hosts ;
+      trusted-public-keys = builtins.attrValues (lib.mapAttrs (n: v: v.trusted-public-key) conf.hosts);
       auto-optimise-store = true;
     };
     extraOptions = ''
