@@ -1,10 +1,9 @@
-{ pkgs, conf, lib, ... }: rec {
+{ pkgs, conf, lib, ... }: {
   imports = [
     ./../shared/stylix.nix
     ./packages.nix
     ./grub.nix
     ./services.nix
-    ./agenix.nix
   ];
 
   networking = {

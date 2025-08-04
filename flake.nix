@@ -76,8 +76,6 @@
 
     grub2-themes.url = "github:vinceliuice/grub2-themes";
 
-    agenix.url = "github:ryantm/agenix";
-
     integral-prompt = {
       url = "github:readf0x/integral-prompt";
       inputs.nixpkgs.follows = "nixpkgs";

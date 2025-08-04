@@ -14,7 +14,6 @@
       inputs.templating-engine.packages.${conf.system}.default
       # inputs.quickshell.packages.${conf.system}.default
       inputs.neoshell.packages.${conf.system}.default
-      inputs.agenix.packages.${conf.system}.default
       unstable.figma-linux
     ] ++ [
       # Desktop Applications

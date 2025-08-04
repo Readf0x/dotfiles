@@ -1,4 +1,4 @@
-{ pkgs, conf, inputs, lib, config, ... }: {
+{ pkgs, conf, inputs, ... }: {
   services = {
     openssh = {
       enable = true;
@@ -8,7 +8,7 @@
     };
     nix-serve = {
       enable = true;
-      secretKeyFile = config.age.secrets.cache-priv-key.path;
+      secretKeyFile = "/etc/nix/cache-priv-key.pem";
     };
     pipewire = {
       enable = true;
