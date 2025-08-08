@@ -80,5 +80,10 @@
       url = "github:readf0x/integral-prompt";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    qtbooru = {
+      url = "github:readf0x/qtbooru";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 }
