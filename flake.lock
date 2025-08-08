@@ -624,11 +624,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1754681586,
-        "narHash": "sha256-o8HZYOoroew7HmMhuCb7hYbCeOwSd5K5Fg9/fdAMfDU=",
+        "lastModified": 1754689388,
+        "narHash": "sha256-s0kKW01XMOlD9TAmvBpUMOwa8SpOP5LY112+k07yNZs=",
         "owner": "readf0x",
         "repo": "qtbooru",
-        "rev": "d424b1361cd7de614f53ff047abba9905cb614c1",
+        "rev": "ae2cead18d04e3b7db467e2e2d4c04a6bbd34592",
         "type": "github"
       },
       "original": {
