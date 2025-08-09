@@ -88,7 +88,7 @@
     style = lib.mkForce "kvantum";
   };
 
-  security = rec {
+  security = {
     rtkit.enable = true;
     polkit.enable = true;
     pam.services = {
@@ -126,13 +126,13 @@
   nix = {
     settings = {
       experimental-features = [ "nix-command" "flakes" ];
-      extra-substituters = lib.mapAttrsToList (name: attr: "http://${name}:5000") networking.hosts ;
+      extra-substituters = lib.mapAttrsToList (n: v: "http://${builtins.elemAt v 1}:5000") networking.hosts ;
       trusted-public-keys = builtins.attrValues (lib.mapAttrs (n: v: v.trusted-public-key) conf.hosts);
       auto-optimise-store = true;
+      connect-timeout = 1;
+      download-speed = 25000;
+      fallback = true;
     };
-    extraOptions = ''
-      download-speed = 25000
-    '';
   };
 
   virtualisation = {
