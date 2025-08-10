@@ -10,10 +10,14 @@
       perSystem = { pkgs, lib, system, ... }: {
         packages = let
           package = p: import ./packages/${p}.nix pkgs;
+          mkSchemeAttrs = (pkgs.callPackage inputs.base16.lib {}).mkSchemeAttrs;
         in {
           nvim = inputs.nixvim.legacyPackages.${system}.makeNixvimWithModule {
             inherit pkgs;
-            module = import ./global/home/nixvim.nix { inherit pkgs inputs; };
+            module = import ./global/home/nixvim.nix {
+              inherit pkgs inputs;
+              config.lib.stylix.colors = mkSchemeAttrs ./global/shared/mead.yaml;
+            };
           };
           ukmm-fork = package "ukmm";
           discord-rpc = package "discord-rpc";
@@ -85,5 +89,7 @@
       url = "github:readf0x/qtbooru";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    base16.url = "github:SenchoPens/base16.nix";
   };
 }

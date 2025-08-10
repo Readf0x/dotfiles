@@ -184,8 +184,8 @@ in {
         "$mod, Return, exec, kitty"
         "$mod $s, Return, exec, kitty --config ${builtins.toString conf.homeDir}/.config/kitty/safe.conf"
         "$mod, E, exec, dolphin"
-        "$mod, W, exec, $browser"
-        "$mod $a, W, exec, $browser -P I2P"
+        "$mod, B, exec, $browser"
+        "$mod $a, B, exec, $browser -P I2P"
         "$mod $s, C, exec, hyprpicker -an"
         ", Print, exec, hyprshot -zsm region -f screenshot_$(date +%Y-%m-%d_%H-%m-%s).png -o ${builtins.toString conf.homeDir}/Pictures/Screenshots"
         "$s, Print, exec, hyprshot -zsm window -f screenshot_$(date +%Y-%m-%d_%H-%m-%s).png -o ${builtins.toString conf.homeDir}/Pictures/Screenshots"
@@ -229,22 +229,22 @@ in {
         "$mod $s, P, pin,"
         "$mod $c, Home, centerwindow,"
         "$a, Tab, focusurgentorlast,"
-        "$mod $a, left, swapwindow, l"
-        "$mod $a, right, swapwindow, r"
-        "$mod $a, up, swapwindow, u"
-        "$mod $a, down, swapwindow, d"
+        # "$mod $a, left, swapwindow, l"
+        # "$mod $a, right, swapwindow, r"
+        # "$mod $a, up, swapwindow, u"
+        # "$mod $a, down, swapwindow, d"
         # Dwindle
         "$mod, P, pseudo,"
-        "$mod, J, togglesplit,"
+        # "$mod, J, togglesplit,"
         # Window movement
-        "$mod, left, movefocus, l"
-        "$mod, right, movefocus, r"
-        "$mod, up, movefocus, u"
-        "$mod, down, movefocus, d"
-        "$mod $s, left, movewindow, l"
-        "$mod $s, right, movewindow, r"
-        "$mod $s, up, movewindow, u"
-        "$mod $s, down, movewindow, d"
+        # "$mod, left, movefocus, l"
+        # "$mod, right, movefocus, r"
+        # "$mod, up, movefocus, u"
+        # "$mod, down, movefocus, d"
+        # "$mod $s, left, movewindow, l"
+        # "$mod $s, right, movewindow, r"
+        # "$mod $s, up, movewindow, u"
+        # "$mod $s, down, movewindow, d"
         # [TODO] figure out how to swap windows without resizing
         # "$mod, S, swapwindow"
 
@@ -254,6 +254,8 @@ in {
         #"$mod $s, S, movetoworkspace, name:video"
         #"$mod $s, D, workspace, name:discord"
         #"$mod $s, M, workspace, name:mail"
+
+        "$mod, W, submap, vim"
 
         "$mod, tab, movecurrentworkspacetomonitor, +1"
         "$mod, mouse_down, workspace, e-1"
@@ -280,10 +282,10 @@ in {
         ", XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_SINK@ .1-"
         "$mod, page_down, exec, wpctl set-volume @DEFAULT_SINK@ .1-"
 
-        "$mod $c, left, resizeactive, -60 0"
-        "$mod $c, right, resizeactive, 60 0"
-        "$mod $c, up, resizeactive, 0 -60"
-        "$mod $c, down, resizeactive, 0 60"
+        # "$mod $c, left, resizeactive, -60 0"
+        # "$mod $c, right, resizeactive, 60 0"
+        # "$mod $c, up, resizeactive, 0 -60"
+        # "$mod $c, down, resizeactive, 0 60"
       ];
       bindm = [
         "$mod, mouse:272, movewindow"
@@ -565,6 +567,58 @@ in {
         "suppressevent fullscreen, class:^(com.interversehq.qView)$"
       ];
     };
+    # Vim style binds
+    extraConfig = let
+      modify = x:
+        x * 60 |> toString |> (n: [
+          [ "bind = $s, Comma"  "resizeactive, -${n} 0" ]
+          [ "bind = $s, Period" "resizeactive, ${n}  0" ]
+          [ "bind =   , Minus"  "resizeactive, 0 -${n}" ]
+          [ "bind = $s, Equal"  "resizeactive, 0  ${n}" ]
+        ]);
+      binds = [
+        [ "bind = , J" "togglesplit, " ]
+
+        [ "bind = , H" "movefocus, l" ]
+        [ "bind = , L" "movefocus, r" ]
+        [ "bind = , K" "movefocus, u" ]
+        [ "bind = , J" "movefocus, d" ]
+
+        [ "bind = $a, H" "swapwindow, l" ]
+        [ "bind = $a, L" "swapwindow, r" ]
+        [ "bind = $a, K" "swapwindow, u" ]
+        [ "bind = $a, J" "swapwindow, d" ]
+
+        [ "bind = $s, H" "movewindow, l" ]
+        [ "bind = $s, L" "movewindow, r" ]
+        [ "bind = $s, K" "movewindow, u" ]
+        [ "bind = $s, J" "movewindow, d" ]
+      ] ++ (modify 1);
+
+      format = map
+        (v: [
+          (lib.concatStringsSep ", " v)
+          (lib.concatStringsSep ", " [ (lib.elemAt v 0) "submap, reset" ])
+        ]);
+    in ''
+      submap = vim
+    '' + (
+      ((format binds) ++ (
+        [ "bind = , 1, submap, vim1" "submap = vim1" ] ++
+        format (modify 1) ++
+        [ "bind = , 0, submap, vim0" "submap = vim0" ] ++
+        format (modify 10) ++
+        [ "submap = vim" ] ++
+        (8 |> builtins.genList (
+          n: n+2 |> toString |> (x: [ "bind = , ${x}, submap, vim${x}" "submap = vim${x}" ]
+          ++ format (modify <| lib.strings.charToInt x) ++ [ "submap = vim" ])
+        ))
+      )
+      |> lib.flatten) ++ [""]
+      |> lib.concatStringsSep "\n"
+    ) + ''
+      submap = reset
+    '';
   };
   programs.hyprlock = {
     #    __            __     ____                   
@@ -599,7 +653,7 @@ in {
           fade_timeout = 1000;
           placeholder_text = ''<span foreground="##939393" style="italic" font_size="11pt">Input Password...</span>'';
           hide_input = false;
-          rounding = 8;
+          rounding = 0;
           check_color = rgb "ffd600";
           fail_color = rgb "f44336";
           fail_text = "<i>$FAIL <b>($ATTEMPTS)</b></i>";
@@ -619,7 +673,7 @@ in {
           monitor = (monitor 0).id;
           path = "/home/${conf.user}/.face.icon";
           size = 256;
-          rounding = -1;
+          rounding = 0;
           border_size = 2;
           border_color = rgb "313244";
           position = "0, 80";

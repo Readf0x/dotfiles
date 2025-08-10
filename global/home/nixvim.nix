@@ -1,4 +1,7 @@
-{ pkgs, inputs, ... }: {
+{ pkgs, inputs, config, ... }: let
+  colors = config.lib.stylix.colors;
+  color = hx: "#${colors."base${hx}"}";
+in {
   clipboard = {
     register = "unnamedplus";
     providers = {
@@ -84,24 +87,27 @@
   # colorscheme = "tender";
   colorschemes.base16 = {
     enable = true;
-    colorscheme = {
-      base00 = "#373635";
-      base01 = "#292928";
-      base02 = "#4C4946";
-      base03 = "#625f5d";
-      base04 = "#4a4644";
-      base05 = "#FFF0E7";
-      base06 = "#E0D7C2";
-      base07 = "#FFF7F2";
-      base08 = "#5394B8";
-      base09 = "#89A044";
-      base0A = "#ffc24b";
-      base0B = "#dc9656";
-      base0C = "#BD594A";
-      base0D = "#3E966D";
-      base0E = "#BD7C4A";
-      base0F = "#a16946";
-    };
+    colorscheme =
+      builtins.mapAttrs ( n: v: "#${v}") {
+        inherit (colors)
+          base00
+          base01
+          base02
+          base03
+          base04
+          base05
+          base06
+          base07
+          base08
+          base09
+          base0A
+          base0B
+          base0C
+          base0D
+          base0E
+          base0F
+        ;
+      };
   };
 
   plugins = {
@@ -130,6 +136,28 @@
           component_separators = { left = "┃"; right = "┃"; };
           section_separators =   { left = ""; right = ""; };
           ignore_focus = [ "neo-tree" "nvim-tree" "mini-files" ];
+          theme = {
+            normal = {
+              a = { bg = color "08"; fg = color "01"; };
+              b = { bg = color "03"; fg = color "05"; };
+              c = { bg = color "01"; fg = color "03"; };
+            };
+            insert = {
+              a = { bg = color "0B"; fg = color "01"; };
+              b = { bg = color "03"; fg = color "05"; };
+              c = { bg = color "01"; fg = color "03"; };
+            };
+            visual = {
+              a = { bg = color "0E"; fg = color "01"; };
+              b = { bg = color "03"; fg = color "05"; };
+              c = { bg = color "01"; fg = color "03"; };
+            };
+            command = {
+              a = { bg = color "09"; fg = color "01"; };
+              b = { bg = color "03"; fg = color "05"; };
+              c = { bg = color "01"; fg = color "03"; };
+            };
+          };
         };
         sections = {
           lualine_x = [ "encoding" "filetype" ];
@@ -189,6 +217,7 @@
         #nixd.enable = true;
         nil_ls = {
           enable = true;
+          package = inputs.unstable.legacyPackages.${pkgs.system}.nil;
           settings.nix.flake.autoArchive = true;
         };
         qmlls = {
@@ -498,11 +527,6 @@
       command = "set filetype=markdown";
     }
     {
-      event = [ "BufNewFile" "BufRead" ];
-      pattern = "*.go";
-      command = "set expandtab";
-    }
-    {
       event = [ "TermOpen" ];
       pattern = "*";
       command = "startinsert";
@@ -541,21 +565,26 @@
 
     set tabstop=2
     set shiftwidth=2
-    set expandtab
     set nowrap
     set foldlevel=99
     set number relativenumber
     set signcolumn=yes
     set scrolloff=10
 
-    hi NormalFloat guibg=#292928
-    hi Pmenu guifg=#FFF0E7 guibg=#292928
+    hi TSVariable guifg=${color "0D"}
+    hi TSMethod guifg=${color "0B"}
+    hi TSString guifg=${color "09"}
+    hi TSKeyword guifg=${color "0F"}
+    hi TSFunction guifg=${color "0B"}
+    hi TSComment guifg=${color "04"}
+    hi LineNr guifg=${color "03"}
+    hi Pmenu guifg=${color "05"} guibg=${color "01"}
     hi Statement gui=italic cterm=italic
-    hi @property.jsonc guifg=#5394B8 ctermfg=81
-    hi @tag.html guifg=#FFF0E7
-    hi htmlTag guifg=#FFF0E7
-    hi htmlEndTag guifg=#FFF0E7
-    hi @punctuation.delimiter.jsdoc guifg=#FFF0E7
+    hi @property.jsonc guifg=${color "0D"} ctermfg=81
+    hi @tag.html guifg=${color "05"}
+    hi htmlTag guifg=${color "05"}
+    hi htmlEndTag guifg=${color "05"}
+    hi @punctuation.delimiter.jsdoc guifg=${color "05"}
 
     set splitbelow
     set splitright
