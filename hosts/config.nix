@@ -70,7 +70,10 @@ in rec {
         ssh = userPubKeys.readf0x;
       }) {
         Loki-II = {
-          pokemon = "buizel";
+            pokemon = {
+              name = "xerneas";
+              form = "active";
+            };
         };
         Loki-IV = {
           pokemon = "sylveon";

@@ -1,4 +1,4 @@
-{ pkgs, lib, conf, ... }: {
+{ pkgs, lib, lib', conf, ... }: {
   # [TODO] Investigate tmux
   programs = {
     zsh = {
@@ -40,7 +40,7 @@
         ll = "eza -l";
         ls = "eza";
         lt = "eza -T";
-        neofetch = "pokeget ${conf.pokemon} --hide-name | hyfetch --ascii-file /dev/stdin";
+        neofetch = "pokeget ${lib'.pokeget conf.pokemon} --hide-name | hyfetch --ascii-file /dev/stdin";
         open = "xdg-open";
         v = "nvim";
         zshr = "exec zsh";
@@ -66,7 +66,7 @@
           autoload bashcompinit && bashcompinit
         '')
         (lib.mkBefore ''
-          [[ $KITTY_WINDOW_ID -gt 1 ]] || ! [[ $KITTY_SHELL_INTEGRATION = no-rc ]] || [[ $SHLVL -gt 1 ]] || pokeget ${conf.pokemon} --hide-name | hyfetch --ascii-file /dev/stdin
+          [[ $KITTY_WINDOW_ID -gt 1 ]] || ! [[ $KITTY_SHELL_INTEGRATION = no-rc ]] || [[ $SHLVL -gt 1 ]] || pokeget ${lib'.pokeget conf.pokemon} --hide-name | hyfetch --ascii-file /dev/stdin
           export DIRENV_LOG_FORMAT=
         '')
         (''
