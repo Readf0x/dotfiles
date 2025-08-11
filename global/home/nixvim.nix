@@ -578,6 +578,7 @@ in {
     hi TSFunction guifg=${color "0B"}
     hi TSComment guifg=${color "04"}
     hi LineNr guifg=${color "03"}
+    hi NormalFloat guibg=${color "01"}
     hi Pmenu guifg=${color "05"} guibg=${color "01"}
     hi Statement gui=italic cterm=italic
     hi @property.jsonc guifg=${color "0D"} ctermfg=81
