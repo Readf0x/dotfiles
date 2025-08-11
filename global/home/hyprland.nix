@@ -611,7 +611,7 @@ in {
         [ "submap = vim" ] ++
         (8 |> builtins.genList (
           n: n+2 |> toString |> (x: [ "bind = , ${x}, submap, vim${x}" "submap = vim${x}" ]
-          ++ format (modify <| lib.strings.charToInt x) ++ [ "submap = vim" ])
+          ++ format (modify <| builtins.fromJSON x) ++ [ "submap = vim" ])
         ))
       )
       |> lib.flatten) ++ [""]
