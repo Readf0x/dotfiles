@@ -72,7 +72,9 @@
         (''
           bindkey -v
           bindkey '^U' kill-whole-line
-          bindkey '^H' backward-kill-word
+          if ! [[ $TERM = 'xterm-256color' ]]; then
+            bindkey '^H' backward-kill-word
+          fi
           bindkey '^[[1;5D' backward-word
           bindkey '^[[1;5C' forward-word
           bindkey '^[[H' beginning-of-line

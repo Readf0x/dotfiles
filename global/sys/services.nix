@@ -1,4 +1,4 @@
-{ pkgs, conf, inputs, ... }: {
+{ pkgs, conf, config, inputs, ... }: {
   services = {
     openssh = {
       enable = true;
@@ -63,7 +63,11 @@
     };
     cron.enable = true;
     gpm.enable = true;
-    # kmscon.enable = true;
+    kmscon = {
+      enable = true;
+      fonts = [ config.stylix.fonts.monospace ];
+      hwRender = true;
+    };
     flatpak.enable = true;
   };
 
