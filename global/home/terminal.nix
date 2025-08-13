@@ -95,7 +95,7 @@
             compdef nix=nix
           fi
           function run() { builtin command nix run nixpkgs#$1 -- ${"$\{@:2}"}}
-          function surun() { sudo builtin command nix run nixpkgs#$1 -- ${"$\{@:2}"}}
+          function surun() { sudo nix run nixpkgs#$1 -- ${"$\{@:2}"}}
           function shell() {
             if [[ ${"$\{#@}"} > 1 ]]; then
               eval nom shell nixpkgs#{${"$\{(j:,:)@}"}}
