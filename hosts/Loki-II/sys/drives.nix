@@ -21,6 +21,10 @@
       device = "/dev/disk/by-uuid/d54e5f31-d22a-4773-981c-3fa0c774be22";
       fsType = "ext4";
     };
+    "/mnt/GamesHDD" = {
+      device = "/dev/disk/by-uuid/8141743e-c948-4760-9467-abd44c1b5ec0";
+      fsType = "ext4";
+    };
   };
 
   swapDevices = [{ device = "/dev/disk/by-uuid/0077b1f5-557d-4dd1-8a7e-c5c9353db470"; }];
