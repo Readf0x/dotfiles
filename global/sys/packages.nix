@@ -25,6 +25,7 @@
       keepassxc
       kitty
       libreoffice-qt6-fresh
+      limo
       lutris
       mangohud
       mpvWithScripts
@@ -35,8 +36,8 @@
       qview
       rofi
       scrcpy
-      ungoogled-chromium
       swaynotificationcenter
+      ungoogled-chromium
       (vesktop.overrideAttrs (prev: {
         desktopItems = makeDesktopItem {
           name = "vesktop";
