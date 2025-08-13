@@ -1,5 +1,5 @@
-{ pkgs, conf, config, inputs, ... }: {
-  services = {
+{ pkgs, conf, config, inputs, lib, ... }: {
+  services = rec {
     openssh = {
       enable = true;
       settings = {
@@ -18,10 +18,11 @@
     };
     udisks2.enable = true;
     gvfs.enable = true;
-    displayManager = {
+    displayManager = rec {
+      enable = true;
       defaultSession = "hyprland";
       sddm = {
-        enable = true;
+        enable = false;
         wayland.enable = true;
         theme = let
           chili = pkgs.sddm-chili-theme.override {
@@ -29,6 +30,13 @@
           };
         in "${chili}/share/sddm/themes/chili";
       };
+      ly = {
+        enable = true;
+      };
+      # does *technially* work but does some weird shit
+      # execCmd = if ly.enable && kmscon.enable then
+      #   lib.mkForce "${pkgs.kmscon}/bin/kmscon -- ${pkgs.ly}/bin/ly"
+      # else null;
     };
     #gnome.gnome-keyring.enable = true;
     logind.extraConfig = "HandlePowerKey=ignore";

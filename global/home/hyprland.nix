@@ -577,7 +577,7 @@ in {
           [ "bind = $s, Equal"  "resizeactive, 0  ${n}" ]
         ]);
       binds = [
-        [ "bind = , J" "togglesplit, " ]
+        [ "bind = , S" "togglesplit, " ]
 
         [ "bind = , H" "movefocus, l" ]
         [ "bind = , L" "movefocus, r" ]
@@ -593,12 +593,15 @@ in {
         [ "bind = $s, L" "movewindow, r" ]
         [ "bind = $s, K" "movewindow, u" ]
         [ "bind = $s, J" "movewindow, d" ]
+
+        [ "bind = , I" "submap, reset" ]
+        [ "bind = , catchall" "event" ]
       ] ++ (modify 1);
 
       format = map
         (v: [
           (lib.concatStringsSep ", " v)
-          (lib.concatStringsSep ", " [ (lib.elemAt v 0) "submap, reset" ])
+          # (lib.concatStringsSep ", " [ (lib.elemAt v 0) "submap, reset" ])
         ]);
     in ''
       submap = vim
@@ -611,7 +614,7 @@ in {
         [ "submap = vim" ] ++
         (8 |> builtins.genList (
           n: n+2 |> toString |> (x: [ "bind = , ${x}, submap, vim${x}" "submap = vim${x}" ]
-          ++ format (modify <| builtins.fromJSON x) ++ [ "submap = vim" ])
+          ++ format (modify <| builtins.fromJSON x) ++ [ "bind = , I, submap, reset" "submap = vim" ])
         ))
       )
       |> lib.flatten) ++ [""]
@@ -621,6 +624,7 @@ in {
     '';
   };
   programs.hyprlock = {
+    # [TODO] change to quickshell
     #    __            __     ____                   
     #   / /  ___  ____/ /__  / __/__________ ___ ___ 
     #  / /__/ _ \/ __/  '_/ _\ \/ __/ __/ -_) -_) _ \
