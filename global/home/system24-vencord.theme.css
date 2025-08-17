@@ -115,8 +115,8 @@ body {
     --text-1: var(--base05); /* bright text on colored elements */
     --text-2: var(--base05); /* headings and important text */
     --text-3: var(--base05); /* normal text */
-    --text-4: var(--base05); /* icon buttons and channels */
-    --text-5: var(--base05); /* muted channels/chats and timestamps */
+    --text-4: var(--base04); /* icon buttons and channels */
+    --text-5: var(--base03); /* muted channels/chats and timestamps */
 
     /* background and dark colors */
     --bg-1: hsl(20, 5%, 25%); /* dark buttons when clicked */
@@ -129,9 +129,9 @@ body {
     --message-hover: hsla(0, 0%, 0%, 0.1); /* messages when hovered */
 
     /* accent colors */
-    --accent-1: var(--white-1); /* links and other accent text */
+    --accent-1: var(--blue-1); /* links and other accent text */
     --accent-2: var(--white-2); /* small accent elements */
-    --accent-3: var(--white-3); /* accent buttons */
+    --accent-3: var(--purple-3); /* accent buttons */
     --accent-4: var(--white-4); /* accent buttons when hovered */
     --accent-5: var(--white-5); /* accent buttons when clicked */
     --accent-new: var(--red-2); /* stuff that's normally red like mute/deafen buttons */
@@ -206,4 +206,7 @@ body {
 }
 .container__37e49 {
 	margin-left: 0;
+}
+.visual-refresh body, .visual-refresh .theme-dark:not(.custom-user-profile-theme), .visual-refresh .theme-light:not(.custom-user-profile-theme) {
+	--text-tertiary: var(--base02)
 }
