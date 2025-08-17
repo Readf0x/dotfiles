@@ -566,6 +566,8 @@ in {
         "opacity 1.0, class:^(org.kde.kdenlive)$"
         # qView
         "suppressevent fullscreen, class:^(com.interversehq.qView)$"
+        # limo
+        "float, class:^(limo)$, title:^(New Application|Settings)$"
       ];
     };
     # Vim style binds
