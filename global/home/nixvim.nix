@@ -224,6 +224,9 @@ in {
           enable = true;
           cmd = [ "qmlls" "-E" ];
         };
+        ocamllsp = {
+          enable = true;
+        };
       };
     };
     cmp = {

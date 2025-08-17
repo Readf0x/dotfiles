@@ -1,4 +1,4 @@
-{ pkgs, lib, conf, inputs, ... }: {
+{ pkgs, lib, conf, config, inputs, ... }: {
   home.file = {
     ".face.icon".source = ./../img/pfp.png;
     ".config/hypr/wallpapers".source = "${inputs.wallpapers.packages.${conf.system}.default}";
@@ -144,6 +144,54 @@
       force_raster_widgets=1
       ignored_applications=/run/current-system/sw/bin/kdenlive
     '';
+    ".config/Vencord/themes/system24-vencord.theme.css".text =
+      lib.replaceStrings [
+        "@FONT-PRIMARY"
+        "@FONT-DISPLAY"
+        "@FONT-CODE"
+
+        "@BLACK"
+        "@BRIGHT-BLACK"
+        "@GREY"
+        "@BRIGHTER-GREY"
+        "@BRIGHT-GREY"
+        "@WHITE"
+        "@BRIGHTER-WHITE"
+        "@BRIGHT-WHITE"
+        "@RED"
+        "@ORANGE"
+        "@YELLOW"
+        "@GREEN"
+        "@CYAN"
+        "@BLUE"
+        "@PURPLE"
+        "@MAGENTA"
+      ] (
+        ([
+          "sansSerif"
+          "sansSerif"
+          "monospace"
+        ] |> map (v: config.stylix.fonts.${v}.name))
+        ++ ([
+          "base00"
+          "base01"
+          "base02"
+          "base03"
+          "base04"
+          "base05"
+          "base06"
+          "base07"
+          "base08"
+          "base09"
+          "base0A"
+          "base0B"
+          "base0C"
+          "base0D"
+          "base0E"
+          "base0F"
+        ] |> map (v: "#${config.lib.stylix.colors.${v}}"))
+      ) <|
+      builtins.readFile ./system24-vencord.theme.css;
     # ".ssh/config".text = ''
     #   Host Loki-II
     #     HostName 10.1.11.104

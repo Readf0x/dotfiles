@@ -434,6 +434,7 @@ in {
         "workspace 2, class:^(vesktop)$"
         "noinitialfocus, class:^(vesktop)$"
         "focusonactivate off, class:^(vesktop)$"
+        "bordersize 0, initialTitle:^(Discord)$"
         # Telegram
         "noanim, title:^(Media viewer)$, class:^(org.telegram.desktop)$"
         "float, title:^(Media viewer)$, class:^(org.telegram.desktop)$"
@@ -722,6 +723,7 @@ in {
   # home.packages = [ pkgs.hypridle ];
   services.hypridle = {
     enable = true;
+    # systemdTarget = "hyprland-session.target";
     settings = {
       general = {
         lock_cmd = "pidof hyprlock || hyprlock";
