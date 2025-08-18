@@ -152,25 +152,26 @@
 
   console = {
     earlySetup = true;
-    font = "${pkgs.stdenv.mkDerivation (finalAttrs: {
-      name = "gen-console-font";
-      noUnpack = true;
-      FONT = "${unstable.maple-mono.opentype}/share/fonts/opentype/MapleMono-Regular.otf";
-      nativeBuildInputs = [
-        self.packages.${conf.system}.otf2psf
-        self.packages.${conf.system}.generate-set
-      ];
-
-      phases = [ "buildPhase" "installPhase" ];
-
-      buildPhase = ''
-        otf2psf convert $FONT ./maplemono.psf 20
-      '';
-      installPhase = ''
-        mkdir -p $out
-        cp ./maplemono.psf $out/maplemono.psf
-        gzip $out/maplemono.psf
-      '';
-    })}/maplemono.psf.gz";
+    # Generated font unfortunately looks like ass. Will find a different solution in future.
+    # font = "${pkgs.stdenv.mkDerivation (finalAttrs: {
+    #   name = "gen-console-font";
+    #   noUnpack = true;
+    #   FONT = "${unstable.maple-mono.opentype}/share/fonts/opentype/MapleMono-Regular.otf";
+    #   nativeBuildInputs = [
+    #     self.packages.${conf.system}.otf2psf
+    #     self.packages.${conf.system}.generate-set
+    #   ];
+    #
+    #   phases = [ "buildPhase" "installPhase" ];
+    #
+    #   buildPhase = ''
+    #     otf2psf convert $FONT ./maplemono.psf 20
+    #   '';
+    #   installPhase = ''
+    #     mkdir -p $out
+    #     cp ./maplemono.psf $out/maplemono.psf
+    #     gzip $out/maplemono.psf
+    #   '';
+    # })}/maplemono.psf.gz";
   };
 }
