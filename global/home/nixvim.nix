@@ -444,11 +444,9 @@ in {
     undotree.enable = true;
   };
   extraPlugins = with pkgs.vimPlugins; [
-    firenvim
     flatten-nvim
     lsp_signature-nvim
     telescope-zoxide
-    tender-vim
     vim-easy-align
     zoxide-vim
   ];
