@@ -1,5 +1,5 @@
-{ pkgs, conf, config, inputs, lib, ... }: {
-  services = rec {
+{ pkgs, conf, config, inputs, ... }: {
+  services = {
     openssh = {
       enable = true;
       settings = {
@@ -8,6 +8,8 @@
     };
     nix-serve = {
       enable = true;
+      package = pkgs.nix-serve-ng;
+      extraParams = "--priority 60";
       secretKeyFile = "/etc/nix/cache-priv-key.pem";
     };
     pipewire = {
