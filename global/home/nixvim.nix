@@ -224,9 +224,8 @@ in {
           enable = true;
           cmd = [ "qmlls" "-E" ];
         };
-        ocamllsp = {
-          enable = true;
-        };
+        ocamllsp.enable = true;
+        # kotlin_language_server.enable = true;
       };
     };
     cmp = {
@@ -395,9 +394,7 @@ in {
     gitlinker.enable = true;
     lazygit = {
       enable = true;
-      settings = {
-        floating_window_border_chars = [ "" "" "" "" "" "" "" "" ];
-      };
+      settings.floating_window_border_chars = [ "" "" "" "" "" "" "" "" ];
     };
     telescope = {
       enable = true;
@@ -443,9 +440,7 @@ in {
     };
     dap-view.enable = true;
     dap-virtual-text.enable = true;
-    neotest = {
-      enable = true;
-    };
+    neotest.enable = true;
     undotree.enable = true;
   };
   extraPlugins = with pkgs.vimPlugins; [
@@ -488,10 +483,12 @@ in {
           MiniPairs.map_buf(vim.fn.bufnr('%'), 'i', ';', { action = 'close', pair = '=;', register = { cr = false } })
 
           vim.keymap.set("i", "<C-e>", function() require("luasnip").snip_expand(require("luasnip").get_snippets().nix[1]) end, { buffer = vim.fn.bufnr("%") })
-          vim.keymap.set("i", "<M-C-E>", function() require("luasnip").snip_expand(require("luasnip").get_snippets().nix[3]) end, { buffer = vim.fn.bufnr("%") })
-          vim.keymap.set("n", "<leader>bh", "<cmd>term nh home switch .<CR>", { buffer = vim.fn.bufnr("%"), desc = "Build Home-Manager" })
-          vim.keymap.set("n", "<leader>bt", "<cmd>term nh os test .<CR>", { buffer = vim.fn.bufnr("%"), desc = "System rebuild test" })
-          vim.keymap.set("n", "<leader>br", "<cmd>term nh os switch .<CR>", { buffer = vim.fn.bufnr("%"), desc = "System rebuild switch" })
+          vim.keymap.set("i", "<M-C-e>", function() require("luasnip").snip_expand(require("luasnip").get_snippets().nix[3]) end, { buffer = vim.fn.bufnr("%") })
+          vim.keymap.set("n", "<leader>bh", "<cmd>split|:term nh home switch .<CR>", { buffer = vim.fn.bufnr("%"), desc = "Build Home-Manager" })
+          vim.keymap.set("n", "<leader>bt", "<cmd>split|:term nh os test .<CR>", { buffer = vim.fn.bufnr("%"), desc = "System rebuild test" })
+          vim.keymap.set("n", "<leader>br", "<cmd>split|:term nh os switch .<CR>", { buffer = vim.fn.bufnr("%"), desc = "System rebuild switch" })
+          vim.keymap.set("n", "<C-f>", "f v3whc.<Esc>jddk", { buffer = vim.fn.bufnr("%"), desc = "Format one line attr set" })
+          vim.keymap.set("n", "<M-C-f>", "<cmd>s/\\.\\(.*;\\)/ = { \\1 };<CR>f{lr<CR>$F r<CR><cmd>noh<CR>", { buffer = vim.fn.bufnr("%"), desc = "Format one line attr set" })
         end
       '';};
     }
