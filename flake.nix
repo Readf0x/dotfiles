@@ -23,6 +23,8 @@
             "ukmm"
             "discord-rpc"
             "hypr-zoom"
+            "otf2psf"
+            "generate-set"
           ]
           |> map (p:
             pkgs.callPackage (import ./packages/${p}.nix) {}
