@@ -8,7 +8,6 @@
 , libglvnd
 , libxkbcommon
 , openssl
-, ...
 }:
 
 rustPlatform.buildRustPackage (finalAttrs: {

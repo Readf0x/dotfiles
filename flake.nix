@@ -9,7 +9,6 @@
       systems = [ "x86_64-linux" ];
       perSystem = { pkgs, lib, system, ... }: {
         packages = let
-          package = p: import ./packages/${p}.nix pkgs;
           mkSchemeAttrs = (pkgs.callPackage inputs.base16.lib {}).mkSchemeAttrs;
         in {
           nvim = inputs.nixvim.legacyPackages.${system}.makeNixvimWithModule {
@@ -19,10 +18,18 @@
               config.lib.stylix.colors = mkSchemeAttrs ./global/shared/mead.yaml;
             };
           };
-          ukmm-fork = package "ukmm";
-          discord-rpc = package "discord-rpc";
-          hypr-zoom = package "hypr-zoom";
-        };
+        } // (
+          [
+            "ukmm"
+            "discord-rpc"
+            "hypr-zoom"
+          ]
+          |> map (p:
+            pkgs.callPackage (import ./packages/${p}.nix) {}
+            |> lib.nameValuePair p
+          )
+          |> lib.listToAttrs
+        );
       };
     };
 
