@@ -126,7 +126,8 @@
   nix = {
     settings = {
       experimental-features = [ "nix-command" "flakes" "pipe-operators" ];
-      extra-substituters = lib.mapAttrsToList (n: v: "http://${builtins.elemAt v 1}:5000") networking.hosts ;
+      substituters = [ "https://cache.nixos.org" ];
+      extra-substituters = lib.mapAttrsToList (n: v: "http://${builtins.elemAt v 1}:5000") networking.hosts;
       trusted-public-keys = builtins.attrValues (lib.mapAttrs (n: v: v.trusted-public-key) conf.hosts);
       auto-optimise-store = true;
       connect-timeout = 1;
