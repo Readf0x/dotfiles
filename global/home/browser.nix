@@ -185,7 +185,6 @@
           consent-o-matic
           darkreader
           don-t-fuck-with-paste
-          enhancer-for-youtube
           firefox-color
           greasemonkey
           new-window-without-toolbar
@@ -196,6 +195,8 @@
           seventv
           shinigami-eyes
           sponsorblock
+          theater-mode-for-youtube
+          youtube-high-definition
 
           # Disabled in favor of Chatterino
           # (buildFirefoxXpiAddon {
