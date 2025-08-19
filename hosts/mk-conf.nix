@@ -6,7 +6,7 @@
   buildHM = hm.lib.homeManagerConfiguration;
 
   mkConf = { hosts, users }: let
-    buildImports = { host, user, modules }:
+    buildImports = { host, user, modules, system }:
     ( if user == "sys"
         then [../global/sys]
         else [../global/home]
@@ -14,37 +14,50 @@
       if lib.pathExists ./${host}/${user}
         then [./${host}/${user}]
         else []
-    ) ++ modules;
+      ) ++ [
+        ({ ... }: {
+          nixpkgs.overlays = [(
+            final: prev:
+              inputs // self
+              |> lib.filterAttrs (n: v: lib.hasAttrByPath ["packages" system] v)
+              |> lib.concatMapAttrs (n: v: lib.filterAttrs (n': v': n' != "default") v.packages.${system})
+          )];
+        })
+      ] ++ modules;
   in {
     homeConfigurations = with lib;
       concatMapAttrs (user: hosts':
-        mapAttrs' (host: { homeDir ? /home/${user}, ... }@config: {
+        mapAttrs' (host: { homeDir ? /home/${user}, ... }@config: let
+          system = hosts.${host}.system;
+        in {
           name = "${user}@${host}";
-          value = buildHM {
-            pkgs = os.legacyPackages.${hosts.${host}.system};
-            extraSpecialArgs = rec {
-              inherit self inputs;
-              unstable = inputs.unstable.legacyPackages.${hosts.${host}.system};
-              lib' = import ../lib { inherit lib conf; pkgs = os.legacyPackages.${hosts.${host}.system}; };
-              pkgs' = self.packages.${hosts.${host}.system};
-              conf = lib.mergeAttrsList [
-                { inherit homeDir host user; }
-                config
-                { inherit hosts; }
-                hosts.${host}
-              ];
+          value = let
+            setup = {
+              pkgs = import os { inherit system; };
+              extraSpecialArgs = rec {
+                inherit self inputs;
+                unstable = import inputs.unstable { inherit system; };
+                lib' = import ../lib { inherit lib conf pkgs; };
+                conf = lib.mergeAttrsList [
+                  { inherit homeDir host user; }
+                  config
+                  { inherit hosts; }
+                  hosts.${host}
+                ];
+              };
+              modules = buildImports {
+                inherit host user system;
+                modules = [
+                  inputs.nixvim.homeManagerModules.default
+                  inputs.stylix.homeModules.stylix
+                  inputs.textfox.homeManagerModules.default
+                  inputs.nur.modules.homeManager.default
+                  inputs.integral-prompt.homeManagerModules.default
+                ];
+              };
             };
-            modules = buildImports {
-              inherit host user;
-              modules = [
-                inputs.nixvim.homeManagerModules.default
-                inputs.stylix.homeModules.stylix
-                inputs.textfox.homeManagerModules.default
-                inputs.nur.modules.homeManager.default
-                inputs.integral-prompt.homeManagerModules.default
-              ];
-            };
-          };
+          # merge extraSpecialArgs into final output so that they'll be available in the repl
+          in (buildHM setup) // setup.extraSpecialArgs;
         }) hosts'
       ) users;
     nixosConfigurations = with lib;
@@ -53,9 +66,8 @@
           inherit system;
           specialArgs = rec {
             inherit self inputs;
-            unstable = inputs.unstable.legacyPackages.${hosts.${host}.system};
-            lib' = import ../lib { inherit lib conf; pkgs = os.legacyPackages.${hosts.${host}.system}; };
-            pkgs' = self.packages.${system};
+            unstable = import inputs.unstable { inherit system; };
+            lib' = import ../lib { inherit lib conf; pkgs = import os { inherit system; }; };
             conf = mergeAttrsList [
               { inherit host system; }
               config
@@ -64,7 +76,7 @@
             ];
           };
           modules = buildImports {
-            inherit host;
+            inherit host system;
             user = "sys";
             modules = [
               inputs.stylix.nixosModules.stylix

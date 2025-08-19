@@ -1,4 +1,4 @@
-{ pkgs, conf, lib, self, unstable, ... }: rec {
+{ pkgs, conf, lib, ... }: rec {
   imports = [
     ./../shared/stylix.nix
     ./packages.nix
@@ -25,7 +25,7 @@
 
   users.users = lib.mapAttrs (
     name: config: {
-      isNormalUser = config.isNormalUser;
+      inherit (config) isNormalUser;
       extraGroups = [ "networkmanager" "video" "syncthing" ] ++ (
         if config.admin then [ "wheel" ] else []
       );

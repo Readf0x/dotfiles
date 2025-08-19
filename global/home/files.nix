@@ -1,7 +1,7 @@
-{ pkgs, lib, conf, config, inputs, ... }: {
+{ pkgs, lib, conf, config, ... }: {
   home.file = {
     ".face.icon".source = ./../img/pfp.png;
-    ".config/hypr/wallpapers".source = "${inputs.wallpapers.packages.${conf.system}.default}";
+    ".config/hypr/wallpapers".source = "${pkgs.wallpapers}";
     # "Scripts".source = ./../scripts;
     "Scripts/wallpaper" = {
       text = ''

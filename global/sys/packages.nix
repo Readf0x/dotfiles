@@ -1,4 +1,4 @@
-{ pkgs, conf, lib, inputs, unstable, ... }: {
+{ pkgs, lib, unstable, ... }: {
   environment = {
     etc."/xdg/menus/applications.menu".source =
     "${pkgs.kdePackages.plasma-workspace}/etc/xdg/menus/plasma-applications.menu";
@@ -10,11 +10,10 @@
         ];
       };
     in [
-      inputs.islive.packages.${conf.system}.default
-      inputs.templating-engine.packages.${conf.system}.default
-      # inputs.quickshell.packages.${conf.system}.default
-      inputs.neoshell.packages.${conf.system}.default
-      inputs.qtbooru.packages.${conf.system}.default
+      pkgs.islive
+      pkgs.templating-engine
+      pkgs.neofuturism-shell
+      pkgs.qtbooru
       unstable.figma-linux
     ] ++ [
       # Desktop Applications
@@ -166,7 +165,7 @@
     packages = builtins.attrValues (
       lib.filterAttrs (n: v: ! lib.hasSuffix "-unhinted" n && lib.isDerivation v) unstable.maple-mono
     ) ++ (with pkgs; [
-      inputs.neoshell.packages.${conf.system}.courier
+      pkgs.courier
       cantarell-fonts
       # makes gimp 3 take 100x longer to open
       # Fuck it, we'll wait

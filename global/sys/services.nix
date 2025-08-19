@@ -1,4 +1,4 @@
-{ pkgs, conf, config, inputs, ... }: {
+{ pkgs, config, ... }: {
   services = {
     openssh = {
       enable = true;
@@ -20,7 +20,7 @@
     };
     udisks2.enable = true;
     gvfs.enable = true;
-    displayManager = rec {
+    displayManager = {
       enable = true;
       defaultSession = "hyprland";
       sddm = {
@@ -28,7 +28,7 @@
         wayland.enable = true;
         theme = let
           chili = pkgs.sddm-chili-theme.override {
-            themeConfig = { background = "${inputs.wallpapers.packages.${conf.system}.default}/lock.jpg"; };
+            themeConfig = { background = "${pkgs.wallpapers}/lock.jpg"; };
           };
         in "${chili}/share/sddm/themes/chili";
       };

@@ -1,7 +1,7 @@
-{ pkgs, unstable, conf, inputs, ... }: {
+{ pkgs, unstable, ... }: {
   stylix = {
     enable = true;
-    image = builtins.toPath "${inputs.wallpapers.packages.${conf.system}.default}/89875190_p0.jpg";
+    image = builtins.toPath "${pkgs.wallpapers}/89875190_p0.jpg";
     base16Scheme = ./mead.yaml;
     fonts = {
       serif = {

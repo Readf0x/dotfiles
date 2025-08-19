@@ -1,4 +1,4 @@
-{ pkgs, lib', inputs, conf, ... }: let
+{ pkgs, lib', ... }: let
   resizeImage = 
     { image
     , size
@@ -32,7 +32,7 @@ in {
       theme = "vimix";
       customResolution = lib'.monitors.toRes (lib'.monitors.getId 0).res;
       splashImage = "${resizeImage {
-        image = "${inputs.wallpapers.packages.${conf.system}.default}/boot.jpg";
+        image = "${pkgs.wallpapers}/boot.jpg";
         size = customResolution;
         name = "boot";
       } }/boot.png";

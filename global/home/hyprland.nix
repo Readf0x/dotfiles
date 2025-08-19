@@ -1,4 +1,4 @@
-{ pkgs, conf, config, lib, lib', pkgs', ... }: let
+{ pkgs, conf, config, lib, lib', ... }: let
   mLib = lib'.monitors;
   monitor = mLib.getId;
   rgb = col: "rgb(${col})";
@@ -7,7 +7,7 @@
   ifPlugin = plugin: val: if builtins.elem plugin.name (builtins.map (f: f.name) config.wayland.windowManager.hyprland.plugins) then val else null;
 in {
   home.packages = [
-    pkgs'.hypr-zoom
+    pkgs.hypr-zoom
   ];
   wayland.windowManager.hyprland = {
     enable = true;
