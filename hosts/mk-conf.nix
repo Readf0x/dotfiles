@@ -18,7 +18,7 @@
         ({ ... }: {
           nixpkgs.overlays = [(
             final: prev:
-              inputs // self
+              inputs // { inherit self; }
               |> lib.filterAttrs (n: v: lib.hasAttrByPath ["packages" system] v)
               |> lib.concatMapAttrs (n: v: lib.filterAttrs (n': v': n' != "default") v.packages.${system})
           )];

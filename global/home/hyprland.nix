@@ -4,7 +4,10 @@
   rgb = col: "rgb(${col})";
   rgba = col: "rgba(${col})";
   colors = config.lib.stylix.colors;
-  ifPlugin = plugin: val: if builtins.elem plugin.name (builtins.map (f: f.name) config.wayland.windowManager.hyprland.plugins) then val else null;
+  ifPlugin = plugin: val:
+    if builtins.map (f: f.name) config.wayland.windowManager.hyprland.plugins |> builtins.elem plugin.name
+    then val
+    else null;
 in {
   home.packages = [
     pkgs.hypr-zoom
@@ -45,10 +48,10 @@ in {
       # https://wiki.hyprland.org/Configuring/Variables/#input
       input = {
         follow_mouse = 1;
-        #accel_profile = "custom 1 ${with builtins; concatStringsSep " " (genList (x: toString (x * x)) 5)}";
         accel_profile = let
           points = lib'.bezier.over100 [0 0] [12 6] [2 7] [10 10];
-        in "custom 1 ${with builtins; concatStringsSep " " (genList (x: toString (elemAt (lib'.bezier.findX x points) 1)) 10)}";
+        in "custom 1 ${with builtins; genList (x: elemAt (lib'.bezier.findX x points) 1 |> toString) 10 |> concatStringsSep " "
+        }";
         touchpad = {
           scroll_factor = 0.1;
           natural_scroll = true;

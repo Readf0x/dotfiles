@@ -210,6 +210,9 @@
     };
     kdeconnect.enable = true;
     virt-manager.enable = true;
-    nh.enable = true;
+    nh = {
+      enable = true;
+      package = unstable.nh;
+    };
   };
 }

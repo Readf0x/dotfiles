@@ -1,4 +1,4 @@
-{ pkgs, lib, ... }: {
+{ pkgs, ... }: {
   textfox = {
     enable = true;
     profile = "Default";
@@ -54,6 +54,7 @@
       '';
       font.family = "Courier20, Courier16, Courier13, Courier, monospace";
     };
+    useLegacyExtensions = false;
   };
   programs.firefox = {
     enable = true;
