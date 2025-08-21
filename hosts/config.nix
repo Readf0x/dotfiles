@@ -30,7 +30,7 @@ in rec {
     hosts = {
       Loki-II = {
         ssh = {
-          ip = "10.1.11.104";
+          ip = "100.125.46.92";
           shortname = "loki2";
           publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFu5y6mruCS2rA6ihAhJmCV64tAE58eHj35rMt5yEOGO";
         };
@@ -44,7 +44,7 @@ in rec {
       };
       Loki-IV = {
         ssh = {
-          ip = "10.1.11.101";
+          ip = "100.112.106.59";
           shortname = "loki4";
           publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKQ0D5UV2FLgzGJfdo8t8JKdgLt/02A+0nirRoargq1t";
         };
