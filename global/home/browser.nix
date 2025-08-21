@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{ pkgs, lib, ... }: {
   textfox = {
     enable = true;
     profile = "Default";

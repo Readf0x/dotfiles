@@ -58,7 +58,7 @@ in rec {
       };
     };
     users = let 
-      perHost = data: builtins.listToAttrs (map (a: { name = a; value = data; }) (builtins.attrNames hosts));
+      perHost = data: builtins.attrNames hosts |> map (a: { name = a; value = data; }) |> builtins.listToAttrs;
     in {
       readf0x = lib.recursiveUpdate (perHost {
         admin = true;

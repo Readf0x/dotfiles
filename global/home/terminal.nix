@@ -50,6 +50,7 @@
         "Q" = "exit";
         "power!" = "poweroff";
         time = "hyperfine";
+        find = "fd";
       };
       localVariables = {
         PAGER = "bat -p";

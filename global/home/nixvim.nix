@@ -360,6 +360,7 @@ in {
         vim
         xml
         yaml
+        ocaml
         inputs.tree-sitter-tet.packages.${pkgs.system}.default
       ];
       settings = {

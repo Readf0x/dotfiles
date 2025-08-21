@@ -74,6 +74,7 @@
       delve
       distrobox
       distrobox-tui
+      fd
       ffmpeg
       file
       fzf

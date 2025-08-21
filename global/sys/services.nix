@@ -79,6 +79,7 @@
       hwRender = true;
     };
     flatpak.enable = true;
+    tailscale.enable = true;
   };
 
   # https://discourse.nixos.org/t/setting-sddm-profile-picture/49604
