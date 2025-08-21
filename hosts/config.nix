@@ -41,6 +41,11 @@ in rec {
           { id = "HDMI-A-1"; res = [ 1920 1080 ]; scl = 1; hz = 60; pos = [ 0    0 ]; rot = 0; hdr = false; }
         ];
         trusted-public-key = "Loki2:XXJZyhytus5gu7xvzb/lXiAkJusYgh5eaBBoYYanbg0=";
+        remoteBuild = {
+          enable = true;
+          jobs = 12;
+          speedFactor = 2;
+        };
       };
       Loki-IV = {
         ssh = {
@@ -55,6 +60,7 @@ in rec {
           { id = "HDMI-A-2"; res = [ 1920 1080 ]; scl = 1; hz = 60; pos = [ 0 0    ]; rot = 0; hdr = false; }
         ];
         trusted-public-key = "Loki4:JTKGVJHy2T1xIIjIV48SyCTqk137ayoggWb1gjoCmuQ=";
+        remoteBuild.enable = false;
       };
     };
     users = let 

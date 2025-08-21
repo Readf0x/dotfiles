@@ -90,6 +90,10 @@
             function nix() {
               case "$1" in;
                 build|develop|shell) nom $@ ;;
+                remote)
+                  IFS=$'\n' builders=($(cat ~/.remote-builders))
+                  nom build ${"$\{@:2}"} --builders "${"$\{builders[@]}"}"
+                ;;
                 *) builtin command nix $@ ;;
               esac
             }
@@ -441,5 +445,10 @@
           - match: '[-+*/%=!<>|&^]+'
             scope: keyword.operator.go
     '';
+    ".remote-builders".text = conf.hosts
+    |> lib.filterAttrs (n: v: v.remoteBuild.enable)
+    |> lib.mapAttrsToList (n: v: "ssh://${v.ssh.shortname} ${v.system} - ${toString v.remoteBuild.jobs} ${toString v.remoteBuild.speedFactor}")
+    |> lib.concatStringsSep "\n"
+    ;
   };
 }
