@@ -224,7 +224,10 @@ in {
           enable = true;
           cmd = [ "qmlls" "-E" ];
         };
-        ocamllsp.enable = true;
+        ocamllsp = {
+          enable = true;
+          package = inputs.unstable.legacyPackages.${pkgs.system}.ocamlPackages.ocaml-lsp;
+        };
         # kotlin_language_server.enable = true;
       };
     };
