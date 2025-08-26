@@ -66,6 +66,7 @@
       (ani-cli.override {
         mpv = mpvWithScripts;
       })
+      alejandra
       android-tools
       bat
       btop
@@ -83,6 +84,7 @@
       go
       grimblast
       grub2
+      htmlq
       hyfetch
       hyperfine
       hyprpicker
@@ -123,6 +125,7 @@
       xclip
       xdg-utils
       xdragon
+      xxd
       yt-dlp
       zip
     ] ++ (with libsForQt5; [
