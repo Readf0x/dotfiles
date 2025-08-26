@@ -1,4 +1,4 @@
-{ self, inputs, lib, ... }: let
+{ self, inputs, lib, ... }: inputModules: let
   os = inputs.nixpkgs;
   hm = inputs.home-manager;
 
@@ -47,13 +47,7 @@
               };
               modules = buildImports {
                 inherit host user system;
-                modules = [
-                  inputs.nixvim.homeManagerModules.default
-                  inputs.stylix.homeModules.stylix
-                  inputs.textfox.homeManagerModules.default
-                  inputs.nur.modules.homeManager.default
-                  inputs.integral-prompt.homeManagerModules.default
-                ];
+                modules = inputModules.hm;
               };
             };
           # merge extraSpecialArgs into final output so that they'll be available in the repl
@@ -78,12 +72,7 @@
           modules = buildImports {
             inherit host system;
             user = "sys";
-            modules = [
-              inputs.stylix.nixosModules.stylix
-              # inputs.nixos-06cb-009a-fingerprint-sensor.nixosModules."06cb-009a-fingerprint-sensor"
-              inputs.nur.modules.nixos.default
-              inputs.grub2-themes.nixosModules.default
-            ];
+            modules = inputModules.os;
           };
         }
       ) hosts;
