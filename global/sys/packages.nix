@@ -55,6 +55,7 @@
           ];
         };
       }))
+      wl-shimeji
       xemu
       youtube-music
       zathura

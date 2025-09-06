@@ -25,6 +25,7 @@
             "hypr-zoom"
             "otf2psf"
             "generate-set"
+            "wl-shimeji"
           ]
           |> map (p:
             pkgs.callPackage (import ./packages/${p}.nix) {}
