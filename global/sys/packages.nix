@@ -10,12 +10,6 @@
         ];
       };
     in [
-      pkgs.islive
-      pkgs.templating-engine
-      pkgs.neofuturism-shell
-      pkgs.qtbooru
-      unstable.figma-linux
-    ] ++ [
       # Desktop Applications
       chatterino7
       easyeffects
@@ -28,15 +22,18 @@
       lutris
       mangohud
       mpvWithScripts
+      neofuturism-shell
       networkmanagerapplet
       pavucontrol
       prismlauncher
       qpwgraph
+      qtbooru
       qview
       rofi
       scrcpy
       swaynotificationcenter
       ungoogled-chromium
+      unstable.figma-linux
       (vesktop.overrideAttrs (prev: {
         desktopItems = makeDesktopItem {
           name = "vesktop";
@@ -88,6 +85,7 @@
       hyfetch
       hyperfine
       hyprpicker
+      islive
       jq
       libnotify
       libsecret
@@ -114,6 +112,7 @@
       samba
       shared-mime-info
       swww
+      templating-engine
       tmux
       unzip
       uutils-coreutils-noprefix

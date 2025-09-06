@@ -10,6 +10,7 @@
     picard
     piper
     qemu
+    ryubing
     virtiofsd
   ]);
 
