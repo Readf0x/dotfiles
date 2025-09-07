@@ -61,9 +61,7 @@
       zathura
 
       # CLI tools
-      (ani-cli.override {
-        mpv = mpvWithScripts;
-      })
+      (ani-cli.override { mpv = mpvWithScripts; })
       alejandra
       android-tools
       bat

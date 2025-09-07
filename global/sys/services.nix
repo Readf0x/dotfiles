@@ -74,7 +74,7 @@
     cron.enable = true;
     gpm.enable = true;
     kmscon = {
-      enable = true;
+      enable = false;
       fonts = [ config.stylix.fonts.monospace ];
       hwRender = true;
     };
