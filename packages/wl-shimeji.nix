@@ -24,8 +24,6 @@
     fetchSubmodules = true;
   };
 
-  # PKG_CONFIG_PATH = lib.makeSearchPath "lib/pkgconfig" [ wayland.dev wayland-protocols uthash libarchive.dev ];
-
   nativeBuildInputs = [
     wayland-protocols
     wayland-scanner
@@ -50,7 +48,16 @@
     python = python3.withPackages (ps: with ps; [ pillow ]);
   in ''
     DESTDIR=$out PREFIX="" make install
+    mkdir -p $dev
     mv $out/include $dev
+    cat <<EOF > $out/share/systemd/user/wl_shimeji.service
+    [Unit]
+    Description=wl_shimeji's overlay daemon
+
+    [Service]
+    Type=simple
+    ExecStart=$out/bin/shimeji-overlayd
+    EOF
     wrapProgram $out/bin/shimejictl \
       --set PYTHONPATH "${python}/lib/python3.11/site-packages" \
       --prefix PATH : ${lib.makeBinPath [ python ]}
