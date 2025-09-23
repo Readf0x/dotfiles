@@ -169,6 +169,7 @@ in {
       servers = {
         bashls.enable = true;
         gopls.enable = true;
+        templ.enable = true;
         jsonls = {
           enable = true;
           settings.schemas = [

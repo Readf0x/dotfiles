@@ -567,7 +567,7 @@ in {
         # qView
         "suppressevent fullscreen, class:^(com.interversehq.qView)$"
         # limo
-        "float, class:^(limo)$, title:^(New Application|Settings)$"
+        "float, class:^(limo)$, title:^(New Application|Settings|Install Mod|Add to Group)$"
       ];
     };
   };
