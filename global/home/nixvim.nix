@@ -170,6 +170,25 @@ in {
         bashls.enable = true;
         gopls.enable = true;
         templ.enable = true;
+        html = {
+          enable = true;
+          settings = {
+            filetypes = [ "html" "templ" ];
+          };
+        };
+        htmx = {
+          enable = true;
+          settings = {
+            filetypes = [ "html" "templ" ];
+          };
+        };
+        tailwindcss = {
+          enable = false;
+          settings = {
+            filetypes = [ "templ" "astro" "javascript" "typescript" "react" ];
+            settings.tailwindCSS.includeLanguages.templ = "html";
+          };
+        };
         jsonls = {
           enable = true;
           settings.schemas = [
@@ -365,6 +384,7 @@ in {
         xml
         yaml
         ocaml
+        templ
         inputs.tree-sitter-tet.packages.${pkgs.system}.default
       ];
       settings = {
@@ -585,10 +605,13 @@ in {
     hi Pmenu guifg=${color "05"} guibg=${color "01"}
     hi Statement gui=italic cterm=italic
     hi @property.jsonc guifg=${color "0D"} ctermfg=81
+    hi TSTag guifg=${color "05"}
     hi @tag.html guifg=${color "05"}
+    hi @tag.templ guifg=${color "08"}
     hi htmlTag guifg=${color "05"}
     hi htmlEndTag guifg=${color "05"}
     hi @punctuation.delimiter.jsdoc guifg=${color "05"}
+    hi @string.special.templ guifg=${color "05"}
 
     set splitbelow
     set splitright
