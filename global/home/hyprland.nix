@@ -568,6 +568,8 @@ in {
         "suppressevent fullscreen, class:^(com.interversehq.qView)$"
         # limo
         "float, class:^(limo)$, title:^(New Application|Settings|Install Mod|Add to Group)$"
+        # GZDoom
+        "float, class:^(gzdoom)$"
       ];
     };
   };
