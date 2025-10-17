@@ -3,6 +3,7 @@
     # self.packages.${conf.system}.ukmm-fork
   ] ++ (with pkgs; [
     audacity
+    azahar
     blender-hip
     bridge-utils
     cemu
@@ -11,11 +12,13 @@
     piper
     qemu
     ryubing
-    virtiofsd
   ]);
 
   virtualisation = {
-    libvirtd.enable = true;
+    libvirtd = {
+      enable = true;
+      qemu.vhostUserPackages = with pkgs; [ virtiofsd ];
+    };
   };
 
   programs = {
