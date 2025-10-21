@@ -36,6 +36,11 @@
   systemd.services."libvirtd".path = [ pkgs.passt ];
 
   users.users = lib.mapAttrs (
-    name: config: { extraGroups = [ "gamemode" "libvirt" ]; }
+    name: config: { extraGroups = [ "gamemode" "libvirtd" "libvirt" "kvm" ]; }
   ) conf.users;
+
+  users.groups.libvirt = {
+    gid = null;
+    name = "libvirt";
+  };
 }

@@ -101,5 +101,7 @@
     };
 
     base16.url = "github:SenchoPens/base16.nix";
+
+    winapps.url = "github:winapps-org/winapps";
   };
 }

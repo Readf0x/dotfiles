@@ -570,6 +570,8 @@ in {
         "float, class:^(limo)$, title:^(New Application|Settings|Install Mod|Add to Group)$"
         # GZDoom
         "float, class:^(gzdoom)$"
+        # Photoshop
+        "suppressevent activate activatefocus, class:^(Adobe Photoshop 2025)"
       ];
     };
   };

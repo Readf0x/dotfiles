@@ -12,6 +12,8 @@
     piper
     qemu
     ryubing
+    winapps
+    winapps-launcher
   ]);
 
   virtualisation = {
