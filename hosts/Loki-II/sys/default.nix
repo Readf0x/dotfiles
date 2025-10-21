@@ -43,4 +43,10 @@
     gid = null;
     name = "libvirt";
   };
+
+  specialisation.kde = {
+    configuration = {
+      services.desktopManager.plasma6.enable = true;
+    };
+  };
 }

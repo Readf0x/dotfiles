@@ -116,6 +116,7 @@
       unzip
       uutils-coreutils-noprefix
       vulkan-tools
+      wayland-utils
       wget
       winetricks
       wl-clipboard
