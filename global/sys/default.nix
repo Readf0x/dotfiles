@@ -1,4 +1,4 @@
-{ pkgs, conf, lib, ... }: rec {
+{ pkgs, conf, config, lib, ... }: rec {
   imports = [
     ./../shared/stylix.nix
     ./packages.nix
@@ -82,7 +82,7 @@
     };
   };
 
-  qt = {
+  qt = lib.mkIf (config.specialisation != {}) {
     enable = true;
     platformTheme = "qt5ct";
     style = lib.mkForce "kvantum";
