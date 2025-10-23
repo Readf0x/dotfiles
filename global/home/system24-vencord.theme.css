@@ -210,3 +210,6 @@ body {
 .visual-refresh body, .visual-refresh .theme-dark:not(.custom-user-profile-theme), .visual-refresh .theme-light:not(.custom-user-profile-theme) {
 	--text-tertiary: var(--base02)
 }
+.trailing_c38106 .clickable_c99c29 {
+	display: none;
+}
