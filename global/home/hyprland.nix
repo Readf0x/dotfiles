@@ -185,9 +185,25 @@ in {
             "col.active.border" = rgb "FFF0E7";
             "col.active.text" = rgb "FFF0E7";
 
+            "col.focused" = rgb "373635";
+            "col.focused.border" = rgb "FFF0E7";
+            "col.focused.text" = rgb "FFF0E7";
+
             "col.inactive" = rgb "4C4946";
             "col.inactive.border" = rgb "FFF0E7";
             "col.inactive.text" = rgb "FFF0E7";
+
+            "col.active_alt_monitor" = rgb "373635";
+            "col.active_alt_monitor.border" = rgb "FFF0E7";
+            "col.active_alt_monitor.text" = rgb "FFF0E7";
+
+            "col.urgent" = rgb "4C4946";
+            "col.urgent.border" = rgb "BD594A";
+            "col.urgent.text" = rgb "BD594A";
+
+            "col.locked" = rgb "4C4946";
+            "col.locked.border" = rgb "5394B8";
+            "col.locked.text" = rgb "5394B8";
 
             blur = false;
           };
@@ -273,21 +289,35 @@ in {
         "$mod, J, togglesplit,"
       ] ++ (
         if (ifPlugin pkgs.hyprlandPlugins.hy3) then [
+          # Groups
           "$mod, T, hy3:changegroup, toggletab"
           "$mod $s, T, hy3:makegroup, tab"
           "$mod, G, hy3:makegroup, v"
-          "$mod $a, G, hy3:makegroup, h"
-        ] else []
+          "$mod $s, G, hy3:makegroup, h"
+          # Tabs
+          "$mod $a, left, hy3:focustab, l, wrap"
+          "$mod $a, right, hy3:focustab, r, wrap"
+          # Window movement
+          "$mod, left, hy3:movefocus, l, visible"
+          "$mod, right, hy3:movefocus, r, visible"
+          "$mod, up, hy3:movefocus, u, visible"
+          "$mod, down, hy3:movefocus, d, visible"
+          "$mod $s, left, hy3:movewindow, l, visible"
+          "$mod $s, right, hy3:movewindow, r, visible"
+          "$mod $s, up, hy3:movewindow, u, visible"
+          "$mod $s, down, hy3:movewindow, d, visible"
+        ] else [
+          # Window movement
+          "$mod, left, movefocus, l"
+          "$mod, right, movefocus, r"
+          "$mod, up, movefocus, u"
+          "$mod, down, movefocus, d"
+          "$mod $s, left, movewindow, l"
+          "$mod $s, right, movewindow, r"
+          "$mod $s, up, movewindow, u"
+          "$mod $s, down, movewindow, d"
+        ]
       ) ++ [
-        # Window movement
-        "$mod, left, ${prefix}movefocus, l"
-        "$mod, right, ${prefix}movefocus, r"
-        "$mod, up, ${prefix}movefocus, u"
-        "$mod, down, ${prefix}movefocus, d"
-        "$mod $s, left, ${prefix}movewindow, l"
-        "$mod $s, right, ${prefix}movewindow, r"
-        "$mod $s, up, ${prefix}movewindow, u"
-        "$mod $s, down, ${prefix}movewindow, d"
         # [TODO] figure out how to swap windows without resizing
         # "$mod, S, swapwindow"
 
