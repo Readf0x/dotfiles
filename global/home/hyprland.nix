@@ -4,8 +4,12 @@
   rgb = col: "rgb(${col})";
   rgba = col: "rgba(${col})";
   colors = config.lib.stylix.colors;
-  ifPlugin = plugin: val:
+  ifPlugin = plugin:
     if builtins.map (f: f.name) config.wayland.windowManager.hyprland.plugins |> builtins.elem plugin.name
+    then true
+    else false;
+  pluginConfig = plugin: val:
+    if (ifPlugin plugin)
     then val
     else null;
 in {
@@ -18,7 +22,8 @@ in {
     package = null;
     portalPackage = null;
     plugins = with pkgs.hyprlandPlugins; [
-      hyprwinwrap
+      # hyprwinwrap
+      hy3
     ];
     settings = {
       #    ____         __              ____    __  __  _             
@@ -74,7 +79,10 @@ in {
         "col.active_border" = rgb "FFF0E7";
         "col.inactive_border" = rgb "FFF0E7";
 
-        layout = "dwindle";
+        layout =
+          if (ifPlugin pkgs.hyprlandPlugins.hy3)
+          then "hy3"
+          else "dwindle";
 
         allow_tearing = false;
       };
@@ -146,20 +154,41 @@ in {
         warp_on_change_workspace = 2;
       };
 
-      # https://github.com/hyprwm/hyprland-plugins/blob/main/hyprbars/README.md
-      plugin.hyprbars = ifPlugin pkgs.hyprlandPlugins.hyprbars {
-        bar_color = rgb colors.base00;
-        bar_height = 15;
-        "col.text" = rgb colors.base05;
-        bar_text_font = "Courier13";
-        bar_padding = 2;
-        bar_text_align = "left";
-        bar_precedence_over_border = true;
+      plugin = {
+        # https://github.com/hyprwm/hyprland-plugins/blob/main/hyprbars/README.md
+        hyprbars = pluginConfig pkgs.hyprlandPlugins.hyprbars {
+          bar_color = rgb colors.base00;
+          bar_height = 15;
+          "col.text" = rgb colors.base05;
+          bar_text_font = "Courier13";
+          bar_padding = 2;
+          bar_text_align = "left";
+          bar_precedence_over_border = true;
 
-        hyprbars-button = [
-          "${rgb colors.base00}, 11, , hyprctl dispatch killactive, ${rgb colors.base05}"
-          "${rgb colors.base00}, 11, , hyprctl dispatch fullscreen 1, ${rgb colors.base05}"
-        ];
+          hyprbars-button = [
+            "${rgb colors.base00}, 11, , hyprctl dispatch killactive, ${rgb colors.base05}"
+            "${rgb colors.base00}, 11, , hyprctl dispatch fullscreen 1, ${rgb colors.base05}"
+          ];
+        };
+        # https://github.com/outfoxxed/hy3?tab=readme-ov-file#config-fields
+        hy3 = pluginConfig pkgs.hyprlandPlugins.hy3 {
+          tabs = {
+            padding = 2;
+
+            border_width = 2;
+            radius = 0;
+            "col.active.border" = rgb "FFF0E7";
+            "col.inactive.border" = rgb "FFF0E7";
+
+            text_font = "Courier13";
+            text_height = "11";
+
+            "col.active" = rgb "373635";
+            "col.inactive" = rgb "4C4946";
+
+            blur = false;
+          };
+        };
       };
 
       #    ___  _         __  
@@ -178,7 +207,9 @@ in {
       "$browser" = "firefox-esr";
 
       # [TODO] create vim binds
-      bind = [
+      bind = let
+        prefix = if (ifPlugin pkgs.hyprlandPlugins.hy3) then "hy3:" else "";
+      in [
         # IMPORTANT:
         "$hyper, L, exec, xdg-open https://linkedin.com/"
 
@@ -226,7 +257,7 @@ in {
         # Window management
         "$mod, Q, killactive,"
         ", F11, fullscreen, 0"
-        "$mod, M, fullscreen, 1"
+        "$mod, F11, fullscreen, 1"
         "$mod $s, Space, togglefloating,"
         "$mod $s, P, pin,"
         "$mod $c, Home, centerwindow,"
@@ -235,27 +266,28 @@ in {
         "$mod $a, right, swapwindow, r"
         "$mod $a, up, swapwindow, u"
         "$mod $a, down, swapwindow, d"
-        # Dwindle
         "$mod, P, pseudo,"
         "$mod, J, togglesplit,"
+      ] ++ (
+        if (ifPlugin pkgs.hyprlandPlugins.hy3) then [
+          "$mod, T, hy3:makegroup, tab"
+          "$mod, G, hy3:makegroup, h"
+          "$mod $s, T, hy3:changegroup, toggletab"
+          # find better bind for this???
+          # "$mod $s, G, hy3:changegroup, opposite"
+        ] else []
+      ) ++ [
         # Window movement
-        "$mod, left, movefocus, l"
-        "$mod, right, movefocus, r"
-        "$mod, up, movefocus, u"
-        "$mod, down, movefocus, d"
-        "$mod $s, left, movewindow, l"
-        "$mod $s, right, movewindow, r"
-        "$mod $s, up, movewindow, u"
-        "$mod $s, down, movewindow, d"
+        "$mod, left, ${prefix}movefocus, l"
+        "$mod, right, ${prefix}movefocus, r"
+        "$mod, up, ${prefix}movefocus, u"
+        "$mod, down, ${prefix}movefocus, d"
+        "$mod $s, left, ${prefix}movewindow, l"
+        "$mod $s, right, ${prefix}movewindow, r"
+        "$mod $s, up, ${prefix}movewindow, u"
+        "$mod $s, down, ${prefix}movewindow, d"
         # [TODO] figure out how to swap windows without resizing
         # "$mod, S, swapwindow"
-
-        #"$mod, I, workspace, name:info"
-        #"$mod, Y, workspace, name:music"
-        #"$mod, S, workspace, name:video"
-        #"$mod $s, S, movetoworkspace, name:video"
-        #"$mod $s, D, workspace, name:discord"
-        #"$mod $s, M, workspace, name:mail"
 
         "$mod, tab, movecurrentworkspacetomonitor, +1"
         "$mod, mouse_down, workspace, e-1"
@@ -271,7 +303,7 @@ in {
               builtins.toString (x + 1 - (c * 10));
           in [
             "$mod, ${ws}, workspace, ${toString (x + 1)}"
-            "$mod SHIFT, ${ws}, movetoworkspace, ${toString (x + 1)}"
+            "$mod SHIFT, ${ws}, ${prefix}movetoworkspace, ${toString (x + 1)}"
           ]
         )
         10)
