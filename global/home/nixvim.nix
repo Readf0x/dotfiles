@@ -467,6 +467,7 @@ in {
     dap-virtual-text.enable = true;
     neotest.enable = true;
     undotree.enable = true;
+    octo.enable = true;
   };
   extraPlugins = with pkgs.vimPlugins; [
     flatten-nvim

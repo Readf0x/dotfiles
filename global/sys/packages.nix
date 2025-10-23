@@ -77,6 +77,7 @@
       fzf
       gdb
       gf
+      gh
       go
       grimblast
       grub2
