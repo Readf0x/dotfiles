@@ -177,14 +177,17 @@ in {
 
             border_width = 2;
             radius = 0;
-            "col.active.border" = rgb "FFF0E7";
-            "col.inactive.border" = rgb "FFF0E7";
 
             text_font = "Courier13";
             text_height = "11";
 
             "col.active" = rgb "373635";
+            "col.active.border" = rgb "FFF0E7";
+            "col.active.text" = rgb "FFF0E7";
+
             "col.inactive" = rgb "4C4946";
+            "col.inactive.border" = rgb "FFF0E7";
+            "col.inactive.text" = rgb "FFF0E7";
 
             blur = false;
           };
@@ -270,11 +273,10 @@ in {
         "$mod, J, togglesplit,"
       ] ++ (
         if (ifPlugin pkgs.hyprlandPlugins.hy3) then [
-          "$mod, T, hy3:makegroup, tab"
-          "$mod, G, hy3:makegroup, h"
-          "$mod $s, T, hy3:changegroup, toggletab"
-          # find better bind for this???
-          # "$mod $s, G, hy3:changegroup, opposite"
+          "$mod, T, hy3:changegroup, toggletab"
+          "$mod $s, T, hy3:makegroup, tab"
+          "$mod, G, hy3:makegroup, v"
+          "$mod $a, G, hy3:makegroup, h"
         ] else []
       ) ++ [
         # Window movement
