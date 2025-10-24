@@ -1,4 +1,4 @@
-{ pkgs, unstable, ... }: {
+{ pkgs, ... }: {
   stylix = {
     enable = true;
     image = builtins.toPath "${pkgs.wallpapers}/89875190_p0.jpg";
@@ -13,7 +13,7 @@
         name = "Ubuntu";
       };
       monospace = {
-        package = unstable.maple-mono.variable;
+        package = pkgs.maple-mono.variable;
         name = "Maple Mono";
       };
       emoji = {

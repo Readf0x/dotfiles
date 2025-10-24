@@ -237,7 +237,7 @@ in {
         #nixd.enable = true;
         nil_ls = {
           enable = true;
-          package = inputs.unstable.legacyPackages.${pkgs.system}.nil;
+          package = pkgs.nil;
           settings.nix.flake.autoArchive = true;
         };
         qmlls = {
@@ -246,7 +246,7 @@ in {
         };
         ocamllsp = {
           enable = true;
-          package = inputs.unstable.legacyPackages.${pkgs.system}.ocamlPackages.ocaml-lsp;
+          package = pkgs.ocamlPackages.ocaml-lsp;
         };
         # kotlin_language_server.enable = true;
       };

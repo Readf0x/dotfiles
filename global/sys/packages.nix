@@ -1,4 +1,4 @@
-{ pkgs, lib, unstable, ... }: {
+{ pkgs, stable, lib, ... }: {
   environment = {
     etc."/xdg/menus/applications.menu".source =
     "${pkgs.kdePackages.plasma-workspace}/etc/xdg/menus/plasma-applications.menu";
@@ -27,13 +27,12 @@
       pavucontrol
       prismlauncher
       qpwgraph
-      qtbooru
       qview
       rofi
       scrcpy
       swaynotificationcenter
       ungoogled-chromium
-      unstable.figma-linux
+      figma-linux
       (vesktop.overrideAttrs (prev: {
         desktopItems = makeDesktopItem {
           name = "vesktop";
@@ -90,7 +89,7 @@
       libnotify
       libsecret
       lshw
-      lxqt.lxqt-policykit
+      stable.lxqt.lxqt-policykit
       microfetch
       mpc
       mpd
@@ -167,7 +166,7 @@
 
   fonts = {
     packages = builtins.attrValues (
-      lib.filterAttrs (n: v: ! lib.hasSuffix "-unhinted" n && lib.isDerivation v) unstable.maple-mono
+      lib.filterAttrs (n: v: ! lib.hasSuffix "-unhinted" n && lib.isDerivation v) pkgs.maple-mono
     ) ++ (with pkgs; [
       pkgs.courier
       cantarell-fonts
@@ -207,7 +206,6 @@
     obs-studio = {
       enable = true;
       plugins = with pkgs.obs-studio-plugins; [
-        obs-webkitgtk
         obs-pipewire-audio-capture
       ];
       enableVirtualCamera = true;
@@ -216,7 +214,7 @@
     virt-manager.enable = true;
     nh = {
       enable = true;
-      package = unstable.nh;
+      package = pkgs.nh;
     };
   };
 }

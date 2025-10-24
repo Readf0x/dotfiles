@@ -41,7 +41,9 @@
       # else null;
     };
     #gnome.gnome-keyring.enable = true;
-    logind.extraConfig = "HandlePowerKey=ignore";
+    logind.settings.Login = {
+      HandlePowerKey = "ignore";
+    };
     i2pd = {
       enable = false;
       address = "127.0.0.1";

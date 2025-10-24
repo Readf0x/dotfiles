@@ -1,4 +1,4 @@
-{ pkgs, conf, lib, inputs, config, ... }: {
+{ pkgs, stable, conf, lib, inputs, config, ... }: {
 
   nixpkgs = {
     config.allowUnfree = true;
@@ -33,7 +33,7 @@
     # The home.packages option allows you to install Nix packages into your
     # environment.
     packages = with pkgs; [
-      colloid-kde
+      stable.colloid-kde
       fd
     ];
 
@@ -73,7 +73,7 @@
     platformTheme.name = "qtct";
     style = {
       name = "Kvantum";
-      package = pkgs.colloid-kde;
+      package = stable.colloid-kde;
     };
   };
 

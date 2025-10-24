@@ -3,7 +3,6 @@
     # self.packages.${conf.system}.ukmm-fork
   ] ++ (with pkgs; [
     audacity
-    azahar
     blender-hip
     bridge-utils
     cemu
