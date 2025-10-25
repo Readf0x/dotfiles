@@ -40,7 +40,7 @@
         ll = "eza -l";
         ls = "eza";
         lt = "eza -T";
-        neofetch = "pokeget ${lib'.pokeget conf.pokemon} --hide-name | hyfetch --ascii-file /dev/stdin";
+        neofetch = "pokeget ${lib'.pokeget conf.pokemon} --hide-name | fastfetch --file /dev/stdin";
         open = "xdg-open";
         v = "nvim";
         zshr = "exec zsh";
@@ -66,7 +66,7 @@
           autoload bashcompinit && bashcompinit
         '')
         (lib.mkBefore ''
-          [[ $KITTY_WINDOW_ID -gt 1 ]] || ! [[ $KITTY_SHELL_INTEGRATION = no-rc ]] || [[ $SHLVL -gt 1 ]] || pokeget ${lib'.pokeget conf.pokemon} --hide-name | hyfetch --ascii-file /dev/stdin
+          [[ $KITTY_WINDOW_ID -gt 1 ]] || ! [[ $KITTY_SHELL_INTEGRATION = no-rc ]] || [[ $SHLVL -gt 1 ]] || pokeget ${lib'.pokeget conf.pokemon} --hide-name | fastfetch --file /dev/stdin
           export DIRENV_LOG_FORMAT=
         '')
         (''
@@ -309,22 +309,22 @@
     };
   };
   home.file = {
-    ".config/hyfetch.json".text = builtins.toJSON {
-      preset = "transgender";
-      mode = "rgb";
-      light_dark = "dark";
-      lightness = 0.8;
-      color_align = {
-          mode = "horizontal";
-          custom_colors = [];
-          fore_back = null;
-      };
-      backend = "fastfetch";
-      args = null;
-      distro = null;
-      pride_month_shown = [];
-      pride_month_disable = true;
-    };
+    # ".config/hyfetch.json".text = builtins.toJSON {
+    #   preset = "transgender";
+    #   mode = "rgb";
+    #   light_dark = "dark";
+    #   lightness = 0.8;
+    #   color_align = {
+    #       mode = "horizontal";
+    #       custom_colors = [];
+    #       fore_back = null;
+    #   };
+    #   backend = "fastfetch";
+    #   args = null;
+    #   distro = null;
+    #   pride_month_shown = [];
+    #   pride_month_disable = true;
+    # };
     ".config/fastfetch/config.jsonc".text = ''
       {
         "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json",

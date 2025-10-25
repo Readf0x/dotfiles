@@ -81,7 +81,7 @@
       grimblast
       grub2
       htmlq
-      hyfetch
+      # hyfetch
       hyperfine
       hyprpicker
       islive
