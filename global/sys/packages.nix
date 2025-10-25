@@ -89,7 +89,6 @@
       libnotify
       libsecret
       lshw
-      stable.lxqt.lxqt-policykit
       microfetch
       mpc
       mpd
@@ -103,6 +102,7 @@
       playerctl
       podman-compose
       pokeget-rs
+      pulseaudio
       python3
       radeontop
       ranger
@@ -110,6 +110,7 @@
       ripgrep
       samba
       shared-mime-info
+      stable.lxqt.lxqt-policykit
       swww
       templating-engine
       tmux
