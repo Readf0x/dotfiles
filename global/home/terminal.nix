@@ -269,21 +269,24 @@
   programs = {
     git = {
       enable = true;
-      delta = {
-        enable = true;
-      };
-      userName = conf.user;
-      userEmail = conf.email;
       signing = {
         key = conf.gpg;
         signByDefault = true;
       };
-      extraConfig = {
+      settings = {
+        user = {
+          name = conf.user;
+          email = conf.email;
+        };
         commit.gpgsign = true;
         credential.helper = "${pkgs.git.override { withLibsecret = true; }}/bin/git-credential-libsecret";
         diff.algorithm = "patience";
         init.defaultBranch = "master";
       };
+    };
+    delta = {
+      enable = true;
+      enableGitIntegration = true;
     };
     lazygit = {
       enable = true;

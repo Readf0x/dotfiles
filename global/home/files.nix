@@ -1,4 +1,4 @@
-{ pkgs, lib, conf, config, ... }: {
+{ pkgs, stable, lib, conf, config, ... }: {
   home.file = {
     ".face.icon".source = ./../img/pfp.png;
     ".config/hypr/wallpapers".source = "${pkgs.wallpapers}";
@@ -24,7 +24,7 @@
       Icon=edit-move
       Exec=env WAYLAND_DISPLAY= dragon %U
     '';
-    ".config/Kvantum/Colloid".source = "${pkgs.colloid-kde}/share/Kvantum/Colloid";
+    ".config/Kvantum/Colloid".source = "${stable.colloid-kde}/share/Kvantum/Colloid";
     ".config/mpd/mpd.conf".text = ''
       music_directory "~/Music"
       playlist_directory "~/.mpd/playlists"

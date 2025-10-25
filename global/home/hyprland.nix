@@ -63,13 +63,14 @@ in {
         };
       };
 
+      # Removed in latest
       # https://wiki.hyprland.org/Configuring/Variables/#gestures
-      gestures = {
-        workspace_swipe = "on";
-        workspace_swipe_fingers = 4;
-        workspace_swipe_distance = 500;
-        workspace_swipe_min_speed_to_force = 20;
-      };
+      # gestures = {
+      #   workspace_swipe = "on";
+      #   workspace_swipe_fingers = 4;
+      #   workspace_swipe_distance = 500;
+      #   workspace_swipe_min_speed_to_force = 20;
+      # };
 
       # https://wiki.hyprland.org/Configuring/Variables/#general
       general = {
