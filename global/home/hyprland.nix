@@ -53,9 +53,9 @@ in {
       # https://wiki.hyprland.org/Configuring/Variables/#input
       input = {
         follow_mouse = 1;
-        accel_profile = let
-          points = lib'.bezier.over100 [0 0] [12 6] [2 7] [10 10];
-        in "custom 1 ${with builtins; genList (x: elemAt (lib'.bezier.findX x points) 1 |> toString) 10 |> concatStringsSep " "}";
+        # accel_profile = let
+        #   points = lib'.bezier.over100 [0 0] [12 6] [2 7] [10 10];
+        # in "custom 1 ${with builtins; genList (x: elemAt (lib'.bezier.findX x points) 1 |> toString) 10 |> concatStringsSep " "}";
         touchpad = {
           scroll_factor = 0.1;
           natural_scroll = true;
