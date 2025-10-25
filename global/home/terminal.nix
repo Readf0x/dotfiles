@@ -305,6 +305,10 @@
       aggressiveResize = true;
       keyMode = "vi";
     };
+    fzf = {
+      enable = true;
+      enableZshIntegration = true;
+    };
   };
   home.file = {
     # ".config/hyfetch.json".text = builtins.toJSON {
