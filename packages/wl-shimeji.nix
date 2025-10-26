@@ -12,7 +12,7 @@
   libarchive,
   uthash
 }: stdenv.mkDerivation (finalAttrs: {
-  name = "wl_shimeji";
+  name = "wl-shimeji";
   pname = "shimejictl";
   version = "";
 
