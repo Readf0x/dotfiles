@@ -147,8 +147,6 @@
     grub.enable = false;
   };
 
-  documentation.man.generateCaches = true;
-
   console = {
     earlySetup = true;
     # Generated font unfortunately looks like ass. Will find a different solution in future.
