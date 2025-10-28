@@ -1,4 +1,0 @@
-#!/usr/bin/env zsh
-
-curl https://xeiaso.net/blog.rss | perl -0777 -pe 's{<script\b[^>]*?>.*?</script>}{}gsi'
-

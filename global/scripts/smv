@@ -1,5 +1,4 @@
 #!/usr/bin/env zsh
 
-scp $1 $2
-rm $1
+scp $1 $2 && rm $1
 
