@@ -60,6 +60,7 @@
     EOF
     wrapProgram $out/bin/shimejictl \
       --set PYTHONPATH "${python}/lib/python3.11/site-packages" \
+      --set XDG_CURRENT_DESKTOP "" \
       --prefix PATH : ${lib.makeBinPath [ python ]}
   '';
 

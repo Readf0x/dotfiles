@@ -1,0 +1,6 @@
+#!/usr/bin/env zsh
+
+for x in {Neuron,Vedaling,Eviling}; do
+	shimejictl mascot summon $x
+done
+
