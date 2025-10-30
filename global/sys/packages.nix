@@ -98,6 +98,7 @@
       ncmpcpp
       neovim
       nix-output-monitor
+      nix-prefetch-github
       nodejs-slim
       playerctl
       podman-compose
