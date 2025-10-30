@@ -1,9 +1,8 @@
 { pkgs, conf, config, lib, lib', ... }: let
   mLib = lib'.monitors;
   monitor = mLib.getId;
-  rgb = col: "rgb(${col})";
-  rgba = col: "rgba(${col})";
-  colors = config.lib.stylix.colors;
+  color = lib'.color.genFunctions config.lib.stylix.colors;
+  inherit (color.hypr) rgb rgba;
   ifPlugin = plugin:
     if builtins.map (f: f.name) config.wayland.windowManager.hyprland.plugins |> builtins.elem plugin.name
     then true
@@ -77,8 +76,8 @@ in {
         gaps_in = 1;
         gaps_out = 2;
         border_size = 2;
-        "col.active_border" = rgb "FFF0E7";
-        "col.inactive_border" = rgb "FFF0E7";
+        "col.active_border" = rgb color.fg;
+        "col.inactive_border" = rgb color.fg;
 
         layout =
           if (ifPlugin pkgs.hyprlandPlugins.hy3)
@@ -158,17 +157,17 @@ in {
       plugin = {
         # https://github.com/hyprwm/hyprland-plugins/blob/main/hyprbars/README.md
         hyprbars = pluginConfig pkgs.hyprlandPlugins.hyprbars {
-          bar_color = rgb colors.base00;
+          bar_color = rgb color.bg;
           bar_height = 15;
-          "col.text" = rgb colors.base05;
+          "col.text" = rgb color.fg;
           bar_text_font = "Courier13";
           bar_padding = 2;
           bar_text_align = "left";
           bar_precedence_over_border = true;
 
           hyprbars-button = [
-            "${rgb colors.base00}, 11, , hyprctl dispatch killactive, ${rgb colors.base05}"
-            "${rgb colors.base00}, 11, , hyprctl dispatch fullscreen 1, ${rgb colors.base05}"
+            "${rgb color.bg}, 11, , hyprctl dispatch killactive, ${rgb color.fg}"
+            "${rgb color.bg}, 11, , hyprctl dispatch fullscreen 1, ${rgb color.fg}"
           ];
         };
         # https://github.com/outfoxxed/hy3?tab=readme-ov-file#config-fields
@@ -182,29 +181,29 @@ in {
             text_font = "Courier13";
             text_height = "11";
 
-            "col.active" = rgb "373635";
-            "col.active.border" = rgb "FFF0E7";
-            "col.active.text" = rgb "FFF0E7";
+            "col.active" = rgb color.bg;
+            "col.active.border" = rgb color.fg;
+            "col.active.text" = rgb color.fg;
 
-            "col.focused" = rgb "373635";
-            "col.focused.border" = rgb "FFF0E7";
-            "col.focused.text" = rgb "FFF0E7";
+            "col.focused" = rgb color.bg;
+            "col.focused.border" = rgb color.fg;
+            "col.focused.text" = rgb color.fg;
 
-            "col.inactive" = rgb "4C4946";
-            "col.inactive.border" = rgb "FFF0E7";
-            "col.inactive.text" = rgb "FFF0E7";
+            "col.inactive" = rgb color.bg2;
+            "col.inactive.border" = rgb color.fg;
+            "col.inactive.text" = rgb color.fg;
 
-            "col.active_alt_monitor" = rgb "373635";
-            "col.active_alt_monitor.border" = rgb "FFF0E7";
-            "col.active_alt_monitor.text" = rgb "FFF0E7";
+            "col.active_alt_monitor" = rgb color.bg;
+            "col.active_alt_monitor.border" = rgb color.fg;
+            "col.active_alt_monitor.text" = rgb color.fg;
 
-            "col.urgent" = rgb "4C4946";
-            "col.urgent.border" = rgb "BD594A";
-            "col.urgent.text" = rgb "BD594A";
+            "col.urgent" = rgb color.bg2;
+            "col.urgent.border" = rgb color.red;
+            "col.urgent.text" = rgb color.red;
 
-            "col.locked" = rgb "4C4946";
-            "col.locked.border" = rgb "5394B8";
-            "col.locked.text" = rgb "5394B8";
+            "col.locked" = rgb color.bg;
+            "col.locked.border" = rgb color.blue;
+            "col.locked.text" = rgb color.blue;
 
             blur = false;
           };
@@ -667,16 +666,16 @@ in {
           dots_spacing = 0.15;
           dots_center = true;
           dots_rounding = -1;
-          outer_color = rgb "dddddd";
-          inner_color = rgb "2c2c2c";
-          font_color = rgb "ffffff";
+          outer_color = rgb color.fg;
+          inner_color = rgb color.bg2;
+          font_color = rgb color.fg;
           fade_on_empty = false;
           fade_timeout = 1000;
-          placeholder_text = ''<span foreground="##939393" style="italic" font_size="11pt">Input Password...</span>'';
+          placeholder_text = ''<span foreground="${color.hash.fg0}" style="italic" font_size="11pt">Input Password...</span>'';
           hide_input = false;
           rounding = 0;
-          check_color = rgb "ffd600";
-          fail_color = rgb "f44336";
+          check_color = rgb color.blue;
+          fail_color = rgb color.red;
           fail_text = "<i>$FAIL <b>($ATTEMPTS)</b></i>";
           fail_transition = 300;
           capslock_color = -1;
@@ -696,7 +695,7 @@ in {
           size = 256;
           rounding = 0;
           border_size = 2;
-          border_color = rgb "313244";
+          border_color = rgb color.fg;
           position = "0, 80";
           halign = "center";
           valign = "center";
@@ -706,7 +705,7 @@ in {
         {
           monitor = (monitor 0).id;
           text = "$USER";
-          color = rgb "dddddd";
+          color = rgb color.fg;
           font_size = 13;
           font_family = "Courier";
           position = "0, -60";
@@ -716,7 +715,7 @@ in {
         {
           monitor = (monitor 0).id;
           text = "cmd[update:1000] date +%I:%M\\ %p";
-          color = rgb "dddddd";
+          color = rgb color.fg;
           font_size = 16;
           font_family = "Courier20";
           position = "-10, -10";
@@ -726,7 +725,7 @@ in {
         {
           monitor = (monitor 0).id;
           text = "cmd[update:60000] date +%D";
-          color = rgb "dddddd";
+          color = rgb color.fg;
           font_size = 13;
           font_family = "Courier";
           position = "-10, -30";

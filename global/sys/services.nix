@@ -1,4 +1,6 @@
-{ pkgs, config, ... }: {
+{ pkgs, config, lib', ... }: let
+  color = lib'.color.genFunctions config.lib.stylix.colors;
+in {
   services = {
     openssh = {
       enable = true;
@@ -34,6 +36,13 @@
       };
       ly = {
         enable = true;
+        settings = {
+          session_log = "null";
+          animation = "colormix";
+          colormix_col1 = "0x00${color.red}";
+          colormix_col2 = "0x00${color.orange}";
+          colormix_col3 = "0x20000000";
+        };
       };
       # does *technially* work but does some weird shit
       # execCmd = if ly.enable && kmscon.enable then
