@@ -37,7 +37,7 @@ in {
       ly = {
         enable = true;
         settings = {
-          session_log = "null";
+          session_log = "/dev/null";
           animation = "colormix";
           colormix_col1 = "0x00${color.red}";
           colormix_col2 = "0x00${color.orange}";
