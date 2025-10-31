@@ -1,5 +1,6 @@
 { pkgs, lib, lib', conf, ... }: {
   # [TODO] Investigate tmux
+  home.shell.enableZshIntegration = true;
   programs = {
     zsh = {
       enable = true;
@@ -11,25 +12,6 @@
           "zsh-users/zsh-autosuggestions kind:defer"
           "zsh-users/zsh-history-substring-search kind:defer"
         ];
-      };
-      integral-prompt = {
-        enable = true;
-        config = {
-          modules_right = [];
-          modules = [
-            "nix"
-            "visym"
-            "error"
-            "dir"
-            "ssh+"
-            "git"
-            "jobs"
-          ];
-          dir.replace = [
-            [ "${toString conf.homeDir}/Repos/" "󰊢 /" ]
-            [ "${toString conf.homeDir}/Repos" "󰊢" ]
-          ];
-        };
       };
       shellAliases = {
         diff = "diff --color";
@@ -147,9 +129,27 @@
         '')
       ];
     };
+    integral-prompt = {
+      enable = true;
+      config = {
+        modules_right = [];
+        modules = [
+          "nix"
+          "visym"
+          "error"
+          "dir"
+          "ssh+"
+          "git"
+          "jobs"
+        ];
+        dir.replace = [
+          [ "${toString conf.homeDir}/Repos/" "󰊢 /" ]
+          [ "${toString conf.homeDir}/Repos" "󰊢" ]
+        ];
+      };
+    };
     eza = {
       enable = true;
-      enableZshIntegration = true;
       git = true;
       icons = "auto";
       extraOptions = [
@@ -164,14 +164,12 @@
     };
     zoxide = {
       enable = true;
-      enableZshIntegration = true;
       options = [
         "--cmd cd"
       ];
     };
     direnv = {
       enable = true;
-      enableZshIntegration = true;
       nix-direnv.enable = true;
       config.global.log_filter = "^$";
     };
@@ -307,7 +305,6 @@
     };
     fzf = {
       enable = true;
-      enableZshIntegration = true;
     };
   };
   home.file = {
