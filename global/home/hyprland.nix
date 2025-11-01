@@ -671,7 +671,7 @@ in {
           font_color = rgb color.fg;
           fade_on_empty = false;
           fade_timeout = 1000;
-          placeholder_text = ''<span foreground="${color.hash.fg0}" style="italic" font_size="11pt">Input Password...</span>'';
+          placeholder_text = ''<span foreground="#${color.hash.fg0}" style="italic" font_size="11pt">Input Password...</span>'';
           hide_input = false;
           rounding = 0;
           check_color = rgb color.blue;
