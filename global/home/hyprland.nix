@@ -56,10 +56,14 @@ in {
         #   points = lib'.bezier.over100 [0 0] [12 6] [2 7] [10 10];
         # in "custom 1 ${with builtins; genList (x: elemAt (lib'.bezier.findX x points) 1 |> toString) 10 |> concatStringsSep " "}";
         touchpad = {
-          scroll_factor = 0.1;
+          scroll_factor = 0.35;
           natural_scroll = true;
           disable_while_typing = false;
         };
+      };
+      device = {
+        name = "elan-trackpoint";
+        sensitivity = -0.5;
       };
 
       # Removed in latest
