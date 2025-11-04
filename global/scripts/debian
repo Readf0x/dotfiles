@@ -8,7 +8,7 @@ if [[ $VENDOR = debian ]]; then
   exit 1
 fi
 if podman container exists debian; then
-  if ! distrobox enter debian; then
+  if ! distrobox enter debian --additional-flags "--env SSH_CONNECTION=$SSH_CONNECTION"; then
     podman rm debian
     distrobox assemble create --file /dev/stdin <<< $image
   fi
