@@ -184,6 +184,7 @@ in {
 
             text_font = "Courier13";
             text_height = "11";
+            text_padding = 2;
 
             "col.active" = rgb color.bg;
             "col.active.border" = rgb color.fg;

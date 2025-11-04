@@ -130,6 +130,7 @@
       trusted-public-keys = builtins.attrValues (lib.mapAttrs (n: v: v.trusted-public-key) conf.hosts);
       auto-optimise-store = true;
       connect-timeout = 1;
+      download-attempts = 2;
       download-speed = 25000;
       fallback = true;
     };

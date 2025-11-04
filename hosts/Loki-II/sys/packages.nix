@@ -5,7 +5,6 @@
     audacity
     blender-hip
     bridge-utils
-    cemu
     inkscape
     picard
     piper
