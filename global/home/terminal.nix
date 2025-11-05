@@ -26,7 +26,7 @@
         neofetch = "pokeget ${lib'.pokeget conf.pokemon} --hide-name | fastfetch --file /dev/stdin";
         open = "xdg-open";
         v = "nvim";
-        zshr = "exec zsh";
+        shr = "exec zsh";
         ":q" = "exit";
         ":Q" = "exit";
         "q" = "exit";
@@ -132,10 +132,10 @@
     fish = {
       enable = true;
       shellAliases = {
+        cat = "bat";
         diff = "diff --color";
         grep = "rg";
         hyc = "hyprctl";
-        icat = "kitten icat --align left";
         la = "eza -a";
         ll = "eza -l";
         ls = "eza";
@@ -143,7 +143,7 @@
         neofetch = "pokeget ${lib'.pokeget conf.pokemon} --hide-name | fastfetch --file /dev/stdin";
         open = "xdg-open";
         v = "nvim";
-        zshr = "exec zsh";
+        shr = "exec fish";
         ":q" = "exit";
         ":Q" = "exit";
         "q" = "exit";
