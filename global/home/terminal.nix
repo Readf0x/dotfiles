@@ -35,6 +35,7 @@
       };
       localVariables = {
         PAGER = "bat -p";
+        REPOS = "${toString conf.homeDir}/Repos";
       };
       initContent = lib.mkMerge [
         (lib.mkOrder 550 ''
