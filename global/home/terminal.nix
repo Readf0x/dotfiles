@@ -163,11 +163,12 @@
         complete --command man --wraps man
         complete --command nix --wraps nix
 
-        if set -q SSH_CONNECTION
-          kitty @ set-tab-color active_bg=#${config.lib.stylix.colors.red}
+        function __ssh_tab_set --on-event fish_preexec
+          if test (string split ' ' -- $argv[1])[1] = ssh
+            kitty @ set-tab-color active_bg=#${config.lib.stylix.colors.red}
+          end
         end
-
-        function __ssh_tab --on-event fish_postexec
+        function __ssh_tab_reset --on-event fish_postexec
           if test (string split ' ' -- $argv[1])[1] = ssh
           and not set -q SSH_CONNECTION
             kitty @ set-tab-color active_bg=NONE
