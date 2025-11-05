@@ -191,6 +191,15 @@
         # need to rewrite clone script...
         # clone = "source ~/Scripts/clone $argv";
         man = "command man $argv | bat -plman";
+        __exit_sig = {
+          body = ''
+            set sig $status
+            if test $sig != 0
+              echo (set_color brblack)Command exited (set_color red)"[$sig]"
+            end
+          '';
+          onEvent = "fish_postexec";
+        };
       };
     };
     integral-prompt = {
