@@ -33,7 +33,7 @@ in {
 
       # https://wiki.hyprland.org/Configuring/Monitors/
       monitor = mLib.map (i:
-        "${i.id}, ${mLib.toRes i.res}@${builtins.toString i.hz}, ${mLib.toRes i.pos}, ${builtins.toString i.scl}, transform, ${builtins.toString i.rot}"
+        "${i.id}, ${mLib.toRes i.res}@${toString i.hz}, ${mLib.toRes i.pos}, ${toString i.scl}, transform, ${toString i.rot}"
       );
 
       # https://wiki.hyprland.org/Configuring/Environment-variables/
@@ -239,14 +239,14 @@ in {
 
         # Applications
         "$mod, Return, exec, kitty"
-        "$mod $s, Return, exec, kitty --config ${builtins.toString conf.homeDir}/.config/kitty/safe.conf"
+        "$mod $s, Return, exec, kitty --config ${toString conf.homeDir}/.config/kitty/safe.conf"
         "$mod, E, exec, dolphin"
         "$mod, W, exec, $browser"
         "$mod $a, W, exec, $browser -P I2P"
         "$mod $s, C, exec, hyprpicker -an"
-        ", Print, exec, hyprshot -zsm region -f screenshot_$(date +%Y-%m-%d_%H-%m-%s).png -o ${builtins.toString conf.homeDir}/Pictures/Screenshots"
-        "$s, Print, exec, hyprshot -zsm window -f screenshot_$(date +%Y-%m-%d_%H-%m-%s).png -o ${builtins.toString conf.homeDir}/Pictures/Screenshots"
-        "$a, Print, exec, hyprshot -zsm output -f screenshot_$(date +%Y-%m-%d_%H-%m-%s).png -o ${builtins.toString conf.homeDir}/Pictures/Screenshots"
+        ", Print, exec, hyprshot -zsm region -f screenshot_$(date +%Y-%m-%d_%H-%m-%s).png -o ${toString conf.homeDir}/Pictures/Screenshots"
+        "$s, Print, exec, hyprshot -zsm window -f screenshot_$(date +%Y-%m-%d_%H-%m-%s).png -o ${toString conf.homeDir}/Pictures/Screenshots"
+        "$a, Print, exec, hyprshot -zsm output -f screenshot_$(date +%Y-%m-%d_%H-%m-%s).png -o ${toString conf.homeDir}/Pictures/Screenshots"
         "$mod, F4, exec, wlogout -p layer-shell -b 5 -c 10"
         "$mod, F5, exec, neoshell kill; neoshell"
         "$mod, Escape, exec, hyprlock"
@@ -337,7 +337,7 @@ in {
             ws = let
               c = (x + 1) / 10;
             in
-              builtins.toString (x + 1 - (c * 10));
+              toString (x + 1 - (c * 10));
           in [
             "$mod, ${ws}, workspace, ${toString (x + 1)}"
             "$mod SHIFT, ${ws}, ${prefix}movetoworkspace, ${toString (x + 1)}"

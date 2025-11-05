@@ -8,7 +8,7 @@
         #!/usr/bin/env zsh
         # local arr=($(find -H "$HOME/.config/hypr/wallpapers" -name '*.jpg'))
       '' + (lib.concatStringsSep "\n" (lib.imap0 (i: v:
-        "swww img -t none -o ${v.id} ~/.config/hypr/wallpapers/${builtins.toString i}.jpg"
+        "swww img -t none -o ${v.id} ~/.config/hypr/wallpapers/${toString i}.jpg"
       ) conf.monitors));
       executable = true;
     };
@@ -198,5 +198,5 @@
     #   Host Loki-IV
     #     HostName 10.1.11.100
     # '';
-  } // (lib.mapAttrs' (n: v: lib.nameValuePair "Scripts/${n}" { source = builtins.toPath "${builtins.toString ./..}/scripts/${n}"; }) (builtins.readDir ../scripts));
+  } // (lib.mapAttrs' (n: v: lib.nameValuePair "Scripts/${n}" { source = builtins.toPath "${toString ./..}/scripts/${n}"; }) (builtins.readDir ../scripts));
 }
