@@ -1,4 +1,4 @@
-{ pkgs, lib, lib', conf, ... }: {
+{ pkgs, lib, lib', conf, config, ... }: {
   # [TODO] Investigate tmux
   home.shell.enableZshIntegration = true;
   home.shell.enableFishIntegration = true;
@@ -163,6 +163,17 @@
         complete --command man --wraps man
         complete --command nix --wraps nix
 
+        if set -q SSH_CONNECTION
+          kitty @ set-tab-color active_bg=#${config.lib.stylix.colors.red}
+        end
+
+        function __ssh_tab --on-event fish_postexec
+          if test (string split ' ' -- $argv[1])[1] = ssh
+          and not set -q SSH_CONNECTION
+            kitty @ set-tab-color active_bg=NONE
+          end
+        end
+
         set -g fish_key_bindings fish_vi_key_bindings
         set fish_greeting (set_color magenta){$USER}(set_color brblack)@(set_color cyan){$hostname}(set_color yellow)" ∫ "(set_color green)${toString conf.homeDir}
       '';
@@ -251,6 +262,8 @@
       enableGitIntegration = true;
       extraConfig = ''
         shell fish
+
+        tab_bar_min_tabs 1
 
         enable_audio_bell no
         visual_bell_duration 0.1
