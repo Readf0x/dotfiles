@@ -152,6 +152,12 @@
         "Q" = "exit";
         "power!" = "poweroff";
       };
+      binds = {
+        ctrl-backspace = {
+          mode = "insert";
+          command = "backward-kill-word";
+        };
+      };
       # or test "$KITTY_SHELL_INTEGRATION" = no-rc
       interactiveShellInit = lib.mkAfter ''
         complete --command man --wraps man
