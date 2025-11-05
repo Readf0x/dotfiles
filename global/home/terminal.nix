@@ -173,6 +173,12 @@
             kitty @ set-tab-color active_bg=NONE
           end
         end
+        function __exit_sig --on-event fish_postexec
+          set sig $status
+          if test $sig != 0
+            echo (set_color brblack)Command exited (set_color red)"[$sig]"
+          end
+        end
 
         set -g fish_key_bindings fish_vi_key_bindings
         set fish_greeting (set_color magenta){$USER}(set_color brblack)@(set_color cyan){$hostname}(set_color yellow)" ∫ "(set_color green)${toString conf.homeDir}
@@ -202,15 +208,6 @@
         # need to rewrite clone script...
         # clone = "source ~/Scripts/clone $argv";
         man = "command man $argv | bat -plman";
-        __exit_sig = {
-          body = ''
-            set sig $status
-            if test $sig != 0
-              echo (set_color brblack)Command exited (set_color red)"[$sig]"
-            end
-          '';
-          onEvent = "fish_postexec";
-        };
       };
     };
     integral-prompt = {
