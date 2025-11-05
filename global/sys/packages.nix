@@ -191,6 +191,7 @@
       portalPackage = pkgs.xdg-desktop-portal-hyprland;
     };
     zsh.enable = true;
+    fish.enable = true;
     steam = {
       enable = true;
       extraCompatPackages = with pkgs; [

@@ -69,7 +69,7 @@ in rec {
       readf0x = lib.recursiveUpdate (perHost {
         admin = true;
         isNormalUser = true;
-        shell = "zsh";
+        shell = "fish";
         email = "davis.a.forsythe@gmail.com";
         realName = "readf0x";
         gpg = "5DA8A55A7FFB950B92BB532C4A48E1852C03CE8A";
