@@ -25,8 +25,8 @@
         lt = "eza -T";
         neofetch = "pokeget ${lib'.pokeget conf.pokemon} --hide-name | fastfetch --file /dev/stdin";
         open = "xdg-open";
-        v = "nvim";
         shr = "exec zsh";
+        v = "nvim";
         ":q" = "exit";
         ":Q" = "exit";
         "q" = "exit";
@@ -142,8 +142,10 @@
         lt = "eza -T";
         neofetch = "pokeget ${lib'.pokeget conf.pokemon} --hide-name | fastfetch --file /dev/stdin";
         open = "xdg-open";
-        v = "nvim";
+        print = "echo";
         shr = "exec fish";
+        unset = "set -e";
+        v = "nvim";
         ":q" = "exit";
         ":Q" = "exit";
         "q" = "exit";
@@ -154,7 +156,9 @@
       interactiveShellInit = lib.mkAfter ''
         complete --command man --wraps man
         complete --command nix --wraps nix
+
         set -g fish_key_bindings fish_vi_key_bindings
+        set -e fish_greeting
 
         if not test $KITTY_WINDOW_ID -gt 1
         or not test $SHLVL -gt 1
