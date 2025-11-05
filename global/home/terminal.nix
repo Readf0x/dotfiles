@@ -158,12 +158,7 @@
         complete --command nix --wraps nix
 
         set -g fish_key_bindings fish_vi_key_bindings
-        set -e fish_greeting
-
-        if not test $KITTY_WINDOW_ID -gt 1
-        or not test $SHLVL -gt 1
-            pokeget ${lib'.pokeget conf.pokemon} --hide-name | fastfetch --file /dev/stdin
-        end
+        set fish_greeting (set_color magenta){$USER}(set_color brblack)@(set_color cyan){$hostname}(set_color yellow)" ∫ "(set_color green)${toString conf.homeDir}
       '';
       functions = {
         nix = ''
