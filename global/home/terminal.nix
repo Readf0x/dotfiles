@@ -1,6 +1,7 @@
 { pkgs, lib, lib', conf, ... }: {
   # [TODO] Investigate tmux
   home.shell.enableZshIntegration = true;
+  home.shell.enableFishIntegration = true;
   programs = {
     zsh = {
       enable = true;
@@ -31,11 +32,9 @@
         "q" = "exit";
         "Q" = "exit";
         "power!" = "poweroff";
-        time = "hyperfine";
       };
       localVariables = {
         PAGER = "bat -p";
-        REPOS = "${toString conf.homeDir}/Repos";
       };
       initContent = lib.mkMerge [
         (lib.mkOrder 550 ''
@@ -74,25 +73,25 @@
                 build|develop|shell) nom $@ ;;
                 remote)
                   IFS=$'\n' builders=($(cat ~/.remote-builders))
-                  nom build ${"$\{@:2}"} --builders "${"$\{builders[@]}"}"
+                  nom build ''${@:2} --builders "''${builders[@]}"
                 ;;
                 *) builtin command nix $@ ;;
               esac
             }
             compdef nix=nix
           fi
-          function run() { builtin command nix run nixpkgs#$1 -- ${"$\{@:2}"}}
-          function surun() { sudo nix run nixpkgs#$1 -- ${"$\{@:2}"}}
+          function run() { builtin command nix run nixpkgs#$1 -- ''${@:2} }
+          function surun() { sudo nix run nixpkgs#$1 -- ''${@:2} }
           function shell() {
-            if [[ ${"$\{#@}"} > 1 ]]; then
-              eval nom shell nixpkgs#{${"$\{(j:,:)@}"}}
+            if [[ ''${#@} > 1 ]]; then
+              eval nom shell nixpkgs#{''${(j:,:)@}}
             else
               nom shell nixpkgs#$1
             fi
           }
           function path2array() {
             local input=$1
-            print -l ${"$\{(s/:/)input}"}
+            print -l ''${(s/:/)input}
           }
           function spawn() {
             $@ &>/dev/null & disown
@@ -117,7 +116,7 @@
           else
             function db() {
               if [[ $1 = "enter" ]]; then
-                distrobox enter $2 --additional-flags "--env SSH_CONNECTION=$SSH_CONNECTION" ${"$\{@:3}"};
+                distrobox enter $2 --additional-flags "--env SSH_CONNECTION=$SSH_CONNECTION" ''${@:3};
               else
                 distrobox $@
               fi
@@ -129,6 +128,65 @@
           fi
         '')
       ];
+    };
+    fish = {
+      enable = true;
+      shellAliases = {
+        diff = "diff --color";
+        grep = "rg";
+        hyc = "hyprctl";
+        icat = "kitten icat --align left";
+        la = "eza -a";
+        ll = "eza -l";
+        ls = "eza";
+        lt = "eza -T";
+        neofetch = "pokeget ${lib'.pokeget conf.pokemon} --hide-name | fastfetch --file /dev/stdin";
+        open = "xdg-open";
+        v = "nvim";
+        zshr = "exec zsh";
+        ":q" = "exit";
+        ":Q" = "exit";
+        "q" = "exit";
+        "Q" = "exit";
+        "power!" = "poweroff";
+      };
+      # or test "$KITTY_SHELL_INTEGRATION" = no-rc
+      interactiveShellInit = lib.mkAfter ''
+        complete --command man --wraps man
+        complete --command nix --wraps nix
+        set -g fish_key_bindings fish_vi_key_bindings
+
+        if not test $KITTY_WINDOW_ID -gt 1
+        or not test $SHLVL -gt 1
+            pokeget ${lib'.pokeget conf.pokemon} --hide-name | fastfetch --file /dev/stdin
+        end
+      '';
+      functions = {
+        nix = ''
+          switch $argv[1]
+            case build develop shell
+              nom $argv
+            case remote
+              set builders (cat ~/.remote-builders)
+              nom build $argv[2..-1] --builders $builders
+            case '*'
+              command nix $argv
+          end
+        '';
+        run = "command nix run nixpkgs#$argv[1] -- $argv[2..-1]";
+        surun = "sudo nix run nixpkgs#$argv[1] -- $argv[2..-1]";
+        shell = ''
+          if test (count $argv) -gt 1
+            eval nom shell nixpkgs#(string join ',' $argv)
+          else
+            nom shell nixpkgs#$argv[1]
+          end
+        '';
+        spawn = "$argv >/dev/null 2>&1 & disown";
+        # need to rewrite clone script...
+        # clone = "source ~/Scripts/clone $argv";
+        man = "command man $argv | bat -plman";
+      };
     };
     integral-prompt = {
       enable = true;

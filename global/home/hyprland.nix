@@ -239,7 +239,8 @@ in {
 
         # Applications
         "$mod, Return, exec, kitty"
-        "$mod $s, Return, exec, kitty --config ${toString conf.homeDir}/.config/kitty/safe.conf"
+        "$mod $a, Return, exec, kitty --config ${toString conf.homeDir}/.config/kitty/safe.conf"
+        "$mod $s, Return, exec, kitty fish"
         "$mod, E, exec, dolphin"
         "$mod, W, exec, $browser"
         "$mod $a, W, exec, $browser -P I2P"
