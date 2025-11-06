@@ -61,10 +61,12 @@ in {
           disable_while_typing = false;
         };
       };
-      device = {
-        name = "elan-trackpoint";
-        sensitivity = -0.5;
-      };
+      device = [
+        {
+          name = "elan-trackpoint";
+          sensitivity = -0.5;
+        }
+      ];
 
       # Removed in latest
       # https://wiki.hyprland.org/Configuring/Variables/#gestures
