@@ -152,6 +152,12 @@
         "Q" = "exit";
         "power!" = "poweroff";
       };
+      shellAbbrs = {
+        "--help" = {
+          position = "anywhere";
+          expansion = "--help | bat -plhelp";
+        };
+      };
       binds = {
         ctrl-backspace = {
           mode = "insert";
@@ -164,12 +170,12 @@
         complete --command nix --wraps nix
 
         function __ssh_tab_set --on-event fish_preexec
-          if test (string split ' ' -- $argv[1])[1] = ssh
+          if test (string sub -e 3 $argv[1]) = ssh
             kitty @ set-tab-color active_bg=#${config.lib.stylix.colors.red}
           end
         end
         function __ssh_tab_reset --on-event fish_postexec
-          if test (string split ' ' -- $argv[1])[1] = ssh
+          if test (string sub -e 3 $argv[1]) = ssh
           and not set -q SSH_CONNECTION
             kitty @ set-tab-color active_bg=NONE
           end
@@ -200,7 +206,7 @@
         surun = "sudo nix run nixpkgs#$argv[1] -- $argv[2..-1]";
         shell = ''
           if test (count $argv) -gt 1
-            eval nom shell nixpkgs#(string join ',' $argv)
+            eval nom shell nixpkgs#{(string join ',' $argv)}
           else
             nom shell nixpkgs#$argv[1]
           end
@@ -209,6 +215,38 @@
         # need to rewrite clone script...
         # clone = "source ~/Scripts/clone $argv";
         man = "command man $argv | bat -plman";
+        integral_pwd = ''
+          set -l str $PWD
+          for item in (jq -rcM '.dir.replace[]' ~/.config/integralrc.json)
+            set -l pair (string replace -r '^\["(.*)","(.*)"\]$' '$1\n$2' -- $item)
+            set str (string replace $pair[1] $pair[2] $str)
+          end
+          if test $str = $PWD
+            prompt_pwd -d 1 -D 1
+          else
+            echo $str
+          end
+        '';
+        fish_title = ''
+          set -l ssh
+          set -q SSH_TTY
+          and set ssh "["(prompt_hostname | string sub -l 10 | string collect)"]"
+          set -l command
+          if set -q argv[1]
+            set command $argv[1]
+          else
+            set command (status current-command)
+            if test "$command" = fish
+              set command
+            end
+          end
+          set shortcmd (string split ' ' $command)[1]
+          if test "$shortcmd" = v
+            echo -- $ssh $command
+          else
+            echo -- $ssh (string sub -l 20 -- $shortcmd) (integral_pwd)
+          end
+        '';
       };
     };
     integral-prompt = {
