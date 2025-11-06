@@ -214,13 +214,14 @@
     integral-prompt = {
       enable = true;
       config = {
-        modules_right = [];
+        modules_right = [
+          "ssh+"
+        ];
         modules = [
           "nix"
           "visym"
           "error"
           "dir"
-          "ssh+"
           "git"
           "jobs"
         ];
