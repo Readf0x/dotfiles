@@ -1,18 +1,23 @@
-#!/usr/bin/env zsh
+#!/usr/bin/env fish
 
-image="[debian]
+set -l image '[debian]
 image=debian:testing
-additional_packages=\"hyfetch bat ripgrep\""
-if [[ $VENDOR = debian ]]; then
-  print "Already in container"
+additional_packages="hyfetch bat ripgrep jq"'
+
+if test "$VENDOR" = debian
+  echo "Already in container"
   exit 1
-fi
-if podman container exists debian; then
-  if ! distrobox enter debian --additional-flags "--env SSH_CONNECTION=$SSH_CONNECTION"; then
+end
+if podman container exists debian
+	set -l command "distrobox enter debian"
+	if set -q SSH_CONNECTION
+		set command $command' --additional-flags --env SSH_CONNECTION=$SSH_CONNECTION'
+	end
+  if not eval $command
     podman rm debian
-    distrobox assemble create --file /dev/stdin <<< $image
-  fi
+		printf "%s" "$image" | distrobox assemble create --file /dev/stdin
+	end
 else
-  distrobox assemble create --file /dev/stdin <<< $image
-fi
+	printf "%s" "$image" | distrobox assemble create --file /dev/stdin
+end
 
