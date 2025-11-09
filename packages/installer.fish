@@ -1,9 +1,9 @@
-if not test -d /mnt
+if test "$USER" != "root"
+	echo "Please login as root with "(set-color magenta)"sudo -i"
+end
+if not mountpoint -q /mnt
 	echo "Please partition your drive and mount it to /mnt"
 	exit 1
-end
-if not test "$USER" = "root"
-	echo "Please login as root with "(set-color magenta)"sudo -i"
 end
 
 if not test -d /mnt/sys/firmware
@@ -21,10 +21,11 @@ git clone https://github.com/readf0x/dotfiles
 echo "Done!"
 cd dotfiles
 echo "Time to create host config!"
-set PROMPT_STR "Hostname: "
-read -P host
-mkdir -p hosts/$host/sys
-cp /mnt/etc/nixos/hardware-configuration.nix hosts/$host/sys/hardware.nix
+echo "Enter hostname..."
+read -g host
+echo "$host"
+mkdir -p "hosts/$host/sys"
+cp /mnt/etc/nixos/hardware-configuration.nix "hosts/$host/sys/hardware.nix"
 echo '{ ... }: {
   imports = [
     ./drives.nix
@@ -47,8 +48,10 @@ echo '{ ... }: {
 }' > hosts/$host/sys/default.nix
 echo "Make sure to configure both /hosts/config.nix AND /hosts/<HOST>/sys/drives.nix!"
 echo "Simply exit when you are done editing."
-nix --extra-experimental-features "nix-command flakes pipe-operators" shell nixpkgs\#fish .\#nvim --command fish
+nix-shell -p fish --command fish
 nixos-install --extra-experimental-features "nix-command flakes pipe-operators" --flake /dotfiles\#nixosConfigurations.$host
 echo "Setting user password..."
 nixos-enter --root /mnt -c "passwd readf0x"
+mkdir -p /mnt/home/readf0x/Repos
+cp -r /dotfiles /mnt/home/readf0x/Repos/dotfiles
 
