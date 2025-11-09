@@ -26,6 +26,7 @@
             "otf2psf"
             "generate-set"
             "wl-shimeji"
+            "installer"
           ]
           |> map (p:
             pkgs.callPackage (import ./packages/${p}.nix) {}
