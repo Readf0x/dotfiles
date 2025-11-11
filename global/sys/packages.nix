@@ -16,23 +16,24 @@
       gimp3-with-plugins
       hyprshot
       keepassxc
+      figma-linux
       kitty
       libreoffice-qt6-fresh
       limo
       lutris
       mangohud
       mpvWithScripts
-      neofuturism-shell
+      neoshell.neofuturism-shell
       networkmanagerapplet
       pavucontrol
       prismlauncher
       qpwgraph
       qview
+      reactions.reactions
       rofi
       scrcpy
       swaynotificationcenter
       ungoogled-chromium
-      figma-linux
       (vesktop.overrideAttrs (prev: {
         desktopItems = makeDesktopItem {
           name = "vesktop";
@@ -54,7 +55,7 @@
           ];
         };
       }))
-      wl-shimeji
+      this.wl-shimeji
       xemu
       youtube-music
       zathura
@@ -84,7 +85,7 @@
       # hyfetch
       hyperfine
       hyprpicker
-      islive
+      islive.islive
       jq
       libnotify
       libsecret
@@ -113,7 +114,7 @@
       shared-mime-info
       stable.lxqt.lxqt-policykit
       swww
-      templating-engine
+      templating-engine.templating-engine
       tmux
       unzip
       uutils-coreutils-noprefix
@@ -170,7 +171,7 @@
     packages = builtins.attrValues (
       lib.filterAttrs (n: v: ! lib.hasSuffix "-unhinted" n && lib.isDerivation v) pkgs.maple-mono
     ) ++ (with pkgs; [
-      pkgs.courier
+      pkgs.neoshell.courier
       cantarell-fonts
       # makes gimp 3 take 100x longer to open
       # Fuck it, we'll wait

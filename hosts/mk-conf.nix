@@ -16,12 +16,16 @@
         else []
       ) ++ [
         ({ ... }: {
-          nixpkgs.overlays = [(
-            final: prev:
-              inputs // { inherit self; }
+          nixpkgs.overlays = [
+            (final: prev:
+              lib.filterAttrs (n: v: n != "nur") inputs
               |> lib.filterAttrs (n: v: lib.hasAttrByPath ["packages" system] v)
-              |> lib.concatMapAttrs (n: v: lib.filterAttrs (n': v': n' != "default") v.packages.${system})
-          )];
+              |> lib.concatMapAttrs (n: v: lib.filterAttrs (n': v': n' != "default") { "${n}" = v.packages.${system}; })
+            )
+            (final: prev: {
+              this = self.packages.${system};
+            })
+          ];
         })
       ] ++ modules;
   in {

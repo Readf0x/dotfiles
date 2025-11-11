@@ -42,6 +42,7 @@ in {
         "HYPRCURSOR_THEME, Bibata-Modern-Ice"
         "SAL_USE_VCLPLUGIN, qt6"
         "KRITA_NO_STYLE_OVERRIDE, 1"
+        "REACTION_PATH, ${toString conf.homeDir}/Pictures/Reactions"
       ];
 
       #    __             __                  __  ____        __

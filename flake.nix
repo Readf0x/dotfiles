@@ -106,5 +106,10 @@
     base16.url = "github:SenchoPens/base16.nix";
 
     winapps.url = "github:winapps-org/winapps";
+
+    reactions = {
+      url = "github:readf0x/reactions";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 }
