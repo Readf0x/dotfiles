@@ -114,6 +114,7 @@
       shared-mime-info
       stable.lxqt.lxqt-policykit
       swww
+      this.tarot
       templating-engine.templating-engine
       tmux
       unzip
