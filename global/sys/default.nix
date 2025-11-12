@@ -18,6 +18,8 @@
 
   nixpkgs.config = {
     allowUnfree = true;
+    microsoftVisualStudioLicenseAccepted = true;
+    allowUnsupportedSystem = true;
   };
   environment.variables = {
     SSH_ASKPASS = lib.mkForce "${pkgs.x11_ssh_askpass}/libexec/ssh-askpass";
