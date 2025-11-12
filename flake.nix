@@ -27,7 +27,6 @@
             "generate-set"
             "wl-shimeji"
             "installer"
-            "tarot"
           ]
           |> map (p:
             pkgs.callPackage (import ./packages/${p}.nix) {}
