@@ -13,7 +13,7 @@
     else null;
 in {
   home.packages = [
-    pkgs.hypr-zoom
+    pkgs.this.hypr-zoom
   ];
   wayland.windowManager.hyprland = {
     enable = true;
