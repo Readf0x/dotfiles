@@ -84,6 +84,12 @@
       desktop = null;
       publicShare = null;
     };
+    desktopEntries = {
+      reactions = {
+        name = "Siffrin Jail";
+        exec = "reactions";
+      };
+    };
   };
 
   programs = {
