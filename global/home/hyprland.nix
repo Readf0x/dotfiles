@@ -311,10 +311,10 @@ in {
           "$mod, right, hy3:movefocus, r, visible"
           "$mod, up, hy3:movefocus, u, visible"
           "$mod, down, hy3:movefocus, d, visible"
-          "$mod $s, left, hy3:movewindow, l, visible"
-          "$mod $s, right, hy3:movewindow, r, visible"
-          "$mod $s, up, hy3:movewindow, u, visible"
-          "$mod $s, down, hy3:movewindow, d, visible"
+          "$mod $s, left, hy3:movewindow, l"
+          "$mod $s, right, hy3:movewindow, r"
+          "$mod $s, up, hy3:movewindow, u"
+          "$mod $s, down, hy3:movewindow, d"
         ] else [
           # Window movement
           "$mod, left, movefocus, l"
