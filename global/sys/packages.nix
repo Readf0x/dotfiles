@@ -82,7 +82,6 @@
       grimblast
       grub2
       htmlq
-      # hyfetch
       hyperfine
       hyprpicker
       islive.islive
@@ -113,6 +112,7 @@
       samba
       shared-mime-info
       stable.lxqt.lxqt-policykit
+      streamlink
       swww
       templating-engine.templating-engine
       tmux
