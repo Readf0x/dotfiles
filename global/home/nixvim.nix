@@ -66,7 +66,7 @@ in {
     { action = lua "vim.diagnostic.open_float()" f; key = "<leader>d";   mode = "n";         options.desc = "Diagnostic";          }
     { action = ":IncRename ";                       key = "<leader>r";   mode = "n";         options.desc = "Rename";              }
     { action = cmd "CccPick";                       key = "<leader>c";   mode = "n";         options.desc = "Color Picker";        }
-    { action = cmd "TSContextToggle";               key = "<leader>C";   mode = "n";         options.desc = "Toggle Context";      }
+    { action = cmd "TSContext toggle";               key = "<leader>C";   mode = "n";         options.desc = "Toggle Context";      }
     { action = lua "vim.lsp.buf.definition()" f;    key = "gd";          mode = "n";         options.desc = "Definition";          }
     { action = cmd "DapContinue";                   key = "<leader>Dc";  mode = "n";         options.desc = "Continue";            }
     { action = cmd "DapNew";                        key = "<leader>Dn";  mode = "n";         options.desc = "New";                 }

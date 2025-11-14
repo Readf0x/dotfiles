@@ -142,6 +142,7 @@
     ])) ++ (with kdePackages; [
       kcalendarcore
       kimageformats
+      kio
       kio-admin
       kio-extras
       kio-fuse
