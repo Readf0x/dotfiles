@@ -13,10 +13,11 @@
       # Desktop Applications
       chatterino7
       easyeffects
+      figma-linux
       gimp3-with-plugins
       hyprshot
+      inkscape
       keepassxc
-      figma-linux
       kitty
       libreoffice-qt6-fresh
       limo
@@ -33,7 +34,11 @@
       rofi
       scrcpy
       swaynotificationcenter
+      this.wl-shimeji
       ungoogled-chromium
+      xemu
+      youtube-music
+      zathura
       (vesktop.overrideAttrs (prev: {
         desktopItems = makeDesktopItem {
           name = "vesktop";
@@ -55,10 +60,6 @@
           ];
         };
       }))
-      this.wl-shimeji
-      xemu
-      youtube-music
-      zathura
 
       # CLI tools
       (ani-cli.override { mpv = mpvWithScripts; })

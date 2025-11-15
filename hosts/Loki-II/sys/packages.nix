@@ -3,9 +3,8 @@
     # self.packages.${conf.system}.ukmm-fork
   ] ++ (with pkgs; [
     audacity
-    blender-hip
     bridge-utils
-    inkscape
+    dolphin-emu
     picard
     piper
     qemu
