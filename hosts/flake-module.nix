@@ -3,7 +3,6 @@
     hm = [
       inputs.nixvim.homeModules.default
       inputs.stylix.homeModules.stylix
-      inputs.textfox.homeManagerModules.default
       inputs.nur.modules.homeManager.default
       inputs.integral-prompt.homeManagerModules.default
     ];

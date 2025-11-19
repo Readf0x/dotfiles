@@ -1,60 +1,6 @@
-{ pkgs, lib, ... }: {
-  textfox = {
-    enable = true;
-    profile = "Default";
-    config = {
-      extraConfig = ''
-        #tabbrowser-tabbox::before {
-          content: none;
-        }
-        #tabbrowser-tabbox {
-          margin: 0 !important;
-          background-color: var(--tf-bg) !important;
-          border-color: var(--tf-accent) !important;
-          padding: 0 !important;
-        }
-        #sidebar-box::before {
-          content: none;
-        }
-        #sidebar-box {
-          margin: 0 2px 0 0 !important;
-          border-color: #FFF0E7 !important;
-          &:hover {
-            border-color: #FFF0E7 !important;
-          }
-        }
-        #nav-bar::before {
-          content: none;
-        }
-        #nav-bar {
-          background-color: var(--tf-bg) !important;
-          border-color: var(--tf-accent) !important;
-        }
-        :root[tabsintitlebar] #toolbar-menubar[autohide="true"] {
-          padding-top: 0 !important;
-        }
-        :root {
-          --tf-navbar-margin: 0 0 2px;
-        }
-        body {
-          background-color: transparent !important;
-        }
-        #navigator-toolbox {
-          background-color: transparent !important;
-        }
-
-        @-moz-document url-prefix(about:) {
-          .devtools-side-splitter {
-            background-color: #FFF0E7;
-            width: 7px;
-          }
-        }
-
-        @-moz-document url-prefix(about:blank) {*{background-color:#373635 !important;}}
-      '';
-      font.family = "Courier20, Courier16, Courier13, Courier, monospace";
-    };
-    useLegacyExtensions = false;
+{ pkgs, ... }: {
+  stylix.targets.firefox = {
+    profileNames = [ "Default" ];
   };
   programs.firefox = {
     enable = true;
@@ -188,9 +134,8 @@
           consent-o-matic
           darkreader
           don-t-fuck-with-paste
-          firefox-color
+          # firefox-color
           greasemonkey
-          new-window-without-toolbar
           plasma-integration
           privacy-badger
           reddit-enhancement-suite
@@ -200,62 +145,6 @@
           sponsorblock
           theater-mode-for-youtube
           youtube-high-definition
-
-          # Disabled in favor of Chatterino
-          # (buildFirefoxXpiAddon {
-          #   pname = "twitch-live-channels";
-          #   version = "1.0.24";
-          #   addonId = "{d3d2a327-1ae0-4fd6-b732-0844d0b7fd4c}";
-          #   url = "https://addons.mozilla.org/firefox/downloads/latest/twitch-live-channels/latest.xpi";
-          #   sha256 = "sha256-AZqaXyX6rHB3ZABQUbMx3AESAaWIjaCO9/301nV+RSo=";
-          #   meta = {
-          #     homepage = "https://github.com/s4my/TwitchLiveChannels/";
-          #     description = "Twitch Live Channels helps you keep track of who is LIVE out of the channels you follow on Twitch.";
-          #     license = lib.licenses.gpl3;
-          #     mozPermissions = [
-          #       "storage"
-          #       "notifications"
-          #       "identity"
-          #       "https://*.twitch.tv/"
-          #     ];
-          #     platforms = lib.platforms.all;
-          #   };
-          # })
-          (buildFirefoxXpiAddon {
-            pname = "youtube-full-windowed";
-            version = "1.1.1";
-            addonId = "{c10b86a1-fefb-4929-a2b7-bdb2c8018da5}";
-            url = "https://addons.mozilla.org/firefox/downloads/latest/youtube-full-windowed/latest.xpi";
-            sha256 = "sha256-iTlBoUWi1bb1S5Ah0MrJUqpQkP3G7K6JELzLX8usgfo=";
-            meta = {
-              homepage = "https://github.com/darco1991/youtube-full-windowed";
-              description = "This extension adds the ability to toggle a full windowed mode in YouTube website";
-              mozPermissions = [];
-              platforms = lib.platforms.all;
-            };
-          })
-        ];
-
-        search = {
-          default = "ddg";
-          engines = {};
-          force = true;
-        };
-      };
-
-      I2P = {
-        id = 1;
-        isDefault = false;
-
-        settings = import ./firefox_hardening_config.nix // {
-          "extensions.autoDisableScopes" = 0;
-          "privacy.window.maxInnerWidth" = 1400;
-          "privacy.window.maxInnerHeight" = 900;
-        };
-
-        extensions.packages = with pkgs.nur.repos.rycee.firefox-addons; [
-          noscript
-          foxyproxy-standard
         ];
 
         search = {
@@ -269,17 +158,8 @@
   home.file = let
     extension = x: ".mozilla/firefox/Default/browser-extension-data/${x}/storage.js";
   in {
-    ${extension "FirefoxColor@mozilla.com"}.text = ''
-      {"firstRunDone":true,"images":{},"theme":{"colors":{"toolbar":{"r":55,"g":54,"b":53},"toolbar_text":{"r":255,"g":240,"b":231},"frame":{"r":55,"g":54,"b":53},"tab_background_text":{"r":255,"g":240,"b":231},"toolbar_field":{"r":76,"g":73,"b":70},"toolbar_field_text":{"r":255,"g":240,"b":231},"tab_line":{"r":255,"g":240,"b":231},"popup":{"r":55,"g":54,"b":53},"popup_text":{"r":255,"g":240,"b":231}},"images":{"additional_backgrounds":[],"custom_backgrounds":[]}}}
-    '';
     ${extension "moz-addon-prod@7tv.app"}.text = ''
       {"seen_onboarding":true}
-    '';
-    ${extension "enhancerforyoutube@maximerf.addons.mozilla.org"}.text = ''
-      {"blur":0,"brightness":100,"contrast":100,"grayscale":0,"huerotate":0,"invert":0,"saturate":100,"sepia":0,"applyvideofilters":false,"backgroundcolor":"#000000","backgroundopacity":85,"blackbars":false,"blockautoplay":true,"blockhfrformats":false,"blockwebmformats":false,"boostvolume":false,"cinemamode":false,"cinemamodewideplayer":true,"controlbar":{"active":false,"autohide":false,"centered":true,"position":"absolute"},"controls":["loop","reverse-playlist","volume-booster","cards-end-screens","cinema-mode","size","pop-up-player","speed","video-filters","screenshot","keyboard-shortcuts","options"],"controlsvisible":false,"controlspeed":true,"controlspeedmousebutton":false,"controlvolume":false,"controlvolumemousebutton":false,"convertshorts":true,"customcolors":{"--main-color":"#f43753","--main-background":"#373635","--second-background":"#4c4946","--hover-background":"#484848","--main-text":"#fff0e7","--dimmer-text":"#b8b8b8","--shadow":"#000000"},"customcssrules":"yt-chip-cloud-chip-renderer[selected] #text.yt-chip-cloud-chip-renderer { color: var(--main-background) !important; }\n#movie_player { background: black; }","customscript":"","customtheme":true,"darktheme":true,"date":1733512959186,"defaultvolume":true,"disableautoplay":true,"executescript":false,"expanddescription":false,"filter":"none","hidecardsendscreens":false,"hidechat":false,"hidecomments":false,"hiderelated":false,"hideshorts":true,"ignoreplaylists":true,"ignorepopupplayer":true,"localecode":"en_US","localedir":"ltr","message":false,"miniplayer":true,"miniplayerposition":"_top-left","miniplayersize":"_400x225","newestcomments":false,"overridespeeds":true,"pauseforegroundtab":false,"pausevideos":true,"popuplayersize":"640x360","qualityembeds":"medium","qualityembedsfullscreen":"hd1080","qualityplaylists":"hd1080","qualityplaylistsfullscreen":"hd1080","qualityvideos":"hd1080","qualityvideosfullscreen":"hd1080","reload":false,"reversemousewheeldirection":false,"selectquality":true,"selectqualityfullscreenoff":false,"selectqualityfullscreenon":false,"speed":1,"speedvariation":0.1,"stopvideos":false,"theatermode":true,"theme":"youtube-deep-dark-custom","themevariant":"youtube-deep-dark-vertex-dark.css","update":1733512959186,"volume":100,"volumemultiplier":3,"volumevariation":5,"wideplayer":false,"wideplayerviewport":false}
-    '';
-    ${extension "addon@darkreader.org"}.text = ''
-      {"schemeVersion":2,"enabledByDefault":true,"disabledFor":[],"enabledFor":[],"displayedNews":["firefox-bugs","google-docs-bugs"],"readNews":["firefox-bugs","google-docs-bugs"],"installation":{"date":1746738441677,"reason":"browser_update","version":"4.9.103"}}
     '';
   };
 }

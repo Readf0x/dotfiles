@@ -84,10 +84,10 @@
     };
   };
 
-  qt = lib.mkIf (config.specialisation != {}) {
+  qt = {
     enable = true;
     platformTheme = "qt5ct";
-    style = lib.mkForce "kvantum";
+    # style = lib.mkForce "kvantum";
   };
 
   security = {
@@ -128,8 +128,10 @@
   nix = {
     settings = {
       experimental-features = [ "nix-command" "flakes" "pipe-operators" ];
+      substituters = [ "https://hyprland.cachix.org" ];
       extra-substituters = lib.mapAttrsToList (n: v: "http://${builtins.elemAt v 1}:5000") networking.hosts;
-      trusted-public-keys = builtins.attrValues (lib.mapAttrs (n: v: v.trusted-public-key) conf.hosts);
+      trusted-substituters = [ "https://hyprland.cachix.org" ];
+      trusted-public-keys = (builtins.attrValues (lib.mapAttrs (n: v: v.trusted-public-key) conf.hosts)) ++ [ "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc=" ];
       auto-optimise-store = true;
       connect-timeout = 1;
       download-attempts = 2;

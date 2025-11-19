@@ -1,6 +1,5 @@
 { pkgs, conf, config, lib, lib', ... }: let
   mLib = lib'.monitors;
-  monitor = mLib.getId;
   color = lib'.color.genFunctions config.lib.stylix.colors;
   inherit (color.hypr) rgb rgba;
   ifPlugin = plugin:
@@ -11,6 +10,10 @@
     if (ifPlugin plugin)
     then val
     else null;
+  font = {
+    name = config.stylix.fonts.sansSerif.name;
+    size = 11;
+  };
 in {
   home.packages = [
     pkgs.this.hypr-zoom
@@ -24,7 +27,7 @@ in {
       # hyprwinwrap
       hy3
     ];
-    settings = {
+    settings = rec {
       #    ____         __              ____    __  __  _             
       #   / __/_ _____ / /____ __ _    / __/__ / /_/ /_(_)__  ___ ____
       #  _\ \/ // (_-</ __/ -_)  ' \  _\ \/ -_) __/ __/ / _ \/ _ `(_-<
@@ -79,12 +82,12 @@ in {
       # };
 
       # https://wiki.hyprland.org/Configuring/Variables/#general
-      general = {
-        gaps_in = 1;
-        gaps_out = 2;
-        border_size = 2;
+      general = rec {
+        gaps_out = 4;
+        gaps_in = gaps_out / 2;
+        border_size = 1;
         "col.active_border" = rgb color.fg;
-        "col.inactive_border" = rgb color.fg;
+        "col.inactive_border" = "rgba(00000000)";
 
         layout =
           if (ifPlugin pkgs.hyprlandPlugins.hy3)
@@ -96,7 +99,7 @@ in {
 
       # https://wiki.hyprland.org/Configuring/Variables/#decoration
       decoration = {
-        rounding = 0;
+        rounding = 4;
 
         blur = {
           enabled = false;
@@ -129,13 +132,13 @@ in {
 
       # https://wiki.hyprland.org/Configuring/Animations/
       animations = {
-        bezier = "curve, 0.05, 0.9, 0.1, 1.05";
+        bezier = "curve, 0.05, 0.9, 0.1, 1";
 
         animation = [
-          "windows, 0, 6, curve, slide"
-          "fade, 0, 4, default"
-          "workspaces, 0, 4, curve"
-          "specialWorkspace, 0, 4, curve, slidevert"
+          "windows, 1, 3, curve, slide"
+          "fade, 1, 2, default"
+          "workspaces, 1, 2, curve"
+          "specialWorkspace, 1, 2, curve, slidevert"
         ];
       };
 
@@ -167,27 +170,27 @@ in {
           bar_color = rgb color.bg;
           bar_height = 15;
           "col.text" = rgb color.fg;
-          bar_text_font = "Courier13";
+          bar_text_font = font.name;
           bar_padding = 2;
           bar_text_align = "left";
           bar_precedence_over_border = true;
 
           hyprbars-button = [
-            "${rgb color.bg}, 11, , hyprctl dispatch killactive, ${rgb color.fg}"
-            "${rgb color.bg}, 11, , hyprctl dispatch fullscreen 1, ${rgb color.fg}"
+            "${rgb color.bg}, ${font.size}, , hyprctl dispatch killactive, ${rgb color.fg}"
+            "${rgb color.bg}, ${font.size}, , hyprctl dispatch fullscreen 1, ${rgb color.fg}"
           ];
         };
         # https://github.com/outfoxxed/hy3?tab=readme-ov-file#config-fields
         hy3 = pluginConfig pkgs.hyprlandPlugins.hy3 {
           tabs = {
-            padding = 2;
+            padding = 4;
 
-            border_width = 2;
-            radius = 0;
+            border_width = general.border_size;
+            radius = decoration.rounding;
 
-            text_font = "Courier13";
-            text_height = "11";
-            text_padding = 2;
+            text_font = font.name;
+            text_height = font.size;
+            text_padding = 4;
 
             "col.active" = rgb color.bg;
             "col.active.border" = rgb color.fg;
@@ -197,15 +200,15 @@ in {
             "col.focused.border" = rgb color.fg;
             "col.focused.text" = rgb color.fg;
 
-            "col.inactive" = rgb color.bg2;
-            "col.inactive.border" = rgb color.fg;
+            "col.inactive" = rgb color.bg;
+            "col.inactive.border" = rgb color.bg;
             "col.inactive.text" = rgb color.fg;
 
             "col.active_alt_monitor" = rgb color.bg;
-            "col.active_alt_monitor.border" = rgb color.fg;
+            "col.active_alt_monitor.border" = rgb color.bg;
             "col.active_alt_monitor.text" = rgb color.fg;
 
-            "col.urgent" = rgb color.bg2;
+            "col.urgent" = rgb color.bg;
             "col.urgent.border" = rgb color.red;
             "col.urgent.text" = rgb color.red;
 
@@ -230,7 +233,8 @@ in {
       "$c" = "CTRL";
       "$a" = "ALT";
       "$hyper" = "SHIFT CTRL SUPER ALT";
-      "$music" = "neoshell ipc call player";
+      "$qs" = "bubbleshell";
+      "$music" = "$qs ipc call player";
       "$browser" = "firefox-esr";
 
       # [TODO] create vim binds
@@ -252,7 +256,7 @@ in {
         "$s, Print, exec, hyprshot -zsm window -f screenshot_$(date +%Y-%m-%d_%H-%m-%s).png -o ${toString conf.homeDir}/Pictures/Screenshots"
         "$a, Print, exec, hyprshot -zsm output -f screenshot_$(date +%Y-%m-%d_%H-%m-%s).png -o ${toString conf.homeDir}/Pictures/Screenshots"
         "$mod, F4, exec, wlogout -p layer-shell -b 5 -c 10"
-        "$mod, F5, exec, neoshell kill; neoshell"
+        "$mod, F5, exec, $qs kill; $qs"
         "$mod, Escape, exec, hyprlock"
         "$mod, D, togglespecialworkspace, dropdown"
         "$mod, K, togglespecialworkspace, KeepassXC"
@@ -274,7 +278,7 @@ in {
         "$mod, Home, exec, $music previous"
         ", XF86Favorites, exec, $music nextPlayer"
         "$mod, Insert, exec, $music nextPlayer"
-        "$mod $s, Insert, exec, neoshell ipc call popup toggleVisible"
+        "$mod $s, Insert, exec, $qs ipc call popup toggleVisible"
         "$s, XF86Favorites, exec, ~/Scripts/player-info notify"
         "$a, XF86Favorites, exec, notify-send \"Current Battery Level: $(cat /sys/class/power_supply/BAT0/capacity)%\" -t 1000"
         "$mod $s, H, exec, ~/Scripts/audio"
@@ -287,6 +291,7 @@ in {
         ", F11, fullscreen, 0"
         "$mod, F11, fullscreen, 1"
         "$mod $s, Space, togglefloating,"
+        "$mod $s, Space, exec, $qs ipc call bar refresh"
         "$mod $s, P, pin,"
         "$mod $c, Home, centerwindow,"
         "$a, Tab, focusurgentorlast,"
@@ -375,7 +380,6 @@ in {
       # /___/\__/\_,_/_/  \__/\_,_/ .__/
       #                          /_/    
       exec-once = [
-        "balooctl6 enable"
         "clipse -listen"
         "hyprctl setcursor Bibata-Modern-Ice 24"
         "lxqt-policykit-agent"
@@ -390,7 +394,7 @@ in {
         # "steam -silent"
         "swaync"
         "swww-daemon; sleep 2; wallpaper"
-        "neoshell"
+        "$qs"
         "zsh -c '\${$(realpath $(which kdeconnect-cli))%\"bin/kdeconnect-cli\"}libexec/kdeconnectd'"
         # "~/Scripts/start-mpd"
         # "${pkgs.kdePackages.kdeconnect-kde}/libexec/kdeconnectd"
@@ -407,11 +411,11 @@ in {
       workspace = [
         "special:dropdown, on-created-empty:kitty, gapsout:80"
         "special:KeepassXC, gapsout:80"
-        "name:music, monitor:${(monitor 1).id}, on-created-empty:youtube-music"
-        "name:discord, monitor:${(monitor 1).id}, on-created-empty:vesktop"
-        "name:info, monitor:${(monitor 1).id}, on-created-empty:kitty btop"
-        "name:video, monitor:${(monitor 1).id}"
-        "name:mail, monitor:${(monitor 1).id}, on-created-empty:evolution"
+        "name:music, monitor:${(mLib.getId 1).id}, on-created-empty:youtube-music"
+        "name:discord, monitor:${(mLib.getId 1).id}, on-created-empty:vesktop"
+        "name:info, monitor:${(mLib.getId 1).id}, on-created-empty:kitty btop"
+        "name:video, monitor:${(mLib.getId 1).id}"
+        "name:mail, monitor:${(mLib.getId 1).id}, on-created-empty:evolution"
       ];
       windowrulev2 = [
         # Disallow auto maximize
@@ -439,7 +443,7 @@ in {
         "float, class:(pavucontrol)"
         "size 700 500, class:(pavucontrol)"
         "move 1208 51 class:(pavucontrol)"
-        "monitor ${(monitor 0).id}, class:(pavucontrol)"
+        "monitor ${(mLib.getId 0).id}, class:(pavucontrol)"
         "animation slide, class:(pavucontrol)"
         "opacity 1.0, class:(pavucontrol)"
         # Smile
@@ -469,7 +473,7 @@ in {
         "minsize 1 1, title:^()$,class:^(steam)$"
         "center, title:^(Steam)$, class:^()$"
         "center, class:^(steam)$"
-        "monitor ${(monitor 0).id}, class:(steam)"
+        "monitor ${(mLib.getId 0).id}, class:(steam)"
         "noinitialfocus, title:^(notificationtoasts.*)$"
         # "fullscreen, class:^(steam_app_.*)"
         # File dialogs
@@ -499,19 +503,18 @@ in {
         "float, title:^(Layer Select)$"
         "float, class:^(file-.*)"
         # Discord
-        "monitor ${(monitor 1).id}, class:^(discord)$"
+        "monitor ${(mLib.getId 1).id}, class:^(discord)$"
         "suppressevent activate activatefocus, class:^(discord)$"
         "noinitialfocus, class:^(discord)$"
         "focusonactivate off, class:^(discord)$"
-        # "monitor ${(monitor 1).id}, class:^(vesktop)$"
+        # "monitor ${(mLib.getId 1).id}, class:^(vesktop)$"
         "workspace 2, class:^(vesktop)$"
         "noinitialfocus, class:^(vesktop)$"
         "focusonactivate off, class:^(vesktop)$"
-        "bordersize 0, initialTitle:^(Discord)$"
         # Telegram
         "noanim, title:^(Media viewer)$, class:^(org.telegram.desktop)$"
         "float, title:^(Media viewer)$, class:^(org.telegram.desktop)$"
-        "monitor ${(monitor 1).id}, class:^(org.telegram.desktop)$"
+        "monitor ${(mLib.getId 1).id}, class:^(org.telegram.desktop)$"
         # ScrCpy
         "keepaspectratio, class:^(.scrcpy-wrapped)$"
         "pseudo, class:^(.scrcpy-wrapped)$"
@@ -525,7 +528,7 @@ in {
           "fullscreen, class:${x}"
           "idleinhibit always, class:${x}"
           "immediate, class:${x}"
-          "monitor ${(monitor 0).id}, class:${x}"
+          "monitor ${(mLib.getId 0).id}, class:${x}"
         ]) [
           "^(Minecraft\\*? 1.\\d+.*)"
           "^(Minecraft\\*? \\d\\d\\w\\d\\d\\w)"
@@ -539,7 +542,6 @@ in {
         "fullscreen, class:^(hl2_linux)$"
         "opacity 1.0, class:^(hl2_linux)$"
         # Kitty
-        "noborder, class:^(kitty)$, title:^(info)$"
         "float, title:^(cava)$"
         "size 1320 623, title:^(cava)$"
         "center, title:^(cava)$"
@@ -599,7 +601,6 @@ in {
         "float, title:(Close Firefox)"
         "opacity 1.0, title:.*(YouTube|Twitch|Figma).*, class:^(firefox-esr)$"
         "opacity 1.0, title:.*(YouTube|Twitch|Figma).*, class:^(firefox)$"
-        "bordersize 0, initialTitle:^(Mozilla Firefox)$"
         # Figma Linux
         "opacity 1.0, class:^(figma-linux)$"
         # Godot
@@ -668,7 +669,7 @@ in {
       ];
       input-field = [
         {
-          monitor = (monitor 0).id;
+          monitor = (mLib.getId 0).id;
           size = "800, 30";
           outline_thickness = 2;
           dots_size = 0.33;
@@ -699,7 +700,7 @@ in {
       ];
       image = [
         {
-          monitor = (monitor 0).id;
+          monitor = (mLib.getId 0).id;
           path = "/home/${conf.user}/.face.icon";
           size = 256;
           rounding = 0;
@@ -712,7 +713,7 @@ in {
       ];
       label = [
         {
-          monitor = (monitor 0).id;
+          monitor = (mLib.getId 0).id;
           text = "$USER";
           color = rgb color.fg;
           font_size = 13;
@@ -722,7 +723,7 @@ in {
           valign = "center";
         }
         {
-          monitor = (monitor 0).id;
+          monitor = (mLib.getId 0).id;
           text = "cmd[update:1000] date +%I:%M\\ %p";
           color = rgb color.fg;
           font_size = 16;
@@ -732,7 +733,7 @@ in {
           valign = "top";
         }
         {
-          monitor = (monitor 0).id;
+          monitor = (mLib.getId 0).id;
           text = "cmd[update:60000] date +%D";
           color = rgb color.fg;
           font_size = 13;

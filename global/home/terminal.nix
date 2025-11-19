@@ -388,8 +388,9 @@
       #   ];
       # };
     };
-    git = {
+    git = rec {
       enable = true;
+      package = pkgs.gitFull;
       signing = {
         key = conf.gpg;
         signByDefault = true;
@@ -400,7 +401,7 @@
           email = conf.email;
         };
         commit.gpgsign = true;
-        credential.helper = "${pkgs.git.override { withLibsecret = true; }}/bin/git-credential-libsecret";
+        credential.helper = "${package}/bin/git-credential-libsecret";
         diff.algorithm = "patience";
         init.defaultBranch = "master";
       };
@@ -419,7 +420,7 @@
         };
         git = {
           overrideGpg = true;
-          paging.pager = "delta --paging=never";
+          pagers = [{ pager = "delta --paging=never"; }];
         };
         os.editPreset = "nvim";
       };

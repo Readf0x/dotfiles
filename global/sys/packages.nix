@@ -24,7 +24,7 @@
       lutris
       mangohud
       mpvWithScripts
-      neoshell.neofuturism-shell
+      bubbleshell.bubble-shell
       networkmanagerapplet
       pavucontrol
       prismlauncher
@@ -127,13 +127,12 @@
       wtype
       xclip
       xdg-utils
-      xdragon
+      dragon-drop
       xxd
       yt-dlp
       zip
     ] ++ (with libsForQt5; [
       qt5ct
-      qtstyleplugin-kvantum
       qtstyleplugins
     ] ++ (with qt5; [
       qtgraphicaleffects
@@ -149,7 +148,6 @@
       kio-fuse
       kservice
       qt6ct
-      qtstyleplugin-kvantum
       qtsvg
       qtwayland
       plasma-browser-integration
@@ -173,7 +171,7 @@
     packages = builtins.attrValues (
       lib.filterAttrs (n: v: ! lib.hasSuffix "-unhinted" n && lib.isDerivation v) pkgs.maple-mono
     ) ++ (with pkgs; [
-      pkgs.neoshell.courier
+      pkgs.bubbleshell.fonts
       cantarell-fonts
       # makes gimp 3 take 100x longer to open
       # Fuck it, we'll wait
@@ -188,7 +186,10 @@
   };
 
   programs = {
-    git.enable = true;
+    git = {
+      enable = true;
+      package = pkgs.gitFull;
+    };
     hyprland = {
       enable = true;
       portalPackage = pkgs.xdg-desktop-portal-hyprland;

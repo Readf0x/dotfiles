@@ -27,49 +27,16 @@ cat > ~/.config/kdeglobals << EOF
 TerminalApplication=kitty
 
 [Icons]
-Theme=Colloid-Dark
-
-[KDE]
-ShowDeleteCommand=true
-
-[KFileDialog Settings]
-Allow Expansion=false
-Automatically select filename extension=true
-Breadcrumb Navigation=false
-Decoration position=2
-LocationCombo Completionmode=5
-PathCombo Completionmode=5
-Show Bookmarks=false
-Show Full Path=false
-Show Inline Previews=true
-Show Preview=false
-Show Speedbar=true
-Show hidden files=false
-Sort by=Date
-Sort directories first=true
-Sort hidden files last=false
-Sort reversed=true
-View Style=Simple
-
-[PreviewSettings]
-EnableRemoteFolderThumbnail=false
-MaximumRemoteSize=0
+Theme=Everforest
 EOF
 
 cat > ~/.config/dolphinrc << EOF
 MenuBar=Disabled
 
-[DetailsMode]
-PreviewSize=22
-
-[ExtractDialog]
-2 screens: Window-Maximized=true
-
 [General]
 ConfirmClosingMultipleTabs=false
 GlobalViewProps=false
 RememberOpenedTabs=false
-Version=202
 
 [IconsMode]
 IconSize=64
@@ -77,9 +44,6 @@ IconSize=64
 [KFileDialog Settings]
 Places Icons Auto-resize=false
 Places Icons Static Size=22
-
-[KPropertiesDialog]
-2 screens: Window-Maximized=true
 
 [MainWindow]
 MenuBar=Disabled
@@ -92,8 +56,5 @@ ColorScheme=*
 
 [VersionControl]
 enabledPlugins=Git
-
-[ViewPropertiesDialog]
-2 screens: Window-Maximized=true
 EOF
 

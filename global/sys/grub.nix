@@ -32,7 +32,7 @@ in {
       theme = "vimix";
       customResolution = lib'.monitors.toRes (lib'.monitors.getId 0).res;
       splashImage = "${resizeImage {
-        image = "${pkgs.wallpapers.wallpapers}/boot.jpg";
+        image = "${pkgs.bubbleshell.bubble-config}/img/wallpaper.png";
         size = customResolution;
         name = "boot";
       } }/boot.png";

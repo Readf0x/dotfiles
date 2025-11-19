@@ -1,23 +1,23 @@
 { pkgs, ... }: {
   stylix = {
     enable = true;
-    image = builtins.toPath "${pkgs.wallpapers}/89875190_p0.jpg";
-    base16Scheme = ./mead.yaml;
+    image = builtins.toPath "${pkgs.bubbleshell.bubble-config}/img/wallpaper.png";
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/everforest.yaml";
     fonts = {
       serif = {
         package = pkgs.noto-fonts;
         name = "Noto Serif";
       };
       sansSerif = {
-        package = pkgs.ubuntu_font_family;
-        name = "Ubuntu";
+        package = pkgs.bubbleshell.fonts;
+        name = "Sniglet";
       };
       monospace = {
         package = pkgs.maple-mono.variable;
         name = "Maple Mono";
       };
       emoji = {
-        package = pkgs.noto-fonts-emoji;
+        package = pkgs.noto-fonts-color-emoji;
         name = "Noto Color Emoji";
       };
       sizes = {
@@ -33,8 +33,6 @@
 
     targets = {
       nixvim.enable = false;
-      gnome.enable = false;
-      gtk.enable = false;
     };
 
     polarity = "dark";

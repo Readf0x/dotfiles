@@ -85,30 +85,7 @@ in {
   }) telescope_opts;
 
   # colorscheme = "tender";
-  colorschemes.base16 = {
-    enable = true;
-    colorscheme =
-      builtins.mapAttrs ( n: v: "#${v}") {
-        inherit (colors)
-          base00
-          base01
-          base02
-          base03
-          base04
-          base05
-          base06
-          base07
-          base08
-          base09
-          base0A
-          base0B
-          base0C
-          base0D
-          base0E
-          base0F
-        ;
-      };
-  };
+  colorschemes.everforest.enable = true;
 
   plugins = {
     which-key = {
@@ -385,7 +362,7 @@ in {
         yaml
         ocaml
         templ
-        inputs.tree-sitter-tet.packages.${pkgs.system}.default
+        inputs.tree-sitter-tet.packages.${pkgs.stdenv.hostPlatform.system}.default
       ];
       settings = {
         highlight.enable = true;

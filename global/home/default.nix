@@ -33,7 +33,8 @@
     # The home.packages option allows you to install Nix packages into your
     # environment.
     packages = with pkgs; [
-      stable.colloid-kde
+      kdePackages.breeze
+      kdePackages.breeze-gtk
       fd
     ];
 
@@ -41,40 +42,18 @@
       PATH = "$PATH:$HOME/Scripts";
       REPOS = "${toString conf.homeDir}/Repos";
       WINEDLLPATH = "${pkgs.this.discord-rpc}/share/winedll/discord-rpc";
-      LD_LIBRARY_PATH = with pkgs; lib.makeLibraryPath [ kdePackages.qtbase libGL glfw-wayland-minecraft libpulseaudio openal flite ] + ":$LD_LIBRARY_PATH";
+      LD_LIBRARY_PATH = with pkgs; lib.makeLibraryPath [ kdePackages.qtbase libpulseaudio openal flite ] + ":$LD_LIBRARY_PATH";
       EDITOR = "nvim";
       VISUAL = "nvim";
       SSH_ASKPASS = "${pkgs.x11_ssh_askpass}/libexec/ssh-askpass";
     };
-
-    #pointerCursor = {
-    #  gtk.enable = true;
-    #  name = "Bibata-Modern-Ice";
-    #  package = pkgs.bibata-cursors;
-    #  size = 24;
-    #};
   };
 
   gtk = {
     enable = true;
-    theme = {
-      name = "Colloid-Dark";
-      package = pkgs.colloid-gtk-theme;
-    };
     iconTheme = {
       name = "Colloid-Dark";
       package = pkgs.colloid-icon-theme;
-    };
-    # font = {
-    #   name = "Ubuntu";
-    #   package = pkgs.ubuntu_font_family;
-    # };
-  };
-  qt = {
-    platformTheme.name = "qtct";
-    style = {
-      name = "Kvantum";
-      package = stable.colloid-kde;
     };
   };
 
@@ -117,14 +96,11 @@
   };
 
   stylix.targets = {
-    kde.enable = false;
     hyprpaper.enable = lib.mkForce false;
     hyprland.enable = false;
     nixvim.enable = false;
     waybar.enable = false;
     #kitty.enable = false;
     hyprlock.enable = false;
-    # qt.enable = false;
-    firefox.enable = lib.mkForce false;
   };
 }

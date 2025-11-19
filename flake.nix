@@ -59,9 +59,14 @@
 
     stylix.url = "github:danth/stylix";
 
-    neoshell = {
-      url = "github:readf0x/quickshell";
-      inputs.nixpkgs.follows = "nixpkgs";
+    # neoshell = {
+    #   url = "github:readf0x/quickshell";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
+
+    bubbleshell = {
+      url = "github:readf0x/quickshell/bubble";
+      # inputs.nixpkgs.follows = "nixpkgs";
     };
 
     islive = {
@@ -88,8 +93,6 @@
     };
 
     wallpapers.url = "github:readf0x/wallpapers/neofuturism";
-
-    textfox.url = "github:adriankarlen/textfox";
 
     grub2-themes.url = "github:vinceliuice/grub2-themes";
 
