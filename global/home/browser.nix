@@ -121,9 +121,9 @@
             { name = "LAINCHAN";
               url = "https://lainchan.org/"; }
             { name = "Hyprland Wiki";
-              url = "https://wiki.hyprland.org/"; }
+              url = "https://wiki.hypr.land/"; }
             { name = "Quickshell";
-              url = "https://quickshell.outfoxxed.me/"; }
+              url = "https://quickshell.org/docs/"; }
             { name = "YouTube";
               url = "https://youtube.com/"; }
             { name = "Vineyard";

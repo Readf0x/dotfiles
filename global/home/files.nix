@@ -1,15 +1,12 @@
 { pkgs, stable, lib, conf, config, ... }: {
   home.file = {
     ".face.icon".source = ./../img/pfp.png;
-    ".config/hypr/wallpapers".source = "${pkgs.wallpapers.wallpapers}";
     # "Scripts".source = ./../scripts;
     "Scripts/wallpaper" = {
       text = ''
-        #!/usr/bin/env zsh
-        # local arr=($(find -H "$HOME/.config/hypr/wallpapers" -name '*.jpg'))
-      '' + (lib.concatStringsSep "\n" (lib.imap0 (i: v:
-        "swww img -t none -o ${v.id} ~/.config/hypr/wallpapers/${toString i}.jpg"
-      ) conf.monitors));
+        #!/usr/bin/env sh
+        swww img -t none ${pkgs.bubbleshell.bubble-config}/img/wallpaper.png
+      '';
       executable = true;
     };
     ".local/share/lutris/runners/xemu/xemu".source = "${pkgs.xemu}/bin/xemu";

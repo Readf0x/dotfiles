@@ -42,6 +42,7 @@
                 inherit self inputs;
                 # unstable = import inputs.unstable { inherit system; };
                 stable = import inputs.stable { inherit system; };
+                working-hyprland = import inputs.nixpkgs-working-hyprland { inherit system; };
                 lib' = import ../lib { inherit lib conf pkgs; };
                 conf = lib.mergeAttrsList [
                   { inherit homeDir host user; }
@@ -67,6 +68,7 @@
             inherit self inputs;
             # unstable = import inputs.unstable { inherit system; };
             stable = import inputs.stable { inherit system; };
+            working-hyprland = import inputs.nixpkgs-working-hyprland { inherit system; };
             lib' = import ../lib { inherit lib conf; pkgs = import os { inherit system; }; };
             conf = mergeAttrsList [
               { inherit host system; }

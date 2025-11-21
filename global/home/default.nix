@@ -1,4 +1,4 @@
-{ pkgs, stable, conf, lib, inputs, config, ... }: {
+{ pkgs, conf, lib, inputs, config, ... }: rec {
 
   nixpkgs = {
     config.allowUnfree = true;
@@ -34,6 +34,7 @@
     # environment.
     packages = with pkgs; [
       kdePackages.breeze
+      kdePackages.breeze.qt5
       kdePackages.breeze-gtk
       fd
     ];
@@ -51,6 +52,10 @@
 
   gtk = {
     enable = true;
+    theme = lib.mkIf (!stylix.targets.gtk.enable) {
+      name = "Everforest-Dark-B";
+      package = pkgs.everforest-gtk-theme;
+    };
     iconTheme = {
       name = "Colloid-Dark";
       package = pkgs.colloid-icon-theme;
@@ -102,5 +107,13 @@
     waybar.enable = false;
     #kitty.enable = false;
     hyprlock.enable = false;
+    gtk = {
+      enable = true;
+      extraCss = ''
+        window {
+          background-color: @window_bg_color;
+        }
+      '';
+    };
   };
 }

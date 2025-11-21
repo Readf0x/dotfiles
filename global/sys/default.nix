@@ -1,4 +1,4 @@
-{ pkgs, conf, config, lib, ... }: rec {
+{ pkgs, conf, lib, working-hyprland, ... }: rec {
   imports = [
     ./../shared/stylix.nix
     ./packages.nix
@@ -78,7 +78,7 @@
       };
       xdgOpenUsePortal = true;
       extraPortals = with pkgs; [
-        xdg-desktop-portal-hyprland
+        working-hyprland.xdg-desktop-portal-hyprland
         kdePackages.xdg-desktop-portal-kde
       ];
     };
@@ -128,10 +128,8 @@
   nix = {
     settings = {
       experimental-features = [ "nix-command" "flakes" "pipe-operators" ];
-      substituters = [ "https://hyprland.cachix.org" ];
       extra-substituters = lib.mapAttrsToList (n: v: "http://${builtins.elemAt v 1}:5000") networking.hosts;
-      trusted-substituters = [ "https://hyprland.cachix.org" ];
-      trusted-public-keys = (builtins.attrValues (lib.mapAttrs (n: v: v.trusted-public-key) conf.hosts)) ++ [ "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc=" ];
+      trusted-public-keys = (builtins.attrValues (lib.mapAttrs (n: v: v.trusted-public-key) conf.hosts));
       auto-optimise-store = true;
       connect-timeout = 1;
       download-attempts = 2;

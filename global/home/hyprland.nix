@@ -1,4 +1,4 @@
-{ pkgs, conf, config, lib, lib', ... }: let
+{ pkgs, conf, config, lib, lib', working-hyprland, ... }: let
   mLib = lib'.monitors;
   color = lib'.color.genFunctions config.lib.stylix.colors;
   inherit (color.hypr) rgb rgba;
@@ -25,7 +25,8 @@ in {
     portalPackage = null;
     plugins = with pkgs.hyprlandPlugins; [
       # hyprwinwrap
-      hy3
+      # hy3
+      working-hyprland.hyprlandPlugins.hy3
     ];
     settings = rec {
       #    ____         __              ____    __  __  _             
@@ -105,7 +106,6 @@ in {
           enabled = false;
           size = 3;
           passes = 2;
-          new_optimizations = "on";
         };
 
         shadow = {
@@ -176,8 +176,8 @@ in {
           bar_precedence_over_border = true;
 
           hyprbars-button = [
-            "${rgb color.bg}, ${font.size}, , hyprctl dispatch killactive, ${rgb color.fg}"
-            "${rgb color.bg}, ${font.size}, , hyprctl dispatch fullscreen 1, ${rgb color.fg}"
+            "${rgb color.bg}, ${font.size}, x, hyprctl dispatch killactive, ${rgb color.fg}"
+            "${rgb color.bg}, ${font.size}, f, hyprctl dispatch fullscreen 1, ${rgb color.fg}"
           ];
         };
         # https://github.com/outfoxxed/hy3?tab=readme-ov-file#config-fields
@@ -216,7 +216,7 @@ in {
             "col.locked.border" = rgb color.blue;
             "col.locked.text" = rgb color.blue;
 
-            blur = false;
+            blur = decoration.blur.enabled;
           };
         };
       };
@@ -234,12 +234,12 @@ in {
       "$a" = "ALT";
       "$hyper" = "SHIFT CTRL SUPER ALT";
       "$qs" = "bubbleshell";
-      "$music" = "$qs ipc call player";
       "$browser" = "firefox-esr";
 
       # [TODO] create vim binds
       bind = let
         prefix = if (ifPlugin pkgs.hyprlandPlugins.hy3) then "hy3:" else "";
+        music = "global, quickshell";
       in [
         # IMPORTANT:
         "$hyper, L, exec, xdg-open https://linkedin.com/"
@@ -256,7 +256,7 @@ in {
         "$s, Print, exec, hyprshot -zsm window -f screenshot_$(date +%Y-%m-%d_%H-%m-%s).png -o ${toString conf.homeDir}/Pictures/Screenshots"
         "$a, Print, exec, hyprshot -zsm output -f screenshot_$(date +%Y-%m-%d_%H-%m-%s).png -o ${toString conf.homeDir}/Pictures/Screenshots"
         "$mod, F4, exec, wlogout -p layer-shell -b 5 -c 10"
-        "$mod, F5, exec, $qs kill; $qs"
+        "$mod, F5, exec, quickshell kill; $qs"
         "$mod, Escape, exec, hyprlock"
         "$mod, D, togglespecialworkspace, dropdown"
         "$mod, K, togglespecialworkspace, KeepassXC"
@@ -268,19 +268,18 @@ in {
         ", XF86Tools, exec, pavucontrol"
         ", XF86MonBrightnessUp, exec, brightnessctl s +5%"
         ", XF86MonBrightnessDown, exec, brightnessctl s 5%-"
-
-        # Media controls
-        ", XF86AudioPlay, exec, $music playPause"
-        "$mod, F10, exec, $music playPause"
-        ", XF86AudioNext, exec, $music next"
-        "$mod, End, exec, $music next"
-        ", XF86AudioPrev, exec, $music previous"
-        "$mod, Home, exec, $music previous"
-        ", XF86Favorites, exec, $music nextPlayer"
-        "$mod, Insert, exec, $music nextPlayer"
-        "$mod $s, Insert, exec, $qs ipc call popup toggleVisible"
         "$s, XF86Favorites, exec, ~/Scripts/player-info notify"
         "$a, XF86Favorites, exec, notify-send \"Current Battery Level: $(cat /sys/class/power_supply/BAT0/capacity)%\" -t 1000"
+
+        # Media controls
+        ", XF86AudioPlay, ${music}:playPause"
+        "$mod, F10, ${music}:playPause"
+        ", XF86AudioNext, ${music}:next"
+        "$mod, End, ${music}:next"
+        ", XF86AudioPrev, ${music}:previous"
+        "$mod, Home, ${music}:previous"
+        ", XF86Favorites, ${music}:nextPlayer"
+        "$mod, Insert, ${music}:nextPlayer"
         "$mod $s, H, exec, ~/Scripts/audio"
         ", XF86AudioMute, exec, pactl set-sink-mute $(pactl get-default-sink) toggle"
         "$mod, Delete, exec, pactl set-sink-mute $(pactl get-default-sink) toggle"
@@ -411,13 +410,14 @@ in {
       workspace = [
         "special:dropdown, on-created-empty:kitty, gapsout:80"
         "special:KeepassXC, gapsout:80"
-        "name:music, monitor:${(mLib.getId 1).id}, on-created-empty:youtube-music"
-        "name:discord, monitor:${(mLib.getId 1).id}, on-created-empty:vesktop"
-        "name:info, monitor:${(mLib.getId 1).id}, on-created-empty:kitty btop"
-        "name:video, monitor:${(mLib.getId 1).id}"
-        "name:mail, monitor:${(mLib.getId 1).id}, on-created-empty:evolution"
+        "w[t1]s[false], gapsout:0, gapsin:0"
+        "f[1]s[false], gapsout:0, gapsin:0"
       ];
-      windowrulev2 = [
+      windowrule = [
+        "bordersize 0, floating:0, onworkspace:w[t1]s[false]"
+        "rounding 0, floating:0, onworkspace:w[t1]s[false]"
+        "bordersize 0, floating:0, onworkspace:f[1]s[false]"
+        "rounding 0, floating:0, onworkspace:f[1]s[false]"
         # Disallow auto maximize
         "suppressevent maximize activate activatefocus, class:(.*)"
         # Global Opacity
@@ -646,6 +646,8 @@ in {
         "float, class:^(gzdoom)$"
         # Photoshop
         "suppressevent activate activatefocus, class:^(Adobe Photoshop 2025)"
+        # Hyprland desktop portal
+        "float, title:^(Select what to share)$"
       ];
     };
   };

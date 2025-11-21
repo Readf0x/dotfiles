@@ -1,4 +1,4 @@
-{ pkgs, stable, lib, ... }: {
+{ pkgs, stable, lib, working-hyprland, ... }: {
   environment = {
     etc."/xdg/menus/applications.menu".source =
     "${pkgs.kdePackages.plasma-workspace}/etc/xdg/menus/plasma-applications.menu";
@@ -173,16 +173,9 @@
     ) ++ (with pkgs; [
       pkgs.bubbleshell.fonts
       cantarell-fonts
-      # makes gimp 3 take 100x longer to open
-      # Fuck it, we'll wait
       noto-fonts
-      # noto-fonts-cjk-sans
       monocraft
     ]);
-    # fontconfig.defaultFonts.sansSerif = [ "Mead Icons" ];
-    # fontconfig.defaultFonts.emoji = [ "Mead Icons" ];
-    # fontconfig.defaultFonts.serif = [ "Mead Icons" ];
-    # fontconfig.defaultFonts.monospace = [ "Mead Icons" ];
   };
 
   programs = {
@@ -192,7 +185,8 @@
     };
     hyprland = {
       enable = true;
-      portalPackage = pkgs.xdg-desktop-portal-hyprland;
+      package = working-hyprland.hyprland;
+      portalPackage = working-hyprland.xdg-desktop-portal-hyprland;
     };
     zsh.enable = true;
     fish.enable = true;

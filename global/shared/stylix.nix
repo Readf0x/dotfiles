@@ -10,7 +10,7 @@
       };
       sansSerif = {
         package = pkgs.bubbleshell.fonts;
-        name = "Sniglet";
+        name = "Varela Round";
       };
       monospace = {
         package = pkgs.maple-mono.variable;
