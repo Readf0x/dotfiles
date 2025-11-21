@@ -1,134 +1,7 @@
 { pkgs, lib, lib', conf, config, ... }: {
   # [TODO] Investigate tmux
-  home.shell.enableZshIntegration = true;
   home.shell.enableFishIntegration = true;
   programs = {
-    zsh = {
-      enable = true;
-      autocd = true;
-      antidote = {
-        enable = true;
-        plugins = [
-          "zdharma-continuum/fast-syntax-highlighting kind:defer"
-          "zsh-users/zsh-autosuggestions kind:defer"
-          "zsh-users/zsh-history-substring-search kind:defer"
-        ];
-      };
-      shellAliases = {
-        diff = "diff --color";
-        grep = "rg";
-        hyc = "hyprctl";
-        icat = "kitten icat --align left";
-        la = "eza -a";
-        ll = "eza -l";
-        ls = "eza";
-        lt = "eza -T";
-        neofetch = "pokeget ${lib'.pokeget conf.pokemon} --hide-name | fastfetch --file /dev/stdin";
-        open = "xdg-open";
-        shr = "exec zsh";
-        v = "nvim";
-        ":q" = "exit";
-        ":Q" = "exit";
-        "q" = "exit";
-        "Q" = "exit";
-        "power!" = "poweroff";
-      };
-      localVariables = {
-        PAGER = "bat -p";
-      };
-      initContent = lib.mkMerge [
-        (lib.mkOrder 550 ''
-          if [[ $CONTAINER_ID ]]; then
-            export function compinit() {
-              unfunction compinit
-              autoload -Uz compinit
-              compinit -i $@
-            }
-          fi
-          autoload bashcompinit && bashcompinit
-        '')
-        (lib.mkBefore ''
-          [[ $KITTY_WINDOW_ID -gt 1 ]] || ! [[ $KITTY_SHELL_INTEGRATION = no-rc ]] || [[ $SHLVL -gt 1 ]] || pokeget ${lib'.pokeget conf.pokemon} --hide-name | fastfetch --file /dev/stdin
-          export DIRENV_LOG_FORMAT=
-        '')
-        (''
-          bindkey -v
-          bindkey '^U' kill-whole-line
-          if ! [[ $TERM = 'xterm-256color' ]]; then
-            bindkey '^H' backward-kill-word
-          fi
-          bindkey '^[[1;5D' backward-word
-          bindkey '^[[1;5C' forward-word
-          bindkey '^[[H' beginning-of-line
-          bindkey '^[[F' end-of-line
-          bindkey '^[[A' history-substring-search-up
-          bindkey '^[[B' history-substring-search-down
-          autoload -U select-word-style && select-word-style bash
-          zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
-          zstyle ':completion:*' menu select
-
-          if ! [[ -v CONTAINER_ID ]]; then
-            function nix() {
-              case "$1" in;
-                build|develop|shell) nom $@ ;;
-                remote)
-                  IFS=$'\n' builders=($(cat ~/.remote-builders))
-                  nom build ''${@:2} --builders "''${builders[@]}"
-                ;;
-                *) builtin command nix $@ ;;
-              esac
-            }
-            compdef nix=nix
-          fi
-          function run() { builtin command nix run nixpkgs#$1 -- ''${@:2} }
-          function surun() { sudo nix run nixpkgs#$1 -- ''${@:2} }
-          function shell() {
-            if [[ ''${#@} > 1 ]]; then
-              eval nom shell nixpkgs#{''${(j:,:)@}}
-            else
-              nom shell nixpkgs#$1
-            fi
-          }
-          function path2array() {
-            local input=$1
-            print -l ''${(s/:/)input}
-          }
-          function spawn() {
-            $@ &>/dev/null & disown
-          }
-          function clone() {
-            source $HOME/Scripts/clone $@
-          }
-          function gpgmsg() {
-            print "$2" | gpg --encrypt -ar "$1"
-          }
-          function man() {
-            builtin command man $@ | bat -plman
-          }
-          compdef man=man
-
-          alias cat=bat
-          alias -g -- --help='--help | bat -plhelp'
-
-          if [[ $VENDOR = debian ]]; then
-            alias cat=batcat
-            alias -g -- --help='--help | batcat -plhelp'
-          else
-            function db() {
-              if [[ $1 = "enter" ]]; then
-                distrobox enter $2 --additional-flags "--env SSH_CONNECTION=$SSH_CONNECTION" ''${@:3};
-              else
-                distrobox $@
-              fi
-            }
-            compdef db=distrobox
-          fi
-          if tty | grep tty &>/dev/null; then
-            alias mpv="mpv --vo=drm"
-          fi
-        '')
-      ];
-    };
     fish = {
       enable = true;
       shellAliases = {
@@ -212,8 +85,6 @@
           end
         '';
         spawn = "$argv >/dev/null 2>&1 & disown";
-        # need to rewrite clone script...
-        # clone = "source ~/Scripts/clone $argv";
         man = "command man $argv | bat -plman";
         integral_pwd = ''
           set -l str $PWD
@@ -245,6 +116,64 @@
             echo -- $ssh $command
           else
             echo -- $ssh (string sub -l 20 -- $shortcmd) (integral_pwd)
+          end
+        '';
+        clone_parseurl = ''
+          set arg $argv[1]
+
+          if echo $arg | rg -q '/'
+            if echo $arg | rg -q '^http'
+              echo $arg
+            else
+              echo "https://github.com/$arg"
+            end
+          else
+            echo "https://github.com/(whoami)/$arg"
+          end
+        '';
+        clone = ''
+          if test "$argv[1]" = "-h" -o "$argv[1]" = "--help"
+            printf "%s\n" "
+          A script for cloning git repos
+
+          Usage: clone <REPOSITORY> [PATH] [ARGS]
+
+          Arguments:
+            <REPOSITORY>  Repository URL
+
+            [PATH]      Root directory to clone to. Defaults to ~/Repos.
+
+            <ARGS>      Git clone args. See git-clone(1) for more info.
+          "
+            return
+          end
+
+          if test -z "$argv[1]"
+            echo "clone: missing repository"
+            return 1
+          end
+
+          set repo_url (clone_parseurl $argv[1])
+          set repo (echo $repo_url | sed -E 's|.*/([^/]+/[^/]+)(\.git)?$|\1|')
+
+          # argv indexing:
+          # $argv[2] is PATH or first arg, depending on whether it starts with -
+          # remaining args must be passed through verbatim.
+
+          if test (string match -qr '^-' -- "$argv[2]")
+            # args start immediately at $argv[2]
+            set sup_args $argv[2..-1]
+            git clone $sup_args -- $repo_url "$HOME/Repos/$repo"
+            cd "$HOME/Repos/$repo"
+          else if test -e "$argv[2]"
+            # path provided
+            set path "$argv[2]"
+            set sup_args $argv[3..-1]
+            git clone $sup_args -- $repo_url "$path/$repo"
+            cd "$path/$repo"
+          else
+            git clone $repo_url "$HOME/Repos/$repo"
+            cd "$HOME/Repos/$repo"
           end
         '';
       };
