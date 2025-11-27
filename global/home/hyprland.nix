@@ -180,7 +180,7 @@ in {
             "${rgb color.bg}, ${font.size}, f, hyprctl dispatch fullscreen 1, ${rgb color.fg}"
           ];
         };
-        # https://github.com/outfoxxed/hy3?tab=readme-ov-file#config-fields
+        # https://github.com/outfoxxed/hy3/blob/master/README.md#config-fields
         hy3 = pluginConfig pkgs.hyprlandPlugins.hy3 {
           tabs = {
             padding = 4;
@@ -289,6 +289,7 @@ in {
         "$mod, Q, killactive,"
         ", F11, fullscreen, 0"
         "$mod, F11, fullscreen, 1"
+        # "$mod, F11, exec, $qs ipc call"
         "$mod $s, Space, togglefloating,"
         "$mod $s, Space, exec, $qs ipc call bar refresh"
         "$mod $s, P, pin,"
@@ -570,7 +571,7 @@ in {
         "noanim, class:(python3), initialTitle:(screenpen)"
         # FontForge
         "float, class:(fontforge)"
-        "tile, class:(fontforge), title:^([^ ]+  [^ ]+\.[^ ]+ ([^ ]+))$"
+        "tile, class:(fontforge), title:^([^ ]+  [^ ]+\\.[^ ]+ ([^ ]+))$"
         # Blockbench
         "float, class:^(blockbench)$, title:^()$"
         "size 900 600, class:(blockbench), title:^()$"
@@ -581,7 +582,7 @@ in {
         # VLC
         "noblur, class:vlc"
         # Dolphin
-        "float, class:^(org.kde.dolphin)$, title:((Creating directory|Progress Dialog|Deleting|Copying|Moving) — Dolphin)"
+        "float, class:^(org.kde.dolphin)$, title:((Creating directory|Progress Dialog|Deleting|Copying|Moving|Compressing a file \\(\\d+%\\)) — Dolphin)"
         "idleinhibit, class:^(org.kde.dolphin)$, title:((Creating directory|Progress Dialog|Deleting|Copying|Moving) — Dolphin)"
         "size 1100 733, class:^(org.kde.dolphin)$, title:^(Configure( Toolbars)? — Dolphin)$"
         # Excalidraw

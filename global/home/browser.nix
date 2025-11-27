@@ -123,11 +123,13 @@
             { name = "Hyprland Wiki";
               url = "https://wiki.hypr.land/"; }
             { name = "Quickshell";
-              url = "https://quickshell.org/docs/"; }
+              url = "https://quickshell.org/docs/v0.2.1/"; }
+            { name = "Qt Docs";
+              url = "https://doc.qt.io/qt-6/"; }
             { name = "YouTube";
               url = "https://youtube.com/"; }
             { name = "Vineyard";
-              url = "https://vineyard.yt/";}
+              url = "https://vineyard.yt/"; }
           ];
         };
         extensions.packages = with pkgs.nur.repos.rycee.firefox-addons; [

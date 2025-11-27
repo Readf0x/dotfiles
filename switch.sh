@@ -1,4 +1,4 @@
-#!/usr/bin/env fish
+#!/usr/bin/env sh
 
-nh os switch . || nh os switch . && nh home switch . || nh home switch .
+nh os switch . && nh home switch .
 
