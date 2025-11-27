@@ -1,4 +1,4 @@
-{ pkgs, inputs, config, ... }: let
+{ pkgs, inputs, self, config, ... }: let
   colors = config.lib.stylix.colors;
   color = hx: "#${colors."base${hx}"}";
 in {
@@ -363,6 +363,7 @@ in {
         ocaml
         templ
         inputs.tree-sitter-tet.packages.${pkgs.stdenv.hostPlatform.system}.default
+        self.packages.${pkgs.stdenv.hostPlatform.system}.tree-sitter-umka
       ];
       settings = {
         highlight.enable = true;

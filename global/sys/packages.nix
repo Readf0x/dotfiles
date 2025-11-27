@@ -131,6 +131,7 @@
       xxd
       yt-dlp
       zip
+      this.umka
     ] ++ (with libsForQt5; [
       qt5ct
       qtstyleplugins

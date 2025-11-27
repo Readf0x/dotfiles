@@ -1,4 +1,4 @@
-{ pkgs, conf, lib, inputs, config, ... }: rec {
+{ pkgs, conf, lib, self, inputs, config, ... }: rec {
 
   nixpkgs = {
     config.allowUnfree = true;
@@ -83,7 +83,7 @@
 
     nixvim = {
       enable = true;
-    } // import ./nixvim.nix { inherit pkgs inputs config; };
+    } // import ./nixvim.nix { inherit pkgs self inputs config; };
 
     mpv = {
       enable = true;

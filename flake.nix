@@ -1,7 +1,7 @@
 {
   description = "readf0x's dotfiles";
 
-  outputs = { flake-parts, ... }@inputs:
+  outputs = { self, flake-parts, ... }@inputs:
     flake-parts.lib.mkFlake { inherit inputs; } {
       imports = [
         ./hosts/flake-module.nix
@@ -14,19 +14,21 @@
           nvim = inputs.nixvim.legacyPackages.${system}.makeNixvimWithModule {
             inherit pkgs;
             module = import ./global/home/nixvim.nix {
-              inherit pkgs inputs;
+              inherit pkgs inputs self;
               config.lib.stylix.colors = mkSchemeAttrs ./global/shared/mead.yaml;
             };
           };
         } // (
           [
-            "ukmm"
+            # "ukmm"
             "discord-rpc"
             "hypr-zoom"
-            "otf2psf"
+            # "otf2psf"
             "generate-set"
             "wl-shimeji"
-            "installer"
+            # "installer"
+            "tree-sitter-umka"
+            "umka"
           ]
           |> map (p:
             pkgs.callPackage (import ./packages/${p}.nix) {}
