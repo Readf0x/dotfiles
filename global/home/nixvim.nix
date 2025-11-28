@@ -548,6 +548,9 @@ in {
     vim.filetype.add({
       pattern = { [".*/hypr/.*%.conf"] = "hyprlang" },
     })
+    vim.filetype.add({
+      extension = { um = "umka" },
+    })
   '';
   extraConfigLuaPost = ''
     require("telescope").load_extension("zoxide")

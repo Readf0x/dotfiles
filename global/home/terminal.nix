@@ -208,7 +208,11 @@
       ];
       theme = {
         extensions = {
-          tet = { icon = { glyph = ""; }; };
+          tet.icon.glyph = "";
+          um = {
+            icon = { glyph = "ü"; style = { foreground = "Yellow"; is_bold = true; }; };
+            filename = { foreground = "Yellow"; is_bold = true; };
+          };
         };
       };
     };
@@ -502,6 +506,7 @@
           - match: '[-+*/%=!<>|&^]+'
             scope: keyword.operator.go
     '';
+    ".config/bat/syntaxes/Umka.sublime-syntax".source = "${pkgs.this.umka.src}/editors/Umka.sublime-syntax";
     ".remote-builders".text = conf.hosts
     |> lib.filterAttrs (n: v: v.remoteBuild.enable)
     |> lib.mapAttrsToList (n: v: "ssh://${v.ssh.shortname} ${v.system} - ${toString v.remoteBuild.jobs} ${toString v.remoteBuild.speedFactor}")
