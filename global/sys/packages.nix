@@ -66,12 +66,14 @@
       alejandra
       android-tools
       bat
+      borzoi.borzoi
       btop
       cava
       clipse
       delve
       distrobox
       distrobox-tui
+      dragon-drop
       fd
       ffmpeg
       file
@@ -119,6 +121,7 @@
       tmux
       unzip
       uutils-coreutils-noprefix
+      valgrind
       vulkan-tools
       wayland-utils
       wget
@@ -127,7 +130,6 @@
       wtype
       xclip
       xdg-utils
-      dragon-drop
       xxd
       yt-dlp
       zip
