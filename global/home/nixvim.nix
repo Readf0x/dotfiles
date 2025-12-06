@@ -31,6 +31,7 @@ in {
     ];
     luasnip = x: lua "if require('luasnip').choice_active() then require('luasnip').change_choice(${x}) end" "false";
     f = "false";
+    compile = lua "vim.cmd(':split|:term '..vim.b.CC)" f;
   in [
     # Remaps
     { action = "cc";                                key = "C";           mode = "n";         options.desc = "Change line";         }
@@ -65,8 +66,9 @@ in {
     { action = cmd "Telescope";                     key = "<leader>tt";  mode = "n";         options.desc = "All";                 }
     { action = lua "vim.diagnostic.open_float()" f; key = "<leader>d";   mode = "n";         options.desc = "Diagnostic";          }
     { action = ":IncRename ";                       key = "<leader>r";   mode = "n";         options.desc = "Rename";              }
-    { action = cmd "CccPick";                       key = "<leader>c";   mode = "n";         options.desc = "Color Picker";        }
-    { action = cmd "TSContext toggle";               key = "<leader>C";   mode = "n";         options.desc = "Toggle Context";      }
+    { action = cmd "CccPick";                       key = "<leader>p";   mode = "n";         options.desc = "Color Picker";        }
+    { action = compile;                             key = "<leader>c";   mode = "n";         options.desc = "Compile";        }
+    { action = cmd "TSContext toggle";              key = "<leader>C";   mode = "n";         options.desc = "Toggle Context";      }
     { action = lua "vim.lsp.buf.definition()" f;    key = "gd";          mode = "n";         options.desc = "Definition";          }
     { action = cmd "DapContinue";                   key = "<leader>Dc";  mode = "n";         options.desc = "Continue";            }
     { action = cmd "DapNew";                        key = "<leader>Dn";  mode = "n";         options.desc = "New";                 }
@@ -226,6 +228,7 @@ in {
           package = pkgs.ocamlPackages.ocaml-lsp;
         };
         # kotlin_language_server.enable = true;
+        ols.enable = true;
       };
     };
     cmp = {
@@ -362,6 +365,7 @@ in {
         yaml
         ocaml
         templ
+        odin
         inputs.tree-sitter-tet.packages.${pkgs.stdenv.hostPlatform.system}.default
         self.packages.${pkgs.stdenv.hostPlatform.system}.tree-sitter-umka
       ];
@@ -495,6 +499,24 @@ in {
     }
     {
       event = [ "BufNewFile" "BufRead" ];
+      pattern = "*.odin";
+      callback = { __raw = ''
+        function()
+          vim.b.CC = "odin build .";
+        end
+      '';};
+    }
+    {
+      event = [ "BufNewFile" "BufRead" ];
+      pattern = "*.go";
+      callback = { __raw = ''
+        function()
+          vim.b.CC = "go build .";
+        end
+      '';};
+    }
+    {
+      event = [ "BufNewFile" "BufRead" ];
       pattern = "*.tet";
       callback = { __raw = ''
         function()
@@ -544,6 +566,11 @@ in {
       handler_opts = { border = "none" },
       hint_prefix = "? "
     })
+
+    vim.b.CC = "echo No compile command set";
+    vim.api.nvim_create_user_command('CC', function(opts)
+      vim.b.CC = opts.args;
+    end, { desc = 'Set compile command', nargs = "+"; })
 
     vim.filetype.add({
       pattern = { [".*/hypr/.*%.conf"] = "hyprlang" },

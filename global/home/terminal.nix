@@ -24,6 +24,7 @@
         "q" = "exit";
         "Q" = "exit";
         "power!" = "poweroff";
+        convert = "magick";
       };
       shellAbbrs = {
         "--help" = {
@@ -209,6 +210,10 @@
       theme = {
         extensions = {
           tet.icon.glyph = "";
+          odin = {
+            icon = { glyph = "󰟢"; style = { foreground = "Yellow"; is_bold = true; }; };
+            filename = { foreground = "Yellow"; is_bold = true; };
+          };
           um = {
             icon = { glyph = "ü"; style = { foreground = "Yellow"; is_bold = true; }; };
             filename = { foreground = "Yellow"; is_bold = true; };
@@ -506,7 +511,11 @@
           - match: '[-+*/%=!<>|&^]+'
             scope: keyword.operator.go
     '';
-    ".config/bat/syntaxes/Umka.sublime-syntax".source = "${pkgs.this.umka.src}/editors/Umka.sublime-syntax";
+    ".config/bat/syntaxes/Umka.sublime-syntax".source = "${pkgs.applyPatches {
+      inherit (pkgs.this.umka) src;
+      name = "umka-src-patched";
+      patches = [ ./umka-bat-fix.patch ];
+    }}/editors/Umka.sublime-syntax";
     ".remote-builders".text = conf.hosts
     |> lib.filterAttrs (n: v: v.remoteBuild.enable)
     |> lib.mapAttrsToList (n: v: "ssh://${v.ssh.shortname} ${v.system} - ${toString v.remoteBuild.jobs} ${toString v.remoteBuild.speedFactor}")

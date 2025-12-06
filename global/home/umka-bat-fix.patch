@@ -1,0 +1,19 @@
+diff --git a/editors/Umka.sublime-syntax b/editors/Umka.sublime-syntax
+index 6ed7d1c..af5c0d1 100644
+--- a/editors/Umka.sublime-syntax
++++ b/editors/Umka.sublime-syntax
+@@ -243,12 +243,12 @@ contexts:
+       pop: true
+  
+     # Trap decl
+-    - match: '\b*({{ident}}){{space}}(?=:=)\b'
++    - match: '\b({{ident}}){{space}}(?=:=)\b'
+       scope: variable.other.umka
+       set: block_scoped
+ 
+     # Struct fields
+-    - match: '\b*({{ident}}){{space}}(?=:)\b'
++    - match: '\b({{ident}}){{space}}(?=:)\b'
+       scope: variable.parameter.umka
+ 
+     - include: main

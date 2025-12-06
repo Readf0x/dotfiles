@@ -107,6 +107,7 @@
     waybar.enable = false;
     #kitty.enable = false;
     hyprlock.enable = false;
+    kde.enable = true;
     gtk = {
       enable = true;
       extraCss = ''

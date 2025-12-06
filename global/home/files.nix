@@ -1,4 +1,4 @@
-{ pkgs, stable, lib, conf, config, ... }: {
+{ pkgs, lib, ... }: {
   home.file = {
     ".face.icon".source = ./../img/pfp.png;
     # "Scripts".source = ./../scripts;

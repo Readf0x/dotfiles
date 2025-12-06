@@ -529,10 +529,9 @@ in {
           "fullscreen, class:${x}"
           "idleinhibit always, class:${x}"
           "immediate, class:${x}"
-          "monitor ${(mLib.getId 0).id}, class:${x}"
+          "monitor ${(mLib.getId 0).id}, title:${x}"
         ]) [
-          "^(Minecraft\\*? 1.\\d+.*)"
-          "^(Minecraft\\*? \\d\\d\\w\\d\\d\\w)"
+          "^(Minecraft.*)"
           "^(BigChadGuys Plus .*)"
           "^(SteamPunk)$"
           "^(GT: New Horizons 2.7.2)$"
