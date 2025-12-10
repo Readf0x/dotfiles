@@ -94,11 +94,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1765042232,
-        "narHash": "sha256-OjzWOSpgNWRexFMNX6nN7PPQPnaq8Bvibu5X9nZa/MY=",
+        "lastModified": 1765328381,
+        "narHash": "sha256-oScqGaC2E6Xr5GDrfTUa7wv1/0uUuyA6mZpVOPB1fbc=",
         "owner": "readf0x",
         "repo": "borzoi",
-        "rev": "58e2f1591e331660f5190fe3b4e1b0bf9c0c54f5",
+        "rev": "46b9f491eb8aa45f996db55ad2589cc5abab3e08",
         "type": "github"
       },
       "original": {

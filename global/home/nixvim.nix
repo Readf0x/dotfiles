@@ -31,7 +31,7 @@ in {
     ];
     luasnip = x: lua "if require('luasnip').choice_active() then require('luasnip').change_choice(${x}) end" "false";
     f = "false";
-    compile = lua "vim.cmd(':split|:term '..vim.b.CC)" f;
+    compile = lua "vim.cmd(':split|:term '..(vim.g.CC or vim.b.CC))" f;
   in [
     # Remaps
     { action = "cc";                                key = "C";           mode = "n";         options.desc = "Change line";         }
@@ -569,7 +569,7 @@ in {
 
     vim.b.CC = "echo No compile command set";
     vim.api.nvim_create_user_command('CC', function(opts)
-      vim.b.CC = opts.args;
+      vim.g.CC = opts.args;
     end, { desc = 'Set compile command', nargs = "+"; })
 
     vim.filetype.add({
