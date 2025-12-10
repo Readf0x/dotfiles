@@ -9,10 +9,15 @@
         diff = "diff --color";
         grep = "rg";
         hyc = "hyprctl";
+        ls = "eza";
         la = "eza -a";
         ll = "eza -l";
-        ls = "eza";
+        lla = "eza -la";
+        llt = "eza -lT";
+        llta = "eza -lTa";
         lt = "eza -T";
+        lta = "eza -Ta";
+        lg = "eza -lTa --git-ignore (git rev-parse --show-toplevel)";
         neofetch = "pokeget ${lib'.pokeget conf.pokemon} --hide-name | fastfetch --file /dev/stdin";
         open = "xdg-open";
         print = "echo";
