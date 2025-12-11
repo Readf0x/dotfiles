@@ -30,6 +30,7 @@
         "Q" = "exit";
         "power!" = "poweroff";
         convert = "magick";
+        icat = "kitten icat";
       };
       shellAbbrs = {
         "--help" = {
