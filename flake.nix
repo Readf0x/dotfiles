@@ -118,9 +118,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    borzoi = {
-      url = "github:readf0x/borzoi";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    borzoi.url = "github:readf0x/borzoi";
   };
 }
