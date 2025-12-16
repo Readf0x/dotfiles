@@ -1,5 +1,6 @@
 { pkgs, conf, lib, ... }: {
   nixpkgs.config.rocmSupport = true;
+  nixpkgs.config.cudaSupport = false;
 
   imports = [
     ./drives.nix
@@ -31,6 +32,17 @@
     };
     ratbagd.enable = true;
     blueman.enable = true;
+
+    # AI BULLSHIT WOO
+    ollama = {
+      enable = true;
+      package = pkgs.ollama-vulkan;
+      environmentVariables = {
+        # HCC_AMDGPU_TARGET = "gfx1032";
+        # OLLAMA_VULKAN = 1;
+      };
+      # rocmOverrideGfx = "10.3.2";
+    };
   };
 
   systemd.services."libvirtd".path = [ pkgs.passt ];

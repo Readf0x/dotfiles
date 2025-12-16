@@ -43,7 +43,6 @@
     # nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05";
     # unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    nixpkgs-working-hyprland.url = "github:nixos/nixpkgs/eb6fbcf24f82bfef9c8cae5d2d4018fbe972fe8f";
     stable.url = "github:nixos/nixpkgs/nixos-25.05";
 
     nur = {
@@ -69,7 +68,7 @@
 
     bubbleshell = {
       url = "github:readf0x/quickshell/bubble";
-      # inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     islive = {
@@ -110,8 +109,6 @@
     # };
 
     base16.url = "github:SenchoPens/base16.nix";
-
-    winapps.url = "github:winapps-org/winapps";
 
     reactions = {
       url = "github:readf0x/reactions";

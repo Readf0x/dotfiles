@@ -1,4 +1,4 @@
-{ pkgs, stable, lib, working-hyprland, ... }: {
+{ pkgs, stable, lib, ... }: {
   environment = {
     etc."/xdg/menus/applications.menu".source =
     "${pkgs.kdePackages.plasma-workspace}/etc/xdg/menus/plasma-applications.menu";
@@ -186,11 +186,7 @@
       enable = true;
       package = pkgs.gitFull;
     };
-    hyprland = {
-      enable = true;
-      package = working-hyprland.hyprland;
-      portalPackage = working-hyprland.xdg-desktop-portal-hyprland;
-    };
+    hyprland.enable = true;
     zsh.enable = true;
     fish.enable = true;
     steam = {

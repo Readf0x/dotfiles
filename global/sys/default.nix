@@ -1,4 +1,4 @@
-{ pkgs, conf, lib, working-hyprland, ... }: rec {
+{ pkgs, conf, lib, ... }: rec {
   imports = [
     ./../shared/stylix.nix
     ./packages.nix
@@ -78,7 +78,7 @@
       };
       xdgOpenUsePortal = true;
       extraPortals = with pkgs; [
-        working-hyprland.xdg-desktop-portal-hyprland
+        xdg-desktop-portal-hyprland
         kdePackages.xdg-desktop-portal-kde
       ];
     };
@@ -97,6 +97,9 @@
       #sddm.enableGnomeKeyring = true;
       hyprlock = {};
     };
+    sudo.extraConfig = ''
+      Defaults 	insults
+    '';
   };
 
   environment.etc = {
@@ -149,6 +152,8 @@
   stylix.targets = {
     grub.enable = false;
   };
+
+  documentation.man.generateCaches = false;
 
   console = {
     earlySetup = true;

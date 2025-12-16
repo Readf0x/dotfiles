@@ -1,4 +1,4 @@
-{ pkgs, conf, config, lib, lib', working-hyprland, ... }: let
+{ pkgs, conf, config, lib, lib', ... }: let
   mLib = lib'.monitors;
   color = lib'.color.genFunctions config.lib.stylix.colors;
   inherit (color.hypr) rgb rgba;
@@ -25,8 +25,7 @@ in {
     portalPackage = null;
     plugins = with pkgs.hyprlandPlugins; [
       # hyprwinwrap
-      # hy3
-      working-hyprland.hyprlandPlugins.hy3
+      hy3
     ];
     settings = rec {
       #    ____         __              ____    __  __  _             
@@ -443,7 +442,7 @@ in {
         # Pavucontrol
         "float, class:(pavucontrol)"
         "size 700 500, class:(pavucontrol)"
-        "move 1208 51 class:(pavucontrol)"
+        "move 1208 51, class:(pavucontrol)"
         "monitor ${(mLib.getId 0).id}, class:(pavucontrol)"
         "animation slide, class:(pavucontrol)"
         "opacity 1.0, class:(pavucontrol)"
