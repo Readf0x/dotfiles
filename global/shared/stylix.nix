@@ -33,6 +33,7 @@
 
     targets = {
       nixvim.enable = false;
+      nvf.enable = false;
     };
 
     polarity = "dark";

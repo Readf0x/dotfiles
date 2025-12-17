@@ -5,6 +5,7 @@
       inputs.stylix.homeModules.stylix
       inputs.nur.modules.homeManager.default
       inputs.integral-prompt.homeManagerModules.default
+      inputs.nvf.homeManagerModules.default
     ];
     os = [
       inputs.stylix.nixosModules.stylix

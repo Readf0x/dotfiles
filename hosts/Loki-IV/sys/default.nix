@@ -25,9 +25,7 @@
       variant = "";
     };
     blueman.enable = true;
-    logind = {
-      lidSwitch = "lock";
-    };
+    logind.settings.Login.HandleLidSwitch = "lock";
     # "06cb-009a-fingerprint-sensor" = {
     #   enable = false;
     #   backend = "libfprint-tod";

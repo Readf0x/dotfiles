@@ -15,7 +15,7 @@
             inherit pkgs;
             module = import ./global/home/nixvim.nix {
               inherit pkgs inputs self;
-              config.lib.stylix.colors = mkSchemeAttrs ./global/shared/mead.yaml;
+              config.lib.stylix.colors = mkSchemeAttrs "${pkgs.base16-schemes}/share/themes/everforest.yaml";
             };
           };
         } // (
@@ -58,6 +58,11 @@
     flake-parts.url = "github:hercules-ci/flake-parts";
 
     nixvim.url = "github:nix-community/nixvim";
+
+    nvf = {
+      url = "github:NotAShelf/nvf";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     stylix.url = "github:danth/stylix";
 
