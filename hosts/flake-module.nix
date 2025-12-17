@@ -1,11 +1,12 @@
 { self, inputs, lib, ... }: let
   mkConf = import ./mk-conf.nix { inherit self inputs lib; } {
     hm = [
-      inputs.nixvim.homeModules.default
+      # inputs.nixvim.homeModules.default
       inputs.stylix.homeModules.stylix
       inputs.nur.modules.homeManager.default
       inputs.integral-prompt.homeManagerModules.default
-      inputs.nvf.homeManagerModules.default
+      # inputs.nvf.homeManagerModules.default
+      inputs.genvim.homeModules.default
     ];
     os = [
       inputs.stylix.nixosModules.stylix

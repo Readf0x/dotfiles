@@ -8,17 +8,7 @@
       ];
       systems = [ "x86_64-linux" ];
       perSystem = { pkgs, lib, system, ... }: {
-        packages = let
-          mkSchemeAttrs = (pkgs.callPackage inputs.base16.lib {}).mkSchemeAttrs;
-        in {
-          nvim = inputs.nixvim.legacyPackages.${system}.makeNixvimWithModule {
-            inherit pkgs;
-            module = import ./global/home/nixvim.nix {
-              inherit pkgs inputs self;
-              config.lib.stylix.colors = mkSchemeAttrs "${pkgs.base16-schemes}/share/themes/everforest.yaml";
-            };
-          };
-        } // (
+        packages = (
           [
             # "ukmm"
             "discord-rpc"
@@ -57,12 +47,7 @@
 
     flake-parts.url = "github:hercules-ci/flake-parts";
 
-    nixvim.url = "github:nix-community/nixvim";
-
-    nvf = {
-      url = "github:NotAShelf/nvf";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    genvim.url = "github:readf0x/genvim";
 
     stylix.url = "github:danth/stylix";
 

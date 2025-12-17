@@ -82,9 +82,13 @@
 
     home-manager.enable = true;
 
-    nixvim = {
+    # nixvim = {
+    #   enable = true;
+    # } // import ./nixvim.nix { inherit pkgs self inputs config; };
+
+    genvim = {
       enable = true;
-    } // import ./nixvim.nix { inherit pkgs self inputs config; };
+    };
 
     mpv = {
       enable = true;
