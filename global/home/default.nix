@@ -1,4 +1,4 @@
-{ pkgs, conf, lib, self, inputs, config, ... }: rec {
+{ pkgs, conf, lib, ... }: rec {
 
   nixpkgs = {
     config.allowUnfree = true;
@@ -11,7 +11,7 @@
     ./hyprland.nix
     ./terminal.nix
     ./waybar.nix
-    # ./nvf.nix
+    ./genvim.nix
   ];
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
@@ -81,14 +81,6 @@
     rofi.enable = true;
 
     home-manager.enable = true;
-
-    # nixvim = {
-    #   enable = true;
-    # } // import ./nixvim.nix { inherit pkgs self inputs config; };
-
-    genvim = {
-      enable = true;
-    };
 
     mpv = {
       enable = true;

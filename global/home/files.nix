@@ -1,4 +1,4 @@
-{ pkgs, lib, ... }: {
+{ pkgs, lib, config, ... }: {
   home.file = {
     ".face.icon".source = ./../img/pfp.png;
     # "Scripts".source = ./../scripts;
@@ -71,6 +71,29 @@
     '';
     ".config/bat/config".text = ''
       --theme="base16"
+    '';
+    ".local/share/nvim/highlights.vim".text = let
+      colors = config.lib.stylix.colors;
+      color = hx: "#${colors."base${hx}"}";
+    in ''
+      hi TSVariable guifg=${color "0D"}
+      hi TSMethod guifg=${color "0B"}
+      hi TSString guifg=${color "09"}
+      hi TSKeyword guifg=${color "0F"}
+      hi TSFunction guifg=${color "0B"}
+      hi TSComment guifg=${color "04"}
+      hi LineNr guifg=${color "03"}
+      hi NormalFloat guibg=${color "01"}
+      hi Pmenu guifg=${color "05"} guibg=${color "01"}
+      hi Statement gui=italic cterm=italic
+      hi @property.jsonc guifg=${color "0D"} ctermfg=81
+      hi TSTag guifg=${color "05"}
+      hi @tag.html guifg=${color "05"}
+      hi @tag.templ guifg=${color "08"}
+      hi htmlTag guifg=${color "05"}
+      hi htmlEndTag guifg=${color "05"}
+      hi @punctuation.delimiter.jsdoc guifg=${color "05"}
+      hi @string.special.templ guifg=${color "05"}
     '';
   } // (lib.mapAttrs' (n: v: lib.nameValuePair "Scripts/${n}" { source = builtins.toPath "${toString ./..}/scripts/${n}"; }) (builtins.readDir ../scripts));
 }

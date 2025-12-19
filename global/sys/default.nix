@@ -98,7 +98,7 @@
       hyprlock = {};
     };
     sudo.extraConfig = ''
-      Defaults 	insults
+      Defaults   insults
     '';
   };
 
