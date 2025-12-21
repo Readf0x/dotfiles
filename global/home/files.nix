@@ -95,5 +95,45 @@
       hi @punctuation.delimiter.jsdoc guifg=${color "05"}
       hi @string.special.templ guifg=${color "05"}
     '';
+    "Scripts/.directory".text = ''
+      [Desktop Entry]
+      Icon=folder-script
+    '';
+    "Documents/.directory".text = ''
+      [Desktop Entry]
+      Icon=folder-documents
+    '';
+    "Downloads/.directory".text = ''
+      [Desktop Entry]
+      Icon=folder-downloads
+    '';
+    "Games/.directory".text = ''
+      [Desktop Entry]
+      Icon=folder-games
+    '';
+    "Music/.directory".text = ''
+      [Desktop Entry]
+      Icon=folder-music
+    '';
+    "Pictures/.directory".text = ''
+      [Desktop Entry]
+      Icon=folder-pictures
+    '';
+    "Repos/.directory".text = ''
+      [Desktop Entry]
+      Icon=folder-git
+    '';
+    "Videos/.directory".text = ''
+      [Desktop Entry]
+      Icon=folder-videos
+    '';
+    ".steam/.directory".text = ''
+      [Desktop Entry]
+      Icon=folder-steam
+    '';
+    ".wine/.directory".text = ''
+      [Desktop Entry]
+      Icon=folder-wine
+    '';
   } // (lib.mapAttrs' (n: v: lib.nameValuePair "Scripts/${n}" { source = builtins.toPath "${toString ./..}/scripts/${n}"; }) (builtins.readDir ../scripts));
 }

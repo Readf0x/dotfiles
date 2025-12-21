@@ -1,24 +1,5 @@
 #!/usr/bin/env zsh
 
-function dir() {
-mkdir ~/$1
-if [[ $2 ]]; then cat > ~/$1/.directory << EOF
-[Desktop Entry]
-Icon=$2
-EOF
-fi
-}
-
-dir Documents
-dir Downloads
-dir Games folder-games
-dir Music
-dir Pictures
-dir Repos folder-git
-dir Videos
-dir .steam folder-steam
-dir .wine folder-wine
-
 ln -s ~/.steam ~/Steam
 ln -s ~/.wine ~/Wine
 
