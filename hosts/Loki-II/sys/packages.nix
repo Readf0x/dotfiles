@@ -8,7 +8,7 @@
     picard
     piper
     qemu
-    ryubing
+    via
   ]);
 
   virtualisation = {

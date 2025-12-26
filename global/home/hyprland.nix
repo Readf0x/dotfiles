@@ -354,9 +354,11 @@ in {
         10)
       );
       binde = [
-        ", XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_SINK@ .1+"
+        ", XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_SINK@ .10+ -l 1"
+        "$s, XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_SINK@ .01+ -l 1"
         "$mod, page_up, exec, wpctl set-volume @DEFAULT_SINK@ .1+"
-        ", XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_SINK@ .1-"
+        ", XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_SINK@ .10-"
+        "$s, XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_SINK@ .01-"
         "$mod, page_down, exec, wpctl set-volume @DEFAULT_SINK@ .1-"
 
         "$mod $c, left, resizeactive, -60 0"
@@ -425,6 +427,7 @@ in {
         # No opacity on videos
         "opacity 1.0, class:^(mpv)$"
         "opacity 1.0, class:^(steam_app_.*)"
+        "monitor ${(mLib.getId 0).id}, class:^(steam_app_.*)"
         "opacity 1.0, class:^(streaming_client)$"
         # Floating borders
         # "bordersize 1, onworkspace:special:dropdown"
@@ -440,12 +443,12 @@ in {
         "float, title:^(Authentication Required)$"
         "size 327 198, title:^(Authentication Required)$"
         # Pavucontrol
-        "float, class:(pavucontrol)"
-        "size 700 500, class:(pavucontrol)"
-        "move 1208 51, class:(pavucontrol)"
-        "monitor ${(mLib.getId 0).id}, class:(pavucontrol)"
-        "animation slide, class:(pavucontrol)"
-        "opacity 1.0, class:(pavucontrol)"
+        # "float, class:(pavucontrol)"
+        # "size 700 500, class:(pavucontrol)"
+        # "move 1208 51, class:(pavucontrol)"
+        # "monitor ${(mLib.getId 0).id}, class:(pavucontrol)"
+        # "animation slide, class:(pavucontrol)"
+        # "opacity 1.0, class:(pavucontrol)"
         # Smile
         "float, class:(smile)"
         # Rofi
@@ -524,10 +527,11 @@ in {
         # Minecraft
       ] ++ (builtins.concatMap (
         x: [
-          "opacity 1.0, class:${x}"
-          "fullscreen, class:${x}"
-          "idleinhibit always, class:${x}"
-          "immediate, class:${x}"
+          "float, title:${x}"
+          "opacity 1.0, title:${x}"
+          "fullscreen, title:${x}"
+          "idleinhibit always, title:${x}"
+          "immediate, title:${x}"
           "monitor ${(mLib.getId 0).id}, title:${x}"
         ]) [
           "^(Minecraft.*)"

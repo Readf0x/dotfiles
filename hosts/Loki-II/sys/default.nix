@@ -43,6 +43,8 @@
       };
       # rocmOverrideGfx = "10.3.2";
     };
+
+    udev.packages = [ pkgs.via ];
   };
 
   systemd.services."libvirtd".path = [ pkgs.passt ];

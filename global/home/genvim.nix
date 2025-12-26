@@ -45,8 +45,6 @@
       nvim-dap-view
       nvim-dap-virtual-text
       nui-nvim
-      nvim-web-devicons
-      ollama-nvim
     ];
 
     lsps = with pkgs; [
