@@ -37,8 +37,8 @@ in rec {
         stateVersion = "24.05";
         system = "x86_64-linux";
         monitors = [
-          { id = "DP-2";     res = [ 1920 1080 ]; scl = 1; hz = 60; pos = [ 1920 0 ]; rot = 0; hdr = false; }
-          { id = "HDMI-A-1"; res = [ 1920 1080 ]; scl = 1; hz = 60; pos = [ 0    0 ]; rot = 0; hdr = false; }
+          { id = "DP-1"; res = [ 2560 1440 ]; scl = 1.0; hz = 180; pos = [ 1440 700 ]; rot = 0; hdr = true; vrr = true; }
+          { id = "DP-2"; res = [ 2560 1440 ]; scl = 1.0; hz = 180; pos = [ 0    0   ]; rot = 1; hdr = true; vrr = true; }
         ];
         trusted-public-key = "Loki2:XXJZyhytus5gu7xvzb/lXiAkJusYgh5eaBBoYYanbg0=";
         remoteBuild = {
@@ -56,8 +56,8 @@ in rec {
         stateVersion = "24.11";
         system = "x86_64-linux";
         monitors = [
-          { id = "eDP-1";    res = [ 1920 1080 ]; scl = 1; hz = 60; pos = [ 0 1080 ]; rot = 0; hdr = false; }
-          { id = "HDMI-A-2"; res = [ 1920 1080 ]; scl = 1; hz = 60; pos = [ 0 0    ]; rot = 0; hdr = false; }
+          { id = "eDP-1";    res = [ 1920 1080 ]; scl = 1; hz = 60; pos = [ 0 1080 ]; rot = 0; hdr = false; vrr = false; }
+          { id = "HDMI-A-2"; res = [ 1920 1080 ]; scl = 1; hz = 60; pos = [ 0 0    ]; rot = 0; hdr = false; vrr = false; }
         ];
         trusted-public-key = "Loki4:JTKGVJHy2T1xIIjIV48SyCTqk137ayoggWb1gjoCmuQ=";
         remoteBuild.enable = false;

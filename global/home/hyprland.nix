@@ -27,7 +27,9 @@ in {
       # hyprwinwrap
       hy3
     ];
-    settings = rec {
+    settings = let
+      music = "global, quickshell";
+    in rec {
       #    ____         __              ____    __  __  _             
       #   / __/_ _____ / /____ __ _    / __/__ / /_/ /_(_)__  ___ ____
       #  _\ \/ // (_-</ __/ -_)  ' \  _\ \/ -_) __/ __/ / _ \/ _ `(_-<
@@ -36,7 +38,8 @@ in {
 
       # https://wiki.hyprland.org/Configuring/Monitors/
       monitor = mLib.map (i:
-        "${i.id}, ${mLib.toRes i.res}@${toString i.hz}, ${mLib.toRes i.pos}, ${toString i.scl}, transform, ${toString i.rot}"
+        # "${i.id}, ${mLib.toRes i.res}@${toString i.hz}, ${mLib.toRes' i.pos i.scl}, ${toString i.scl}, transform, ${toString i.rot}${if i.vrr then ", vrr, 1" else ""}${if i.hdr then ", bitdepth, 10" else ""}"
+        "${i.id}, ${mLib.toRes i.res}@${toString i.hz}, ${mLib.toRes' i.pos i.scl}, ${toString i.scl}, transform, ${toString i.rot}"
       );
 
       # https://wiki.hyprland.org/Configuring/Environment-variables/
@@ -46,6 +49,11 @@ in {
         "SAL_USE_VCLPLUGIN, qt6"
         "KRITA_NO_STYLE_OVERRIDE, 1"
         "REACTION_PATH, ${toString conf.homeDir}/Pictures/Reactions"
+      # ] ++ (if lib.lists.any (x: x.hdr) conf.monitors then [
+      #   "DXVK_HDR, 1"
+      #   "ENABLE_HDR_WSI, 1"
+      #   "PROTON_ENABLE_HDR, 1"
+      # ] else []);
       ];
 
       #    __             __                  __  ____        __
@@ -120,14 +128,21 @@ in {
         disable_hyprland_logo = true;
         disable_splash_rendering = true;
         focus_on_activate = true;
+        # vrr = lib.lists.any (x: x.vrr) conf.monitors;
+        animate_manual_resizes = true;
       };
+      # render = if lib.lists.any (x: x.hdr) conf.monitors then {
+      #   direct_scanout = 1;
+      #   cm_fs_passthrough = 1;
+      # } else null;
+
       xwayland.force_zero_scaling = true;
       ecosystem = {
         no_update_news = true;
         no_donation_nag = true;
       };
 
-      experimental.xx_color_management_v4 = lib.lists.any (x: x.hdr) conf.monitors;
+      # experimental.xx_color_management_v4 = lib.lists.any (x: x.hdr) conf.monitors;
 
       # https://wiki.hyprland.org/Configuring/Animations/
       animations = {
@@ -161,6 +176,7 @@ in {
       cursor = {
         no_warps = true;
         warp_on_change_workspace = 2;
+        zoom_disable_aa = true;
       };
 
       plugin = {
@@ -238,7 +254,6 @@ in {
       # [TODO] create vim binds
       bind = let
         prefix = if (ifPlugin pkgs.hyprlandPlugins.hy3) then "hy3:" else "";
-        music = "global, quickshell";
       in [
         # IMPORTANT:
         "$hyper, L, exec, xdg-open https://linkedin.com/"
@@ -290,7 +305,7 @@ in {
         "$mod, F11, fullscreen, 1"
         # "$mod, F11, exec, $qs ipc call"
         "$mod $s, Space, togglefloating,"
-        "$mod $s, Space, exec, $qs ipc call bar refresh"
+        "$mod $s, Space, ${music}:refreshToplevels"
         "$mod $s, P, pin,"
         "$mod $c, Home, centerwindow,"
         "$a, Tab, focusurgentorlast,"
@@ -373,6 +388,7 @@ in {
       # temp
       bindr = [
         "$mod, Super_L, exec, pkill rofi || rofi -show drun"
+        "$mod, mouse:272, ${music}:refreshToplevels"
       ];
 
       #    ______           __          
@@ -428,6 +444,7 @@ in {
         "opacity 1.0, class:^(mpv)$"
         "opacity 1.0, class:^(steam_app_.*)"
         "monitor ${(mLib.getId 0).id}, class:^(steam_app_.*)"
+        "fullscreen, class:^(steam_app_.*)"
         "opacity 1.0, class:^(streaming_client)$"
         # Floating borders
         # "bordersize 1, onworkspace:special:dropdown"
@@ -474,11 +491,10 @@ in {
         # Steam
         "float, title:(Steam Settings)"
         "minsize 1 1, title:^()$,class:^(steam)$"
-        "center, title:^(Steam)$, class:^()$"
-        "center, class:^(steam)$"
+        # "center, title:^(Steam)$, class:^()$"
+        # "center, class:^(steam)$"
         "monitor ${(mLib.getId 0).id}, class:(steam)"
         "noinitialfocus, title:^(notificationtoasts.*)$"
-        # "fullscreen, class:^(steam_app_.*)"
         # File dialogs
         "float, title:((Open|Save|Select) (File|As|(Background )?Image|Folder|Font.*))"
         "size 900 600, title:((Open|Save|Select) (File|As|(Background )?Image|Folder.*))"

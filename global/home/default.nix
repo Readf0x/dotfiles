@@ -93,6 +93,13 @@
       config = {
         script-opts = "ytdl_hook-ytdl_path=${pkgs.yt-dlp}/bin/yt-dlp";
         ytdl-format = "bestvideo[height<=?720][fps<=?30][vcodec!=?vp9]+bestaudio/best";
+      # } // (if lib.lists.any (x: x.hdr) conf.monitors then {
+      #   vo = "gpu-next";
+      #   gpu-api = "vulkan";
+      #   target-colorspace-hint = true;
+      #   target-prim = "bt.2020";
+      #   target-trc = "pq";
+      # } else {});
       };
     };
   };

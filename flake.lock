@@ -113,11 +113,11 @@
         "quickshell": "quickshell"
       },
       "locked": {
-        "lastModified": 1766723816,
-        "narHash": "sha256-l2XPtmpSvH36tjSJhI1Bno0mVdN+VRtcIWdvS5Q+6PA=",
+        "lastModified": 1767478079,
+        "narHash": "sha256-mtimBaGeaO2VwKYor4xZff2U/ujBuxXD8tYzWAOi25A=",
         "owner": "readf0x",
         "repo": "quickshell",
-        "rev": "e3c69f69533368930a269276bbd636a2a0dcb8f8",
+        "rev": "d123adf757b6d23929c48e5076221fba43d95c51",
         "type": "github"
       },
       "original": {
@@ -647,11 +647,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1763507320,
-        "narHash": "sha256-HKKWGrjKOZR3WQrClPPnG6+biq83EMY8ni50HdOMmQs=",
+        "lastModified": 1767212566,
+        "narHash": "sha256-hkDmRhwWS/73/9cov2U1THUf17S4ZuqmC1QtNbeyVxo=",
         "owner": "readf0x",
         "repo": "reactions",
-        "rev": "209141df961a00f4f1c8b571eae6e008b0cb6004",
+        "rev": "e44c97a0a7d6c8d1f298a1c7927c8f11d87ced25",
         "type": "github"
       },
       "original": {
