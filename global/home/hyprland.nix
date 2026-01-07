@@ -28,7 +28,7 @@ in {
       hy3
     ];
     settings = let
-      music = "global, quickshell";
+      quick = "global, quickshell";
     in rec {
       #    ____         __              ____    __  __  _             
       #   / __/_ _____ / /____ __ _    / __/__ / /_/ /_(_)__  ___ ____
@@ -275,8 +275,8 @@ in {
         "$mod, D, togglespecialworkspace, dropdown"
         "$mod, K, togglespecialworkspace, KeepassXC"
         "$mod $s, R, exec, ~/Scripts/wallpaper"
-        "$mod, N, exec, swaync-client -t"
-        "$mod $s, N, exec, swaync-client -C"
+        "$mod, N, ${quick}:notiflist"
+        "$mod $s, N, ${quick}:clear"
         "$mod, Escape, exec, hyprlock"
         "$mod, L, exec, lutris"
         ", XF86Tools, exec, pavucontrol"
@@ -286,14 +286,14 @@ in {
         "$a, XF86Favorites, exec, notify-send \"Current Battery Level: $(cat /sys/class/power_supply/BAT0/capacity)%\" -t 1000"
 
         # Media controls
-        ", XF86AudioPlay, ${music}:playPause"
-        "$mod, F10, ${music}:playPause"
-        ", XF86AudioNext, ${music}:next"
-        "$mod, End, ${music}:next"
-        ", XF86AudioPrev, ${music}:previous"
-        "$mod, Home, ${music}:previous"
-        ", XF86Favorites, ${music}:nextPlayer"
-        "$mod, Insert, ${music}:nextPlayer"
+        ", XF86AudioPlay, ${quick}:playPause"
+        "$mod, F10, ${quick}:playPause"
+        ", XF86AudioNext, ${quick}:next"
+        "$mod, End, ${quick}:next"
+        ", XF86AudioPrev, ${quick}:previous"
+        "$mod, Home, ${quick}:previous"
+        ", XF86Favorites, ${quick}:nextPlayer"
+        "$mod, Insert, ${quick}:nextPlayer"
         "$mod $s, H, exec, ~/Scripts/audio"
         ", XF86AudioMute, exec, pactl set-sink-mute $(pactl get-default-sink) toggle"
         "$mod, Delete, exec, pactl set-sink-mute $(pactl get-default-sink) toggle"
@@ -305,7 +305,7 @@ in {
         "$mod, F11, fullscreen, 1"
         # "$mod, F11, exec, $qs ipc call"
         "$mod $s, Space, togglefloating,"
-        "$mod $s, Space, ${music}:refreshToplevels"
+        "$mod $s, Space, ${quick}:refreshToplevels"
         "$mod $s, P, pin,"
         "$mod $c, Home, centerwindow,"
         "$a, Tab, focusurgentorlast,"
@@ -354,6 +354,7 @@ in {
         "$mod, mouse_up, workspace, e+1"
 
         "$mod, R, exec, rofi -show run"
+        "$mod, M, ${quick}:launcher"
       ] ++ (
         builtins.concatLists (builtins.genList (
           x: let
@@ -387,8 +388,7 @@ in {
       ];
       # temp
       bindr = [
-        "$mod, Super_L, exec, pkill rofi || rofi -show drun"
-        "$mod, mouse:272, ${music}:refreshToplevels"
+        "$mod, mouse:272, ${quick}:refreshToplevels"
       ];
 
       #    ______           __          
@@ -409,7 +409,6 @@ in {
         # **DO NOT ENABLE**
         # Steam uses a *shit ton* of power. Should only be opening when in use (on mobile devices)
         # "steam -silent"
-        "swaync"
         "swww-daemon; sleep 2; wallpaper"
         "$qs"
         "zsh -c '\${$(realpath $(which kdeconnect-cli))%\"bin/kdeconnect-cli\"}libexec/kdeconnectd'"
@@ -667,6 +666,8 @@ in {
         "suppressevent activate activatefocus, class:^(Adobe Photoshop 2025)"
         # Hyprland desktop portal
         "float, title:^(Select what to share)$"
+        # Quickshell
+        "float, class:^(org.quickshell)$, title:^(Launcher)$"
       ];
     };
   };

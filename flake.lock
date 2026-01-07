@@ -113,16 +113,15 @@
         "quickshell": "quickshell"
       },
       "locked": {
-        "lastModified": 1767478079,
-        "narHash": "sha256-mtimBaGeaO2VwKYor4xZff2U/ujBuxXD8tYzWAOi25A=",
+        "lastModified": 1767750891,
+        "narHash": "sha256-jC2q2HZsMDIrCacORhT3gu/jQ77zZQWgHt+MrTOXOrw=",
         "owner": "readf0x",
         "repo": "quickshell",
-        "rev": "d123adf757b6d23929c48e5076221fba43d95c51",
+        "rev": "6d2936aec5b74caed6311a130e29c7ed2d732810",
         "type": "github"
       },
       "original": {
         "owner": "readf0x",
-        "ref": "bubble",
         "repo": "quickshell",
         "type": "github"
       }

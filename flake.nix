@@ -69,7 +69,7 @@
     # };
 
     bubbleshell = {
-      url = "github:readf0x/quickshell/bubble";
+      url = "github:readf0x/quickshell";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 

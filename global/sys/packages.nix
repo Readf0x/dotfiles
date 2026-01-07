@@ -11,12 +11,14 @@
       };
     in [
       # Desktop Applications
+      bubbleshell.bubble-shell
       chatterino7
       easyeffects
       figma-linux
       gimp3-with-plugins
       hyprshot
       inkscape
+      jetbrains.idea
       keepassxc
       kitty
       libreoffice-qt6-fresh
@@ -24,7 +26,6 @@
       lutris
       mangohud
       mpvWithScripts
-      bubbleshell.bubble-shell
       networkmanagerapplet
       pavucontrol
       prismlauncher
@@ -33,7 +34,6 @@
       reactions.reactions
       rofi
       scrcpy
-      swaynotificationcenter
       this.wl-shimeji
       ungoogled-chromium
       xemu
