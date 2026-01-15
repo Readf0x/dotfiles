@@ -130,6 +130,7 @@ in {
         focus_on_activate = true;
         # vrr = lib.lists.any (x: x.vrr) conf.monitors;
         animate_manual_resizes = true;
+        enable_anr_dialog = false;
       };
       # render = if lib.lists.any (x: x.hdr) conf.monitors then {
       #   direct_scanout = 1;
@@ -656,6 +657,7 @@ in {
         "opacity 1.0, class:^(.virt-manager-wrapped)$, title:^(.* on .*)$"
         # Kdenlive
         "opacity 1.0, class:^(org.kde.kdenlive)$"
+        "float, title:^(Kdenlive)$, class:^(org.kde.kdenlive)$"
         # qView
         "suppressevent fullscreen, class:^(com.interversehq.qView)$"
         # limo

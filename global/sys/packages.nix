@@ -18,7 +18,7 @@
       gimp3-with-plugins
       hyprshot
       inkscape
-      jetbrains.idea
+      jetbrains.idea-community
       keepassxc
       kitty
       libreoffice-qt6-fresh

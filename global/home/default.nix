@@ -38,6 +38,12 @@
       kdePackages.breeze.qt5
       kdePackages.breeze-gtk
       fd
+      (writeShellScriptBin "prismlauncher" ''
+        export XDG_DATA_DIRS="${pkgs.gsettings-desktop-schemas}/share/gsettings-schemas/${pkgs.gsettings-desktop-schemas.name}:${pkgs.gtk3}/share/gsettings-schemas/${pkgs.gtk3.name}''${XDG_DATA_DIRS:+:$XDG_DATA_DIRS}"
+        export GIO_EXTRA_MODULES="${pkgs.glib-networking}/lib/gio/modules''${GIO_EXTRA_MODULES:+:$GIO_EXTRA_MODULES}"
+        
+        exec ${pkgs.prismlauncher}/bin/prismlauncher "$@"
+      '')
     ];
 
     sessionVariables = {
