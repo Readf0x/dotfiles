@@ -13,7 +13,6 @@
     initrd.kernelModules = [ ];
     kernelModules = [ "kvm-intel" ];
     extraModulePackages = [ ];
-    kernelPackages = pkgs.linuxPackages_zen;
     kernel.sysctl = { "vm.swappiness" = 80; };
   };
   networking.useDHCP = lib.mkDefault true;

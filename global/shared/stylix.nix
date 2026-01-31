@@ -31,11 +31,6 @@
       size = 24;
     };
 
-    targets = {
-      nixvim.enable = false;
-      nvf.enable = false;
-    };
-
     polarity = "dark";
   };
 }

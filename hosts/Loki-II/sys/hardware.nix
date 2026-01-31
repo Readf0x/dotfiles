@@ -13,7 +13,6 @@
       kernelModules = [ "amdgpu" ];
     };
     kernelModules = [ "kvm-amd" ];
-    kernelPackages = pkgs.linuxPackages_zen;
     kernel.sysctl = { "vm.swappiness" = 80; };
   };
   hardware = {

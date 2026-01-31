@@ -161,7 +161,7 @@
       dolphin
       dolphin-plugins
       kdegraphics-thumbnailers
-      kdenlive
+      stable.kdePackages.kdenlive
       korganizer
       ktorrent
     ]) ++ (with wineWowPackages; [

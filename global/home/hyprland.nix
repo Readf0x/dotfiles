@@ -1,4 +1,4 @@
-{ pkgs, conf, config, lib, lib', ... }: let
+{ pkgs, conf, config, lib', ... }: let
   mLib = lib'.monitors;
   color = lib'.color.genFunctions config.lib.stylix.colors;
   inherit (color.hypr) rgb rgba;
@@ -432,20 +432,20 @@ in {
         "f[1]s[false], gapsout:0, gapsin:0"
       ];
       windowrule = [
-        "bordersize 0, floating:0, onworkspace:w[t1]s[false]"
-        "rounding 0, floating:0, onworkspace:w[t1]s[false]"
-        "bordersize 0, floating:0, onworkspace:f[1]s[false]"
-        "rounding 0, floating:0, onworkspace:f[1]s[false]"
+        "border_size 0, match:float 0, match:workspace w[t1]s[false]"
+        "rounding 0, match:float 0, match:workspace w[t1]s[false]"
+        "border_size 0, match:float 0, match:workspace f[1]s[false]"
+        "rounding 0, match:float 0, match:workspace f[1]s[false]"
         # Disallow auto maximize
-        "suppressevent maximize activate activatefocus, class:(.*)"
+        "suppress_event maximize activate activatefocus, match:class (.*)"
         # Global Opacity
-        # "opacity 0.8, class:(.*)"
+        # "opacity 0.8, match:class (.*)"
         # No opacity on videos
-        "opacity 1.0, class:^(mpv)$"
-        "opacity 1.0, class:^(steam_app_.*)"
-        "monitor ${(mLib.getId 0).id}, class:^(steam_app_.*)"
-        "fullscreen, class:^(steam_app_.*)"
-        "opacity 1.0, class:^(streaming_client)$"
+        "opacity 1.0, match:class ^(mpv)$"
+        "opacity 1.0, match:class ^(steam_app_.*)"
+        "monitor ${(mLib.getId 0).id}, match:class ^(steam_app_.*)"
+        "fullscreen on, match:class ^(steam_app_.*)"
+        "opacity 1.0, match:class ^(streaming_client)$"
         # Floating borders
         # "bordersize 1, onworkspace:special:dropdown"
         # "bordersize 1, onworkspace:special:KeepassXC"
@@ -453,102 +453,102 @@ in {
         # "rounding 8, onworkspace:special:dropdown"
         # "rounding 8, onworkspace:special:KeepassXC"
         # "rounding 8, floating:1"
-        # "noshadow, floating:0"
+        # "noshadow on floating:0"
         # Disable blur on popups
-        "noblur, class:^()$, title: ^()$"
+        "no_blur on, match:class ^()$, match:title  ^()$"
         # Auth Window
-        "float, title:^(Authentication Required)$"
-        "size 327 198, title:^(Authentication Required)$"
+        "float on, match:title ^(Authentication Required)$"
+        "size 327 198, match:title ^(Authentication Required)$"
         # Pavucontrol
-        # "float, class:(pavucontrol)"
-        # "size 700 500, class:(pavucontrol)"
-        # "move 1208 51, class:(pavucontrol)"
-        # "monitor ${(mLib.getId 0).id}, class:(pavucontrol)"
-        # "animation slide, class:(pavucontrol)"
-        # "opacity 1.0, class:(pavucontrol)"
+        # "float on, match:class (pavucontrol)"
+        # "size 700 500, match:class (pavucontrol)"
+        # "move 1208 51, match:class (pavucontrol)"
+        # "monitor ${(mLib.getId 0).id}, match:class (pavucontrol)"
+        # "animation slide, match:class (pavucontrol)"
+        # "opacity 1.0, match:class (pavucontrol)"
         # Smile
-        "float, class:(smile)"
+        "float on, match:class (smile)"
         # Rofi
-        "stayfocused, class:(Rofi)"
-        "float, class:(Rofi)"
+        "stay_focused on, match:class (Rofi)"
+        "float on, match:class (Rofi)"
         # Vivaldi
-        "tile, title:( - Vivaldi)$"
-        "float, title:^(Vivaldi Settings)"
+        "tile on, match:title ( - Vivaldi)$"
+        "float on, match:title ^(Vivaldi Settings)"
         # Dunst
-        "opacity 0.75, class:(Dunst)"
+        "opacity 0.75, match:class (Dunst)"
         # Waydroid
-        "fullscreen, class:^([w|W]aydroid.*)"
+        "fullscreen on, match:class ^([w|W]aydroid.*)"
         # Picture in picture
-        "float, title:^(Picture-in-Picture)$"
-        "keepaspectratio, title:^(Picture-in-Picture)$"
-        "pin, title:^(Picture-in-Picture)$"
-        "opacity 1.0, title:^(Picture-in-Picture)$"
+        "float on, match:title ^(Picture-in-Picture)$"
+        "keep_aspect_ratio on, match:title ^(Picture-in-Picture)$"
+        "pin on match:title ^(Picture-in-Picture)$"
+        "opacity 1.0, match:title ^(Picture-in-Picture)$"
         # Gamescope
-        "rounding 0, class:(gamescope)"
-        "fullscreen, class:(gamescope)"
-        "float, class:(gamescope)"
-        "opacity 1.0, class:(gamescope)"
+        "rounding 0, match:class (gamescope)"
+        "fullscreen on, match:class (gamescope)"
+        "float on, match:class (gamescope)"
+        "opacity 1.0, match:class (gamescope)"
         # Steam
-        "float, title:(Steam Settings)"
-        "minsize 1 1, title:^()$,class:^(steam)$"
-        # "center, title:^(Steam)$, class:^()$"
-        # "center, class:^(steam)$"
-        "monitor ${(mLib.getId 0).id}, class:(steam)"
-        "noinitialfocus, title:^(notificationtoasts.*)$"
+        "float on, match:title (Steam Settings)"
+        "min_size 1 1, match:title ^()$,match:class ^(steam)$"
+        # "center on match:title ^(Steam)$, match:class ^()$"
+        # "center on match:class ^(steam)$"
+        "monitor ${(mLib.getId 0).id}, match:class (steam)"
+        "no_initial_focus on match:title ^(notificationtoasts.*)$"
         # File dialogs
-        "float, title:((Open|Save|Select) (File|As|(Background )?Image|Folder|Font.*))"
-        "size 900 600, title:((Open|Save|Select) (File|As|(Background )?Image|Folder.*))"
-        "center, title:((Open|Save|Select) (File|As|(Background )?Image|Folder|Font.*))"
-        "float, class:(org.freedesktop.impl.portal.desktop.kde)"
-        "size 900 600, class:(org.freedesktop.impl.portal.desktop.kde)"
-        "center, class:(org.freedesktop.impl.portal.desktop.kde)"
-        "center, title:( Image)$"
+        "float on, match:title ((Open|Save|Select) (File|As|(Background )?Image|Folder|Font.*))"
+        "size 900 600, match:title ((Open|Save|Select) (File|As|(Background )?Image|Folder.*))"
+        "center on match:title ((Open|Save|Select) (File|As|(Background )?Image|Folder|Font.*))"
+        "float on, match:class (org.freedesktop.impl.portal.desktop.kde)"
+        "size 900 600, match:class (org.freedesktop.impl.portal.desktop.kde)"
+        "center on match:class (org.freedesktop.impl.portal.desktop.kde)"
+        "center on match:title ( Image)$"
         # LibreOffice
-        "size 900 600, class:(soffice)"
-        "center, class:(soffice)"
-        "float, class:(xdg-desktop-portal-gtk)"
-        "size 900 600, class:(xdg-desktop-portal-gtk)"
-        "center, class:(xdg-desktop-portal-gtk)"
-        "size 239 122, title:^(Go to Page)$"
-        "center, class:^()$, title:^(LibreOffice)$"
+        "size 900 600, match:class (soffice)"
+        "center on match:class (soffice)"
+        "float on, match:class (xdg-desktop-portal-gtk)"
+        "size 900 600, match:class (xdg-desktop-portal-gtk)"
+        "center on match:class (xdg-desktop-portal-gtk)"
+        "size 239 122, match:title ^(Go to Page)$"
+        "center on match:class ^()$, match:title ^(LibreOffice)$"
         # XWaylandVideoBridge
-        "opacity 0.0 override 0.0 override, class:^(xwaylandvideobridge)$"
-        "noanim, class:^(xwaylandvideobridge)$"
-        "nofocus, class:^(xwaylandvideobridge)$"
-        "noinitialfocus, class:^(xwaylandvideobridge)$"
-        #"workspace special:hell silent, class:^(xwaylandvideobridge)$"
-        #"workspace name:music, class:^(YouTube Music)$"
-        #"workspace name:music, class:^(Dopamine)$"
-        "float, title:^(Layer Select)$"
-        "float, class:^(file-.*)"
+        "opacity 0.0 override 0.0 override, match:class ^(xwaylandvideobridge)$"
+        "no_anim on match:class ^(xwaylandvideobridge)$"
+        "no_focus on match:class ^(xwaylandvideobridge)$"
+        "no_initial_focus on match:class ^(xwaylandvideobridge)$"
+        #"workspace special:hell silent, match:class ^(xwaylandvideobridge)$"
+        #"workspace name:music, match:class ^(YouTube Music)$"
+        #"workspace name:music, match:class ^(Dopamine)$"
+        "float on, match:title ^(Layer Select)$"
+        "float on, match:class ^(file-.*)"
         # Discord
-        "monitor ${(mLib.getId 1).id}, class:^(discord)$"
-        "suppressevent activate activatefocus, class:^(discord)$"
-        "noinitialfocus, class:^(discord)$"
-        "focusonactivate off, class:^(discord)$"
-        # "monitor ${(mLib.getId 1).id}, class:^(vesktop)$"
-        "workspace 2, class:^(vesktop)$"
-        "noinitialfocus, class:^(vesktop)$"
-        "focusonactivate off, class:^(vesktop)$"
+        "monitor ${(mLib.getId 1).id}, match:class ^(discord)$"
+        "suppress_event activate activatefocus, match:class ^(discord)$"
+        "no_initial_focus on match:class ^(discord)$"
+        "focus_on_activate off, match:class ^(discord)$"
+        # "monitor ${(mLib.getId 1).id}, match:class ^(vesktop)$"
+        "workspace 2, match:class ^(vesktop)$"
+        "no_initial_focus on match:class ^(vesktop)$"
+        "focus_on_activate off, match:class ^(vesktop)$"
         # Telegram
-        "noanim, title:^(Media viewer)$, class:^(org.telegram.desktop)$"
-        "float, title:^(Media viewer)$, class:^(org.telegram.desktop)$"
-        "monitor ${(mLib.getId 1).id}, class:^(org.telegram.desktop)$"
+        "no_anim on match:title ^(Media viewer)$, match:class ^(org.telegram.desktop)$"
+        "float on, match:title ^(Media viewer)$, match:class ^(org.telegram.desktop)$"
+        "monitor ${(mLib.getId 1).id}, match:class ^(org.telegram.desktop)$"
         # ScrCpy
-        "keepaspectratio, class:^(.scrcpy-wrapped)$"
-        "pseudo, class:^(.scrcpy-wrapped)$"
-        "opacity 1.0, class:^(.scrcpy-wrapped)$"
+        "keep_aspect_ratio on, match:class ^(.scrcpy-wrapped)$"
+        "pseudo on match:class ^(.scrcpy-wrapped)$"
+        "opacity 1.0, match:class ^(.scrcpy-wrapped)$"
         # KDE Connect
-        "float, class:^(org.kde.kdeconnect.handler)$"
+        "float on, match:class ^(org.kde.kdeconnect.handler)$"
         # Minecraft
       ] ++ (builtins.concatMap (
         x: [
-          "float, title:${x}"
-          "opacity 1.0, title:${x}"
-          "fullscreen, title:${x}"
-          "idleinhibit always, title:${x}"
-          "immediate, title:${x}"
-          "monitor ${(mLib.getId 0).id}, title:${x}"
+          "float on, match:title ${x}"
+          "opacity 1.0, match:title ${x}"
+          "fullscreen on, match:title ${x}"
+          "idle_inhibit always, match:title ${x}"
+          "immediate on match:title ${x}"
+          "monitor ${(mLib.getId 0).id}, match:title ${x}"
         ]) [
           "^(Minecraft.*)"
           "^(BigChadGuys Plus .*)"
@@ -558,118 +558,118 @@ in {
         ]
       ) ++ [
         # Half Life
-        "fullscreen, class:^(hl2_linux)$"
-        "opacity 1.0, class:^(hl2_linux)$"
+        "fullscreen on, match:class ^(hl2_linux)$"
+        "opacity 1.0, match:class ^(hl2_linux)$"
         # Kitty
-        "float, title:^(cava)$"
-        "size 1320 623, title:^(cava)$"
-        "center, title:^(cava)$"
+        "float on, match:title ^(cava)$"
+        "size 1320 623, match:title ^(cava)$"
+        "center on match:title ^(cava)$"
         # Calculator
-        "float, class:^(org.gnome.Calculator)$"
+        "float on, match:class ^(org.gnome.Calculator)$"
         # Zenity
-        "float, class:(zenity)"
+        "float on, match:class (zenity)"
         # Ark
-        "float, title:(File Already Exists — Ark)"
-        "float, class:^(org.kde.ark)$, title:^(Extracting.* — Ark)"
+        "float on, match:title (File Already Exists — Ark)"
+        "float on, match:class ^(org.kde.ark)$, match:title ^(Extracting.* — Ark)"
         # Thunar
-        "float, class:(thunar), title:(File Operation Progress|Confirm to replace files)"
-        "float, class:(org.kde.polkit-kde-authentication-agent-1)"
+        "float on, match:class (thunar), match:title (File Operation Progress|Confirm to replace files)"
+        "float on, match:class (org.kde.polkit-kde-authentication-agent-1)"
         # Yad
-        "float, class:(yad)"
+        "float on, match:class (yad)"
         # Vortex
-        "tile, title:(Vortex)"
-        "workspace special:hell silent, title:(Wine System Tray)"
-        "center, class:^(vortex.exe)$, title:^(Open)$"
+        "tile on match:title (Vortex)"
+        "workspace special:hell silent, match:title (Wine System Tray)"
+        "center on match:class ^(vortex.exe)$, match:title ^(Open)$"
         # Blender
-        "float, title:(Blender Preferences)"
+        "float on, match:title (Blender Preferences)"
         # Krita
-        "noblur, class:(krita)"
+        "no_blur on, match:class (krita)"
         # Screenpen
-        "float, class:(python3), initialTitle:(screenpen)"
-        "noanim, class:(python3), initialTitle:(screenpen)"
+        "float on, match:class (python3), match:initial_title (screenpen)"
+        "no_anim on match:class (python3), match:initial_title (screenpen)"
         # FontForge
-        "float, class:(fontforge)"
-        "tile, class:(fontforge), title:^([^ ]+  [^ ]+\\.[^ ]+ ([^ ]+))$"
+        "float on, match:class (fontforge)"
+        "tile on match:class (fontforge), match:title ^([^ ]+  [^ ]+\\.[^ ]+ ([^ ]+))$"
         # Blockbench
-        "float, class:^(blockbench)$, title:^()$"
-        "size 900 600, class:(blockbench), title:^()$"
-        "center, class:(blockbench), title:^()$"
+        "float on, match:class ^(blockbench)$, match:title ^()$"
+        "size 900 600, match:class (blockbench), match:title ^()$"
+        "center on match:class (blockbench), match:title ^()$"
         # Zotero
-        "float, class:^(Zotero)$, title:^(?!Zotero)"
-        "center, class:^(Zotero)$, title:^(?!Zotero)"
+        "float on, match:class ^(Zotero)$, match:title ^(?!Zotero)"
+        "center on match:class ^(Zotero)$, match:title ^(?!Zotero)"
         # VLC
-        "noblur, class:vlc"
+        "no_blur on, match:class vlc"
         # Dolphin
-        "float, class:^(org.kde.dolphin)$, title:((Creating directory|Progress Dialog|Deleting|Copying|Moving|Compressing a file \\(\\d+%\\)) — Dolphin)"
-        "idleinhibit, class:^(org.kde.dolphin)$, title:((Creating directory|Progress Dialog|Deleting|Copying|Moving) — Dolphin)"
-        "size 1100 733, class:^(org.kde.dolphin)$, title:^(Configure( Toolbars)? — Dolphin)$"
+        "float on, match:class ^(org.kde.dolphin)$, match:title ((Creating directory|Progress Dialog|Deleting|Copying|Moving|Compressing a file \\(\\d+%\\)) — Dolphin)"
+        "idle_inhibit on match:class ^(org.kde.dolphin)$, match:title ((Creating directory|Progress Dialog|Deleting|Copying|Moving) — Dolphin)"
+        "size 1100 733, match:class ^(org.kde.dolphin)$, match:title ^(Configure( Toolbars)? — Dolphin)$"
         # Excalidraw
-        "tile, class:^(Chromium)$, title:^(Excalidraw)$"
+        "tile on match:class ^(Chromium)$, match:title ^(Excalidraw)$"
         # Evolution
-        #"workspace name:mail, class:^(evolution)$"
-        "noinitialfocus, class:^(evolution)$"
-        "float, title:^(?!Mail|Inbox).*$, class:^(evolution)$"
-        "size 1000 650, title:^(?!Mail|Inbox).*$, class:^(evolution)$"
-        "center, title:^(?!Mail|Inbox).*$, class:^(evolution)$"
-        "tile, title:^(Compose Message)$, class:^(evolution)$"
-        "float, class:^(evolution-alarm-notify)$"
-        "size 500 400, class:^(evolution-alarm-notify)$"
-        "center, class:^(evolution-alarm-notify)$"
-        "pin, class:^(evolution-alarm-notify)$"
+        #"workspace name:mail, match:class ^(evolution)$"
+        "no_initial_focus on match:class ^(evolution)$"
+        "float on, match:title ^(?!Mail|Inbox).*$, match:class ^(evolution)$"
+        "size 1000 650, match:title ^(?!Mail|Inbox).*$, match:class ^(evolution)$"
+        "center on match:title ^(?!Mail|Inbox).*$, match:class ^(evolution)$"
+        "tile on match:title ^(Compose Message)$, match:class ^(evolution)$"
+        "float on, match:class ^(evolution-alarm-notify)$"
+        "size 500 400, match:class ^(evolution-alarm-notify)$"
+        "center on match:class ^(evolution-alarm-notify)$"
+        "pin on match:class ^(evolution-alarm-notify)$"
         # Firefox
-        "float, title:(Close Firefox)"
-        "opacity 1.0, title:.*(YouTube|Twitch|Figma).*, class:^(firefox-esr)$"
-        "opacity 1.0, title:.*(YouTube|Twitch|Figma).*, class:^(firefox)$"
+        "float on, match:title (Close Firefox)"
+        "opacity 1.0, match:title .*(YouTube|Twitch|Figma).*, match:class ^(firefox-esr)$"
+        "opacity 1.0, match:title .*(YouTube|Twitch|Figma).*, match:class ^(firefox)$"
         # Figma Linux
-        "opacity 1.0, class:^(figma-linux)$"
+        "opacity 1.0, match:class ^(figma-linux)$"
         # Godot
-        "tile, class:(Godot_Engine), title:(Godot)"
-        "tile, class:(\\w+), title:(Godot)"
-        "opacity 1.0, class:(Godot_Engine), title:(Godot)"
-        "opacity 1.0, class:(\\w+), title:(Godot)"
+        "tile on match:class (Godot_Engine), match:title (Godot)"
+        "tile on match:class (\\w+), match:title (Godot)"
+        "opacity 1.0, match:class (Godot_Engine), match:title (Godot)"
+        "opacity 1.0, match:class (\\w+), match:title (Godot)"
         # Gimp
-        "center, title:^(Export Image as), class:^(Gimp-2.10)$"
-        "center, title:^(Quit GIMP)$, class:^(Gimp-2.10)$"
-        "opacity 1.0, class:^(gimp)"
-        "suppressevent activate activatefocus, class:^(gimp)"
+        "center on match:title ^(Export Image as), match:class ^(Gimp-2.10)$"
+        "center on match:title ^(Quit GIMP)$, match:class ^(Gimp-2.10)$"
+        "opacity 1.0, match:class ^(gimp)"
+        "suppress_event activate activatefocus, match:class ^(gimp)"
         # KeepassXC
-        "workspace special:KeepassXC, class:^(org.keepassxc.KeePassXC)$"
-        "float, class:^(org.keepassxc.KeePassXC)$, title:^(Generate Password)$"
+        "workspace special:KeepassXC, match:class ^(org.keepassxc.KeePassXC)$"
+        "float on, match:class ^(org.keepassxc.KeePassXC)$, match:title ^(Generate Password)$"
         # Obsidian
-        "suppressevent activatefocus, class:^(obsidian)$"
+        "suppress_event activatefocus, match:class ^(obsidian)$"
         # TCG
-        "opacity 1.0, class:^(card shop simulator.exe)$"
+        "opacity 1.0, match:class ^(card shop simulator.exe)$"
         # Hexchat
-        "center, class:^(Hexchat)$, title:( - HexChat)$"
+        "center on match:class ^(Hexchat)$, match:title ( - HexChat)$"
         # Assassin's Creed IV Black Flag
-        "idleinhibit, title:^(Assassin's Creed IV Black Flag)$"
-        "idleinhibit, class:^(steam_app_default)$"
+        "idle_inhibit on match:title ^(Assassin's Creed IV Black Flag)$"
+        "idle_inhibit on match:class ^(steam_app_default)$"
         # Dragon Drop
-        "center, class:^(Dragon-drop)$"
+        "center on match:class ^(Dragon-drop)$"
         # IDEA
-        "float, class:^(jetbrains-idea-ce)$, title:^(Welcome to IntelliJ IDEA)$"
+        "float on, match:class ^(jetbrains-idea-ce)$, match:title ^(Welcome to IntelliJ IDEA)$"
         # VOTV
-        "fullscreen, class:^(votv-win64-shipping.exe)$"
-        "opacity 1.0, class:^(votv-win64-shipping.exe)$"
+        "fullscreen on, match:class ^(votv-win64-shipping.exe)$"
+        "opacity 1.0, match:class ^(votv-win64-shipping.exe)$"
         # CEMU
-        "opacity 1.0, title:^(Cemu 2.5 - .*)$"
+        "opacity 1.0, match:title ^(Cemu 2.5 - .*)$"
         # Virt Manager
-        "opacity 1.0, class:^(.virt-manager-wrapped)$, title:^(.* on .*)$"
+        "opacity 1.0, match:class ^(.virt-manager-wrapped)$, match:title ^(.* on .*)$"
         # Kdenlive
-        "opacity 1.0, class:^(org.kde.kdenlive)$"
-        "float, title:^(Kdenlive)$, class:^(org.kde.kdenlive)$"
+        "opacity 1.0, match:class ^(org.kde.kdenlive)$"
+        "float on, match:title ^(Kdenlive)$, match:class ^(org.kde.kdenlive)$"
         # qView
-        "suppressevent fullscreen, class:^(com.interversehq.qView)$"
+        "suppress_event fullscreen, match:class ^(com.interversehq.qView)$"
         # limo
-        "float, class:^(limo)$, title:^(New Application|Settings|Install Mod|Add to Group)$"
+        "float on, match:class ^(limo)$, match:title ^(New Application|Settings|Install Mod|Add to Group)$"
         # GZDoom
-        "float, class:^(gzdoom)$"
+        "float on, match:class ^(gzdoom)$"
         # Photoshop
-        "suppressevent activate activatefocus, class:^(Adobe Photoshop 2025)"
+        "suppress_event activate activatefocus, match:class ^(Adobe Photoshop 2025)"
         # Hyprland desktop portal
-        "float, title:^(Select what to share)$"
+        "float on, match:title ^(Select what to share)$"
         # Quickshell
-        "float, class:^(org.quickshell)$, title:^(Launcher)$"
+        "float on, match:class ^(org.quickshell)$, match:title ^(Launcher)$"
       ];
     };
   };

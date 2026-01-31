@@ -111,7 +111,6 @@
   stylix.targets = {
     hyprpaper.enable = lib.mkForce false;
     hyprland.enable = false;
-    nixvim.enable = false;
     waybar.enable = false;
     #kitty.enable = false;
     hyprlock.enable = false;

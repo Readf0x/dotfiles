@@ -8,17 +8,7 @@
       ];
       systems = [ "x86_64-linux" ];
       perSystem = { pkgs, lib, system, ... }: {
-        packages = let
-          mkSchemeAttrs = (pkgs.callPackage inputs.base16.lib {}).mkSchemeAttrs;
-        in {
-          nvim = inputs.nixvim.legacyPackages.${system}.makeNixvimWithModule {
-            inherit pkgs;
-            module = import ./global/home/nixvim.nix {
-              inherit pkgs inputs self;
-              config.lib.stylix.colors = mkSchemeAttrs "${pkgs.base16-schemes}/share/themes/everforest.yaml";
-            };
-          };
-        } // (
+        packages = (
           [
             # "ukmm"
             "discord-rpc"
@@ -56,8 +46,6 @@
     };
 
     flake-parts.url = "github:hercules-ci/flake-parts";
-
-    nixvim.url = "github:nix-community/nixvim";
 
     genvim.url = "github:readf0x/genvim";
 
@@ -100,10 +88,7 @@
 
     grub2-themes.url = "github:vinceliuice/grub2-themes";
 
-    integral-prompt = {
-      url = "github:readf0x/integral-prompt";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    integral-prompt.url = "github:readf0x/integral-prompt";
 
     # qtbooru = {
     #   url = "github:readf0x/qtbooru";
