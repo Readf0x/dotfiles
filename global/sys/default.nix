@@ -20,6 +20,7 @@
     allowUnfree = true;
     microsoftVisualStudioLicenseAccepted = true;
     allowUnsupportedSystem = true;
+    permittedInsecurePackages = [ "olm-3.2.16" ];
   };
   environment.variables = {
     SSH_ASKPASS = lib.mkForce "${pkgs.x11_ssh_askpass}/libexec/ssh-askpass";

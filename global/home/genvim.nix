@@ -1,5 +1,6 @@
 { pkgs, lib, config, ... }: {
   programs.genvim = {
+    package = pkgs.neovim;
     enable = true;
     # manageLazy = false;
     treesitter-grammars = pkgs.vimPlugins.nvim-treesitter.allGrammars ++ [ pkgs.tree-sitter-tet.default pkgs.this.tree-sitter-umka ];

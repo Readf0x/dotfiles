@@ -18,7 +18,7 @@
       gimp3-with-plugins
       hyprshot
       inkscape
-      jetbrains.idea-community
+      jetbrains.idea-oss
       keepassxc
       kitty
       libreoffice-qt6-fresh
@@ -27,6 +27,7 @@
       mangohud
       mpvWithScripts
       networkmanagerapplet
+      nheko
       pavucontrol
       prismlauncher
       qpwgraph
@@ -103,6 +104,7 @@
       nix-output-monitor
       nix-prefetch-github
       nodejs-slim
+      packwiz
       playerctl
       podman-compose
       pokeget-rs
@@ -118,6 +120,7 @@
       streamlink
       swww
       templating-engine.templating-engine
+      this.umka
       tmux
       unzip
       uutils-coreutils-noprefix
@@ -133,7 +136,6 @@
       xxd
       yt-dlp
       zip
-      this.umka
     ] ++ (with libsForQt5; [
       qt5ct
       qtstyleplugins
